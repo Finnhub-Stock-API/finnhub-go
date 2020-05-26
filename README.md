@@ -2,22 +2,44 @@
 
 ## Overview
 - API documentation: https://finnhub.io/docs/api
-- API version: 0.0.1
-- Package version: 0.0.1
+- API version: 0.0.2
+- Package version: 0.0.2
 
 ## Installation
 
-Install the following dependencies:
+Install package:
 
 ```shell
 $ go get -u github.com/Finnhub-Stock-API/finnhub-go
 ```
 
-Put the package under your project folder and add the following in import:
+Example:
 
 ```golang
-import "finnhub"
+package main
+
+import (
+	"context"
+	"fmt"
+
+	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
+)
+
+func main() {
+	client := finnhub.NewAPIClient(finnhub.NewConfiguration())
+	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
+		Key: "YOUR_API_KEY",
+	})
+
+	res, _, err := client.DefaultApi.CompanyEarnings(auth, "AAPL", nil)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%+v", res)
+}
 ```
+
 
 ## API Endpoints
 
@@ -130,18 +152,6 @@ Class | Method | HTTP request | Description
  - [TranscriptParticipant](docs/TranscriptParticipant.md)
  - [Trend](docs/Trend.md)
  - [UpgradeDowngrade](docs/UpgradeDowngrade.md)
-
-
-## Authorization
-
-Example
-
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-    Key: "APIKEY"
-})
-r, err := client.Service.Operation(auth, args)
-```
 
 
 ## License
