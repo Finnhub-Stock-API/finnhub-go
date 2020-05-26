@@ -1714,8 +1714,25 @@ components:
           format: float
           type: number
       type: object
+    Sentiment:
+      example:
+        bearishPercent: 7
+        bullishPercent: 9
+      properties:
+        bearishPercent:
+          description: ""
+          format: int64
+          type: integer
+        bullishPercent:
+          description: ""
+          format: int64
+          type: integer
+      type: object
     NewsSentiment:
       example:
+        sentiment:
+          bearishPercent: 7
+          bullishPercent: 9
         symbol: symbol
         sectorAverageBullishPercent: 5.637377
         sectorAverageNewsScore: 2.302136
@@ -1740,7 +1757,7 @@ components:
           format: float
           type: number
         sentiment:
-          $ref: '#/components/schemas/NewsSentiment'
+          $ref: '#/components/schemas/Sentiment'
         symbol:
           description: Requested symbol.
           type: string

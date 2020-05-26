@@ -17,7 +17,7 @@ type NewsSentiment struct {
 	SectorAverageBullishPercent float32 `json:"sectorAverageBullishPercent,omitempty"`
 	// Sectore average score.
 	SectorAverageNewsScore float32 `json:"sectorAverageNewsScore,omitempty"`
-	Sentiment NewsSentiment `json:"sentiment,omitempty"`
+	Sentiment Sentiment `json:"sentiment,omitempty"`
 	// Requested symbol.
 	Symbol string `json:"symbol,omitempty"`
 }
