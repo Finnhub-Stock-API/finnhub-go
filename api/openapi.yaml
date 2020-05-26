@@ -1,0 +1,2860 @@
+openapi: 3.0.1
+info:
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Finnhub API
+  version: 1.0.0
+servers:
+- url: https://finnhub.io/api/v1
+paths:
+  /stock/exchange:
+    get:
+      description: List supported stock exchanges
+      operationId: stock-exchanges
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/StockExchange'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Stock Exchanges
+  /stock/symbol:
+    get:
+      description: List supported stocks.
+      operationId: stock-symbols
+      parameters:
+      - description: Exchange you want to get the list of symbols from. Use field
+          <code>code</code> in <code>/stock/exchange</code> here.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Stock'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Stock Symbol
+  /stock/profile:
+    get:
+      description: Get general information of a company. You can query by symbol,
+        ISIN or CUSIP
+      operationId: company-profile
+      parameters:
+      - description: 'Symbol of the company: AAPL, SBIN.NS e.g.'
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: ISIN
+        in: query
+        name: isin
+        schema:
+          type: string
+      - description: CUSIP
+        in: query
+        name: cusip
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfile'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company Profile
+  /stock/profile2:
+    get:
+      description: Get general information of a company. You can query by symbol,
+        ISIN or CUSIP. This is the free version of <a href="#company-profile">Company
+        Profile</a>.
+      operationId: company-profile2
+      parameters:
+      - description: 'Symbol of the company: AAPL, SBIN.NS e.g.'
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: ISIN
+        in: query
+        name: isin
+        schema:
+          type: string
+      - description: CUSIP
+        in: query
+        name: cusip
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfile2'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company Profile 2
+  /stock/executive:
+    get:
+      description: Get a list of company's executives and members of the Board.
+      operationId: company-executive
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyExecutive'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company Executive
+  /news:
+    get:
+      description: Get latest market news.
+      operationId: general-news
+      parameters:
+      - description: This parameter can be 1 of the following values <code>general,
+          forex, crypto, merger</code>.
+        in: query
+        name: category
+        required: true
+        schema:
+          type: string
+      - description: Use this field to get only news after this ID. Default to 0
+        in: query
+        name: minId
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/News'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: General News
+  /company-news:
+    get:
+      description: List latest company news by symbol. This endpoint is only available
+        for US companies.
+      operationId: company-news
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/News'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company News
+  /major-development:
+    get:
+      description: List latest major developments of a company going back 20 years
+        with 12M+ data points. This data can be used to highlight the most significant
+        events. Limit to 200 results/call for Ultimate users, and 20 results/call
+        other plans.
+      operationId: major-developments
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'From time: 2020-01-01. This option is only available for Ultimate
+          users.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To time: 2020-01-05. This option is only available for Ultimate
+          users.'
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MajorDevelopments'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Major Developments
+  /news-sentiment:
+    get:
+      description: Get company's news sentiment and statistics. This endpoint is only
+        available for US companies.
+      operationId: news-sentiment
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsSentiment'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: News Sentiment
+  /stock/peers:
+    get:
+      description: Get company peers. Return a list of peers in the same country and
+        GICS sub-industry
+      operationId: company-peers
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Peers
+  /stock/metric:
+    get:
+      description: Get company key metrics such as growth, price, valuation. Full
+        list of supported fields can be downloaded <a target="_blank" href="https://static.finnhub.io/csv/metrics.csv">here</a>
+      operationId: company-metrics
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Metric type. Can be 1 of the following values <code>price, valuation,
+          growth, margin, management, financialStrength, perShare</code>
+        in: query
+        name: metric
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Metrics
+  /stock/investor-ownership:
+    get:
+      description: Get a full list of shareholders/investors of a company in descending
+        order of the number of shares held.
+      operationId: investors-ownership
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Limit number of results. Leave empty to get the full list.
+        in: query
+        name: limit
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestorsOwnership'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Investors Ownership
+  /stock/fund-ownership:
+    get:
+      description: Get a full list fund and institutional investors of a company in
+        descending order of the number of shares held.
+      operationId: fund-ownership
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Limit number of results. Leave empty to get the full list.
+        in: query
+        name: limit
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundOwnership'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Fund Ownership
+  /stock/financials:
+    get:
+      description: Get standardized balance sheet, income statement and cash flow
+        for global companies going back 30+ years.
+      operationId: financials
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Statement can take 1 of these values <code>bs, ic, cf</code>
+          for Balance Sheet, Income Statement, Cash Flow respectively.
+        in: query
+        name: statement
+        required: true
+        schema:
+          type: string
+      - description: Frequency can take 1 of these values <code>annual, quarterly,
+          ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income
+          Statement and Cash Flow. YTD (Year To Date) option is only available for
+          Cash Flow.
+        in: query
+        name: freq
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialStatements'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Financial Statements
+  /stock/financials-reported:
+    get:
+      description: Get financials as reported.
+      operationId: financials-reported
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: CIK.
+        in: query
+        name: cik
+        schema:
+          type: string
+      - description: Access number of a specific report you want to retrieve financials
+          from.
+        in: query
+        name: accessNumber
+        schema:
+          type: string
+      - description: Frequency. Can be either <code>annual</code> or <code>quarterly</code>.
+          Default to <code>annual</code>.
+        in: query
+        name: freq
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialsAsReported'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Financials As Reported
+  /stock/filings:
+    get:
+      description: List company's filing.
+      operationId: filings
+      parameters:
+      - description: Symbol. Leave <code>symbol</code>,<code>cik</code> and <code>accessNumber</code>
+          empty to list latest filings.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: CIK.
+        in: query
+        name: cik
+        schema:
+          type: string
+      - description: Access number of a specific report you want to retrieve data
+          from.
+        in: query
+        name: accessNumber
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Filing'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Filings
+  /calendar/ipo:
+    get:
+      description: Get recent and coming IPO.
+      operationId: ipo-calendar
+      parameters:
+      - description: 'From date: 2020-03-15.'
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2020-03-16.'
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IPOEvent'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: IPO Calendar
+  /stock/dividend:
+    get:
+      description: Get dividends data for common stocks going back 30 years.
+      operationId: stock-dividends
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: YYYY-MM-DD.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: YYYY-MM-DD.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dividends'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Dividends
+  /stock/recommendation:
+    get:
+      description: Get latest analyst recommendation trends for a company.
+      operationId: recommendation-trends
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationTrends'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Recommendation Trends
+  /stock/price-target:
+    get:
+      description: Get latest price target consensus.
+      operationId: price-target
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceTarget'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Price Target
+  /stock/upgrade-downgrade:
+    get:
+      description: Get latest stock upgrade and downgrade.
+      operationId: upgrade-downgrade
+      parameters:
+      - description: 'Symbol of the company: AAPL. If left blank, the API will return
+          latest stock upgrades/downgrades.'
+        in: query
+        name: symbol
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UpgradeDowngrade'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Stock Upgrade/Downgrade
+  /stock/revenue-estimate:
+    get:
+      description: Get company's revenue estimates.
+      operationId: company-revenue-estimates
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'Can take 1 of the following values: <code>annual, quarterly</code>.
+          Default to <code>quarterly</code>'
+        in: query
+        name: freq
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevenueEstimates'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Revenue Estimates
+  /stock/eps-estimate:
+    get:
+      description: Get company's EPS estimates.
+      operationId: company-eps-estimates
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'Can take 1 of the following values: <code>annual, quarterly</code>.
+          Default to <code>quarterly</code>'
+        in: query
+        name: freq
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarningsEstimates'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Earnings Estimates
+  /stock/earnings:
+    get:
+      description: Get company historical quarterly earnings surprise going back to
+        2000.
+      operationId: company-earnings
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Limit number of period returned. Leave blank to get the full
+          history.
+        in: query
+        name: limit
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EarningResult'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Earnings Surprises
+  /calendar/earnings:
+    get:
+      description: Get historical and coming earnings release dating back to 2003.
+        You can setup <a href="#webhook">webhook</a> to receive real-time earnings
+        update.
+      operationId: earnings-calendar
+      parameters:
+      - description: 'From date: 2020-03-15.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2020-03-16.'
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
+      - description: 'Filter by symbol: AAPL.'
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: Set to <code>true</code> to include international markets. Default
+          value is <code>false</code>
+        in: query
+        name: international
+        schema: {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EarningRelease'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Earnings Calendar
+  /quote:
+    get:
+      description: <p>Get quote data for stocks. Constant polling is not recommended.
+        Use websocket if you need real-time update.</p><p> Real-time stock prices
+        for international markets are supported for Enterprise clients via our partner's
+        feed. <a href="mailto:support@finnhub.io">Contact Us</a> to learn more.</p>
+      operationId: quote
+      parameters:
+      - description: Symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Quote
+  /stock/candle:
+    get:
+      description: <p>Get candlestick data for stocks going back 25 years.</p><p>
+        Real-time stock prices for international markets are supported for Enterprise
+        clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
+        Us</a> to learn more.</p>
+      operationId: stock-candles
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      - description: UNIX timestamp. Interval initial value. If count is not provided,
+          this field is required
+        in: query
+        name: from
+        schema:
+          format: int64
+          type: integer
+      - description: UNIX timestamp. Interval end value. If count is not provided,
+          this field is required
+        in: query
+        name: to
+        schema:
+          format: int64
+          type: integer
+      - description: By default, <code>format=json</code>. Strings <code>json</code>
+          and <code>csv</code> are accepted.
+        in: query
+        name: format
+        schema:
+          type: string
+      - description: By default, <code>adjusted=false</code>. Use <code>true</code>
+          to get adjusted data.
+        in: query
+        name: adjusted
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockCandles'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Stock Candles
+  /stock/tick:
+    get:
+      description: <p>Get historical tick data for US stocks from all 13 exchanges.
+        Return csv format. You can send the request directly to our tick server at
+        <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same
+        path and parameters or get redirected there if you call our main server. Data
+        is updated at the end of each trading day.</p><p>Tick data from 1993 is available
+        for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
+        us</a> to learn more.</p>
+      operationId: stock-tick
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'Date: 2020-04-02.'
+        in: query
+        name: date
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickData'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Tick Data
+  /stock/split:
+    get:
+      description: Get splits data for stocks.
+      operationId: stock-splits
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: YYYY-MM-DD.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: YYYY-MM-DD.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Splits'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Splits
+  /forex/exchange:
+    get:
+      description: List supported forex exchanges
+      operationId: forex-exchanges
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Forex Exchanges
+  /forex/symbol:
+    get:
+      description: List supported forex symbols.
+      operationId: forex-symbols
+      parameters:
+      - description: Exchange you want to get the list of symbols from.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ForexSymbol'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Forex Symbol
+  /forex/candle:
+    get:
+      description: Get candlestick data for forex symbols.
+      operationId: forex-candles
+      parameters:
+      - description: Use symbol returned in <code>/forex/symbol</code> endpoint for
+          this field.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      - description: UNIX timestamp. Interval initial value. If count is not provided,
+          this field is required
+        in: query
+        name: from
+        schema:
+          format: int64
+          type: integer
+      - description: UNIX timestamp. Interval end value. If count is not provided,
+          this field is required
+        in: query
+        name: to
+        schema:
+          format: int64
+          type: integer
+      - description: By default, <code>format=json</code>. Strings <code>json</code>
+          and <code>csv</code> are accepted.
+        in: query
+        name: format
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForexCandles'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Forex Candles
+  /forex/rates:
+    get:
+      description: Get rates for all forex pairs. Ideal for currency conversion
+      operationId: forex-rates
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forexrates'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Forex rates
+  /crypto/exchange:
+    get:
+      description: List supported crypto exchanges
+      operationId: crypto-exchanges
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Crypto Exchanges
+  /crypto/symbol:
+    get:
+      description: List supported crypto symbols by exchange
+      operationId: crypto-symbols
+      parameters:
+      - description: Exchange you want to get the list of symbols from.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CryptoSymbol'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Crypto Symbol
+  /crypto/candle:
+    get:
+      description: Get candlestick data for crypto symbols.
+      operationId: crypto-candles
+      parameters:
+      - description: Use symbol returned in <code>/crypto/symbol</code> endpoint for
+          this field.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      - description: UNIX timestamp. Interval initial value. If count is not provided,
+          this field is required
+        in: query
+        name: from
+        schema:
+          format: int64
+          type: integer
+      - description: UNIX timestamp. Interval end value. If count is not provided,
+          this field is required
+        in: query
+        name: to
+        schema:
+          format: int64
+          type: integer
+      - description: By default, <code>format=json</code>. Strings <code>json</code>
+          and <code>csv</code> are accepted.
+        in: query
+        name: format
+        schema:
+          type: string
+      - description: Shortcut to set <code>to=Unix.Now</code> and <code>from=Unix.Now
+          - count * resolution_second</code>.
+        in: query
+        name: count
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CryptoCandles'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Crypto Candles
+  /scan/pattern:
+    get:
+      description: Run pattern recognition algorithm on a symbol. Support double top/bottom,
+        triple top/bottom, head and shoulders, triangle, wedge, channel, flag, and
+        candlestick patterns.
+      operationId: pattern-recognition
+      parameters:
+      - description: Symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScanPattern'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Pattern Recognition
+  /scan/support-resistance:
+    get:
+      description: Get support and resistance levels for a symbol.
+      operationId: support-resistance
+      parameters:
+      - description: Symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  format: float
+                  type: number
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Support/Resistance
+  /scan/technical-indicator:
+    get:
+      description: Get aggregate signal of multiple technical indicators such as MACD,
+        RSI, Moving Average v.v.
+      operationId: aggregate-indicator
+      parameters:
+      - description: symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregateIndicators'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Aggregate Indicators
+  /indicator:
+    get:
+      description: Return technical indicator with price data. List of supported indicators
+        can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
+        target="_blank">here</a>.
+      operationId: technical-indicator
+      parameters:
+      - description: symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M
+          </code>.Some timeframes might not be available depending on the exchange.
+        in: query
+        name: resolution
+        required: true
+        schema:
+          type: string
+      - description: UNIX timestamp. Interval initial value. If count is not provided,
+          this field is required
+        in: query
+        name: from
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: UNIX timestamp. Interval end value. If count is not provided,
+          this field is required
+        in: query
+        name: to
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: Indicator name. Full list can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
+          target="_blank">here</a>.
+        in: query
+        name: indicator
+        required: true
+        schema:
+          type: string
+      - description: Check out <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
+          target="_blank">this page</a> to see which indicators and params are supported.
+        in: query
+        name: Indicator specific fields
+        schema:
+          type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechnicalIndicators'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Technical Indicators
+  /merger:
+    get:
+      description: List latest merger and acquisitions deal by country. Limit to 50
+        results/call
+      operationId: merger
+      parameters:
+      - description: Country to get M&A deals. A list of supported countries can be
+          found <a href="https://static.finnhub.io/csv/merger-country.csv">here</a>
+        in: query
+        name: country
+        required: true
+        schema:
+          type: string
+      - description: From date in format <code>YYYY-MM-DD</code>. If from and to are
+          not set, it will return latest deals.
+        in: query
+        name: from
+        schema:
+          type: string
+      - description: To date in format <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/MergerCountry'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Merger & Acquisitions
+  /stock/transcripts/list:
+    get:
+      description: List earnings call transcripts' metadata. This endpoint is only
+        available for US companies.
+      operationId: transcripts-list
+      parameters:
+      - description: 'Company symbol: AAPL. Leave empty to list the latest transcripts'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarningsCallTranscriptsList'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Earnings Call Transcripts List
+  /stock/transcripts:
+    get:
+      description: Get earnings call transcripts, audio and participants' list. This
+        endpoint is only available for US companies.
+      operationId: transcripts
+      parameters:
+      - description: Transcript's id obtained with <a href="#transcripts-list">Transcripts
+          List endpoint</a>.
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarningsCallTranscripts'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Earnings Call Transcripts
+  /covid19/us:
+    get:
+      description: Get real-time updates on the number of COVID-19 (Corona virus)
+        cases in the US with a state-by-state breakdown. Data is sourced from CDC
+        and reputable sources.
+      operationId: covid-19
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/COVID-19'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: COVID-19
+  /economic/code:
+    get:
+      description: List codes of supported economic data.
+      operationId: economic-code
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EconomicCode'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Economic Code
+  /economic:
+    get:
+      description: Get economic data.
+      operationId: economic-data
+      parameters:
+      - description: Economic code.
+        in: query
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Economic'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Economic Data
+components:
+  schemas:
+    StockExchange:
+      example:
+        code: code
+        name: name
+        currency: currency
+      properties:
+        name:
+          description: Exchange name.
+          type: string
+        code:
+          description: Exchange code.
+          type: string
+        currency:
+          description: Currency.
+          type: string
+      type: object
+    Stock:
+      example:
+        displaySymbol: displaySymbol
+        symbol: symbol
+        description: description
+      properties:
+        description:
+          description: Symbol description
+          type: string
+        displaySymbol:
+          description: Display symbol name.
+          type: string
+        symbol:
+          description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
+            endpoint.
+          type: string
+      type: object
+    CompanyProfile:
+      example:
+        country: country
+        cusip: cusip
+        city: city
+        naicsSector: naicsSector
+        description: description
+        employeeTotal: 5
+        gsector: gsector
+        weburl: weburl
+        logo: logo
+        currency: currency
+        state: state
+        ggroup: ggroup
+        ticker: ticker
+        address: address
+        marketCapitalization: 6
+        gind: gind
+        ipo: 2000-01-23
+        sedol: 0
+        finnhubIndustry: finnhubIndustry
+        naicsNationalIndustry: naicsNationalIndustry
+        naicsSubsector: naicsSubsector
+        phone: phone
+        gsubind: gsubind
+        name: name
+        exchange: exchange
+        naics: naics
+        isin: isin
+        shareOutstanding: 1.4658129
+      properties:
+        address:
+          description: Address of company's headquarter.
+          type: string
+        city:
+          description: City of company's headquarter.
+          type: string
+        country:
+          description: Country of company's headquarter.
+          type: string
+        currency:
+          description: Currency used in company filings.
+          type: string
+        cusip:
+          description: CUSIP number.
+          type: string
+        sedol:
+          description: Sedol number.
+          format: int64
+          type: integer
+        description:
+          description: Company business summary.
+          type: string
+        exchange:
+          description: Listed exchange.
+          type: string
+        ggroup:
+          description: GICS industry group.
+          type: string
+        gind:
+          description: GICS industry.
+          type: string
+        gsector:
+          description: GICS sector.
+          type: string
+        gsubind:
+          description: GICS sub-industry.
+          type: string
+        isin:
+          description: ISIN number.
+          type: string
+        naicsNationalIndustry:
+          description: NAICS national industry.
+          type: string
+        naics:
+          description: NAICS industry.
+          type: string
+        naicsSector:
+          description: NAICS sector.
+          type: string
+        naicsSubsector:
+          description: NAICS subsector.
+          type: string
+        name:
+          description: Company name.
+          type: string
+        phone:
+          description: Company phone number.
+          type: string
+        state:
+          description: State of company's headquarter.
+          type: string
+        ticker:
+          description: Company symbol/ticker as used on the listed exchange.
+          type: string
+        weburl:
+          description: Company website.
+          type: string
+        ipo:
+          description: IPO date.
+          format: date
+          type: string
+        marketCapitalization:
+          description: Market Capitalization.
+          format: int64
+          type: integer
+        shareOutstanding:
+          description: Number of oustanding shares.
+          format: float
+          type: number
+        employeeTotal:
+          description: Number of employee.
+          format: int64
+          type: integer
+        logo:
+          description: Logo image.
+          type: string
+        finnhubIndustry:
+          description: Finnhub industry classification.
+          type: string
+      type: object
+    CompanyProfile2:
+      example:
+        finnhubIndustry: finnhubIndustry
+        country: country
+        ticker: ticker
+        marketCapitalization: 0
+        phone: phone
+        weburl: weburl
+        name: name
+        ipo: 2000-01-23
+        logo: logo
+        currency: currency
+        exchange: exchange
+        shareOutstanding: 6.0274563
+      properties:
+        country:
+          description: Country of company's headquarter.
+          type: string
+        currency:
+          description: Currency used in company filings.
+          type: string
+        exchange:
+          description: Listed exchange.
+          type: string
+        name:
+          description: Company name.
+          type: string
+        ticker:
+          description: Company symbol/ticker as used on the listed exchange.
+          type: string
+        ipo:
+          description: IPO date.
+          format: date
+          type: string
+        marketCapitalization:
+          description: Market Capitalization.
+          format: int64
+          type: integer
+        shareOutstanding:
+          description: Number of oustanding shares.
+          format: float
+          type: number
+        logo:
+          description: Logo image.
+          type: string
+        phone:
+          description: Company phone number.
+          type: string
+        weburl:
+          description: Company website.
+          type: string
+        finnhubIndustry:
+          description: Finnhub industry classification.
+          type: string
+      type: object
+    Company:
+      properties:
+        name:
+          description: Executive name
+          type: string
+        age:
+          description: Age
+          format: int64
+          type: integer
+        title:
+          description: Title
+          type: string
+        since:
+          description: Year appointed
+          type: string
+        sex:
+          description: Sex
+          type: string
+        compensation:
+          description: Total compensation
+          format: int64
+          type: integer
+        currency:
+          description: Compensation currency
+          type: string
+      type: object
+    CompanyExecutive:
+      example:
+        symbol: symbol
+        executive:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        executive:
+          description: Array of company's executives and members of the Board.
+          items:
+            type: object
+          type: array
+      type: object
+    News:
+      example:
+        summary: summary
+        image: image
+        datetime: 0
+        related: related
+        id: 6
+        source: source
+        category: category
+        headline: headline
+        url: url
+      properties:
+        category:
+          description: News category.
+          type: string
+        datetime:
+          description: Published time in UNIX timestamp.
+          format: int64
+          type: integer
+        headline:
+          description: News headline.
+          type: string
+        id:
+          description: News ID. This value can be used for <code>minId</code> params
+            to get the latest news only.
+          format: int64
+          type: integer
+        image:
+          description: Thumbnail image URL.
+          type: string
+        related:
+          description: Related stocks and companies mentioned in the article.
+          type: string
+        source:
+          description: News source.
+          type: string
+        summary:
+          description: News summary.
+          type: string
+        url:
+          description: URL of the original article.
+          type: string
+      type: object
+    Development:
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        datetime:
+          description: Published time in <code>YYYY-MM-DD HH:MM:SS</code> format.
+          format: date-time
+          type: string
+        headline:
+          description: Development headline.
+          type: string
+        description:
+          description: Development description.
+          type: string
+      type: object
+    MajorDevelopments:
+      example:
+        majorDevelopment:
+        - '{}'
+        - '{}'
+        symbol: symbol
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        majorDevelopment:
+          description: Array of major developments.
+          items:
+            type: object
+          type: array
+      type: object
+    CompanyNewsStatistics:
+      example:
+        weeklyAverage: 1.4658129
+        articlesInLastWeek: 0
+        buzz: 6.0274563
+      properties:
+        articlesInLastWeek:
+          description: ""
+          format: int64
+          type: integer
+        buzz:
+          description: ""
+          format: float
+          type: number
+        weeklyAverage:
+          description: ""
+          format: float
+          type: number
+      type: object
+    NewsSentiment:
+      example:
+        symbol: symbol
+        sectorAverageBullishPercent: 5.637377
+        sectorAverageNewsScore: 2.302136
+        buzz:
+          weeklyAverage: 1.4658129
+          articlesInLastWeek: 0
+          buzz: 6.0274563
+        companyNewsScore: 5.962134
+      properties:
+        buzz:
+          $ref: '#/components/schemas/CompanyNewsStatistics'
+        companyNewsScore:
+          description: News score.
+          format: float
+          type: number
+        sectorAverageBullishPercent:
+          description: Sector average bullish percent.
+          format: float
+          type: number
+        sectorAverageNewsScore:
+          description: Sectore average score.
+          format: float
+          type: number
+        sentiment:
+          $ref: '#/components/schemas/NewsSentiment'
+        symbol:
+          description: Requested symbol.
+          type: string
+      type: object
+    MetricMap:
+      type: object
+    Metrics:
+      example:
+        symbol: symbol
+        metricType: metricType
+        metric: '{}'
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        metricType:
+          description: Metric type.
+          type: string
+        metric:
+          type: object
+      type: object
+    Investor:
+      properties:
+        name:
+          description: Investor's name.
+          type: string
+        share:
+          description: Number of shares held by the investor.
+          format: int64
+          type: integer
+        turnover:
+          description: Turnover rating of the investor.
+          type: string
+        turnoverPercent:
+          description: Trading's values relative to investor's assets expressed in
+            percentage.
+          format: float
+          type: number
+        change:
+          description: Number of share changed (net buy or sell) from the last period.
+          format: int64
+          type: integer
+        filingDate:
+          description: Filing date.
+          format: date
+          type: string
+      type: object
+    InvestorsOwnership:
+      example:
+        symbol: symbol
+        ownership:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        ownership:
+          description: Array of investors with detailed information about their holdings.
+          items:
+            type: object
+          type: array
+      type: object
+    FundOwnership:
+      example:
+        symbol: symbol
+        ownership:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        ownership:
+          description: Array of investors with detailed information about their holdings.
+          items:
+            type: object
+          type: array
+      type: object
+    FinancialMap:
+      type: object
+    FinancialStatements:
+      example:
+        symbol: symbol
+        financials:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        financials:
+          description: An array of map of key, value pairs containing the data for
+            each period.
+          items:
+            type: object
+          type: array
+      type: object
+    ReportDataMap:
+      type: object
+    Report:
+      properties:
+        accessNumber:
+          description: Access number.
+          type: string
+        symbol:
+          description: Symbol.
+          type: string
+        cik:
+          description: CIK.
+          type: string
+        year:
+          description: Year.
+          format: int64
+          type: integer
+        quarter:
+          description: Quarter.
+          format: int64
+          type: integer
+        form:
+          description: Form type.
+          type: string
+        startDate:
+          description: Period start date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        endDate:
+          description: Period end date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        filedDate:
+          description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        report:
+          type: object
+      type: object
+    FinancialsAsReported:
+      example:
+        symbol: symbol
+        cik: cik
+        data:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        cik:
+          description: CIK
+          type: string
+        data:
+          description: Array of filings.
+          items:
+            type: object
+          type: array
+      type: object
+    Filing:
+      example:
+        symbol: symbol
+        cik: cik
+        form: form
+        accessNumber: accessNumber
+        reportUrl: reportUrl
+        filedDate: 2000-01-23T04:56:07.000+00:00
+        acceptedDate: 2000-01-23T04:56:07.000+00:00
+        filingUrl: filingUrl
+      properties:
+        accessNumber:
+          description: Access number.
+          type: string
+        symbol:
+          description: Symbol.
+          type: string
+        cik:
+          description: CIK.
+          type: string
+        form:
+          description: Form type.
+          type: string
+        filedDate:
+          description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        acceptedDate:
+          description: Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        reportUrl:
+          description: Report's URL.
+          type: string
+        filingUrl:
+          description: Filing's URL.
+          type: string
+      type: object
+    IPOEvent:
+      example:
+        date: 2000-01-23
+        symbol: symbol
+        price: price
+        numberOfShares: 0
+        totalSharesValue: 6
+        name: name
+        exchange: exchange
+        status: status
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        date:
+          description: IPO date.
+          format: date
+          type: string
+        exchange:
+          description: Exchange.
+          type: string
+        name:
+          description: Company's name.
+          type: string
+        status:
+          description: 'IPO status. Can take 1 of the following values: <code>expected</code>,<code>priced</code>,<code>withdrawn</code>,<code>filed</code>'
+          type: string
+        price:
+          description: Projected price or price range.
+          type: string
+        numberOfShares:
+          description: Number of shares offered during the IPO.
+          format: int64
+          type: integer
+        totalSharesValue:
+          description: Total shares value.
+          format: int64
+          type: integer
+      type: object
+    Dividends:
+      example:
+        symbol: symbol
+        declarationDate: 2000-01-23
+        Amount: 0.8008282
+        recordDate: 2000-01-23
+        currency: currency
+        Date: 2000-01-23
+        payDate: 2000-01-23
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        Date:
+          description: Ex-Dividend date.
+          format: date
+          type: string
+        Amount:
+          description: Amount in local currency.
+          format: float
+          type: number
+        payDate:
+          description: Pay date.
+          format: date
+          type: string
+        recordDate:
+          description: Record date.
+          format: date
+          type: string
+        declarationDate:
+          description: Declaration date.
+          format: date
+          type: string
+        currency:
+          description: Currency.
+          type: string
+      type: object
+    RecommendationTrends:
+      example:
+        symbol: symbol
+        period: period
+        buy: 0
+        sell: 1
+        strongSell: 5
+        strongBuy: 5
+        hold: 6
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        buy:
+          description: Number of recommendations that fall into the Buy category
+          format: int64
+          type: integer
+        hold:
+          description: Number of recommendations that fall into the Hold category
+          format: int64
+          type: integer
+        period:
+          description: Updated period
+          type: string
+        sell:
+          description: Number of recommendations that fall into the Sell category
+          format: int64
+          type: integer
+        strongBuy:
+          description: Number of recommendations that fall into the Strong Buy category
+          format: int64
+          type: integer
+        strongSell:
+          description: Number of recommendations that fall into the Strong Sell category
+          format: int64
+          type: integer
+      type: object
+    PriceTarget:
+      example:
+        targetLow: 6.0274563
+        symbol: symbol
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        targetHigh: 0.8008282
+        targetMean: 1.4658129
+        targetMedian: 5.962134
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        targetHigh:
+          description: Highes analysts' target.
+          format: float
+          type: number
+        targetLow:
+          description: Lowest analysts' target.
+          format: float
+          type: number
+        targetMean:
+          description: Mean of all analysts' targets.
+          format: float
+          type: number
+        targetMedian:
+          description: Median of all analysts' targets.
+          format: float
+          type: number
+        lastUpdated:
+          description: Updated time of the data
+          format: date-time
+          type: string
+      type: object
+    UpgradeDowngrade:
+      example:
+        symbol: symbol
+        gradeTime: 0
+        Company: Company
+        fromGrade: fromGrade
+        toGrade: toGrade
+        action: action
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        gradeTime:
+          description: Upgrade/downgrade time in UNIX timestamp.
+          format: int64
+          type: integer
+        fromGrade:
+          description: From grade.
+          type: string
+        toGrade:
+          description: To grade.
+          type: string
+        Company:
+          description: Company/analyst who did the upgrade/downgrade.
+          type: string
+        action:
+          description: 'Action can take any of the following values: <code>up(upgrade),
+            down(downgrade), main(maintains), init(initiate), reit(reiterate)</code>.'
+          type: string
+      type: object
+    Estimate:
+      properties:
+        revenueAvg:
+          description: Average revenue estimates.
+          format: int64
+          type: integer
+        revenueHigh:
+          description: Highest estimate.
+          format: int64
+          type: integer
+        revenueLow:
+          description: Lowest estimate.
+          format: int64
+          type: integer
+        numberAnalysts:
+          description: Number of Analysts.
+          format: int64
+          type: integer
+        period:
+          description: Period.
+          format: date
+          type: string
+      type: object
+    RevenueEstimates:
+      example:
+        symbol: symbol
+        data:
+        - '{}'
+        - '{}'
+        freq: freq
+      properties:
+        data:
+          description: List of estimates
+          items:
+            type: object
+          type: array
+        freq:
+          description: 'Frequency: annual or quarterly.'
+          type: string
+        symbol:
+          description: Company symbol.
+          type: string
+      type: object
+    EarningEstimate:
+      properties:
+        epsAvg:
+          description: Average EPS estimates.
+          format: float
+          type: number
+        epsHigh:
+          description: Highest estimate.
+          format: float
+          type: number
+        epsLow:
+          description: Lowest estimate.
+          format: float
+          type: number
+        numberAnalysts:
+          description: Number of Analysts.
+          format: int64
+          type: integer
+        period:
+          description: Period.
+          format: date
+          type: string
+      type: object
+    EarningsEstimates:
+      example:
+        symbol: symbol
+        data:
+        - '{}'
+        - '{}'
+        freq: freq
+      properties:
+        data:
+          description: List of estimates
+          items:
+            type: object
+          type: array
+        freq:
+          description: 'Frequency: annual or quarterly.'
+          type: string
+        symbol:
+          description: Company symbol.
+          type: string
+      type: object
+    EarningResult:
+      example:
+        actual: 0.8008282
+        symbol: symbol
+        period: 2000-01-23
+        estimate: 6.0274563
+      properties:
+        actual:
+          description: Actual earning result.
+          format: float
+          type: number
+        estimate:
+          description: Estimated earning.
+          format: float
+          type: number
+        period:
+          description: Reported period.
+          format: date
+          type: string
+        symbol:
+          description: Company symbol.
+          type: string
+      type: object
+    EarningRelease:
+      example:
+        date: 2000-01-23
+        symbol: symbol
+        epsActual: 5.962134
+        hour: hour
+        epsEstimate: 1.4658129
+        revenueEstimate: 5
+        revenueActual: 2
+        year: 0
+        quarter: 6
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        date:
+          description: Date.
+          format: date
+          type: string
+        hour:
+          description: Indicates whether the earnings is announced before market open(<code>bmo</code>),
+            after market close(<code>amc</code>), or during market hour(<code>dmh</code>).
+          type: string
+        year:
+          description: Earnings year.
+          format: int64
+          type: integer
+        quarter:
+          description: Earnings quarter.
+          format: int64
+          type: integer
+        epsEstimate:
+          description: EPS estimate.
+          format: float
+          type: number
+        epsActual:
+          description: EPS actual.
+          format: float
+          type: number
+        revenueEstimate:
+          description: Revenue estimate.
+          format: int64
+          type: integer
+        revenueActual:
+          description: Revenue actual.
+          format: int64
+          type: integer
+      type: object
+    Quote:
+      example:
+        c: 5.962134
+        pc: 5.637377
+        h: 6.0274563
+        l: 1.4658129
+        o: 0.8008282
+      properties:
+        o:
+          description: Open price of the day
+          format: float
+          type: number
+        h:
+          description: High price of the day
+          format: float
+          type: number
+        l:
+          description: Low price of the day
+          format: float
+          type: number
+        c:
+          description: Current price
+          format: float
+          type: number
+        pc:
+          description: Previous close price
+          format: float
+          type: number
+      type: object
+    StockCandles:
+      example:
+        c: 5.962134
+        s: s
+        t: 2
+        v: 5.637377
+        h: 6.0274563
+        l: 1.4658129
+        o: 0.8008282
+      properties:
+        o:
+          description: List of open prices for returned candles.
+          format: float
+          type: number
+        h:
+          description: List of high prices for returned candles.
+          format: float
+          type: number
+        l:
+          description: List of low prices for returned candles.
+          format: float
+          type: number
+        c:
+          description: List of close prices for returned candles.
+          format: float
+          type: number
+        v:
+          description: List of volume data for returned candles.
+          format: float
+          type: number
+        t:
+          description: List of timestamp for returned candles.
+          format: int64
+          type: integer
+        s:
+          description: Status of the response. This field can either be ok or no_data.
+          type: string
+      type: object
+    TickData:
+      example:
+        volume: 1.4658129
+        price: 6.0274563
+        timestamp: 0
+      properties:
+        timestamp:
+          description: UNIX milliseconds timestamp.
+          format: int64
+          type: integer
+        price:
+          description: Price.
+          format: float
+          type: number
+        volume:
+          description: Volume of the trade.
+          format: float
+          type: number
+      type: object
+    Splits:
+      example:
+        symbol: symbol
+        fromFactor: 0.8008282
+        Date: 2000-01-23
+        toFactor: 6.0274563
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        Date:
+          description: Split date.
+          format: date
+          type: string
+        fromFactor:
+          description: From factor.
+          format: float
+          type: number
+        toFactor:
+          description: To factor.
+          format: float
+          type: number
+      type: object
+    ForexSymbol:
+      example:
+        displaySymbol: displaySymbol
+        symbol: symbol
+        description: description
+      properties:
+        description:
+          description: Symbol description
+          type: string
+        displaySymbol:
+          description: Display symbol name.
+          type: string
+        symbol:
+          description: Unique symbol used to identify this symbol used in <code>/forex/candle</code>
+            endpoint.
+          type: string
+      type: object
+    ForexCandles:
+      example:
+        c: 5.962134
+        s: s
+        t: 2.302136
+        v: 5.637377
+        h: 6.0274563
+        l: 1.4658129
+        o: 0.8008282
+      properties:
+        o:
+          description: List of open prices for returned candles.
+          format: float
+          type: number
+        h:
+          description: List of high prices for returned candles.
+          format: float
+          type: number
+        l:
+          description: List of low prices for returned candles.
+          format: float
+          type: number
+        c:
+          description: List of close prices for returned candles.
+          format: float
+          type: number
+        v:
+          description: List of volume data for returned candles.
+          format: float
+          type: number
+        t:
+          description: List of timestamp for returned candles.
+          format: float
+          type: number
+        s:
+          description: Status of the response. This field can either be ok or no_data.
+          type: string
+      type: object
+    ForexRare:
+      type: object
+    Forexrates:
+      example:
+        quote: '{}'
+        base: base
+      properties:
+        base:
+          description: Base currency.
+          type: string
+        quote:
+          type: object
+      type: object
+    CryptoSymbol:
+      example:
+        displaySymbol: displaySymbol
+        symbol: symbol
+        description: description
+      properties:
+        description:
+          description: Symbol description
+          type: string
+        displaySymbol:
+          description: Display symbol name.
+          type: string
+        symbol:
+          description: Unique symbol used to identify this symbol used in <code>/crypto/candle</code>
+            endpoint.
+          type: string
+      type: object
+    CryptoCandles:
+      example:
+        c: 5.962134
+        s: s
+        t: 2
+        v: 5.637377
+        h: 6.0274563
+        l: 1.4658129
+        o: 0.8008282
+      properties:
+        o:
+          description: List of open prices for returned candles.
+          format: float
+          type: number
+        h:
+          description: List of high prices for returned candles.
+          format: float
+          type: number
+        l:
+          description: List of low prices for returned candles.
+          format: float
+          type: number
+        c:
+          description: List of close prices for returned candles.
+          format: float
+          type: number
+        v:
+          description: List of volume data for returned candles.
+          format: float
+          type: number
+        t:
+          description: List of timestamp for returned candles.
+          format: int64
+          type: integer
+        s:
+          description: Status of the response. This field can either be ok or no_data.
+          type: string
+      type: object
+    ScanPattern:
+      type: object
+    Indicator:
+      example:
+        buy: 0
+        sell: 1
+        neutral: 6
+      properties:
+        buy:
+          description: Number of buy signals
+          format: int64
+          type: integer
+        neutral:
+          description: Number of neutral signals
+          format: int64
+          type: integer
+        sell:
+          description: Number of sell signals
+          format: int64
+          type: integer
+      type: object
+    TechnicalAnalysis:
+      example:
+        count:
+          buy: 0
+          sell: 1
+          neutral: 6
+        signal: signal
+      properties:
+        count:
+          $ref: '#/components/schemas/Indicator'
+        signal:
+          description: Aggregate Signal
+          type: string
+      type: object
+    Trend:
+      example:
+        adx: 5.962134
+      properties:
+        adx:
+          description: ADX reading
+          format: float
+          type: number
+      type: object
+    AggregateIndicators:
+      example:
+        trend:
+          adx: 5.962134
+        technicalAnalysis:
+          count:
+            buy: 0
+            sell: 1
+            neutral: 6
+          signal: signal
+      properties:
+        technicalAnalysis:
+          $ref: '#/components/schemas/TechnicalAnalysis'
+        trend:
+          $ref: '#/components/schemas/Trend'
+      type: object
+    TechnicalIndicators:
+      example:
+        c: 5.962134
+        s: s
+        t: 2
+        v: 5.637377
+        h: 6.0274563
+        l: 1.4658129
+        o: 0.8008282
+      properties:
+        o:
+          description: List of open prices for returned candles.
+          format: float
+          type: number
+        h:
+          description: List of high prices for returned candles.
+          format: float
+          type: number
+        l:
+          description: List of low prices for returned candles.
+          format: float
+          type: number
+        c:
+          description: List of close prices for returned candles.
+          format: float
+          type: number
+        v:
+          description: List of volume data for returned candles.
+          format: float
+          type: number
+        t:
+          description: List of timestamp for returned candles.
+          format: int64
+          type: integer
+        s:
+          description: Status of the response. This field can either be ok or no_data.
+          type: string
+      type: object
+    MergerCountry:
+      example:
+        targetIndustry: targetIndustry
+        targetName: targetName
+        acquirerNation: acquirerNation
+        announcementDate: 2000-01-23T04:56:07.000+00:00
+        dealSize: 0.8008282
+        acquirerIndustry: acquirerIndustry
+        acquirerPublicStatus: acquirerPublicStatus
+        targetNation: targetNation
+        acquirerDescription: acquirerDescription
+        percentAcquired: 1.4658129
+        form: form
+        targetDescription: targetDescription
+        acquirerRegion: acquirerRegion
+        dealAttitude: dealAttitude
+        netincomeMultiple: 6.0274563
+        targetPublicStatus: targetPublicStatus
+        acquirerName: acquirerName
+        status: status
+        targetRegion: targetRegion
+      properties:
+        announcementDate:
+          description: Announcement date of the deal.
+          format: date-time
+          type: string
+        dealSize:
+          description: Deal size in millions of USD.
+          format: float
+          type: number
+        status:
+          description: Deal status.
+          type: string
+        targetName:
+          description: Target company name.
+          type: string
+        targetNation:
+          description: Target company country.
+          type: string
+        acquirerName:
+          description: Acquirer name.
+          type: string
+        acquirerNation:
+          description: Acquirer nation.
+          type: string
+        form:
+          description: Deal form.
+          type: string
+        targetIndustry:
+          description: Target company industry.
+          type: string
+        acquirerIndustry:
+          description: Deal form.
+          type: string
+        targetDescription:
+          description: Target company business summary.
+          type: string
+        acquirerDescription:
+          description: Acquirer business summary.
+          type: string
+        targetRegion:
+          description: Target company region.
+          type: string
+        acquirerRegion:
+          description: Acquirer company region.
+          type: string
+        targetPublicStatus:
+          description: Target company public status.
+          type: string
+        acquirerPublicStatus:
+          description: Acquirer company public status.
+          type: string
+        dealAttitude:
+          description: Deal attitude.
+          type: string
+        netincomeMultiple:
+          description: Net Income Multiple.
+          format: float
+          type: number
+        percentAcquired:
+          description: Percent acquired.
+          format: float
+          type: number
+      type: object
+    StockTranscripts:
+      properties:
+        id:
+          description: Transcript's ID used to get the <a href="#transcripts">full
+            transcript</a>.
+          type: string
+        title:
+          description: Title.
+          type: string
+        time:
+          description: Time of the event.
+          format: date-time
+          type: string
+        year:
+          description: Year of earnings result in the case of earnings call transcript.
+          format: int64
+          type: integer
+        quarter:
+          description: Quarter of earnings result in the case of earnings call transcript.
+          format: int64
+          type: integer
+      type: object
+    EarningsCallTranscriptsList:
+      example:
+        symbol: symbol
+        transcripts:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        transcripts:
+          description: Array of transcripts' metadata
+          items:
+            type: object
+          type: array
+      type: object
+    TranscriptContent:
+      properties:
+        name:
+          description: Speaker's name
+          type: string
+        speech:
+          description: Speaker's speech
+          type: string
+      type: object
+    TranscriptParticipant:
+      properties:
+        name:
+          description: Participant's name
+          type: string
+        description:
+          description: Participant's description
+          type: string
+      type: object
+    EarningsCallTranscripts:
+      example:
+        symbol: symbol
+        transcript:
+        - '{}'
+        - '{}'
+        year: 0
+        audio: audio
+        id: id
+        time: 2000-01-23T04:56:07.000+00:00
+        title: title
+        participant:
+        - '{}'
+        - '{}'
+        quarter: 6
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        transcript:
+          description: Transcript content.
+          items:
+            type: object
+          type: array
+        participant:
+          description: Participant list
+          items:
+            type: object
+          type: array
+        audio:
+          description: Audio link.
+          type: string
+        id:
+          description: Transcript's ID.
+          type: string
+        title:
+          description: Title.
+          type: string
+        time:
+          description: Time of the event.
+          format: date-time
+          type: string
+        year:
+          description: Year of earnings result in the case of earnings call transcript.
+          format: int64
+          type: integer
+        quarter:
+          description: Quarter of earnings result in the case of earnings call transcript.
+          format: int64
+          type: integer
+      type: object
+    COVID-19:
+      example:
+        death: 6.0274563
+        state: state
+        updated: 2000-01-23T04:56:07.000+00:00
+        case: 0.8008282
+      properties:
+        state:
+          description: State.
+          type: string
+        case:
+          description: Number of confirmed cases.
+          format: float
+          type: number
+        death:
+          description: Number of confirmed deaths.
+          format: float
+          type: number
+        updated:
+          description: Updated time.
+          format: date-time
+          type: string
+      type: object
+    EconomicCode:
+      example:
+        country: country
+        unit: unit
+        code: code
+        name: name
+      properties:
+        code:
+          description: Economic code used to get historical data
+          type: string
+        country:
+          description: Country
+          type: string
+        name:
+          description: Indicator name
+          type: string
+        unit:
+          description: Unit
+          type: string
+      type: object
+    Economic:
+      example:
+        date: date
+        value: 0.8008282
+      properties:
+        date:
+          description: Date of the reading
+          type: string
+        value:
+          description: Value
+          format: float
+          type: number
+      type: object
+    Events:
+      type: object
+    EconomicCalendar:
+      properties:
+        Array:
+          type: object
+      type: object
+  securitySchemes:
+    api_key:
+      in: query
+      name: token
+      type: apiKey
