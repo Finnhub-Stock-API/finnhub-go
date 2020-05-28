@@ -22,21 +22,42 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/antihax/optional"
+
 	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
 )
 
 func main() {
 	client := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
 	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
-		Key: "YOUR_API_KEY",
+		Key: "bqlsn1frh5rfdbi8u17g",
 	})
 
-	res, _, err := client.CompanyEarnings(auth, "AAPL", nil)
+	// Example with required parameters
+	news, _, err := client.CompanyNews(auth, "AAPL", "2020-01-01", "2020-05-01")
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("%+v", news)
 
-	fmt.Printf("%+v", res)
+	// Example with required and optional parameters
+	investorsOwnershipOpts := &finnhub.InvestorsOwnershipOpts{Limit: optional.NewInt64(10)}
+	ownerships, _, err := client.InvestorsOwnership(auth, "AAPL", investorsOwnershipOpts)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("\n\n%+v", ownerships)
+
+	// Example with mutiple optional params
+	stockCandlesOpts := &finnhub.StockCandlesOpts{
+		From: optional.NewInt64(1572651390),
+		To:   optional.NewInt64(1575243390),
+	}
+	stockCandles, _, err := client.StockCandles(auth, "AAPL", "D", stockCandlesOpts)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("\n\n%+v", stockCandles)
 }
 ```
 
