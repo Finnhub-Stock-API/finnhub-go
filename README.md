@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0
-- Package version: 0.0.3
+- Package version: 0.1.1
 
 ## Installation
 
