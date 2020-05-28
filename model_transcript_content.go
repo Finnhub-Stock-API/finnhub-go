@@ -13,5 +13,5 @@ type TranscriptContent struct {
 	// Speaker's name
 	Name string `json:"name,omitempty"`
 	// Speaker's speech
-	Speech string `json:"speech,omitempty"`
+	Speech []string `json:"speech,omitempty"`
 }

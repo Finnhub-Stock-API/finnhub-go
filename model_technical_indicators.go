@@ -11,17 +11,17 @@ package finnhub
 // TechnicalIndicators struct for TechnicalIndicators
 type TechnicalIndicators struct {
 	// List of open prices for returned candles.
-	O float32 `json:"o,omitempty"`
+	O []float32 `json:"o,omitempty"`
 	// List of high prices for returned candles.
-	H float32 `json:"h,omitempty"`
+	H []float32 `json:"h,omitempty"`
 	// List of low prices for returned candles.
-	L float32 `json:"l,omitempty"`
+	L []float32 `json:"l,omitempty"`
 	// List of close prices for returned candles.
-	C float32 `json:"c,omitempty"`
+	C []float32 `json:"c,omitempty"`
 	// List of volume data for returned candles.
-	V float32 `json:"v,omitempty"`
+	V []float32 `json:"v,omitempty"`
 	// List of timestamp for returned candles.
-	T int64 `json:"t,omitempty"`
+	T []int64 `json:"t,omitempty"`
 	// Status of the response. This field can either be ok or no_data.
 	S string `json:"s,omitempty"`
 }

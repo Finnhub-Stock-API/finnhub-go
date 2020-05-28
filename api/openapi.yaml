@@ -2222,38 +2222,62 @@ components:
       type: object
     StockCandles:
       example:
-        c: 5.962134
+        c:
+        - 5.962134
+        - 5.962134
         s: s
-        t: 2
-        v: 5.637377
-        h: 6.0274563
-        l: 1.4658129
-        o: 0.8008282
+        t:
+        - 2
+        - 2
+        v:
+        - 5.637377
+        - 5.637377
+        h:
+        - 6.0274563
+        - 6.0274563
+        l:
+        - 1.4658129
+        - 1.4658129
+        o:
+        - 0.8008282
+        - 0.8008282
       properties:
         o:
           description: List of open prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         h:
           description: List of high prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         l:
           description: List of low prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         c:
           description: List of close prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         v:
           description: List of volume data for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         t:
           description: List of timestamp for returned candles.
-          format: int64
-          type: integer
+          items:
+            format: int64
+            type: integer
+          type: array
         s:
           description: Status of the response. This field can either be ok or no_data.
           type: string
@@ -2319,38 +2343,62 @@ components:
       type: object
     ForexCandles:
       example:
-        c: 5.962134
+        c:
+        - 5.962134
+        - 5.962134
         s: s
-        t: 2.302136
-        v: 5.637377
-        h: 6.0274563
-        l: 1.4658129
-        o: 0.8008282
+        t:
+        - 2.302136
+        - 2.302136
+        v:
+        - 5.637377
+        - 5.637377
+        h:
+        - 6.0274563
+        - 6.0274563
+        l:
+        - 1.4658129
+        - 1.4658129
+        o:
+        - 0.8008282
+        - 0.8008282
       properties:
         o:
           description: List of open prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         h:
           description: List of high prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         l:
           description: List of low prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         c:
           description: List of close prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         v:
           description: List of volume data for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         t:
           description: List of timestamp for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         s:
           description: Status of the response. This field can either be ok or no_data.
           type: string
@@ -2387,38 +2435,62 @@ components:
       type: object
     CryptoCandles:
       example:
-        c: 5.962134
+        c:
+        - 5.962134
+        - 5.962134
         s: s
-        t: 2
-        v: 5.637377
-        h: 6.0274563
-        l: 1.4658129
-        o: 0.8008282
+        t:
+        - 2
+        - 2
+        v:
+        - 5.637377
+        - 5.637377
+        h:
+        - 6.0274563
+        - 6.0274563
+        l:
+        - 1.4658129
+        - 1.4658129
+        o:
+        - 0.8008282
+        - 0.8008282
       properties:
         o:
           description: List of open prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         h:
           description: List of high prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         l:
           description: List of low prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         c:
           description: List of close prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         v:
           description: List of volume data for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         t:
           description: List of timestamp for returned candles.
-          format: int64
-          type: integer
+          items:
+            format: int64
+            type: integer
+          type: array
         s:
           description: Status of the response. This field can either be ok or no_data.
           type: string
@@ -2485,38 +2557,62 @@ components:
       type: object
     TechnicalIndicators:
       example:
-        c: 5.962134
+        c:
+        - 5.962134
+        - 5.962134
         s: s
-        t: 2
-        v: 5.637377
-        h: 6.0274563
-        l: 1.4658129
-        o: 0.8008282
+        t:
+        - 2
+        - 2
+        v:
+        - 5.637377
+        - 5.637377
+        h:
+        - 6.0274563
+        - 6.0274563
+        l:
+        - 1.4658129
+        - 1.4658129
+        o:
+        - 0.8008282
+        - 0.8008282
       properties:
         o:
           description: List of open prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         h:
           description: List of high prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         l:
           description: List of low prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         c:
           description: List of close prices for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         v:
           description: List of volume data for returned candles.
-          format: float
-          type: number
+          items:
+            format: float
+            type: number
+          type: array
         t:
           description: List of timestamp for returned candles.
-          format: int64
-          type: integer
+          items:
+            format: int64
+            type: integer
+          type: array
         s:
           description: Status of the response. This field can either be ok or no_data.
           type: string
@@ -2566,7 +2662,9 @@ components:
           type: string
         speech:
           description: Speaker's speech
-          type: string
+          items:
+            type: string
+          type: array
       type: object
     TranscriptParticipant:
       properties:
