@@ -26,12 +26,12 @@ import (
 )
 
 func main() {
-	client := finnhub.NewAPIClient(finnhub.NewConfiguration())
+	client := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
 	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
 		Key: "YOUR_API_KEY",
 	})
 
-	res, _, err := client.DefaultApi.CompanyEarnings(auth, "AAPL", nil)
+	res, _, err := client.CompanyEarnings(auth, "AAPL", nil)
 	if err != nil {
 		panic(err)
 	}
