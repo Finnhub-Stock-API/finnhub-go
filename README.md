@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0
-- Package version: 0.0.2
+- Package version: 0.0.3
 
 ## Installation
 
@@ -62,8 +62,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**CryptoExchanges**](docs/DefaultApi.md#cryptoexchanges) | **Get** /crypto/exchange | Crypto Exchanges
 *DefaultApi* | [**CryptoSymbols**](docs/DefaultApi.md#cryptosymbols) | **Get** /crypto/symbol | Crypto Symbol
 *DefaultApi* | [**EarningsCalendar**](docs/DefaultApi.md#earningscalendar) | **Get** /calendar/earnings | Earnings Calendar
-*DefaultApi* | [**EconomicCode**](docs/DefaultApi.md#economiccode) | **Get** /economic/code | Economic Code
-*DefaultApi* | [**EconomicData**](docs/DefaultApi.md#economicdata) | **Get** /economic | Economic Data
 *DefaultApi* | [**Filings**](docs/DefaultApi.md#filings) | **Get** /stock/filings | Filings
 *DefaultApi* | [**Financials**](docs/DefaultApi.md#financials) | **Get** /stock/financials | Financial Statements
 *DefaultApi* | [**FinancialsReported**](docs/DefaultApi.md#financialsreported) | **Get** /stock/financials-reported | Financials As Reported
@@ -76,7 +74,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**InvestorsOwnership**](docs/DefaultApi.md#investorsownership) | **Get** /stock/investor-ownership | Investors Ownership
 *DefaultApi* | [**IpoCalendar**](docs/DefaultApi.md#ipocalendar) | **Get** /calendar/ipo | IPO Calendar
 *DefaultApi* | [**MajorDevelopments**](docs/DefaultApi.md#majordevelopments) | **Get** /major-development | Major Developments
-*DefaultApi* | [**Merger**](docs/DefaultApi.md#merger) | **Get** /merger | Merger &amp; Acquisitions
 *DefaultApi* | [**NewsSentiment**](docs/DefaultApi.md#newssentiment) | **Get** /news-sentiment | News Sentiment
 *DefaultApi* | [**PatternRecognition**](docs/DefaultApi.md#patternrecognition) | **Get** /scan/pattern | Pattern Recognition
 *DefaultApi* | [**PriceTarget**](docs/DefaultApi.md#pricetarget) | **Get** /stock/price-target | Price Target
@@ -84,7 +81,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**RecommendationTrends**](docs/DefaultApi.md#recommendationtrends) | **Get** /stock/recommendation | Recommendation Trends
 *DefaultApi* | [**StockCandles**](docs/DefaultApi.md#stockcandles) | **Get** /stock/candle | Stock Candles
 *DefaultApi* | [**StockDividends**](docs/DefaultApi.md#stockdividends) | **Get** /stock/dividend | Dividends
-*DefaultApi* | [**StockExchanges**](docs/DefaultApi.md#stockexchanges) | **Get** /stock/exchange | Stock Exchanges
 *DefaultApi* | [**StockSplits**](docs/DefaultApi.md#stocksplits) | **Get** /stock/split | Splits
 *DefaultApi* | [**StockSymbols**](docs/DefaultApi.md#stocksymbols) | **Get** /stock/symbol | Stock Symbol
 *DefaultApi* | [**StockTick**](docs/DefaultApi.md#stocktick) | **Get** /stock/tick | Tick Data
@@ -114,9 +110,6 @@ Class | Method | HTTP request | Description
  - [EarningsCallTranscripts](docs/EarningsCallTranscripts.md)
  - [EarningsCallTranscriptsList](docs/EarningsCallTranscriptsList.md)
  - [EarningsEstimates](docs/EarningsEstimates.md)
- - [Economic](docs/Economic.md)
- - [EconomicCalendar](docs/EconomicCalendar.md)
- - [EconomicCode](docs/EconomicCode.md)
  - [Estimate](docs/Estimate.md)
  - [Filing](docs/Filing.md)
  - [FinancialStatements](docs/FinancialStatements.md)
@@ -130,7 +123,6 @@ Class | Method | HTTP request | Description
  - [InvestorsOwnership](docs/InvestorsOwnership.md)
  - [IpoEvent](docs/IpoEvent.md)
  - [MajorDevelopments](docs/MajorDevelopments.md)
- - [MergerCountry](docs/MergerCountry.md)
  - [Metrics](docs/Metrics.md)
  - [News](docs/News.md)
  - [NewsSentiment](docs/NewsSentiment.md)
@@ -143,7 +135,6 @@ Class | Method | HTTP request | Description
  - [Splits](docs/Splits.md)
  - [Stock](docs/Stock.md)
  - [StockCandles](docs/StockCandles.md)
- - [StockExchange](docs/StockExchange.md)
  - [StockTranscripts](docs/StockTranscripts.md)
  - [TechnicalAnalysis](docs/TechnicalAnalysis.md)
  - [TechnicalIndicators](docs/TechnicalIndicators.md)

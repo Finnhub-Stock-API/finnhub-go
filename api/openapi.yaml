@@ -8,46 +8,6 @@ info:
 servers:
 - url: https://finnhub.io/api/v1
 paths:
-  /stock/exchange:
-    get:
-      description: List supported stock exchanges
-      operationId: stock-exchanges
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/StockExchange'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: Stock Exchanges
-  /stock/symbol:
-    get:
-      description: List supported stocks.
-      operationId: stock-symbols
-      parameters:
-      - description: Exchange you want to get the list of symbols from. Use field
-          <code>code</code> in <code>/stock/exchange</code> here.
-        in: query
-        name: exchange
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Stock'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: Stock Symbol
   /stock/profile:
     get:
       description: Get general information of a company. You can query by symbol,
@@ -111,6 +71,31 @@ paths:
       security:
       - api_key: []
       summary: Company Profile 2
+  /stock/symbol:
+    get:
+      description: List supported stocks.
+      operationId: stock-symbols
+      parameters:
+      - description: Exchange you want to get the list of symbols from. List of exchanges
+          with fundamental data can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing"
+          target="_blank">here</a>.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Stock'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Stock Symbol
   /stock/executive:
     get:
       description: Get a list of company's executives and members of the Board.
@@ -328,7 +313,8 @@ paths:
         in: query
         name: limit
         schema:
-          type: string
+          format: int64
+          type: integer
       responses:
         "200":
           content:
@@ -975,6 +961,12 @@ paths:
     get:
       description: Get rates for all forex pairs. Ideal for currency conversion
       operationId: forex-rates
+      parameters:
+      - description: Base currency. Default to EUR.
+        in: query
+        name: base
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -1231,46 +1223,12 @@ paths:
       security:
       - api_key: []
       summary: Technical Indicators
-  /merger:
-    get:
-      description: List latest merger and acquisitions deal by country. Limit to 50
-        results/call
-      operationId: merger
-      parameters:
-      - description: Country to get M&A deals. A list of supported countries can be
-          found <a href="https://static.finnhub.io/csv/merger-country.csv">here</a>
-        in: query
-        name: country
-        required: true
-        schema:
-          type: string
-      - description: From date in format <code>YYYY-MM-DD</code>. If from and to are
-          not set, it will return latest deals.
-        in: query
-        name: from
-        schema:
-          type: string
-      - description: To date in format <code>YYYY-MM-DD</code>.
-        in: query
-        name: to
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/MergerCountry'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: Merger & Acquisitions
   /stock/transcripts/list:
     get:
       description: List earnings call transcripts' metadata. This endpoint is only
-        available for US companies.
+        available for US companies. Earnings call transcripts for international markets
+        are available for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
+        us</a> to learn more.
       operationId: transcripts-list
       parameters:
       - description: 'Company symbol: AAPL. Leave empty to list the latest transcripts'
@@ -1292,7 +1250,9 @@ paths:
   /stock/transcripts:
     get:
       description: Get earnings call transcripts, audio and participants' list. This
-        endpoint is only available for US companies.
+        endpoint is only available for US companies. Earnings call transcripts for
+        international markets are available for Enterprise clients via our partner's
+        feed. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.
       operationId: transcripts
       parameters:
       - description: Transcript's id obtained with <a href="#transcripts-list">Transcripts
@@ -1328,80 +1288,8 @@ paths:
       security:
       - api_key: []
       summary: COVID-19
-  /economic/code:
-    get:
-      description: List codes of supported economic data.
-      operationId: economic-code
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/EconomicCode'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: Economic Code
-  /economic:
-    get:
-      description: Get economic data.
-      operationId: economic-data
-      parameters:
-      - description: Economic code.
-        in: query
-        name: code
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Economic'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: Economic Data
 components:
   schemas:
-    StockExchange:
-      example:
-        code: code
-        name: name
-        currency: currency
-      properties:
-        name:
-          description: Exchange name.
-          type: string
-        code:
-          description: Exchange code.
-          type: string
-        currency:
-          description: Currency.
-          type: string
-      type: object
-    Stock:
-      example:
-        displaySymbol: displaySymbol
-        symbol: symbol
-        description: description
-      properties:
-        description:
-          description: Symbol description
-          type: string
-        displaySymbol:
-          description: Display symbol name.
-          type: string
-        symbol:
-          description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
-            endpoint.
-          type: string
-      type: object
     CompanyProfile:
       example:
         country: country
@@ -1576,6 +1464,23 @@ components:
           type: string
         finnhubIndustry:
           description: Finnhub industry classification.
+          type: string
+      type: object
+    Stock:
+      example:
+        displaySymbol: displaySymbol
+        symbol: symbol
+        description: description
+      properties:
+        description:
+          description: Symbol description
+          type: string
+        displaySymbol:
+          description: Display symbol name.
+          type: string
+        symbol:
+          description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
+            endpoint.
           type: string
       type: object
     Company:
@@ -2616,90 +2521,6 @@ components:
           description: Status of the response. This field can either be ok or no_data.
           type: string
       type: object
-    MergerCountry:
-      example:
-        targetIndustry: targetIndustry
-        targetName: targetName
-        acquirerNation: acquirerNation
-        announcementDate: 2000-01-23T04:56:07.000+00:00
-        dealSize: 0.8008282
-        acquirerIndustry: acquirerIndustry
-        acquirerPublicStatus: acquirerPublicStatus
-        targetNation: targetNation
-        acquirerDescription: acquirerDescription
-        percentAcquired: 1.4658129
-        form: form
-        targetDescription: targetDescription
-        acquirerRegion: acquirerRegion
-        dealAttitude: dealAttitude
-        netincomeMultiple: 6.0274563
-        targetPublicStatus: targetPublicStatus
-        acquirerName: acquirerName
-        status: status
-        targetRegion: targetRegion
-      properties:
-        announcementDate:
-          description: Announcement date of the deal.
-          format: date-time
-          type: string
-        dealSize:
-          description: Deal size in millions of USD.
-          format: float
-          type: number
-        status:
-          description: Deal status.
-          type: string
-        targetName:
-          description: Target company name.
-          type: string
-        targetNation:
-          description: Target company country.
-          type: string
-        acquirerName:
-          description: Acquirer name.
-          type: string
-        acquirerNation:
-          description: Acquirer nation.
-          type: string
-        form:
-          description: Deal form.
-          type: string
-        targetIndustry:
-          description: Target company industry.
-          type: string
-        acquirerIndustry:
-          description: Deal form.
-          type: string
-        targetDescription:
-          description: Target company business summary.
-          type: string
-        acquirerDescription:
-          description: Acquirer business summary.
-          type: string
-        targetRegion:
-          description: Target company region.
-          type: string
-        acquirerRegion:
-          description: Acquirer company region.
-          type: string
-        targetPublicStatus:
-          description: Target company public status.
-          type: string
-        acquirerPublicStatus:
-          description: Acquirer company public status.
-          type: string
-        dealAttitude:
-          description: Deal attitude.
-          type: string
-        netincomeMultiple:
-          description: Net Income Multiple.
-          format: float
-          type: number
-        percentAcquired:
-          description: Percent acquired.
-          format: float
-          type: number
-      type: object
     StockTranscripts:
       properties:
         id:
@@ -2829,46 +2650,6 @@ components:
           description: Updated time.
           format: date-time
           type: string
-      type: object
-    EconomicCode:
-      example:
-        country: country
-        unit: unit
-        code: code
-        name: name
-      properties:
-        code:
-          description: Economic code used to get historical data
-          type: string
-        country:
-          description: Country
-          type: string
-        name:
-          description: Indicator name
-          type: string
-        unit:
-          description: Unit
-          type: string
-      type: object
-    Economic:
-      example:
-        date: date
-        value: 0.8008282
-      properties:
-        date:
-          description: Date of the reading
-          type: string
-        value:
-          description: Value
-          format: float
-          type: number
-      type: object
-    Events:
-      type: object
-    EconomicCalendar:
-      properties:
-        Array:
-          type: object
       type: object
   securitySchemes:
     api_key:

@@ -1480,182 +1480,6 @@ func (a *DefaultApiService) EarningsCalendar(ctx _context.Context, localVarOptio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-/*
-EconomicCode Economic Code
-List codes of supported economic data.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []EconomicCode
-*/
-func (a *DefaultApiService) EconomicCode(ctx _context.Context) ([]EconomicCode, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []EconomicCode
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/economic/code"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarQueryParams.Add("token", key)
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-/*
-EconomicData Economic Data
-Get economic data.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param code Economic code.
-@return []Economic
-*/
-func (a *DefaultApiService) EconomicData(ctx _context.Context, code string) ([]Economic, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []Economic
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/economic"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	localVarQueryParams.Add("code", parameterToString(code, ""))
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarQueryParams.Add("token", key)
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 // FilingsOpts Optional parameters for the method 'Filings'
 type FilingsOpts struct {
     Symbol optional.String
@@ -2166,13 +1990,20 @@ func (a *DefaultApiService) ForexExchanges(ctx _context.Context) ([]string, *_ne
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ForexRatesOpts Optional parameters for the method 'ForexRates'
+type ForexRatesOpts struct {
+    Base optional.String
+}
+
 /*
 ForexRates Forex rates
 Get rates for all forex pairs. Ideal for currency conversion
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *ForexRatesOpts - Optional Parameters:
+ * @param "Base" (optional.String) -  Base currency. Default to EUR.
 @return Forexrates
 */
-func (a *DefaultApiService) ForexRates(ctx _context.Context) (Forexrates, *_nethttp.Response, error) {
+func (a *DefaultApiService) ForexRates(ctx _context.Context, localVarOptionals *ForexRatesOpts) (Forexrates, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2188,6 +2019,9 @@ func (a *DefaultApiService) ForexRates(ctx _context.Context) (Forexrates, *_neth
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Base.IsSet() {
+		localVarQueryParams.Add("base", parameterToString(localVarOptionals.Base.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2542,7 +2376,7 @@ func (a *DefaultApiService) GeneralNews(ctx _context.Context, category string, l
 
 // InvestorsOwnershipOpts Optional parameters for the method 'InvestorsOwnership'
 type InvestorsOwnershipOpts struct {
-    Limit optional.String
+    Limit optional.Int64
 }
 
 /*
@@ -2551,7 +2385,7 @@ Get a full list of shareholders/investors of a company in descending order of th
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol of the company: AAPL.
  * @param optional nil or *InvestorsOwnershipOpts - Optional Parameters:
- * @param "Limit" (optional.String) -  Limit number of results. Leave empty to get the full list.
+ * @param "Limit" (optional.Int64) -  Limit number of results. Leave empty to get the full list.
 @return InvestorsOwnership
 */
 func (a *DefaultApiService) InvestorsOwnership(ctx _context.Context, symbol string, localVarOptionals *InvestorsOwnershipOpts) (InvestorsOwnership, *_nethttp.Response, error) {
@@ -2763,110 +2597,6 @@ func (a *DefaultApiService) MajorDevelopments(ctx _context.Context, symbol strin
 	localVarFormParams := _neturl.Values{}
 
 	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
-	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
-		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.To.IsSet() {
-		localVarQueryParams.Add("to", parameterToString(localVarOptionals.To.Value(), ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarQueryParams.Add("token", key)
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// MergerOpts Optional parameters for the method 'Merger'
-type MergerOpts struct {
-    From optional.String
-    To optional.String
-}
-
-/*
-Merger Merger & Acquisitions
-List latest merger and acquisitions deal by country. Limit to 50 results/call
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param country Country to get M&A deals. A list of supported countries can be found <a href=\"https://static.finnhub.io/csv/merger-country.csv\">here</a>
- * @param optional nil or *MergerOpts - Optional Parameters:
- * @param "From" (optional.String) -  From date in format <code>YYYY-MM-DD</code>. If from and to are not set, it will return latest deals.
- * @param "To" (optional.String) -  To date in format <code>YYYY-MM-DD</code>.
-@return []MergerCountry
-*/
-func (a *DefaultApiService) Merger(ctx _context.Context, country string, localVarOptionals *MergerOpts) ([]MergerCountry, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []MergerCountry
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/merger"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	localVarQueryParams.Add("country", parameterToString(country, ""))
 	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
 		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
 	}
@@ -3595,93 +3325,6 @@ func (a *DefaultApiService) StockDividends(ctx _context.Context, symbol string, 
 }
 
 /*
-StockExchanges Stock Exchanges
-List supported stock exchanges
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []StockExchange
-*/
-func (a *DefaultApiService) StockExchanges(ctx _context.Context) ([]StockExchange, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []StockExchange
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/stock/exchange"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarQueryParams.Add("token", key)
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-/*
 StockSplits Splits
 Get splits data for stocks.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3778,7 +3421,7 @@ func (a *DefaultApiService) StockSplits(ctx _context.Context, symbol string, fro
 StockSymbols Stock Symbol
 List supported stocks.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param exchange Exchange you want to get the list of symbols from. Use field <code>code</code> in <code>/stock/exchange</code> here.
+ * @param exchange Exchange you want to get the list of symbols from. List of exchanges with fundamental data can be found <a href=\"https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing\" target=\"_blank\">here</a>.
 @return []Stock
 */
 func (a *DefaultApiService) StockSymbols(ctx _context.Context, exchange string) ([]Stock, *_nethttp.Response, error) {
@@ -4154,7 +3797,7 @@ func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol stri
 
 /*
 Transcripts Earnings Call Transcripts
-Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US companies.
+Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
 @return EarningsCallTranscripts
@@ -4243,7 +3886,7 @@ func (a *DefaultApiService) Transcripts(ctx _context.Context, id string) (Earnin
 
 /*
 TranscriptsList Earnings Call Transcripts List
-List earnings call transcripts&#39; metadata. This endpoint is only available for US companies.
+List earnings call transcripts&#39; metadata. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Company symbol: AAPL. Leave empty to list the latest transcripts
 @return EarningsCallTranscriptsList

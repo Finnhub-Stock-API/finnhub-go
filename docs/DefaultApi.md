@@ -19,8 +19,6 @@ Method | HTTP request | Description
 [**CryptoExchanges**](DefaultApi.md#CryptoExchanges) | **Get** /crypto/exchange | Crypto Exchanges
 [**CryptoSymbols**](DefaultApi.md#CryptoSymbols) | **Get** /crypto/symbol | Crypto Symbol
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
-[**EconomicCode**](DefaultApi.md#EconomicCode) | **Get** /economic/code | Economic Code
-[**EconomicData**](DefaultApi.md#EconomicData) | **Get** /economic | Economic Data
 [**Filings**](DefaultApi.md#Filings) | **Get** /stock/filings | Filings
 [**Financials**](DefaultApi.md#Financials) | **Get** /stock/financials | Financial Statements
 [**FinancialsReported**](DefaultApi.md#FinancialsReported) | **Get** /stock/financials-reported | Financials As Reported
@@ -33,7 +31,6 @@ Method | HTTP request | Description
 [**InvestorsOwnership**](DefaultApi.md#InvestorsOwnership) | **Get** /stock/investor-ownership | Investors Ownership
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
 [**MajorDevelopments**](DefaultApi.md#MajorDevelopments) | **Get** /major-development | Major Developments
-[**Merger**](DefaultApi.md#Merger) | **Get** /merger | Merger &amp; Acquisitions
 [**NewsSentiment**](DefaultApi.md#NewsSentiment) | **Get** /news-sentiment | News Sentiment
 [**PatternRecognition**](DefaultApi.md#PatternRecognition) | **Get** /scan/pattern | Pattern Recognition
 [**PriceTarget**](DefaultApi.md#PriceTarget) | **Get** /stock/price-target | Price Target
@@ -41,7 +38,6 @@ Method | HTTP request | Description
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
 [**StockCandles**](DefaultApi.md#StockCandles) | **Get** /stock/candle | Stock Candles
 [**StockDividends**](DefaultApi.md#StockDividends) | **Get** /stock/dividend | Dividends
-[**StockExchanges**](DefaultApi.md#StockExchanges) | **Get** /stock/exchange | Stock Exchanges
 [**StockSplits**](DefaultApi.md#StockSplits) | **Get** /stock/split | Splits
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
 [**StockTick**](DefaultApi.md#StockTick) | **Get** /stock/tick | Tick Data
@@ -642,70 +638,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EconomicCode
-
-> []EconomicCode EconomicCode(ctx, )
-
-Economic Code
-
-List codes of supported economic data.
-
-### Required Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**[]EconomicCode**](EconomicCode.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EconomicData
-
-> []Economic EconomicData(ctx, code)
-
-Economic Data
-
-Get economic data.
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**code** | **string**| Economic code. | 
-
-### Return type
-
-[**[]Economic**](Economic.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## Filings
 
 > []Filing Filings(ctx, optional)
@@ -914,7 +846,7 @@ This endpoint does not need any parameter.
 
 ## ForexRates
 
-> Forexrates ForexRates(ctx, )
+> Forexrates ForexRates(ctx, optional)
 
 Forex rates
 
@@ -922,7 +854,20 @@ Get rates for all forex pairs. Ideal for currency conversion
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ForexRatesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ForexRatesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **base** | **optional.String**| Base currency. Default to EUR. | 
 
 ### Return type
 
@@ -1091,7 +1036,7 @@ Optional parameters are passed through a pointer to a InvestorsOwnershipOpts str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **optional.String**| Limit number of results. Leave empty to get the full list. | 
+ **limit** | **optional.Int64**| Limit number of results. Leave empty to get the full list. | 
 
 ### Return type
 
@@ -1177,52 +1122,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MajorDevelopments**](MajorDevelopments.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## Merger
-
-> []MergerCountry Merger(ctx, country, optional)
-
-Merger & Acquisitions
-
-List latest merger and acquisitions deal by country. Limit to 50 results/call
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**country** | **string**| Country to get M&amp;A deals. A list of supported countries can be found &lt;a href&#x3D;\&quot;https://static.finnhub.io/csv/merger-country.csv\&quot;&gt;here&lt;/a&gt; | 
- **optional** | ***MergerOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a MergerOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **from** | **optional.String**| From date in format &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. If from and to are not set, it will return latest deals. | 
- **to** | **optional.String**| To date in format &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
-
-### Return type
-
-[**[]MergerCountry**](MergerCountry.md)
 
 ### Authorization
 
@@ -1495,36 +1394,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## StockExchanges
-
-> []StockExchange StockExchanges(ctx, )
-
-Stock Exchanges
-
-List supported stock exchanges
-
-### Required Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**[]StockExchange**](StockExchange.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## StockSplits
 
 > Splits StockSplits(ctx, symbol, from, to)
@@ -1575,7 +1444,7 @@ List supported stocks.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**exchange** | **string**| Exchange you want to get the list of symbols from. Use field &lt;code&gt;code&lt;/code&gt; in &lt;code&gt;/stock/exchange&lt;/code&gt; here. | 
+**exchange** | **string**| Exchange you want to get the list of symbols from. List of exchanges with fundamental data can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
 
 ### Return type
 
@@ -1724,7 +1593,7 @@ Name | Type | Description  | Notes
 
 Earnings Call Transcripts
 
-Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies.
+Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.
 
 ### Required Parameters
 
@@ -1758,7 +1627,7 @@ Name | Type | Description  | Notes
 
 Earnings Call Transcripts List
 
-List earnings call transcripts' metadata. This endpoint is only available for US companies.
+List earnings call transcripts' metadata. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.
 
 ### Required Parameters
 
