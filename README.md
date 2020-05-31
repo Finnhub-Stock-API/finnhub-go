@@ -13,7 +13,7 @@ Install package:
 $ go get -u github.com/Finnhub-Stock-API/finnhub-go
 ```
 
-Example:
+Example (check out other methods documentation [here](https://pkg.go.dev/github.com/Finnhub-Stock-API/finnhub-go?tab=doc#DefaultApiService)):
 
 ```golang
 package main
