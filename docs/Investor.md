@@ -6,8 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Investor&#39;s name. | [optional] 
 **Share** | **int64** | Number of shares held by the investor. | [optional] 
-**Turnover** | **string** | Turnover rating of the investor. | [optional] 
-**TurnoverPercent** | **float32** | Trading&#39;s values relative to investor&#39;s assets expressed in percentage. | [optional] 
 **Change** | **int64** | Number of share changed (net buy or sell) from the last period. | [optional] 
 **FilingDate** | **string** | Filing date. | [optional] 
 

@@ -188,8 +188,7 @@ paths:
     get:
       description: List latest major developments of a company going back 20 years
         with 12M+ data points. This data can be used to highlight the most significant
-        events. Limit to 200 results/call for Ultimate users, and 20 results/call
-        other plans.
+        events.
       operationId: major-developments
       parameters:
       - description: Company symbol.
@@ -198,15 +197,13 @@ paths:
         required: true
         schema:
           type: string
-      - description: 'From time: 2020-01-01. This option is only available for Ultimate
-          users.'
+      - description: 'From time: 2020-01-01.'
         in: query
         name: from
         schema:
           format: date
           type: string
-      - description: 'To time: 2020-01-05. This option is only available for Ultimate
-          users.'
+      - description: 'To time: 2020-01-05.'
         in: query
         name: to
         schema:
@@ -270,9 +267,9 @@ paths:
       summary: Peers
   /stock/metric:
     get:
-      description: Get company key metrics such as growth, price, valuation. Full
-        list of supported fields can be downloaded <a target="_blank" href="https://static.finnhub.io/csv/metrics.csv">here</a>
-      operationId: company-metrics
+      description: Get company basic financials such as margin, P/E ratio, 52-week
+        high/low etc.
+      operationId: company-basic-financials
       parameters:
       - description: 'Symbol of the company: AAPL.'
         in: query
@@ -280,8 +277,8 @@ paths:
         required: true
         schema:
           type: string
-      - description: Metric type. Can be 1 of the following values <code>price, valuation,
-          growth, margin, management, financialStrength, perShare</code>
+      - description: Metric type. Can be 1 of the following values <code>all, price,
+          valuation, margin</code>
         in: query
         name: metric
         required: true
@@ -292,11 +289,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Metrics'
+                $ref: '#/components/schemas/BasicFinancials'
           description: successful operation
       security:
       - api_key: []
-      summary: Metrics
+      summary: Basic Financials
   /stock/investor-ownership:
     get:
       description: Get a full list of shareholders/investors of a company in descending
@@ -393,7 +390,9 @@ paths:
       summary: Financial Statements
   /stock/financials-reported:
     get:
-      description: Get financials as reported.
+      description: Get financials as reported. This data is available for bulk download
+        on <a href="https://www.kaggle.com/finnhub/reported-financials" target="_blank">Kaggle
+        SEC Financials database</a>.
       operationId: financials-reported
       parameters:
       - description: Symbol.
@@ -430,7 +429,9 @@ paths:
       summary: Financials As Reported
   /stock/filings:
     get:
-      description: List company's filing.
+      description: List company's filing. Limit to 250 documents at a time. This data
+        is available for bulk download on <a href="https://www.kaggle.com/finnhub/sec-filings"
+        target="_blank">Kaggle SEC Filings database</a>.
       operationId: filings
       parameters:
       - description: Symbol. Leave <code>symbol</code>,<code>cik</code> and <code>accessNumber</code>
@@ -449,6 +450,24 @@ paths:
         in: query
         name: accessNumber
         schema:
+          type: string
+      - description: Filter by form. You can use this value <code>NT 10-K</code> to
+          find non-timely filings for a company.
+        in: query
+        name: form
+        schema:
+          type: string
+      - description: 'From date: 2020-03-15.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2020-03-16.'
+        in: query
+        name: to
+        schema:
+          format: date
           type: string
       responses:
         "200":
@@ -580,6 +599,18 @@ paths:
         in: query
         name: symbol
         schema:
+          type: string
+      - description: 'From date: 2000-03-15.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2020-03-16.'
+        in: query
+        name: to
+        schema:
+          format: date
           type: string
       responses:
         "200":
@@ -806,7 +837,7 @@ paths:
         Return csv format. You can send the request directly to our tick server at
         <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same
         path and parameters or get redirected there if you call our main server. Data
-        is updated at the end of each trading day.</p><p>Tick data from 1993 is available
+        is updated at the end of each trading day.</p><p>Tick data from 1985 is available
         for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
         us</a> to learn more.</p>
       operationId: stock-tick
@@ -1249,10 +1280,11 @@ paths:
       summary: Earnings Call Transcripts List
   /stock/transcripts:
     get:
-      description: Get earnings call transcripts, audio and participants' list. This
-        endpoint is only available for US companies. Earnings call transcripts for
-        international markets are available for Enterprise clients via our partner's
-        feed. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.
+      description: <p>Get earnings call transcripts, audio and participants' list.
+        This endpoint is only available for US companies. Earnings call transcripts
+        for international markets are available for Enterprise clients via our partner's
+        feed. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.</p><p>17+
+        years of data is available with 170,000+ audio which add up to 6TB in size.</p>
       operationId: transcripts
       parameters:
       - description: Transcript's id obtained with <a href="#transcripts-list">Transcripts
@@ -1276,7 +1308,8 @@ paths:
     get:
       description: Get real-time updates on the number of COVID-19 (Corona virus)
         cases in the US with a state-by-state breakdown. Data is sourced from CDC
-        and reputable sources.
+        and reputable sources. You can also access this API <a href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19"
+        target="_blank" rel="nofollow">here</a>
       operationId: covid-19
       responses:
         "200":
@@ -1669,7 +1702,7 @@ components:
       type: object
     MetricMap:
       type: object
-    Metrics:
+    BasicFinancials:
       example:
         symbol: symbol
         metricType: metricType
@@ -1693,14 +1726,6 @@ components:
           description: Number of shares held by the investor.
           format: int64
           type: integer
-        turnover:
-          description: Turnover rating of the investor.
-          type: string
-        turnoverPercent:
-          description: Trading's values relative to investor's assets expressed in
-            percentage.
-          format: float
-          type: number
         change:
           description: Number of share changed (net buy or sell) from the last period.
           format: int64
@@ -1795,6 +1820,10 @@ components:
           type: string
         filedDate:
           description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        acceptedDate:
+          description: Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
           format: date-time
           type: string
         report:
@@ -1899,23 +1928,28 @@ components:
       type: object
     Dividends:
       example:
+        date: 2000-01-23
         symbol: symbol
+        amount: 0.8008282
         declarationDate: 2000-01-23
-        Amount: 0.8008282
+        adjustedAmount: 6.0274563
         recordDate: 2000-01-23
         currency: currency
-        Date: 2000-01-23
         payDate: 2000-01-23
       properties:
         symbol:
           description: Symbol.
           type: string
-        Date:
+        date:
           description: Ex-Dividend date.
           format: date
           type: string
-        Amount:
+        amount:
           description: Amount in local currency.
+          format: float
+          type: number
+        adjustedAmount:
+          description: Adjusted dividend.
           format: float
           type: number
         payDate:

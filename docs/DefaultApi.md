@@ -5,10 +5,10 @@ All URIs are relative to *https://finnhub.io/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
+[**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
 [**CompanyEpsEstimates**](DefaultApi.md#CompanyEpsEstimates) | **Get** /stock/eps-estimate | Earnings Estimates
 [**CompanyExecutive**](DefaultApi.md#CompanyExecutive) | **Get** /stock/executive | Company Executive
-[**CompanyMetrics**](DefaultApi.md#CompanyMetrics) | **Get** /stock/metric | Metrics
 [**CompanyNews**](DefaultApi.md#CompanyNews) | **Get** /company-news | Company News
 [**CompanyPeers**](DefaultApi.md#CompanyPeers) | **Get** /stock/peers | Peers
 [**CompanyProfile**](DefaultApi.md#CompanyProfile) | **Get** /stock/profile | Company Profile
@@ -69,6 +69,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AggregateIndicators**](AggregateIndicators.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompanyBasicFinancials
+
+> BasicFinancials CompanyBasicFinancials(ctx, symbol, metric)
+
+Basic Financials
+
+Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| Symbol of the company: AAPL. | 
+**metric** | **string**| Metric type. Can be 1 of the following values &lt;code&gt;all, price, valuation, margin&lt;/code&gt; | 
+
+### Return type
+
+[**BasicFinancials**](BasicFinancials.md)
 
 ### Authorization
 
@@ -193,41 +228,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompanyExecutive**](CompanyExecutive.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CompanyMetrics
-
-> Metrics CompanyMetrics(ctx, symbol, metric)
-
-Metrics
-
-Get company key metrics such as growth, price, valuation. Full list of supported fields can be downloaded <a target=\"_blank\" href=\"https://static.finnhub.io/csv/metrics.csv\">here</a>
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
-**metric** | **string**| Metric type. Can be 1 of the following values &lt;code&gt;price, valuation, growth, margin, management, financialStrength, perShare&lt;/code&gt; | 
-
-### Return type
-
-[**Metrics**](Metrics.md)
 
 ### Authorization
 
@@ -454,7 +454,7 @@ Name | Type | Description  | Notes
 
 COVID-19
 
-Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources.
+Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources. You can also access this API <a href=\"https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19\" target=\"_blank\" rel=\"nofollow\">here</a>
 
 ### Required Parameters
 
@@ -644,7 +644,7 @@ Name | Type | Description  | Notes
 
 Filings
 
-List company's filing.
+List company's filing. Limit to 250 documents at a time. This data is available for bulk download on <a href=\"https://www.kaggle.com/finnhub/sec-filings\" target=\"_blank\">Kaggle SEC Filings database</a>.
 
 ### Required Parameters
 
@@ -664,6 +664,9 @@ Name | Type | Description  | Notes
  **symbol** | **optional.String**| Symbol. Leave &lt;code&gt;symbol&lt;/code&gt;,&lt;code&gt;cik&lt;/code&gt; and &lt;code&gt;accessNumber&lt;/code&gt; empty to list latest filings. | 
  **cik** | **optional.String**| CIK. | 
  **accessNumber** | **optional.String**| Access number of a specific report you want to retrieve data from. | 
+ **form** | **optional.String**| Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company. | 
+ **from** | **optional.String**| From date: 2020-03-15. | 
+ **to** | **optional.String**| To date: 2020-03-16. | 
 
 ### Return type
 
@@ -725,7 +728,7 @@ Name | Type | Description  | Notes
 
 Financials As Reported
 
-Get financials as reported.
+Get financials as reported. This data is available for bulk download on <a href=\"https://www.kaggle.com/finnhub/reported-financials\" target=\"_blank\">Kaggle SEC Financials database</a>.
 
 ### Required Parameters
 
@@ -1097,7 +1100,7 @@ Name | Type | Description  | Notes
 
 Major Developments
 
-List latest major developments of a company going back 20 years with 12M+ data points. This data can be used to highlight the most significant events. Limit to 200 results/call for Ultimate users, and 20 results/call other plans.
+List latest major developments of a company going back 20 years with 12M+ data points. This data can be used to highlight the most significant events.
 
 ### Required Parameters
 
@@ -1116,8 +1119,8 @@ Optional parameters are passed through a pointer to a MajorDevelopmentsOpts stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **from** | **optional.String**| From time: 2020-01-01. This option is only available for Ultimate users. | 
- **to** | **optional.String**| To time: 2020-01-05. This option is only available for Ultimate users. | 
+ **from** | **optional.String**| From time: 2020-01-01. | 
+ **to** | **optional.String**| To time: 2020-01-05. | 
 
 ### Return type
 
@@ -1470,7 +1473,7 @@ Name | Type | Description  | Notes
 
 Tick Data
 
-<p>Get historical tick data for US stocks from all 13 exchanges. Return csv format. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.</p><p>Tick data from 1993 is available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
+<p>Get historical tick data for US stocks from all 13 exchanges. Return csv format. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.</p><p>Tick data from 1985 is available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1593,7 +1596,7 @@ Name | Type | Description  | Notes
 
 Earnings Call Transcripts
 
-Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.
+<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p><p>17+ years of data is available with 170,000+ audio which add up to 6TB in size.</p>
 
 ### Required Parameters
 
@@ -1679,6 +1682,8 @@ Optional parameters are passed through a pointer to a UpgradeDowngradeOpts struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **optional.String**| Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades. | 
+ **from** | **optional.String**| From date: 2000-03-15. | 
+ **to** | **optional.String**| To date: 2020-03-16. | 
 
 ### Return type
 
