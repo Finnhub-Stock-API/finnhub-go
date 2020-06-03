@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.0.1
+- Package version: 1.0.2
 
 ## Installation
 
@@ -69,10 +69,10 @@ All URIs are relative to *https://finnhub.io/api/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**AggregateIndicator**](docs/DefaultApi.md#aggregateindicator) | **Get** /scan/technical-indicator | Aggregate Indicators
+*DefaultApi* | [**CompanyBasicFinancials**](docs/DefaultApi.md#companybasicfinancials) | **Get** /stock/metric | Basic Financials
 *DefaultApi* | [**CompanyEarnings**](docs/DefaultApi.md#companyearnings) | **Get** /stock/earnings | Earnings Surprises
 *DefaultApi* | [**CompanyEpsEstimates**](docs/DefaultApi.md#companyepsestimates) | **Get** /stock/eps-estimate | Earnings Estimates
 *DefaultApi* | [**CompanyExecutive**](docs/DefaultApi.md#companyexecutive) | **Get** /stock/executive | Company Executive
-*DefaultApi* | [**CompanyMetrics**](docs/DefaultApi.md#companymetrics) | **Get** /stock/metric | Metrics
 *DefaultApi* | [**CompanyNews**](docs/DefaultApi.md#companynews) | **Get** /company-news | Company News
 *DefaultApi* | [**CompanyPeers**](docs/DefaultApi.md#companypeers) | **Get** /stock/peers | Peers
 *DefaultApi* | [**CompanyProfile**](docs/DefaultApi.md#companyprofile) | **Get** /stock/profile | Company Profile
@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 ## Models
 
  - [AggregateIndicators](docs/AggregateIndicators.md)
+ - [BasicFinancials](docs/BasicFinancials.md)
  - [Company](docs/Company.md)
  - [CompanyExecutive](docs/CompanyExecutive.md)
  - [CompanyNewsStatistics](docs/CompanyNewsStatistics.md)
@@ -144,7 +145,6 @@ Class | Method | HTTP request | Description
  - [InvestorsOwnership](docs/InvestorsOwnership.md)
  - [IpoEvent](docs/IpoEvent.md)
  - [MajorDevelopments](docs/MajorDevelopments.md)
- - [Metrics](docs/Metrics.md)
  - [News](docs/News.md)
  - [NewsSentiment](docs/NewsSentiment.md)
  - [PriceTarget](docs/PriceTarget.md)

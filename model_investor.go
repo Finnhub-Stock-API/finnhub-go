@@ -14,10 +14,6 @@ type Investor struct {
 	Name string `json:"name,omitempty"`
 	// Number of shares held by the investor.
 	Share int64 `json:"share,omitempty"`
-	// Turnover rating of the investor.
-	Turnover string `json:"turnover,omitempty"`
-	// Trading's values relative to investor's assets expressed in percentage.
-	TurnoverPercent float32 `json:"turnoverPercent,omitempty"`
 	// Number of share changed (net buy or sell) from the last period.
 	Change int64 `json:"change,omitempty"`
 	// Filing date.

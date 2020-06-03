@@ -13,9 +13,11 @@ type Dividends struct {
 	// Symbol.
 	Symbol string `json:"symbol,omitempty"`
 	// Ex-Dividend date.
-	Date string `json:"Date,omitempty"`
+	Date string `json:"date,omitempty"`
 	// Amount in local currency.
-	Amount float32 `json:"Amount,omitempty"`
+	Amount float32 `json:"amount,omitempty"`
+	// Adjusted dividend.
+	AdjustedAmount float32 `json:"adjustedAmount,omitempty"`
 	// Pay date.
 	PayDate string `json:"payDate,omitempty"`
 	// Record date.

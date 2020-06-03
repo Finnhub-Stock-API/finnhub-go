@@ -31,5 +31,7 @@ type Report struct {
 	EndDate time.Time `json:"endDate,omitempty"`
 	// Filed date <code>%Y-%m-%d %H:%M:%S</code>.
 	FiledDate time.Time `json:"filedDate,omitempty"`
+	// Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
+	AcceptedDate time.Time `json:"acceptedDate,omitempty"`
 	Report map[string]interface{} `json:"report,omitempty"`
 }
