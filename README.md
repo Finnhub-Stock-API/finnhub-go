@@ -30,7 +30,7 @@ import (
 func main() {
 	client := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
 	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
-		Key: "bqlsn1frh5rfdbi8u17g",
+		Key: "YOUR_API_KEY",
 	})
 
 	// Example with required parameters
