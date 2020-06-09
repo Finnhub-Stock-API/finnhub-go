@@ -14,7 +14,7 @@ paths:
         ISIN or CUSIP
       operationId: company-profile
       parameters:
-      - description: 'Symbol of the company: AAPL, SBIN.NS e.g.'
+      - description: 'Symbol of the company: AAPL e.g.'
         in: query
         name: symbol
         schema:
@@ -46,7 +46,7 @@ paths:
         Profile</a>.
       operationId: company-profile2
       parameters:
-      - description: 'Symbol of the company: AAPL, SBIN.NS e.g.'
+      - description: 'Symbol of the company: AAPL e.g.'
         in: query
         name: symbol
         schema:
@@ -753,9 +753,10 @@ paths:
   /quote:
     get:
       description: <p>Get quote data for stocks. Constant polling is not recommended.
-        Use websocket if you need real-time update.</p><p> Real-time stock prices
-        for international markets are supported for Enterprise clients via our partner's
-        feed. <a href="mailto:support@finnhub.io">Contact Us</a> to learn more.</p>
+        Use websocket if you need real-time update.</p><p> This endpoint only provide
+        real-time data for US stocks. Real-time stock prices for international markets
+        are supported for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
+        Us</a> to learn more.</p>
       operationId: quote
       parameters:
       - description: Symbol
@@ -777,9 +778,10 @@ paths:
   /stock/candle:
     get:
       description: <p>Get candlestick data for stocks going back 25 years.</p><p>
-        Real-time stock prices for international markets are supported for Enterprise
-        clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
-        Us</a> to learn more.</p>
+        This endpoint only provides real-time data for US stocks. Real-time stock
+        prices for international markets are supported for Enterprise clients via
+        our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a> to
+        learn more.</p>
       operationId: stock-candles
       parameters:
       - description: Symbol.
@@ -795,17 +797,17 @@ paths:
         required: true
         schema:
           type: string
-      - description: UNIX timestamp. Interval initial value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval initial value.
         in: query
         name: from
+        required: true
         schema:
           format: int64
           type: integer
-      - description: UNIX timestamp. Interval end value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval end value.
         in: query
         name: to
+        required: true
         schema:
           format: int64
           type: integer
@@ -958,17 +960,17 @@ paths:
         required: true
         schema:
           type: string
-      - description: UNIX timestamp. Interval initial value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval initial value.
         in: query
         name: from
+        required: true
         schema:
           format: int64
           type: integer
-      - description: UNIX timestamp. Interval end value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval end value.
         in: query
         name: to
+        required: true
         schema:
           format: int64
           type: integer
@@ -1066,17 +1068,17 @@ paths:
         required: true
         schema:
           type: string
-      - description: UNIX timestamp. Interval initial value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval initial value.
         in: query
         name: from
+        required: true
         schema:
           format: int64
           type: integer
-      - description: UNIX timestamp. Interval end value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval end value.
         in: query
         name: to
+        required: true
         schema:
           format: int64
           type: integer
@@ -1086,13 +1088,6 @@ paths:
         name: format
         schema:
           type: string
-      - description: Shortcut to set <code>to=Unix.Now</code> and <code>from=Unix.Now
-          - count * resolution_second</code>.
-        in: query
-        name: count
-        schema:
-          format: int64
-          type: integer
       responses:
         "200":
           content:
@@ -1215,16 +1210,14 @@ paths:
         required: true
         schema:
           type: string
-      - description: UNIX timestamp. Interval initial value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval initial value.
         in: query
         name: from
         required: true
         schema:
           format: int64
           type: integer
-      - description: UNIX timestamp. Interval end value. If count is not provided,
-          this field is required
+      - description: UNIX timestamp. Interval end value.
         in: query
         name: to
         required: true
@@ -1321,6 +1314,59 @@ paths:
       security:
       - api_key: []
       summary: COVID-19
+  /country:
+    get:
+      description: List all countries and metadata.
+      operationId: country
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EconomicCode'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Country Metadata
+  /economic/code:
+    get:
+      description: List codes of supported economic data.
+      operationId: economic-code
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EconomicCode'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Economic Code
+  /economic:
+    get:
+      description: Get economic data.
+      operationId: economic-data
+      parameters:
+      - description: Economic code.
+        in: query
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EconomicData'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Economic Data
 components:
   schemas:
     CompanyProfile:
@@ -1339,7 +1385,7 @@ components:
         ggroup: ggroup
         ticker: ticker
         address: address
-        marketCapitalization: 6
+        marketCapitalization: 6.0274563
         gind: gind
         ipo: 2000-01-23
         sedol: 0
@@ -1427,8 +1473,8 @@ components:
           type: string
         marketCapitalization:
           description: Market Capitalization.
-          format: int64
-          type: integer
+          format: float
+          type: number
         shareOutstanding:
           description: Number of oustanding shares.
           format: float
@@ -1449,7 +1495,7 @@ components:
         finnhubIndustry: finnhubIndustry
         country: country
         ticker: ticker
-        marketCapitalization: 0
+        marketCapitalization: 0.8008282
         phone: phone
         weburl: weburl
         name: name
@@ -1480,8 +1526,8 @@ components:
           type: string
         marketCapitalization:
           description: Market Capitalization.
-          format: int64
-          type: integer
+          format: float
+          type: number
         shareOutstanding:
           description: Number of oustanding shares.
           format: float
@@ -2781,6 +2827,90 @@ components:
         updated:
           description: Updated time.
           format: date-time
+          type: string
+      type: object
+    EconomicCode:
+      example:
+        country: country
+        code3: code3
+        code2: code2
+        codeNo: codeNo
+        currency: currency
+        currencyCode: currencyCode
+      properties:
+        country:
+          description: Country name
+          type: string
+        code2:
+          description: Alpha 2 code
+          type: string
+        code3:
+          description: Alpha 3 code
+          type: string
+        codeNo:
+          description: UN code
+          type: string
+        currency:
+          description: Currency name
+          type: string
+        currencyCode:
+          description: Currency code
+          type: string
+      type: object
+    Economic event:
+      properties:
+        actual:
+          description: Actual release
+          format: float
+          type: number
+        prev:
+          description: Previous release
+          format: float
+          type: number
+        country:
+          description: Country
+          type: string
+        unit:
+          description: Unit
+          type: string
+        estimate:
+          description: Estimate
+          format: float
+          type: number
+        event:
+          description: Event
+          type: string
+        impact:
+          description: Impact level
+          type: string
+        time:
+          description: Release time
+          type: string
+      type: object
+    Economic data:
+      properties:
+        date:
+          description: Date of the reading
+          type: string
+        value:
+          description: Value
+          format: float
+          type: number
+      type: object
+    EconomicData:
+      example:
+        code: code
+        data:
+        - '{}'
+        - '{}'
+      properties:
+        data:
+          description: Array of economic data for requested code.
+          items:
+            type: object
+          type: array
+        code:
+          description: Finnhub economic code
           type: string
       type: object
   securitySchemes:

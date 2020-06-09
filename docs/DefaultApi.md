@@ -14,11 +14,14 @@ Method | HTTP request | Description
 [**CompanyProfile**](DefaultApi.md#CompanyProfile) | **Get** /stock/profile | Company Profile
 [**CompanyProfile2**](DefaultApi.md#CompanyProfile2) | **Get** /stock/profile2 | Company Profile 2
 [**CompanyRevenueEstimates**](DefaultApi.md#CompanyRevenueEstimates) | **Get** /stock/revenue-estimate | Revenue Estimates
+[**Country**](DefaultApi.md#Country) | **Get** /country | Country Metadata
 [**Covid19**](DefaultApi.md#Covid19) | **Get** /covid19/us | COVID-19
 [**CryptoCandles**](DefaultApi.md#CryptoCandles) | **Get** /crypto/candle | Crypto Candles
 [**CryptoExchanges**](DefaultApi.md#CryptoExchanges) | **Get** /crypto/exchange | Crypto Exchanges
 [**CryptoSymbols**](DefaultApi.md#CryptoSymbols) | **Get** /crypto/symbol | Crypto Symbol
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
+[**EconomicCode**](DefaultApi.md#EconomicCode) | **Get** /economic/code | Economic Code
+[**EconomicData**](DefaultApi.md#EconomicData) | **Get** /economic | Economic Data
 [**Filings**](DefaultApi.md#Filings) | **Get** /stock/filings | Filings
 [**Financials**](DefaultApi.md#Financials) | **Get** /stock/financials | Financial Statements
 [**FinancialsReported**](DefaultApi.md#FinancialsReported) | **Get** /stock/financials-reported | Financials As Reported
@@ -336,7 +339,7 @@ Optional parameters are passed through a pointer to a CompanyProfileOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol of the company: AAPL, SBIN.NS e.g. | 
+ **symbol** | **optional.String**| Symbol of the company: AAPL e.g. | 
  **isin** | **optional.String**| ISIN | 
  **cusip** | **optional.String**| CUSIP | 
 
@@ -381,7 +384,7 @@ Optional parameters are passed through a pointer to a CompanyProfile2Opts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol of the company: AAPL, SBIN.NS e.g. | 
+ **symbol** | **optional.String**| Symbol of the company: AAPL e.g. | 
  **isin** | **optional.String**| ISIN | 
  **cusip** | **optional.String**| CUSIP | 
 
@@ -448,6 +451,36 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## Country
+
+> []EconomicCode Country(ctx, )
+
+Country Metadata
+
+List all countries and metadata.
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[]EconomicCode**](EconomicCode.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## Covid19
 
 > Covid19 Covid19(ctx, )
@@ -480,7 +513,7 @@ This endpoint does not need any parameter.
 
 ## CryptoCandles
 
-> CryptoCandles CryptoCandles(ctx, symbol, resolution, optional)
+> CryptoCandles CryptoCandles(ctx, symbol, resolution, from, to, optional)
 
 Crypto Candles
 
@@ -494,6 +527,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **symbol** | **string**| Use symbol returned in &lt;code&gt;/crypto/symbol&lt;/code&gt; endpoint for this field. | 
 **resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+**from** | **int64**| UNIX timestamp. Interval initial value. | 
+**to** | **int64**| UNIX timestamp. Interval end value. | 
  **optional** | ***CryptoCandlesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -505,10 +540,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **from** | **optional.Int64**| UNIX timestamp. Interval initial value. If count is not provided, this field is required | 
- **to** | **optional.Int64**| UNIX timestamp. Interval end value. If count is not provided, this field is required | 
+
+
  **format** | **optional.String**| By default, &lt;code&gt;format&#x3D;json&lt;/code&gt;. Strings &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;csv&lt;/code&gt; are accepted. | 
- **count** | **optional.Int64**| Shortcut to set &lt;code&gt;to&#x3D;Unix.Now&lt;/code&gt; and &lt;code&gt;from&#x3D;Unix.Now - count * resolution_second&lt;/code&gt;. | 
 
 ### Return type
 
@@ -623,6 +657,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]EarningRelease**](EarningRelease.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EconomicCode
+
+> []EconomicCode EconomicCode(ctx, )
+
+Economic Code
+
+List codes of supported economic data.
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[]EconomicCode**](EconomicCode.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EconomicData
+
+> EconomicData EconomicData(ctx, code)
+
+Economic Data
+
+Get economic data.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**code** | **string**| Economic code. | 
+
+### Return type
+
+[**EconomicData**](EconomicData.md)
 
 ### Authorization
 
@@ -770,7 +868,7 @@ Name | Type | Description  | Notes
 
 ## ForexCandles
 
-> ForexCandles ForexCandles(ctx, symbol, resolution, optional)
+> ForexCandles ForexCandles(ctx, symbol, resolution, from, to, optional)
 
 Forex Candles
 
@@ -784,6 +882,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **symbol** | **string**| Use symbol returned in &lt;code&gt;/forex/symbol&lt;/code&gt; endpoint for this field. | 
 **resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+**from** | **int64**| UNIX timestamp. Interval initial value. | 
+**to** | **int64**| UNIX timestamp. Interval end value. | 
  **optional** | ***ForexCandlesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -795,8 +895,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **from** | **optional.Int64**| UNIX timestamp. Interval initial value. If count is not provided, this field is required | 
- **to** | **optional.Int64**| UNIX timestamp. Interval end value. If count is not provided, this field is required | 
+
+
  **format** | **optional.String**| By default, &lt;code&gt;format&#x3D;json&lt;/code&gt;. Strings &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;csv&lt;/code&gt; are accepted. | 
 
 ### Return type
@@ -1249,7 +1349,7 @@ Name | Type | Description  | Notes
 
 Quote
 
-<p>Get quote data for stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p> Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
+<p>Get quote data for stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p> This endpoint only provide real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1313,11 +1413,11 @@ Name | Type | Description  | Notes
 
 ## StockCandles
 
-> StockCandles StockCandles(ctx, symbol, resolution, optional)
+> StockCandles StockCandles(ctx, symbol, resolution, from, to, optional)
 
 Stock Candles
 
-<p>Get candlestick data for stocks going back 25 years.</p><p> Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
+<p>Get candlestick data for stocks going back 25 years.</p><p> This endpoint only provides real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1327,6 +1427,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **symbol** | **string**| Symbol. | 
 **resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+**from** | **int64**| UNIX timestamp. Interval initial value. | 
+**to** | **int64**| UNIX timestamp. Interval end value. | 
  **optional** | ***StockCandlesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1338,8 +1440,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **from** | **optional.Int64**| UNIX timestamp. Interval initial value. If count is not provided, this field is required | 
- **to** | **optional.Int64**| UNIX timestamp. Interval end value. If count is not provided, this field is required | 
+
+
  **format** | **optional.String**| By default, &lt;code&gt;format&#x3D;json&lt;/code&gt;. Strings &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;csv&lt;/code&gt; are accepted. | 
  **adjusted** | **optional.String**| By default, &lt;code&gt;adjusted&#x3D;false&lt;/code&gt;. Use &lt;code&gt;true&lt;/code&gt; to get adjusted data. | 
 
@@ -1553,8 +1655,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **symbol** | **string**| symbol | 
 **resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
-**from** | **int64**| UNIX timestamp. Interval initial value. If count is not provided, this field is required | 
-**to** | **int64**| UNIX timestamp. Interval end value. If count is not provided, this field is required | 
+**from** | **int64**| UNIX timestamp. Interval initial value. | 
+**to** | **int64**| UNIX timestamp. Interval end value. | 
 **indicator** | **string**| Indicator name. Full list can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
  **optional** | ***TechnicalIndicatorOpts** | optional parameters | nil if no parameters
 

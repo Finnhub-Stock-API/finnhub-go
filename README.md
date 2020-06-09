@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.0.2
+- Package version: 1.1.0
 
 ## Installation
 
@@ -78,11 +78,14 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**CompanyProfile**](docs/DefaultApi.md#companyprofile) | **Get** /stock/profile | Company Profile
 *DefaultApi* | [**CompanyProfile2**](docs/DefaultApi.md#companyprofile2) | **Get** /stock/profile2 | Company Profile 2
 *DefaultApi* | [**CompanyRevenueEstimates**](docs/DefaultApi.md#companyrevenueestimates) | **Get** /stock/revenue-estimate | Revenue Estimates
+*DefaultApi* | [**Country**](docs/DefaultApi.md#country) | **Get** /country | Country Metadata
 *DefaultApi* | [**Covid19**](docs/DefaultApi.md#covid19) | **Get** /covid19/us | COVID-19
 *DefaultApi* | [**CryptoCandles**](docs/DefaultApi.md#cryptocandles) | **Get** /crypto/candle | Crypto Candles
 *DefaultApi* | [**CryptoExchanges**](docs/DefaultApi.md#cryptoexchanges) | **Get** /crypto/exchange | Crypto Exchanges
 *DefaultApi* | [**CryptoSymbols**](docs/DefaultApi.md#cryptosymbols) | **Get** /crypto/symbol | Crypto Symbol
 *DefaultApi* | [**EarningsCalendar**](docs/DefaultApi.md#earningscalendar) | **Get** /calendar/earnings | Earnings Calendar
+*DefaultApi* | [**EconomicCode**](docs/DefaultApi.md#economiccode) | **Get** /economic/code | Economic Code
+*DefaultApi* | [**EconomicData**](docs/DefaultApi.md#economicdata) | **Get** /economic | Economic Data
 *DefaultApi* | [**Filings**](docs/DefaultApi.md#filings) | **Get** /stock/filings | Filings
 *DefaultApi* | [**Financials**](docs/DefaultApi.md#financials) | **Get** /stock/financials | Financial Statements
 *DefaultApi* | [**FinancialsReported**](docs/DefaultApi.md#financialsreported) | **Get** /stock/financials-reported | Financials As Reported
@@ -132,6 +135,9 @@ Class | Method | HTTP request | Description
  - [EarningsCallTranscripts](docs/EarningsCallTranscripts.md)
  - [EarningsCallTranscriptsList](docs/EarningsCallTranscriptsList.md)
  - [EarningsEstimates](docs/EarningsEstimates.md)
+ - [EconomicCode](docs/EconomicCode.md)
+ - [EconomicData](docs/EconomicData.md)
+ - [EconomicEvent](docs/EconomicEvent.md)
  - [Estimate](docs/Estimate.md)
  - [Filing](docs/Filing.md)
  - [FinancialStatements](docs/FinancialStatements.md)

@@ -57,7 +57,7 @@ type CompanyProfile struct {
 	// IPO date.
 	Ipo string `json:"ipo,omitempty"`
 	// Market Capitalization.
-	MarketCapitalization int64 `json:"marketCapitalization,omitempty"`
+	MarketCapitalization float32 `json:"marketCapitalization,omitempty"`
 	// Number of oustanding shares.
 	ShareOutstanding float32 `json:"shareOutstanding,omitempty"`
 	// Number of employee.

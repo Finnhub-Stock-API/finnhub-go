@@ -688,7 +688,7 @@ CompanyProfile Company Profile
 Get general information of a company. You can query by symbol, ISIN or CUSIP
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *CompanyProfileOpts - Optional Parameters:
- * @param "Symbol" (optional.String) -  Symbol of the company: AAPL, SBIN.NS e.g.
+ * @param "Symbol" (optional.String) -  Symbol of the company: AAPL e.g.
  * @param "Isin" (optional.String) -  ISIN
  * @param "Cusip" (optional.String) -  CUSIP
 @return CompanyProfile
@@ -795,7 +795,7 @@ CompanyProfile2 Company Profile 2
 Get general information of a company. You can query by symbol, ISIN or CUSIP. This is the free version of &lt;a href&#x3D;\&quot;#company-profile\&quot;&gt;Company Profile&lt;/a&gt;.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *CompanyProfile2Opts - Optional Parameters:
- * @param "Symbol" (optional.String) -  Symbol of the company: AAPL, SBIN.NS e.g.
+ * @param "Symbol" (optional.String) -  Symbol of the company: AAPL e.g.
  * @param "Isin" (optional.String) -  ISIN
  * @param "Cusip" (optional.String) -  CUSIP
 @return CompanyProfile2
@@ -990,6 +990,93 @@ func (a *DefaultApiService) CompanyRevenueEstimates(ctx _context.Context, symbol
 }
 
 /*
+Country Country Metadata
+List all countries and metadata.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return []EconomicCode
+*/
+func (a *DefaultApiService) Country(ctx _context.Context) ([]EconomicCode, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []EconomicCode
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/country"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("token", key)
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+/*
 Covid19 COVID-19
 Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources. You can also access this API &lt;a href&#x3D;\&quot;https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;here&lt;/a&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1078,10 +1165,7 @@ func (a *DefaultApiService) Covid19(ctx _context.Context) (Covid19, *_nethttp.Re
 
 // CryptoCandlesOpts Optional parameters for the method 'CryptoCandles'
 type CryptoCandlesOpts struct {
-    From optional.Int64
-    To optional.Int64
     Format optional.String
-    Count optional.Int64
 }
 
 /*
@@ -1090,14 +1174,13 @@ Get candlestick data for crypto symbols.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Use symbol returned in <code>/crypto/symbol</code> endpoint for this field.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+ * @param from UNIX timestamp. Interval initial value.
+ * @param to UNIX timestamp. Interval end value.
  * @param optional nil or *CryptoCandlesOpts - Optional Parameters:
- * @param "From" (optional.Int64) -  UNIX timestamp. Interval initial value. If count is not provided, this field is required
- * @param "To" (optional.Int64) -  UNIX timestamp. Interval end value. If count is not provided, this field is required
  * @param "Format" (optional.String) -  By default, <code>format=json</code>. Strings <code>json</code> and <code>csv</code> are accepted.
- * @param "Count" (optional.Int64) -  Shortcut to set <code>to=Unix.Now</code> and <code>from=Unix.Now - count * resolution_second</code>.
 @return CryptoCandles
 */
-func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, resolution string, localVarOptionals *CryptoCandlesOpts) (CryptoCandles, *_nethttp.Response, error) {
+func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64, localVarOptionals *CryptoCandlesOpts) (CryptoCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1115,17 +1198,10 @@ func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, r
 
 	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
 	localVarQueryParams.Add("resolution", parameterToString(resolution, ""))
-	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
-		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.To.IsSet() {
-		localVarQueryParams.Add("to", parameterToString(localVarOptionals.To.Value(), ""))
-	}
+	localVarQueryParams.Add("from", parameterToString(from, ""))
+	localVarQueryParams.Add("to", parameterToString(to, ""))
 	if localVarOptionals != nil && localVarOptionals.Format.IsSet() {
 		localVarQueryParams.Add("format", parameterToString(localVarOptionals.Format.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.Count.IsSet() {
-		localVarQueryParams.Add("count", parameterToString(localVarOptionals.Count.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1415,6 +1491,182 @@ func (a *DefaultApiService) EarningsCalendar(ctx _context.Context, localVarOptio
 	if localVarOptionals != nil && localVarOptionals.International.IsSet() {
 		localVarQueryParams.Add("international", parameterToString(localVarOptionals.International.Value(), ""))
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("token", key)
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+/*
+EconomicCode Economic Code
+List codes of supported economic data.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return []EconomicCode
+*/
+func (a *DefaultApiService) EconomicCode(ctx _context.Context) ([]EconomicCode, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []EconomicCode
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/economic/code"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("token", key)
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+/*
+EconomicData Economic Data
+Get economic data.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param code Economic code.
+@return EconomicData
+*/
+func (a *DefaultApiService) EconomicData(ctx _context.Context, code string) (EconomicData, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  EconomicData
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/economic"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	localVarQueryParams.Add("code", parameterToString(code, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1809,8 +2061,6 @@ func (a *DefaultApiService) FinancialsReported(ctx _context.Context, localVarOpt
 
 // ForexCandlesOpts Optional parameters for the method 'ForexCandles'
 type ForexCandlesOpts struct {
-    From optional.Int64
-    To optional.Int64
     Format optional.String
 }
 
@@ -1820,13 +2070,13 @@ Get candlestick data for forex symbols.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Use symbol returned in <code>/forex/symbol</code> endpoint for this field.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+ * @param from UNIX timestamp. Interval initial value.
+ * @param to UNIX timestamp. Interval end value.
  * @param optional nil or *ForexCandlesOpts - Optional Parameters:
- * @param "From" (optional.Int64) -  UNIX timestamp. Interval initial value. If count is not provided, this field is required
- * @param "To" (optional.Int64) -  UNIX timestamp. Interval end value. If count is not provided, this field is required
  * @param "Format" (optional.String) -  By default, <code>format=json</code>. Strings <code>json</code> and <code>csv</code> are accepted.
 @return ForexCandles
 */
-func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, resolution string, localVarOptionals *ForexCandlesOpts) (ForexCandles, *_nethttp.Response, error) {
+func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64, localVarOptionals *ForexCandlesOpts) (ForexCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1844,12 +2094,8 @@ func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, re
 
 	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
 	localVarQueryParams.Add("resolution", parameterToString(resolution, ""))
-	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
-		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.To.IsSet() {
-		localVarQueryParams.Add("to", parameterToString(localVarOptionals.To.Value(), ""))
-	}
+	localVarQueryParams.Add("from", parameterToString(from, ""))
+	localVarQueryParams.Add("to", parameterToString(to, ""))
 	if localVarOptionals != nil && localVarOptionals.Format.IsSet() {
 		localVarQueryParams.Add("format", parameterToString(localVarOptionals.Format.Value(), ""))
 	}
@@ -2954,7 +3200,7 @@ func (a *DefaultApiService) PriceTarget(ctx _context.Context, symbol string) (Pr
 
 /*
 Quote Quote
-&lt;p&gt;Get quote data for stocks. Constant polling is not recommended. Use websocket if you need real-time update.&lt;/p&gt;&lt;p&gt; Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get quote data for stocks. Constant polling is not recommended. Use websocket if you need real-time update.&lt;/p&gt;&lt;p&gt; This endpoint only provide real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol
 @return Quote
@@ -3132,26 +3378,24 @@ func (a *DefaultApiService) RecommendationTrends(ctx _context.Context, symbol st
 
 // StockCandlesOpts Optional parameters for the method 'StockCandles'
 type StockCandlesOpts struct {
-    From optional.Int64
-    To optional.Int64
     Format optional.String
     Adjusted optional.String
 }
 
 /*
 StockCandles Stock Candles
-&lt;p&gt;Get candlestick data for stocks going back 25 years.&lt;/p&gt;&lt;p&gt; Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get candlestick data for stocks going back 25 years.&lt;/p&gt;&lt;p&gt; This endpoint only provides real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+ * @param from UNIX timestamp. Interval initial value.
+ * @param to UNIX timestamp. Interval end value.
  * @param optional nil or *StockCandlesOpts - Optional Parameters:
- * @param "From" (optional.Int64) -  UNIX timestamp. Interval initial value. If count is not provided, this field is required
- * @param "To" (optional.Int64) -  UNIX timestamp. Interval end value. If count is not provided, this field is required
  * @param "Format" (optional.String) -  By default, <code>format=json</code>. Strings <code>json</code> and <code>csv</code> are accepted.
  * @param "Adjusted" (optional.String) -  By default, <code>adjusted=false</code>. Use <code>true</code> to get adjusted data.
 @return StockCandles
 */
-func (a *DefaultApiService) StockCandles(ctx _context.Context, symbol string, resolution string, localVarOptionals *StockCandlesOpts) (StockCandles, *_nethttp.Response, error) {
+func (a *DefaultApiService) StockCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64, localVarOptionals *StockCandlesOpts) (StockCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -3169,12 +3413,8 @@ func (a *DefaultApiService) StockCandles(ctx _context.Context, symbol string, re
 
 	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
 	localVarQueryParams.Add("resolution", parameterToString(resolution, ""))
-	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
-		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.To.IsSet() {
-		localVarQueryParams.Add("to", parameterToString(localVarOptionals.To.Value(), ""))
-	}
+	localVarQueryParams.Add("from", parameterToString(from, ""))
+	localVarQueryParams.Add("to", parameterToString(to, ""))
 	if localVarOptionals != nil && localVarOptionals.Format.IsSet() {
 		localVarQueryParams.Add("format", parameterToString(localVarOptionals.Format.Value(), ""))
 	}
@@ -3714,8 +3954,8 @@ Return technical indicator with price data. List of supported indicators can be 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol symbol
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
- * @param from UNIX timestamp. Interval initial value. If count is not provided, this field is required
- * @param to UNIX timestamp. Interval end value. If count is not provided, this field is required
+ * @param from UNIX timestamp. Interval initial value.
+ * @param to UNIX timestamp. Interval end value.
  * @param indicator Indicator name. Full list can be found <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">here</a>.
  * @param optional nil or *TechnicalIndicatorOpts - Optional Parameters:
  * @param "IndicatorSpecificFields" (optional.Interface of map[string]interface{}) -  Check out <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">this page</a> to see which indicators and params are supported.
