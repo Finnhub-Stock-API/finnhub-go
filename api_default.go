@@ -1080,16 +1080,16 @@ func (a *DefaultApiService) Country(ctx _context.Context) ([]EconomicCode, *_net
 Covid19 COVID-19
 Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources. You can also access this API &lt;a href&#x3D;\&quot;https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;here&lt;/a&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return Covid19
+@return []CovidInfo
 */
-func (a *DefaultApiService) Covid19(ctx _context.Context) (Covid19, *_nethttp.Response, error) {
+func (a *DefaultApiService) Covid19(ctx _context.Context) ([]CovidInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Covid19
+		localVarReturnValue  []CovidInfo
 	)
 
 	// create path and map variables
@@ -1461,16 +1461,16 @@ Get historical and coming earnings release dating back to 2003. You can setup &l
  * @param "To" (optional.String) -  To date: 2020-03-16.
  * @param "Symbol" (optional.String) -  Filter by symbol: AAPL.
  * @param "International" (optional.Interface of interface{}) -  Set to <code>true</code> to include international markets. Default value is <code>false</code>
-@return []EarningRelease
+@return EarningsCalendar
 */
-func (a *DefaultApiService) EarningsCalendar(ctx _context.Context, localVarOptionals *EarningsCalendarOpts) ([]EarningRelease, *_nethttp.Response, error) {
+func (a *DefaultApiService) EarningsCalendar(ctx _context.Context, localVarOptionals *EarningsCalendarOpts) (EarningsCalendar, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []EarningRelease
+		localVarReturnValue  EarningsCalendar
 	)
 
 	// create path and map variables
@@ -2740,16 +2740,16 @@ Get recent and coming IPO.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param from From date: 2020-03-15.
  * @param to To date: 2020-03-16.
-@return []IpoEvent
+@return IpoCalendar
 */
-func (a *DefaultApiService) IpoCalendar(ctx _context.Context, from string, to string) ([]IpoEvent, *_nethttp.Response, error) {
+func (a *DefaultApiService) IpoCalendar(ctx _context.Context, from string, to string) (IpoCalendar, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []IpoEvent
+		localVarReturnValue  IpoCalendar
 	)
 
 	// create path and map variables
@@ -3024,16 +3024,16 @@ Run pattern recognition algorithm on a symbol. Support double top/bottom, triple
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
-@return []map[string]interface{}
+@return PatternRecognition
 */
-func (a *DefaultApiService) PatternRecognition(ctx _context.Context, symbol string, resolution string) ([]map[string]interface{}, *_nethttp.Response, error) {
+func (a *DefaultApiService) PatternRecognition(ctx _context.Context, symbol string, resolution string) (PatternRecognition, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  PatternRecognition
 	)
 
 	// create path and map variables
@@ -3200,7 +3200,7 @@ func (a *DefaultApiService) PriceTarget(ctx _context.Context, symbol string) (Pr
 
 /*
 Quote Quote
-&lt;p&gt;Get quote data for stocks. Constant polling is not recommended. Use websocket if you need real-time update.&lt;/p&gt;&lt;p&gt; This endpoint only provide real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.&lt;/p&gt;&lt;p&gt;Bulk download EOD international markets: &lt;a href&#x3D;\&quot;https://www.metastock.com/products/endofday/DataLink/?ref&#x3D;fih\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;Metastock Datalink&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol
 @return Quote
@@ -3292,16 +3292,16 @@ RecommendationTrends Recommendation Trends
 Get latest analyst recommendation trends for a company.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol of the company: AAPL.
-@return RecommendationTrends
+@return []RecommendationTrend
 */
-func (a *DefaultApiService) RecommendationTrends(ctx _context.Context, symbol string) (RecommendationTrends, *_nethttp.Response, error) {
+func (a *DefaultApiService) RecommendationTrends(ctx _context.Context, symbol string) ([]RecommendationTrend, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  RecommendationTrends
+		localVarReturnValue  []RecommendationTrend
 	)
 
 	// create path and map variables
@@ -3384,7 +3384,7 @@ type StockCandlesOpts struct {
 
 /*
 StockCandles Stock Candles
-&lt;p&gt;Get candlestick data for stocks going back 25 years.&lt;/p&gt;&lt;p&gt; This endpoint only provides real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get candlestick data for stocks going back 25 years for US stocks.&lt;/p&gt;&lt;p&gt;Bulk download EOD international markets: &lt;a href&#x3D;\&quot;https://www.metastock.com/products/endofday/DataLink/?ref&#x3D;fih\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;Metastock Datalink&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
@@ -3493,16 +3493,16 @@ Get dividends data for common stocks going back 30 years.
  * @param symbol Symbol.
  * @param from YYYY-MM-DD.
  * @param to YYYY-MM-DD.
-@return Dividends
+@return []Dividends
 */
-func (a *DefaultApiService) StockDividends(ctx _context.Context, symbol string, from string, to string) (Dividends, *_nethttp.Response, error) {
+func (a *DefaultApiService) StockDividends(ctx _context.Context, symbol string, from string, to string) ([]Dividends, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Dividends
+		localVarReturnValue  []Dividends
 	)
 
 	// create path and map variables
@@ -3586,16 +3586,16 @@ Get splits data for stocks.
  * @param symbol Symbol.
  * @param from YYYY-MM-DD.
  * @param to YYYY-MM-DD.
-@return Splits
+@return []Split
 */
-func (a *DefaultApiService) StockSplits(ctx _context.Context, symbol string, from string, to string) (Splits, *_nethttp.Response, error) {
+func (a *DefaultApiService) StockSplits(ctx _context.Context, symbol string, from string, to string) ([]Split, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Splits
+		localVarReturnValue  []Split
 	)
 
 	// create path and map variables
@@ -3858,16 +3858,16 @@ Get support and resistance levels for a symbol.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
-@return []float32
+@return SupportResistance
 */
-func (a *DefaultApiService) SupportResistance(ctx _context.Context, symbol string, resolution string) ([]float32, *_nethttp.Response, error) {
+func (a *DefaultApiService) SupportResistance(ctx _context.Context, symbol string, resolution string) (SupportResistance, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []float32
+		localVarReturnValue  SupportResistance
 	)
 
 	// create path and map variables

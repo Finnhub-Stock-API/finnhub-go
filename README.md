@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.0
+- Package version: 1.1.1
 
 ## Installation
 
@@ -124,7 +124,7 @@ Class | Method | HTTP request | Description
  - [CompanyNewsStatistics](docs/CompanyNewsStatistics.md)
  - [CompanyProfile](docs/CompanyProfile.md)
  - [CompanyProfile2](docs/CompanyProfile2.md)
- - [Covid19](docs/Covid19.md)
+ - [CovidInfo](docs/CovidInfo.md)
  - [CryptoCandles](docs/CryptoCandles.md)
  - [CryptoSymbol](docs/CryptoSymbol.md)
  - [Development](docs/Development.md)
@@ -132,9 +132,11 @@ Class | Method | HTTP request | Description
  - [EarningEstimate](docs/EarningEstimate.md)
  - [EarningRelease](docs/EarningRelease.md)
  - [EarningResult](docs/EarningResult.md)
+ - [EarningsCalendar](docs/EarningsCalendar.md)
  - [EarningsCallTranscripts](docs/EarningsCallTranscripts.md)
  - [EarningsCallTranscriptsList](docs/EarningsCallTranscriptsList.md)
  - [EarningsEstimates](docs/EarningsEstimates.md)
+ - [EconomicCalendar](docs/EconomicCalendar.md)
  - [EconomicCode](docs/EconomicCode.md)
  - [EconomicData](docs/EconomicData.md)
  - [EconomicEvent](docs/EconomicEvent.md)
@@ -149,20 +151,23 @@ Class | Method | HTTP request | Description
  - [Indicator](docs/Indicator.md)
  - [Investor](docs/Investor.md)
  - [InvestorsOwnership](docs/InvestorsOwnership.md)
+ - [IpoCalendar](docs/IpoCalendar.md)
  - [IpoEvent](docs/IpoEvent.md)
  - [MajorDevelopments](docs/MajorDevelopments.md)
  - [News](docs/News.md)
  - [NewsSentiment](docs/NewsSentiment.md)
+ - [PatternRecognition](docs/PatternRecognition.md)
  - [PriceTarget](docs/PriceTarget.md)
  - [Quote](docs/Quote.md)
- - [RecommendationTrends](docs/RecommendationTrends.md)
+ - [RecommendationTrend](docs/RecommendationTrend.md)
  - [Report](docs/Report.md)
  - [RevenueEstimates](docs/RevenueEstimates.md)
  - [Sentiment](docs/Sentiment.md)
- - [Splits](docs/Splits.md)
+ - [Split](docs/Split.md)
  - [Stock](docs/Stock.md)
  - [StockCandles](docs/StockCandles.md)
  - [StockTranscripts](docs/StockTranscripts.md)
+ - [SupportResistance](docs/SupportResistance.md)
  - [TechnicalAnalysis](docs/TechnicalAnalysis.md)
  - [TechnicalIndicators](docs/TechnicalIndicators.md)
  - [TickData](docs/TickData.md)

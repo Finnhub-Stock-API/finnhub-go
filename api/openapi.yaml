@@ -505,9 +505,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/IPOEvent'
-                type: array
+                $ref: '#/components/schemas/IPOCalendar'
           description: successful operation
       security:
       - api_key: []
@@ -542,7 +540,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dividends'
+                items:
+                  $ref: '#/components/schemas/Dividends'
+                type: array
           description: successful operation
       security:
       - api_key: []
@@ -563,7 +563,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RecommendationTrends'
+                items:
+                  $ref: '#/components/schemas/RecommendationTrend'
+                type: array
           description: successful operation
       security:
       - api_key: []
@@ -743,20 +745,20 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/EarningRelease'
-                type: array
+                $ref: '#/components/schemas/EarningsCalendar'
           description: successful operation
       security:
       - api_key: []
       summary: Earnings Calendar
   /quote:
     get:
-      description: <p>Get quote data for stocks. Constant polling is not recommended.
-        Use websocket if you need real-time update.</p><p> This endpoint only provide
-        real-time data for US stocks. Real-time stock prices for international markets
-        are supported for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
-        Us</a> to learn more.</p>
+      description: '<p>Get real-time quote data for US stocks. Constant polling is
+        not recommended. Use websocket if you need real-time update.</p><p>Bulk download
+        EOD international markets: <a href="https://www.metastock.com/products/endofday/DataLink/?ref=fih"
+        target="_blank" rel="nofollow">Metastock Datalink</a></p><p>Real-time stock
+        prices for international markets are supported for Enterprise clients via
+        our partner''s feed. <a href="mailto:support@finnhub.io">Contact Us</a> to
+        learn more.</p>'
       operationId: quote
       parameters:
       - description: Symbol
@@ -777,11 +779,12 @@ paths:
       summary: Quote
   /stock/candle:
     get:
-      description: <p>Get candlestick data for stocks going back 25 years.</p><p>
-        This endpoint only provides real-time data for US stocks. Real-time stock
+      description: '<p>Get candlestick data for stocks going back 25 years for US
+        stocks.</p><p>Bulk download EOD international markets: <a href="https://www.metastock.com/products/endofday/DataLink/?ref=fih"
+        target="_blank" rel="nofollow">Metastock Datalink</a></p><p>Real-time stock
         prices for international markets are supported for Enterprise clients via
-        our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a> to
-        learn more.</p>
+        our partner''s feed. <a href="mailto:support@finnhub.io">Contact Us</a> to
+        learn more.</p>'
       operationId: stock-candles
       parameters:
       - description: Symbol.
@@ -897,7 +900,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Splits'
+                items:
+                  $ref: '#/components/schemas/Split'
+                type: array
           description: successful operation
       security:
       - api_key: []
@@ -1123,9 +1128,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/ScanPattern'
-                type: array
+                $ref: '#/components/schemas/PatternRecognition'
           description: successful operation
       security:
       - api_key: []
@@ -1153,10 +1156,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  format: float
-                  type: number
-                type: array
+                $ref: '#/components/schemas/SupportResistance'
           description: successful operation
       security:
       - api_key: []
@@ -1309,7 +1309,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/COVID-19'
+                items:
+                  $ref: '#/components/schemas/CovidInfo'
+                type: array
           description: successful operation
       security:
       - api_key: []
@@ -1934,15 +1936,6 @@ components:
           type: string
       type: object
     IPOEvent:
-      example:
-        date: 2000-01-23
-        symbol: symbol
-        price: price
-        numberOfShares: 0
-        totalSharesValue: 6
-        name: name
-        exchange: exchange
-        status: status
       properties:
         symbol:
           description: Symbol.
@@ -1971,6 +1964,18 @@ components:
           description: Total shares value.
           format: int64
           type: integer
+      type: object
+    IPOCalendar:
+      example:
+        ipoCalendar:
+        - '{}'
+        - '{}'
+      properties:
+        ipoCalendar:
+          description: Array of IPO events.
+          items:
+            type: object
+          type: array
       type: object
     Dividends:
       example:
@@ -2014,7 +2019,7 @@ components:
           description: Currency.
           type: string
       type: object
-    RecommendationTrends:
+    RecommendationTrend:
       example:
         symbol: symbol
         period: period
@@ -2224,16 +2229,6 @@ components:
           type: string
       type: object
     EarningRelease:
-      example:
-        date: 2000-01-23
-        symbol: symbol
-        epsActual: 5.962134
-        hour: hour
-        epsEstimate: 1.4658129
-        revenueEstimate: 5
-        revenueActual: 2
-        year: 0
-        quarter: 6
       properties:
         symbol:
           description: Symbol.
@@ -2270,6 +2265,18 @@ components:
           description: Revenue actual.
           format: int64
           type: integer
+      type: object
+    EarningsCalendar:
+      example:
+        earningsCalendar:
+        - '{}'
+        - '{}'
+      properties:
+        earningsCalendar:
+          description: Array of earnings release.
+          items:
+            type: object
+          type: array
       type: object
     Quote:
       example:
@@ -2381,7 +2388,7 @@ components:
           format: float
           type: number
       type: object
-    Splits:
+    Split:
       example:
         symbol: symbol
         fromFactor: 0.8008282
@@ -2576,6 +2583,31 @@ components:
           type: string
       type: object
     ScanPattern:
+      type: object
+    PatternRecognition:
+      example:
+        points:
+        - '{}'
+        - '{}'
+      properties:
+        points:
+          description: Array of patterns.
+          items:
+            type: object
+          type: array
+      type: object
+    SupportResistance:
+      example:
+        levels:
+        - 0.8008282
+        - 0.8008282
+      properties:
+        levels:
+          description: Array of support and resistance levels.
+          items:
+            format: float
+            type: number
+          type: array
       type: object
     Indicator:
       example:
@@ -2806,7 +2838,7 @@ components:
           format: int64
           type: integer
       type: object
-    COVID-19:
+    CovidInfo:
       example:
         death: 6.0274563
         state: state
@@ -2886,6 +2918,14 @@ components:
         time:
           description: Release time
           type: string
+      type: object
+    EconomicCalendar:
+      properties:
+        economicCalendar:
+          description: Array of economic events.
+          items:
+            type: object
+          type: array
       type: object
     Economic data:
       properties:

@@ -8,8 +8,8 @@
  */
 
 package finnhub
-// EconomicCalendar struct for EconomicCalendar
-type EconomicCalendar struct {
-	// Array of economic events.
-	EconomicCalendar []map[string]interface{} `json:"economicCalendar,omitempty"`
+// PatternRecognition struct for PatternRecognition
+type PatternRecognition struct {
+	// Array of patterns.
+	Points []map[string]interface{} `json:"points,omitempty"`
 }

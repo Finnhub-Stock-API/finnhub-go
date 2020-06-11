@@ -8,8 +8,8 @@
  */
 
 package finnhub
-// Splits struct for Splits
-type Splits struct {
+// Split struct for Split
+type Split struct {
 	// Symbol.
 	Symbol string `json:"symbol,omitempty"`
 	// Split date.

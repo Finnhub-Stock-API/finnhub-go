@@ -8,11 +8,8 @@
  */
 
 package finnhub
-// Metrics struct for Metrics
-type Metrics struct {
-	// Symbol of the company.
-	Symbol string `json:"symbol,omitempty"`
-	// Metric type.
-	MetricType string `json:"metricType,omitempty"`
-	Metric map[string]interface{} `json:"metric,omitempty"`
+// SupportResistance struct for SupportResistance
+type SupportResistance struct {
+	// Array of support and resistance levels.
+	Levels []float32 `json:"levels,omitempty"`
 }

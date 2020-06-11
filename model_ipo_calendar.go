@@ -8,10 +8,8 @@
  */
 
 package finnhub
-// Economic struct for Economic
-type Economic struct {
-	// Date of the reading
-	Date string `json:"date,omitempty"`
-	// Value
-	Value float32 `json:"value,omitempty"`
+// IpoCalendar struct for IpoCalendar
+type IpoCalendar struct {
+	// Array of IPO events.
+	IpoCalendar []map[string]interface{} `json:"ipoCalendar,omitempty"`
 }

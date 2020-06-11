@@ -483,7 +483,7 @@ This endpoint does not need any parameter.
 
 ## Covid19
 
-> Covid19 Covid19(ctx, )
+> []CovidInfo Covid19(ctx, )
 
 COVID-19
 
@@ -495,7 +495,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Covid19**](COVID-19.md)
+[**[]CovidInfo**](CovidInfo.md)
 
 ### Authorization
 
@@ -628,7 +628,7 @@ Name | Type | Description  | Notes
 
 ## EarningsCalendar
 
-> []EarningRelease EarningsCalendar(ctx, optional)
+> EarningsCalendar EarningsCalendar(ctx, optional)
 
 Earnings Calendar
 
@@ -656,7 +656,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]EarningRelease**](EarningRelease.md)
+[**EarningsCalendar**](EarningsCalendar.md)
 
 ### Authorization
 
@@ -1161,7 +1161,7 @@ Name | Type | Description  | Notes
 
 ## IpoCalendar
 
-> []IpoEvent IpoCalendar(ctx, from, to)
+> IpoCalendar IpoCalendar(ctx, from, to)
 
 IPO Calendar
 
@@ -1178,7 +1178,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]IpoEvent**](IPOEvent.md)
+[**IpoCalendar**](IPOCalendar.md)
 
 ### Authorization
 
@@ -1276,7 +1276,7 @@ Name | Type | Description  | Notes
 
 ## PatternRecognition
 
-> []map[string]interface{} PatternRecognition(ctx, symbol, resolution)
+> PatternRecognition PatternRecognition(ctx, symbol, resolution)
 
 Pattern Recognition
 
@@ -1293,7 +1293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**PatternRecognition**](PatternRecognition.md)
 
 ### Authorization
 
@@ -1349,7 +1349,7 @@ Name | Type | Description  | Notes
 
 Quote
 
-<p>Get quote data for stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p> This endpoint only provide real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
+<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p>Bulk download EOD international markets: <a href=\"https://www.metastock.com/products/endofday/DataLink/?ref=fih\" target=\"_blank\" rel=\"nofollow\">Metastock Datalink</a></p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1379,7 +1379,7 @@ Name | Type | Description  | Notes
 
 ## RecommendationTrends
 
-> RecommendationTrends RecommendationTrends(ctx, symbol)
+> []RecommendationTrend RecommendationTrends(ctx, symbol)
 
 Recommendation Trends
 
@@ -1395,7 +1395,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RecommendationTrends**](RecommendationTrends.md)
+[**[]RecommendationTrend**](RecommendationTrend.md)
 
 ### Authorization
 
@@ -1417,7 +1417,7 @@ Name | Type | Description  | Notes
 
 Stock Candles
 
-<p>Get candlestick data for stocks going back 25 years.</p><p> This endpoint only provides real-time data for US stocks. Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
+<p>Get candlestick data for stocks going back 25 years for US stocks.</p><p>Bulk download EOD international markets: <a href=\"https://www.metastock.com/products/endofday/DataLink/?ref=fih\" target=\"_blank\" rel=\"nofollow\">Metastock Datalink</a></p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1465,7 +1465,7 @@ Name | Type | Description  | Notes
 
 ## StockDividends
 
-> Dividends StockDividends(ctx, symbol, from, to)
+> []Dividends StockDividends(ctx, symbol, from, to)
 
 Dividends
 
@@ -1483,7 +1483,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dividends**](Dividends.md)
+[**[]Dividends**](Dividends.md)
 
 ### Authorization
 
@@ -1501,7 +1501,7 @@ Name | Type | Description  | Notes
 
 ## StockSplits
 
-> Splits StockSplits(ctx, symbol, from, to)
+> []Split StockSplits(ctx, symbol, from, to)
 
 Splits
 
@@ -1519,7 +1519,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Splits**](Splits.md)
+[**[]Split**](Split.md)
 
 ### Authorization
 
@@ -1606,7 +1606,7 @@ Name | Type | Description  | Notes
 
 ## SupportResistance
 
-> []float32 SupportResistance(ctx, symbol, resolution)
+> SupportResistance SupportResistance(ctx, symbol, resolution)
 
 Support/Resistance
 
@@ -1623,7 +1623,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]float32**
+[**SupportResistance**](SupportResistance.md)
 
 ### Authorization
 

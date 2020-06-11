@@ -8,8 +8,8 @@
  */
 
 package finnhub
-// RecommendationTrends struct for RecommendationTrends
-type RecommendationTrends struct {
+// RecommendationTrend struct for RecommendationTrend
+type RecommendationTrend struct {
 	// Company symbol.
 	Symbol string `json:"symbol,omitempty"`
 	// Number of recommendations that fall into the Buy category

@@ -11,8 +11,8 @@ package finnhub
 import (
 	"time"
 )
-// Covid19 struct for Covid19
-type Covid19 struct {
+// CovidInfo struct for CovidInfo
+type CovidInfo struct {
 	// State.
 	State string `json:"state,omitempty"`
 	// Number of confirmed cases.

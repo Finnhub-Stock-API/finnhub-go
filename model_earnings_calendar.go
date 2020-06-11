@@ -8,12 +8,8 @@
  */
 
 package finnhub
-// StockExchange struct for StockExchange
-type StockExchange struct {
-	// Exchange name.
-	Name string `json:"name,omitempty"`
-	// Exchange code.
-	Code string `json:"code,omitempty"`
-	// Currency.
-	Currency string `json:"currency,omitempty"`
+// EarningsCalendar struct for EarningsCalendar
+type EarningsCalendar struct {
+	// Array of earnings release.
+	EarningsCalendar []map[string]interface{} `json:"earningsCalendar,omitempty"`
 }
