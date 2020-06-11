@@ -47,17 +47,6 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("\n\n%+v", ownerships)
-
-	// Example with mutiple optional params
-	stockCandlesOpts := &finnhub.StockCandlesOpts{
-		From: optional.NewInt64(1572651390),
-		To:   optional.NewInt64(1575243390),
-	}
-	stockCandles, _, err := client.StockCandles(auth, "AAPL", "D", stockCandlesOpts)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("\n\n%+v", stockCandles)
 }
 ```
 
