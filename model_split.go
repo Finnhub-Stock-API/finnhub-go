@@ -13,7 +13,7 @@ type Split struct {
 	// Symbol.
 	Symbol string `json:"symbol,omitempty"`
 	// Split date.
-	Date string `json:"Date,omitempty"`
+	Date string `json:"date,omitempty"`
 	// From factor.
 	FromFactor float32 `json:"fromFactor,omitempty"`
 	// To factor.

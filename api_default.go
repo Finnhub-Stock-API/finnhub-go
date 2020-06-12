@@ -993,16 +993,16 @@ func (a *DefaultApiService) CompanyRevenueEstimates(ctx _context.Context, symbol
 Country Country Metadata
 List all countries and metadata.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []EconomicCode
+@return []CountryMetadata
 */
-func (a *DefaultApiService) Country(ctx _context.Context) ([]EconomicCode, *_nethttp.Response, error) {
+func (a *DefaultApiService) Country(ctx _context.Context) ([]CountryMetadata, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []EconomicCode
+		localVarReturnValue  []CountryMetadata
 	)
 
 	// create path and map variables
@@ -1163,11 +1163,6 @@ func (a *DefaultApiService) Covid19(ctx _context.Context) ([]CovidInfo, *_nethtt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CryptoCandlesOpts Optional parameters for the method 'CryptoCandles'
-type CryptoCandlesOpts struct {
-    Format optional.String
-}
-
 /*
 CryptoCandles Crypto Candles
 Get candlestick data for crypto symbols.
@@ -1176,11 +1171,9 @@ Get candlestick data for crypto symbols.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
  * @param from UNIX timestamp. Interval initial value.
  * @param to UNIX timestamp. Interval end value.
- * @param optional nil or *CryptoCandlesOpts - Optional Parameters:
- * @param "Format" (optional.String) -  By default, <code>format=json</code>. Strings <code>json</code> and <code>csv</code> are accepted.
 @return CryptoCandles
 */
-func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64, localVarOptionals *CryptoCandlesOpts) (CryptoCandles, *_nethttp.Response, error) {
+func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64) (CryptoCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1200,9 +1193,6 @@ func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, r
 	localVarQueryParams.Add("resolution", parameterToString(resolution, ""))
 	localVarQueryParams.Add("from", parameterToString(from, ""))
 	localVarQueryParams.Add("to", parameterToString(to, ""))
-	if localVarOptionals != nil && localVarOptionals.Format.IsSet() {
-		localVarQueryParams.Add("format", parameterToString(localVarOptionals.Format.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2059,11 +2049,6 @@ func (a *DefaultApiService) FinancialsReported(ctx _context.Context, localVarOpt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ForexCandlesOpts Optional parameters for the method 'ForexCandles'
-type ForexCandlesOpts struct {
-    Format optional.String
-}
-
 /*
 ForexCandles Forex Candles
 Get candlestick data for forex symbols.
@@ -2072,11 +2057,9 @@ Get candlestick data for forex symbols.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
  * @param from UNIX timestamp. Interval initial value.
  * @param to UNIX timestamp. Interval end value.
- * @param optional nil or *ForexCandlesOpts - Optional Parameters:
- * @param "Format" (optional.String) -  By default, <code>format=json</code>. Strings <code>json</code> and <code>csv</code> are accepted.
 @return ForexCandles
 */
-func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64, localVarOptionals *ForexCandlesOpts) (ForexCandles, *_nethttp.Response, error) {
+func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, resolution string, from int64, to int64) (ForexCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -2096,9 +2079,6 @@ func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, re
 	localVarQueryParams.Add("resolution", parameterToString(resolution, ""))
 	localVarQueryParams.Add("from", parameterToString(from, ""))
 	localVarQueryParams.Add("to", parameterToString(to, ""))
-	if localVarOptionals != nil && localVarOptionals.Format.IsSet() {
-		localVarQueryParams.Add("format", parameterToString(localVarOptionals.Format.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3378,7 +3358,6 @@ func (a *DefaultApiService) RecommendationTrends(ctx _context.Context, symbol st
 
 // StockCandlesOpts Optional parameters for the method 'StockCandles'
 type StockCandlesOpts struct {
-    Format optional.String
     Adjusted optional.String
 }
 
@@ -3391,7 +3370,6 @@ StockCandles Stock Candles
  * @param from UNIX timestamp. Interval initial value.
  * @param to UNIX timestamp. Interval end value.
  * @param optional nil or *StockCandlesOpts - Optional Parameters:
- * @param "Format" (optional.String) -  By default, <code>format=json</code>. Strings <code>json</code> and <code>csv</code> are accepted.
  * @param "Adjusted" (optional.String) -  By default, <code>adjusted=false</code>. Use <code>true</code> to get adjusted data.
 @return StockCandles
 */
@@ -3415,9 +3393,6 @@ func (a *DefaultApiService) StockCandles(ctx _context.Context, symbol string, re
 	localVarQueryParams.Add("resolution", parameterToString(resolution, ""))
 	localVarQueryParams.Add("from", parameterToString(from, ""))
 	localVarQueryParams.Add("to", parameterToString(to, ""))
-	if localVarOptionals != nil && localVarOptionals.Format.IsSet() {
-		localVarQueryParams.Add("format", parameterToString(localVarOptionals.Format.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.Adjusted.IsSet() {
 		localVarQueryParams.Add("adjusted", parameterToString(localVarOptionals.Adjusted.Value(), ""))
 	}
@@ -3797,7 +3772,7 @@ func (a *DefaultApiService) StockTick(ctx _context.Context, symbol string, date 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/csv"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3959,16 +3934,16 @@ Return technical indicator with price data. List of supported indicators can be 
  * @param indicator Indicator name. Full list can be found <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">here</a>.
  * @param optional nil or *TechnicalIndicatorOpts - Optional Parameters:
  * @param "IndicatorSpecificFields" (optional.Interface of map[string]interface{}) -  Check out <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">this page</a> to see which indicators and params are supported.
-@return TechnicalIndicators
+@return map[string]interface{}
 */
-func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol string, resolution string, from int64, to int64, indicator string, localVarOptionals *TechnicalIndicatorOpts) (TechnicalIndicators, *_nethttp.Response, error) {
+func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol string, resolution string, from int64, to int64, indicator string, localVarOptionals *TechnicalIndicatorOpts) (map[string]interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TechnicalIndicators
+		localVarReturnValue  map[string]interface{}
 	)
 
 	// create path and map variables

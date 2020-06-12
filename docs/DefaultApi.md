@@ -453,7 +453,7 @@ Name | Type | Description  | Notes
 
 ## Country
 
-> []EconomicCode Country(ctx, )
+> []CountryMetadata Country(ctx, )
 
 Country Metadata
 
@@ -465,7 +465,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[]EconomicCode**](EconomicCode.md)
+[**[]CountryMetadata**](CountryMetadata.md)
 
 ### Authorization
 
@@ -513,7 +513,7 @@ This endpoint does not need any parameter.
 
 ## CryptoCandles
 
-> CryptoCandles CryptoCandles(ctx, symbol, resolution, from, to, optional)
+> CryptoCandles CryptoCandles(ctx, symbol, resolution, from, to)
 
 Crypto Candles
 
@@ -529,20 +529,6 @@ Name | Type | Description  | Notes
 **resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
 **from** | **int64**| UNIX timestamp. Interval initial value. | 
 **to** | **int64**| UNIX timestamp. Interval end value. | 
- **optional** | ***CryptoCandlesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CryptoCandlesOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
- **format** | **optional.String**| By default, &lt;code&gt;format&#x3D;json&lt;/code&gt;. Strings &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;csv&lt;/code&gt; are accepted. | 
 
 ### Return type
 
@@ -868,7 +854,7 @@ Name | Type | Description  | Notes
 
 ## ForexCandles
 
-> ForexCandles ForexCandles(ctx, symbol, resolution, from, to, optional)
+> ForexCandles ForexCandles(ctx, symbol, resolution, from, to)
 
 Forex Candles
 
@@ -884,20 +870,6 @@ Name | Type | Description  | Notes
 **resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
 **from** | **int64**| UNIX timestamp. Interval initial value. | 
 **to** | **int64**| UNIX timestamp. Interval end value. | 
- **optional** | ***ForexCandlesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ForexCandlesOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
- **format** | **optional.String**| By default, &lt;code&gt;format&#x3D;json&lt;/code&gt;. Strings &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;csv&lt;/code&gt; are accepted. | 
 
 ### Return type
 
@@ -1442,7 +1414,6 @@ Name | Type | Description  | Notes
 
 
 
- **format** | **optional.String**| By default, &lt;code&gt;format&#x3D;json&lt;/code&gt;. Strings &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;csv&lt;/code&gt; are accepted. | 
  **adjusted** | **optional.String**| By default, &lt;code&gt;adjusted&#x3D;false&lt;/code&gt;. Use &lt;code&gt;true&lt;/code&gt; to get adjusted data. | 
 
 ### Return type
@@ -1597,7 +1568,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1641,7 +1612,7 @@ Name | Type | Description  | Notes
 
 ## TechnicalIndicator
 
-> TechnicalIndicators TechnicalIndicator(ctx, symbol, resolution, from, to, indicator, optional)
+> map[string]interface{} TechnicalIndicator(ctx, symbol, resolution, from, to, indicator, optional)
 
 Technical Indicators
 
@@ -1676,7 +1647,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TechnicalIndicators**](TechnicalIndicators.md)
+**map[string]interface{}**
 
 ### Authorization
 

@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.2
+- Package version: 1.1.3
 
 ## Installation
 
@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
  - [CompanyNewsStatistics](docs/CompanyNewsStatistics.md)
  - [CompanyProfile](docs/CompanyProfile.md)
  - [CompanyProfile2](docs/CompanyProfile2.md)
+ - [CountryMetadata](docs/CountryMetadata.md)
  - [CovidInfo](docs/CovidInfo.md)
  - [CryptoCandles](docs/CryptoCandles.md)
  - [CryptoSymbol](docs/CryptoSymbol.md)
@@ -158,7 +159,6 @@ Class | Method | HTTP request | Description
  - [StockTranscripts](docs/StockTranscripts.md)
  - [SupportResistance](docs/SupportResistance.md)
  - [TechnicalAnalysis](docs/TechnicalAnalysis.md)
- - [TechnicalIndicators](docs/TechnicalIndicators.md)
  - [TickData](docs/TickData.md)
  - [TranscriptContent](docs/TranscriptContent.md)
  - [TranscriptParticipant](docs/TranscriptParticipant.md)
