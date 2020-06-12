@@ -814,12 +814,6 @@ paths:
         schema:
           format: int64
           type: integer
-      - description: By default, <code>format=json</code>. Strings <code>json</code>
-          and <code>csv</code> are accepted.
-        in: query
-        name: format
-        schema:
-          type: string
       - description: By default, <code>adjusted=false</code>. Use <code>true</code>
           to get adjusted data.
         in: query
@@ -863,7 +857,7 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            text/csv:
               schema:
                 $ref: '#/components/schemas/TickData'
           description: successful operation
@@ -979,12 +973,6 @@ paths:
         schema:
           format: int64
           type: integer
-      - description: By default, <code>format=json</code>. Strings <code>json</code>
-          and <code>csv</code> are accepted.
-        in: query
-        name: format
-        schema:
-          type: string
       responses:
         "200":
           content:
@@ -1087,12 +1075,6 @@ paths:
         schema:
           format: int64
           type: integer
-      - description: By default, <code>format=json</code>. Strings <code>json</code>
-          and <code>csv</code> are accepted.
-        in: query
-        name: format
-        schema:
-          type: string
       responses:
         "200":
           content:
@@ -1242,7 +1224,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TechnicalIndicators'
+                $ref: '#/components/schemas/TechnicalIndicator'
           description: successful operation
       security:
       - api_key: []
@@ -1326,7 +1308,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/EconomicCode'
+                  $ref: '#/components/schemas/CountryMetadata'
                 type: array
           description: successful operation
       security:
@@ -2093,10 +2075,10 @@ components:
       example:
         symbol: symbol
         gradeTime: 0
-        Company: Company
         fromGrade: fromGrade
         toGrade: toGrade
         action: action
+        company: company
       properties:
         symbol:
           description: Company symbol.
@@ -2111,7 +2093,7 @@ components:
         toGrade:
           description: To grade.
           type: string
-        Company:
+        company:
           description: Company/analyst who did the upgrade/downgrade.
           type: string
         action:
@@ -2370,10 +2352,6 @@ components:
           type: string
       type: object
     TickData:
-      example:
-        volume: 1.4658129
-        price: 6.0274563
-        timestamp: 0
       properties:
         timestamp:
           description: UNIX milliseconds timestamp.
@@ -2390,15 +2368,15 @@ components:
       type: object
     Split:
       example:
+        date: 2000-01-23
         symbol: symbol
         fromFactor: 0.8008282
-        Date: 2000-01-23
         toFactor: 6.0274563
       properties:
         symbol:
           description: Symbol.
           type: string
-        Date:
+        date:
           description: Split date.
           format: date
           type: string
@@ -2667,67 +2645,7 @@ components:
         trend:
           $ref: '#/components/schemas/Trend'
       type: object
-    TechnicalIndicators:
-      example:
-        c:
-        - 5.962134
-        - 5.962134
-        s: s
-        t:
-        - 2
-        - 2
-        v:
-        - 5.637377
-        - 5.637377
-        h:
-        - 6.0274563
-        - 6.0274563
-        l:
-        - 1.4658129
-        - 1.4658129
-        o:
-        - 0.8008282
-        - 0.8008282
-      properties:
-        o:
-          description: List of open prices for returned candles.
-          items:
-            format: float
-            type: number
-          type: array
-        h:
-          description: List of high prices for returned candles.
-          items:
-            format: float
-            type: number
-          type: array
-        l:
-          description: List of low prices for returned candles.
-          items:
-            format: float
-            type: number
-          type: array
-        c:
-          description: List of close prices for returned candles.
-          items:
-            format: float
-            type: number
-          type: array
-        v:
-          description: List of volume data for returned candles.
-          items:
-            format: float
-            type: number
-          type: array
-        t:
-          description: List of timestamp for returned candles.
-          items:
-            format: int64
-            type: integer
-          type: array
-        s:
-          description: Status of the response. This field can either be ok or no_data.
-          type: string
+    TechnicalIndicator:
       type: object
     StockTranscripts:
       properties:
@@ -2861,7 +2779,7 @@ components:
           format: date-time
           type: string
       type: object
-    EconomicCode:
+    CountryMetadata:
       example:
         country: country
         code3: code3
@@ -2926,6 +2844,26 @@ components:
           items:
             type: object
           type: array
+      type: object
+    EconomicCode:
+      example:
+        country: country
+        unit: unit
+        code: code
+        name: name
+      properties:
+        code:
+          description: Finnhub economic code used to get historical data
+          type: string
+        country:
+          description: Country
+          type: string
+        name:
+          description: Indicator name
+          type: string
+        unit:
+          description: Unit
+          type: string
       type: object
     Economic data:
       properties:

@@ -10,16 +10,12 @@
 package finnhub
 // EconomicCode struct for EconomicCode
 type EconomicCode struct {
-	// Country name
+	// Finnhub economic code used to get historical data
+	Code string `json:"code,omitempty"`
+	// Country
 	Country string `json:"country,omitempty"`
-	// Alpha 2 code
-	Code2 string `json:"code2,omitempty"`
-	// Alpha 3 code
-	Code3 string `json:"code3,omitempty"`
-	// UN code
-	CodeNo string `json:"codeNo,omitempty"`
-	// Currency name
-	Currency string `json:"currency,omitempty"`
-	// Currency code
-	CurrencyCode string `json:"currencyCode,omitempty"`
+	// Indicator name
+	Name string `json:"name,omitempty"`
+	// Unit
+	Unit string `json:"unit,omitempty"`
 }

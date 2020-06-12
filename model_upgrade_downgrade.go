@@ -19,7 +19,7 @@ type UpgradeDowngrade struct {
 	// To grade.
 	ToGrade string `json:"toGrade,omitempty"`
 	// Company/analyst who did the upgrade/downgrade.
-	Company string `json:"Company,omitempty"`
+	Company string `json:"company,omitempty"`
 	// Action can take any of the following values: <code>up(upgrade), down(downgrade), main(maintains), init(initiate), reit(reiterate)</code>.
 	Action string `json:"action,omitempty"`
 }
