@@ -21,150 +21,202 @@ package main
 import (
 	"context"
 	"fmt"
-
-	"github.com/antihax/optional"
-
 	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
+	"github.com/antihax/optional"
 )
 
 func main() {
-	client := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
+	finnhubClient := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
 	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
-		Key: "YOUR_API_KEY",
+		Key: "<API_KEY>", // Replace this
 	})
 
+	//Stock candles
+	stockCandles, _, err := finnhubClient.StockCandles(auth, "AAPL", "D", 1590988249, 1591852249, nil)
+	fmt.Printf("%+v\n", stockCandles)
+
 	// Example with required parameters
-	news, _, err := client.CompanyNews(auth, "AAPL", "2020-01-01", "2020-05-01")
+	news, _, err := finnhubClient.CompanyNews(auth, "AAPL", "2020-05-01", "2020-05-01")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v", news)
+	fmt.Printf("%+v\n", news)
 
 	// Example with required and optional parameters
 	investorsOwnershipOpts := &finnhub.InvestorsOwnershipOpts{Limit: optional.NewInt64(10)}
-	ownerships, _, err := client.InvestorsOwnership(auth, "AAPL", investorsOwnershipOpts)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("\n\n%+v", ownerships)
+	ownerships, _, err := finnhubClient.InvestorsOwnership(auth, "AAPL", investorsOwnershipOpts)
+	fmt.Printf("%+v\n", ownerships)
+
+	//Aggregate Indicator
+	aggregateIndicator, _, err := finnhubClient.AggregateIndicator(auth, "AAPL", "D")
+	fmt.Printf("%+v\n", aggregateIndicator)
+
+	// Basic financials
+	basicFinancials, _, err := finnhubClient.CompanyBasicFinancials(auth, "MSFT", "margin")
+	fmt.Printf("%+v\n", basicFinancials)
+
+	// Company earnings
+	earningsSurprises, _, err := finnhubClient.CompanyEarnings(auth, "AAPL", nil)
+	fmt.Printf("%+v\n", earningsSurprises)
+
+	// Company EPS estimates
+	epsEstimate, _, err := finnhubClient.CompanyEpsEstimates(auth, "AAPL", nil)
+	fmt.Printf("%+v\n", epsEstimate)
+
+	// Company executive
+	executive, _, err := finnhubClient.CompanyExecutive(auth, "AAPL")
+	fmt.Printf("%+v\n", executive)
+
+	// Company peers
+	peers, _, err := finnhubClient.CompanyPeers(auth, "AAPL")
+	fmt.Printf("%+v\n", peers)
+
+	// Company profile
+	profile, _, err := finnhubClient.CompanyProfile(auth, &finnhub.CompanyProfileOpts{Symbol: optional.NewString("AAPL")})
+	fmt.Printf("%+v\n", profile)
+	profileISIN, _, err := finnhubClient.CompanyProfile(auth, &finnhub.CompanyProfileOpts{Isin: optional.NewString("US0378331005")})
+	fmt.Printf("%+v\n", profileISIN)
+	profileCusip, _, err := finnhubClient.CompanyProfile(auth, &finnhub.CompanyProfileOpts{Cusip: optional.NewString("037833100")})
+	fmt.Printf("%+v\n", profileCusip)
+
+	//Company profile2
+	profile2, _, err := finnhubClient.CompanyProfile(auth, &finnhub.CompanyProfileOpts{Symbol: optional.NewString("AAPL")})
+	fmt.Printf("%+v\n", profile2)
+
+	// Revenue Estimates
+	revenueEstimates, _, err := finnhubClient.CompanyRevenueEstimates(auth, "AAPL", nil)
+	fmt.Printf("%+v\n", revenueEstimates)
+
+	// List country
+	countries, _, err := finnhubClient.Country(auth)
+	fmt.Printf("%+v\n", countries)
+
+	// Covid-19
+	covid19, _, err := finnhubClient.Covid19(auth)
+	fmt.Printf("%+v\n", covid19)
+
+	// Crypto candles
+	cryptoCandles, _, err := finnhubClient.CryptoCandles(auth, "BINANCE:BTCUSDT", "D", 1590988249, 1591852249)
+	fmt.Printf("%+v\n", cryptoCandles)
+
+	// Crypto exchanges
+	cryptoExchange, _, err := finnhubClient.CryptoExchanges(auth)
+	fmt.Printf("%+v\n", cryptoExchange)
+
+	//Crypto symbols
+	cryptoSymbol, _, err := finnhubClient.CryptoSymbols(auth, "BINANCE")
+	fmt.Printf("%+v\n", cryptoSymbol[0:5])
+
+	// Earnings calendar
+	earningsCalendar, _, err := finnhubClient.EarningsCalendar(auth, &finnhub.EarningsCalendarOpts{
+		From: optional.NewString("2020-06-12"), To: optional.NewString("2020-06-20")})
+	fmt.Printf("%+v\n", earningsCalendar)
+
+	// Economic code
+	economicCode, _, err := finnhubClient.EconomicCode(auth)
+	fmt.Printf("%+v\n", economicCode)
+
+	// Economic data
+	economicData, _, err := finnhubClient.EconomicData(auth, "MA-USA-656880")
+	fmt.Printf("%+v\n", economicData)
+
+	// Filings
+	filings, _, err := finnhubClient.Filings(auth, &finnhub.FilingsOpts{Symbol: optional.NewString("AAPL")})
+	fmt.Printf("%+v\n", filings)
+
+	//Financials
+	financials, _, err := finnhubClient.Financials(auth, "AAPL", "bs", "annual")
+	fmt.Printf("%+v\n", financials)
+
+	// Financials Reported
+	financialsReported, _, err := finnhubClient.FinancialsReported(auth, &finnhub.FinancialsReportedOpts{Symbol: optional.NewString("AAPL")})
+	fmt.Printf("%+v\n", financialsReported)
+
+	// Forex candles
+	forexCandles, _, err := finnhubClient.ForexCandles(auth, "OANDA:EUR_USD", "D", 1590988249, 1591852249)
+	fmt.Printf("%+v\n", forexCandles)
+
+	// Forex exchanges
+	forexExchanges, _, err := finnhubClient.ForexExchanges(auth)
+	fmt.Printf("%+v\n", forexExchanges)
+	// Forex rates
+	forexRates, _, err := finnhubClient.ForexRates(auth, nil)
+	fmt.Printf("%+v\n", forexRates)
+
+	// Forex symbols
+	forexSymbols, _, err := finnhubClient.ForexSymbols(auth, "OANDA")
+	fmt.Printf("%+v\n", forexSymbols)
+
+	//Fund ownership
+	fundOwnership, _, err := finnhubClient.FundOwnership(auth, "AAPL", nil)
+	fmt.Printf("%+v\n", fundOwnership)
+
+	// General news
+	generalNews, _, err := finnhubClient.GeneralNews(auth, "general", nil)
+	fmt.Printf("%+v\n", generalNews)
+
+	// Ipo calendar
+	ipoCalendar, _, err := finnhubClient.IpoCalendar(auth, "2020-01-01", "2020-06-15")
+	fmt.Printf("%+v\n", ipoCalendar)
+
+	//Major development
+	majorDevelopment, _, err := finnhubClient.MajorDevelopments(auth, "AAPL", nil)
+	fmt.Printf("%+v\n", majorDevelopment)
+
+	// News sentiment
+	newsSentiment, _, err := finnhubClient.NewsSentiment(auth, "AAPL")
+	fmt.Printf("%+v\n", newsSentiment)
+
+	// Pattern recognition
+	patterns, _, err := finnhubClient.PatternRecognition(auth, "AAPL", "D")
+	fmt.Printf("%+v\n", patterns)
+
+	// Price target
+	priceTarget, _, err := finnhubClient.PriceTarget(auth, "AAPL")
+	fmt.Printf("%+v\n", priceTarget)
+
+	//Quote
+	quote, _, err := finnhubClient.Quote(auth, "AAPL")
+	fmt.Printf("%+v\n", quote)
+
+	// Recommendation trends
+	recommendationTrend, _, err := finnhubClient.RecommendationTrends(auth, "AAPL")
+	fmt.Printf("%+v\n", recommendationTrend)
+
+	// Stock dividens
+	dividends, _, err := finnhubClient.StockDividends(auth, "KO", "2019-01-01", "2020-06-30")
+	fmt.Printf("%+v\n", dividends)
+
+	// Splits
+	splits, _, err := finnhubClient.StockSplits(auth, "AAPL", "2000-01-01", "2020-06-15")
+	fmt.Printf("%+v\n", splits)
+
+	// Stock symbols
+	stockSymbols, _, err := finnhubClient.StockSymbols(auth, "US")
+	fmt.Printf("%+v\n", stockSymbols[0:5])
+
+	// Support resistance
+	supportResitance, _, err := finnhubClient.SupportResistance(auth, "AAPL", "D")
+	fmt.Printf("%+v\n", supportResitance)
+
+	// Technical indicator
+	technicalIndicator, _, err := finnhubClient.TechnicalIndicator(auth, "AAPL", "D", 1580988249, 1591852249, "macd", nil)
+	fmt.Printf("%+v\n", technicalIndicator)
+
+	// Transcripts
+	transcripts, _, err := finnhubClient.Transcripts(auth, "AAPL_162777")
+	fmt.Printf("%+v\n", transcripts)
+
+	// Transcripts list
+	transcriptsList, _, err := finnhubClient.TranscriptsList(auth, "AAPL")
+	fmt.Printf("%+v\n", transcriptsList)
+
+	// Upgrade/downgrade
+	upgradeDowngrade, _, err := finnhubClient.UpgradeDowngrade(auth, &finnhub.UpgradeDowngradeOpts{Symbol: optional.NewString("BYND")})
+	fmt.Printf("%+v\n", upgradeDowngrade)
 }
+
 ```
-
-
-## API Endpoints
-
-All URIs are relative to *https://finnhub.io/api/v1*
-
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*DefaultApi* | [**AggregateIndicator**](docs/DefaultApi.md#aggregateindicator) | **Get** /scan/technical-indicator | Aggregate Indicators
-*DefaultApi* | [**CompanyBasicFinancials**](docs/DefaultApi.md#companybasicfinancials) | **Get** /stock/metric | Basic Financials
-*DefaultApi* | [**CompanyEarnings**](docs/DefaultApi.md#companyearnings) | **Get** /stock/earnings | Earnings Surprises
-*DefaultApi* | [**CompanyEpsEstimates**](docs/DefaultApi.md#companyepsestimates) | **Get** /stock/eps-estimate | Earnings Estimates
-*DefaultApi* | [**CompanyExecutive**](docs/DefaultApi.md#companyexecutive) | **Get** /stock/executive | Company Executive
-*DefaultApi* | [**CompanyNews**](docs/DefaultApi.md#companynews) | **Get** /company-news | Company News
-*DefaultApi* | [**CompanyPeers**](docs/DefaultApi.md#companypeers) | **Get** /stock/peers | Peers
-*DefaultApi* | [**CompanyProfile**](docs/DefaultApi.md#companyprofile) | **Get** /stock/profile | Company Profile
-*DefaultApi* | [**CompanyProfile2**](docs/DefaultApi.md#companyprofile2) | **Get** /stock/profile2 | Company Profile 2
-*DefaultApi* | [**CompanyRevenueEstimates**](docs/DefaultApi.md#companyrevenueestimates) | **Get** /stock/revenue-estimate | Revenue Estimates
-*DefaultApi* | [**Country**](docs/DefaultApi.md#country) | **Get** /country | Country Metadata
-*DefaultApi* | [**Covid19**](docs/DefaultApi.md#covid19) | **Get** /covid19/us | COVID-19
-*DefaultApi* | [**CryptoCandles**](docs/DefaultApi.md#cryptocandles) | **Get** /crypto/candle | Crypto Candles
-*DefaultApi* | [**CryptoExchanges**](docs/DefaultApi.md#cryptoexchanges) | **Get** /crypto/exchange | Crypto Exchanges
-*DefaultApi* | [**CryptoSymbols**](docs/DefaultApi.md#cryptosymbols) | **Get** /crypto/symbol | Crypto Symbol
-*DefaultApi* | [**EarningsCalendar**](docs/DefaultApi.md#earningscalendar) | **Get** /calendar/earnings | Earnings Calendar
-*DefaultApi* | [**EconomicCode**](docs/DefaultApi.md#economiccode) | **Get** /economic/code | Economic Code
-*DefaultApi* | [**EconomicData**](docs/DefaultApi.md#economicdata) | **Get** /economic | Economic Data
-*DefaultApi* | [**Filings**](docs/DefaultApi.md#filings) | **Get** /stock/filings | Filings
-*DefaultApi* | [**Financials**](docs/DefaultApi.md#financials) | **Get** /stock/financials | Financial Statements
-*DefaultApi* | [**FinancialsReported**](docs/DefaultApi.md#financialsreported) | **Get** /stock/financials-reported | Financials As Reported
-*DefaultApi* | [**ForexCandles**](docs/DefaultApi.md#forexcandles) | **Get** /forex/candle | Forex Candles
-*DefaultApi* | [**ForexExchanges**](docs/DefaultApi.md#forexexchanges) | **Get** /forex/exchange | Forex Exchanges
-*DefaultApi* | [**ForexRates**](docs/DefaultApi.md#forexrates) | **Get** /forex/rates | Forex rates
-*DefaultApi* | [**ForexSymbols**](docs/DefaultApi.md#forexsymbols) | **Get** /forex/symbol | Forex Symbol
-*DefaultApi* | [**FundOwnership**](docs/DefaultApi.md#fundownership) | **Get** /stock/fund-ownership | Fund Ownership
-*DefaultApi* | [**GeneralNews**](docs/DefaultApi.md#generalnews) | **Get** /news | General News
-*DefaultApi* | [**InvestorsOwnership**](docs/DefaultApi.md#investorsownership) | **Get** /stock/investor-ownership | Investors Ownership
-*DefaultApi* | [**IpoCalendar**](docs/DefaultApi.md#ipocalendar) | **Get** /calendar/ipo | IPO Calendar
-*DefaultApi* | [**MajorDevelopments**](docs/DefaultApi.md#majordevelopments) | **Get** /major-development | Major Developments
-*DefaultApi* | [**NewsSentiment**](docs/DefaultApi.md#newssentiment) | **Get** /news-sentiment | News Sentiment
-*DefaultApi* | [**PatternRecognition**](docs/DefaultApi.md#patternrecognition) | **Get** /scan/pattern | Pattern Recognition
-*DefaultApi* | [**PriceTarget**](docs/DefaultApi.md#pricetarget) | **Get** /stock/price-target | Price Target
-*DefaultApi* | [**Quote**](docs/DefaultApi.md#quote) | **Get** /quote | Quote
-*DefaultApi* | [**RecommendationTrends**](docs/DefaultApi.md#recommendationtrends) | **Get** /stock/recommendation | Recommendation Trends
-*DefaultApi* | [**StockCandles**](docs/DefaultApi.md#stockcandles) | **Get** /stock/candle | Stock Candles
-*DefaultApi* | [**StockDividends**](docs/DefaultApi.md#stockdividends) | **Get** /stock/dividend | Dividends
-*DefaultApi* | [**StockSplits**](docs/DefaultApi.md#stocksplits) | **Get** /stock/split | Splits
-*DefaultApi* | [**StockSymbols**](docs/DefaultApi.md#stocksymbols) | **Get** /stock/symbol | Stock Symbol
-*DefaultApi* | [**StockTick**](docs/DefaultApi.md#stocktick) | **Get** /stock/tick | Tick Data
-*DefaultApi* | [**SupportResistance**](docs/DefaultApi.md#supportresistance) | **Get** /scan/support-resistance | Support/Resistance
-*DefaultApi* | [**TechnicalIndicator**](docs/DefaultApi.md#technicalindicator) | **Get** /indicator | Technical Indicators
-*DefaultApi* | [**Transcripts**](docs/DefaultApi.md#transcripts) | **Get** /stock/transcripts | Earnings Call Transcripts
-*DefaultApi* | [**TranscriptsList**](docs/DefaultApi.md#transcriptslist) | **Get** /stock/transcripts/list | Earnings Call Transcripts List
-*DefaultApi* | [**UpgradeDowngrade**](docs/DefaultApi.md#upgradedowngrade) | **Get** /stock/upgrade-downgrade | Stock Upgrade/Downgrade
-
-
-## Models
-
- - [AggregateIndicators](docs/AggregateIndicators.md)
- - [BasicFinancials](docs/BasicFinancials.md)
- - [Company](docs/Company.md)
- - [CompanyExecutive](docs/CompanyExecutive.md)
- - [CompanyNewsStatistics](docs/CompanyNewsStatistics.md)
- - [CompanyProfile](docs/CompanyProfile.md)
- - [CompanyProfile2](docs/CompanyProfile2.md)
- - [CountryMetadata](docs/CountryMetadata.md)
- - [CovidInfo](docs/CovidInfo.md)
- - [CryptoCandles](docs/CryptoCandles.md)
- - [CryptoSymbol](docs/CryptoSymbol.md)
- - [Development](docs/Development.md)
- - [Dividends](docs/Dividends.md)
- - [EarningEstimate](docs/EarningEstimate.md)
- - [EarningRelease](docs/EarningRelease.md)
- - [EarningResult](docs/EarningResult.md)
- - [EarningsCalendar](docs/EarningsCalendar.md)
- - [EarningsCallTranscripts](docs/EarningsCallTranscripts.md)
- - [EarningsCallTranscriptsList](docs/EarningsCallTranscriptsList.md)
- - [EarningsEstimates](docs/EarningsEstimates.md)
- - [EconomicCalendar](docs/EconomicCalendar.md)
- - [EconomicCode](docs/EconomicCode.md)
- - [EconomicData](docs/EconomicData.md)
- - [EconomicEvent](docs/EconomicEvent.md)
- - [Estimate](docs/Estimate.md)
- - [Filing](docs/Filing.md)
- - [FinancialStatements](docs/FinancialStatements.md)
- - [FinancialsAsReported](docs/FinancialsAsReported.md)
- - [ForexCandles](docs/ForexCandles.md)
- - [ForexSymbol](docs/ForexSymbol.md)
- - [Forexrates](docs/Forexrates.md)
- - [FundOwnership](docs/FundOwnership.md)
- - [Indicator](docs/Indicator.md)
- - [Investor](docs/Investor.md)
- - [InvestorsOwnership](docs/InvestorsOwnership.md)
- - [IpoCalendar](docs/IpoCalendar.md)
- - [IpoEvent](docs/IpoEvent.md)
- - [MajorDevelopments](docs/MajorDevelopments.md)
- - [News](docs/News.md)
- - [NewsSentiment](docs/NewsSentiment.md)
- - [PatternRecognition](docs/PatternRecognition.md)
- - [PriceTarget](docs/PriceTarget.md)
- - [Quote](docs/Quote.md)
- - [RecommendationTrend](docs/RecommendationTrend.md)
- - [Report](docs/Report.md)
- - [RevenueEstimates](docs/RevenueEstimates.md)
- - [Sentiment](docs/Sentiment.md)
- - [Split](docs/Split.md)
- - [Stock](docs/Stock.md)
- - [StockCandles](docs/StockCandles.md)
- - [StockTranscripts](docs/StockTranscripts.md)
- - [SupportResistance](docs/SupportResistance.md)
- - [TechnicalAnalysis](docs/TechnicalAnalysis.md)
- - [TickData](docs/TickData.md)
- - [TranscriptContent](docs/TranscriptContent.md)
- - [TranscriptParticipant](docs/TranscriptParticipant.md)
- - [Trend](docs/Trend.md)
- - [UpgradeDowngrade](docs/UpgradeDowngrade.md)
-
 
 ## License
 
