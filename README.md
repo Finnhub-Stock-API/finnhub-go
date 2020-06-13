@@ -80,7 +80,7 @@ func main() {
 	fmt.Printf("%+v\n", profileCusip)
 
 	//Company profile2
-	profile2, _, err := finnhubClient.CompanyProfile(auth, &finnhub.CompanyProfileOpts{Symbol: optional.NewString("AAPL")})
+	profile2, _, err := finnhubClient.CompanyProfile2(auth, &finnhub.CompanyProfile2Opts{Symbol: optional.NewString("AAPL")})
 	fmt.Printf("%+v\n", profile2)
 
 	// Revenue Estimates
