@@ -4,9 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | **int64** | UNIX milliseconds timestamp. | [optional] 
-**Price** | **float32** | Price. | [optional] 
-**Volume** | **float32** | Volume of the trade. | [optional] 
+**S** | **string** | Symbol. | [optional] 
+**Skip** | **int64** | Number of ticks skipped. | [optional] 
+**Count** | **int64** | Number of ticks returned. If &lt;code&gt;count&lt;/code&gt; &lt; &lt;code&gt;limit&lt;/code&gt;, all data for that date has been returned. | [optional] 
+**V** | **[]float32** | List of volume data. | [optional] 
+**P** | **[]float32** | List of price data. | [optional] 
+**T** | **[]int64** | List of timestamp in UNIX ms. | [optional] 
+**X** | **[]string** | List of venues/exchanges. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -149,7 +149,7 @@ paths:
   /company-news:
     get:
       description: List latest company news by symbol. This endpoint is only available
-        for US companies.
+        for North American companies.
       operationId: company-news
       parameters:
       - description: Company symbol.
@@ -854,16 +854,52 @@ paths:
         schema:
           format: date
           type: string
+      - description: 'Limit number of ticks returned. Maximum value: <code>25000</code>'
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: Number of ticks to skip. Use this parameter to loop through the
+          entire data.
+        in: query
+        name: skip
+        required: true
+        schema:
+          format: int64
+          type: integer
       responses:
         "200":
           content:
-            text/csv:
+            application/json:
               schema:
                 $ref: '#/components/schemas/TickData'
           description: successful operation
       security:
       - api_key: []
       summary: Tick Data
+  /stock/bidask:
+    get:
+      description: Get last bid/ask data for US stocks.
+      operationId: stock-bidask
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LastBid-Ask'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Last Bid-Ask
   /stock/split:
     get:
       description: Get splits data for stocks.
@@ -2352,19 +2388,87 @@ components:
           type: string
       type: object
     TickData:
+      example:
+        p:
+        - 5.962134
+        - 5.962134
+        s: s
+        t:
+        - 5
+        - 5
+        v:
+        - 1.4658129
+        - 1.4658129
+        count: 6
+        x:
+        - x
+        - x
+        skip: 0
       properties:
-        timestamp:
-          description: UNIX milliseconds timestamp.
+        s:
+          description: Symbol.
+          type: string
+        skip:
+          description: Number of ticks skipped.
           format: int64
           type: integer
-        price:
-          description: Price.
+        count:
+          description: Number of ticks returned. If <code>count</code> < <code>limit</code>,
+            all data for that date has been returned.
+          format: int64
+          type: integer
+        v:
+          description: List of volume data.
+          items:
+            format: float
+            type: number
+          type: array
+        p:
+          description: List of price data.
+          items:
+            format: float
+            type: number
+          type: array
+        t:
+          description: List of timestamp in UNIX ms.
+          items:
+            format: int64
+            type: integer
+          type: array
+        x:
+          description: List of venues/exchanges.
+          items:
+            type: string
+          type: array
+      type: object
+    LastBid-Ask:
+      example:
+        a: 6.0274563
+        b: 0.8008282
+        bv: 1.4658129
+        t: 5
+        av: 5.962134
+      properties:
+        b:
+          description: Bid price.
           format: float
           type: number
-        volume:
-          description: Volume of the trade.
+        a:
+          description: Ask price.
           format: float
           type: number
+        bv:
+          description: Bid volume.
+          format: float
+          type: number
+        av:
+          description: Ask volume.
+          format: float
+          type: number
+        t:
+          description: Reference UNIX timestamp in ms.
+          format: int64
+          type: integer
       type: object
     Split:
       example:

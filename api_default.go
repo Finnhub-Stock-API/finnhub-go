@@ -496,7 +496,7 @@ func (a *DefaultApiService) CompanyExecutive(ctx _context.Context, symbol string
 
 /*
 CompanyNews Company News
-List latest company news by symbol. This endpoint is only available for US companies.
+List latest company news by symbol. This endpoint is only available for North American companies.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Company symbol.
  * @param from From date <code>YYYY-MM-DD</code>.
@@ -3356,6 +3356,95 @@ func (a *DefaultApiService) RecommendationTrends(ctx _context.Context, symbol st
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+/*
+StockBidask Last Bid-Ask
+Get last bid/ask data for US stocks.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param symbol Symbol.
+@return LastBidAsk
+*/
+func (a *DefaultApiService) StockBidask(ctx _context.Context, symbol string) (LastBidAsk, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  LastBidAsk
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/stock/bidask"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarQueryParams.Add("token", key)
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // StockCandlesOpts Optional parameters for the method 'StockCandles'
 type StockCandlesOpts struct {
     Adjusted optional.String
@@ -3742,9 +3831,11 @@ StockTick Tick Data
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol.
  * @param date Date: 2020-04-02.
+ * @param limit Limit number of ticks returned. Maximum value: <code>25000</code>
+ * @param skip Number of ticks to skip. Use this parameter to loop through the entire data.
 @return TickData
 */
-func (a *DefaultApiService) StockTick(ctx _context.Context, symbol string, date string) (TickData, *_nethttp.Response, error) {
+func (a *DefaultApiService) StockTick(ctx _context.Context, symbol string, date string, limit int64, skip int64) (TickData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -3762,6 +3853,8 @@ func (a *DefaultApiService) StockTick(ctx _context.Context, symbol string, date 
 
 	localVarQueryParams.Add("symbol", parameterToString(symbol, ""))
 	localVarQueryParams.Add("date", parameterToString(date, ""))
+	localVarQueryParams.Add("limit", parameterToString(limit, ""))
+	localVarQueryParams.Add("skip", parameterToString(skip, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3772,7 +3865,7 @@ func (a *DefaultApiService) StockTick(ctx _context.Context, symbol string, date 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/csv"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

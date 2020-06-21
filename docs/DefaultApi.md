@@ -39,6 +39,7 @@ Method | HTTP request | Description
 [**PriceTarget**](DefaultApi.md#PriceTarget) | **Get** /stock/price-target | Price Target
 [**Quote**](DefaultApi.md#Quote) | **Get** /quote | Quote
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
+[**StockBidask**](DefaultApi.md#StockBidask) | **Get** /stock/bidask | Last Bid-Ask
 [**StockCandles**](DefaultApi.md#StockCandles) | **Get** /stock/candle | Stock Candles
 [**StockDividends**](DefaultApi.md#StockDividends) | **Get** /stock/dividend | Dividends
 [**StockSplits**](DefaultApi.md#StockSplits) | **Get** /stock/split | Splits
@@ -252,7 +253,7 @@ Name | Type | Description  | Notes
 
 Company News
 
-List latest company news by symbol. This endpoint is only available for US companies.
+List latest company news by symbol. This endpoint is only available for North American companies.
 
 ### Required Parameters
 
@@ -1383,6 +1384,40 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## StockBidask
+
+> LastBidAsk StockBidask(ctx, symbol)
+
+Last Bid-Ask
+
+Get last bid/ask data for US stocks.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| Symbol. | 
+
+### Return type
+
+[**LastBidAsk**](LastBid-Ask.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## StockCandles
 
 > StockCandles StockCandles(ctx, symbol, resolution, from, to, optional)
@@ -1542,7 +1577,7 @@ Name | Type | Description  | Notes
 
 ## StockTick
 
-> TickData StockTick(ctx, symbol, date)
+> TickData StockTick(ctx, symbol, date, limit, skip)
 
 Tick Data
 
@@ -1556,6 +1591,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **symbol** | **string**| Symbol. | 
 **date** | **string**| Date: 2020-04-02. | 
+**limit** | **int64**| Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt; | 
+**skip** | **int64**| Number of ticks to skip. Use this parameter to loop through the entire data. | 
 
 ### Return type
 
@@ -1568,7 +1605,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/csv
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

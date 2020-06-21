@@ -10,10 +10,18 @@
 package finnhub
 // TickData struct for TickData
 type TickData struct {
-	// UNIX milliseconds timestamp.
-	Timestamp int64 `json:"timestamp,omitempty"`
-	// Price.
-	Price float32 `json:"price,omitempty"`
-	// Volume of the trade.
-	Volume float32 `json:"volume,omitempty"`
+	// Symbol.
+	S string `json:"s,omitempty"`
+	// Number of ticks skipped.
+	Skip int64 `json:"skip,omitempty"`
+	// Number of ticks returned. If <code>count</code> < <code>limit</code>, all data for that date has been returned.
+	Count int64 `json:"count,omitempty"`
+	// List of volume data.
+	V []float32 `json:"v,omitempty"`
+	// List of price data.
+	P []float32 `json:"p,omitempty"`
+	// List of timestamp in UNIX ms.
+	T []int64 `json:"t,omitempty"`
+	// List of venues/exchanges.
+	X []string `json:"x,omitempty"`
 }
