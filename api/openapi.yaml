@@ -777,7 +777,7 @@ paths:
       security:
       - api_key: []
       summary: Quote
-  /stock/candle:
+  /stock/candle?format=json:
     get:
       description: '<p>Get candlestick data for stocks going back 25 years for US
         stocks.</p><p>Bulk download EOD international markets: <a href="https://www.metastock.com/products/endofday/DataLink/?ref=fih"
@@ -830,7 +830,7 @@ paths:
       security:
       - api_key: []
       summary: Stock Candles
-  /stock/tick:
+  /stock/tick?format=json:
     get:
       description: <p>Get historical tick data for US stocks from all 13 exchanges.
         Return csv format. You can send the request directly to our tick server at
@@ -976,7 +976,7 @@ paths:
       security:
       - api_key: []
       summary: Forex Symbol
-  /forex/candle:
+  /forex/candle?format=json:
     get:
       description: Get candlestick data for forex symbols.
       operationId: forex-candles
@@ -1078,7 +1078,7 @@ paths:
       security:
       - api_key: []
       summary: Crypto Symbol
-  /crypto/candle:
+  /crypto/candle?format=json:
     get:
       description: Get candlestick data for crypto symbols.
       operationId: crypto-candles
@@ -2390,15 +2390,16 @@ components:
     TickData:
       example:
         p:
-        - 5.962134
-        - 5.962134
+        - 5.637377
+        - 5.637377
+        total: 1
         s: s
         t:
-        - 5
-        - 5
+        - 2
+        - 2
         v:
-        - 1.4658129
-        - 1.4658129
+        - 5.962134
+        - 5.962134
         count: 6
         x:
         - x
@@ -2415,6 +2416,10 @@ components:
         count:
           description: Number of ticks returned. If <code>count</code> < <code>limit</code>,
             all data for that date has been returned.
+          format: int64
+          type: integer
+        total:
+          description: Total number of ticks for that date.
           format: int64
           type: integer
         v:

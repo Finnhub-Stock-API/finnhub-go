@@ -16,6 +16,8 @@ type TickData struct {
 	Skip int64 `json:"skip,omitempty"`
 	// Number of ticks returned. If <code>count</code> < <code>limit</code>, all data for that date has been returned.
 	Count int64 `json:"count,omitempty"`
+	// Total number of ticks for that date.
+	Total int64 `json:"total,omitempty"`
 	// List of volume data.
 	V []float32 `json:"v,omitempty"`
 	// List of price data.
