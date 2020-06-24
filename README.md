@@ -214,6 +214,10 @@ func main() {
 	// Upgrade/downgrade
 	upgradeDowngrade, _, err := finnhubClient.UpgradeDowngrade(auth, &finnhub.UpgradeDowngradeOpts{Symbol: optional.NewString("BYND")})
 	fmt.Printf("%+v\n", upgradeDowngrade)
+
+	// Tick Data
+	tickData, _, err := client.StockTick(auth, "AAPL", "2020-03-25", 500, 0)
+	fmt.Printf("%+v\n", tickData)
 }
 
 ```
