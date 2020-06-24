@@ -777,7 +777,7 @@ paths:
       security:
       - api_key: []
       summary: Quote
-  /stock/candle?format=json:
+  /stock/candle:
     get:
       description: '<p>Get candlestick data for stocks going back 25 years for US
         stocks.</p><p>Bulk download EOD international markets: <a href="https://www.metastock.com/products/endofday/DataLink/?ref=fih"
@@ -830,7 +830,7 @@ paths:
       security:
       - api_key: []
       summary: Stock Candles
-  /stock/tick?format=json:
+  /stock/tick:
     get:
       description: <p>Get historical tick data for US stocks from all 13 exchanges.
         Return csv format. You can send the request directly to our tick server at
@@ -976,7 +976,7 @@ paths:
       security:
       - api_key: []
       summary: Forex Symbol
-  /forex/candle?format=json:
+  /forex/candle:
     get:
       description: Get candlestick data for forex symbols.
       operationId: forex-candles
@@ -1078,7 +1078,7 @@ paths:
       security:
       - api_key: []
       summary: Crypto Symbol
-  /crypto/candle?format=json:
+  /crypto/candle:
     get:
       description: Get candlestick data for crypto symbols.
       operationId: crypto-candles

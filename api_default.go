@@ -1184,7 +1184,7 @@ func (a *DefaultApiService) CryptoCandles(ctx _context.Context, symbol string, r
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/crypto/candle?format=json"
+	localVarPath := a.client.cfg.BasePath + "/crypto/candle"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -2070,7 +2070,7 @@ func (a *DefaultApiService) ForexCandles(ctx _context.Context, symbol string, re
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/forex/candle?format=json"
+	localVarPath := a.client.cfg.BasePath + "/forex/candle"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -3473,7 +3473,7 @@ func (a *DefaultApiService) StockCandles(ctx _context.Context, symbol string, re
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/stock/candle?format=json"
+	localVarPath := a.client.cfg.BasePath + "/stock/candle"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -3846,7 +3846,7 @@ func (a *DefaultApiService) StockTick(ctx _context.Context, symbol string, date 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/stock/tick?format=json"
+	localVarPath := a.client.cfg.BasePath + "/stock/tick"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
