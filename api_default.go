@@ -14,6 +14,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+
 	"github.com/antihax/optional"
 )
 
@@ -209,7 +210,7 @@ func (a *DefaultApiService) CompanyBasicFinancials(ctx _context.Context, symbol 
 
 // CompanyEarningsOpts Optional parameters for the method 'CompanyEarnings'
 type CompanyEarningsOpts struct {
-    Limit optional.Int64
+	Limit optional.Int64
 }
 
 /*
@@ -308,7 +309,7 @@ func (a *DefaultApiService) CompanyEarnings(ctx _context.Context, symbol string,
 
 // CompanyEpsEstimatesOpts Optional parameters for the method 'CompanyEpsEstimates'
 type CompanyEpsEstimatesOpts struct {
-    Freq optional.String
+	Freq optional.String
 }
 
 /*
@@ -678,9 +679,9 @@ func (a *DefaultApiService) CompanyPeers(ctx _context.Context, symbol string) ([
 
 // CompanyProfileOpts Optional parameters for the method 'CompanyProfile'
 type CompanyProfileOpts struct {
-    Symbol optional.String
-    Isin optional.String
-    Cusip optional.String
+	Symbol optional.String
+	Isin   optional.String
+	Cusip  optional.String
 }
 
 /*
@@ -785,9 +786,9 @@ func (a *DefaultApiService) CompanyProfile(ctx _context.Context, localVarOptiona
 
 // CompanyProfile2Opts Optional parameters for the method 'CompanyProfile2'
 type CompanyProfile2Opts struct {
-    Symbol optional.String
-    Isin optional.String
-    Cusip optional.String
+	Symbol optional.String
+	Isin   optional.String
+	Cusip  optional.String
 }
 
 /*
@@ -892,7 +893,7 @@ func (a *DefaultApiService) CompanyProfile2(ctx _context.Context, localVarOption
 
 // CompanyRevenueEstimatesOpts Optional parameters for the method 'CompanyRevenueEstimates'
 type CompanyRevenueEstimatesOpts struct {
-    Freq optional.String
+	Freq optional.String
 }
 
 /*
@@ -1436,10 +1437,10 @@ func (a *DefaultApiService) CryptoSymbols(ctx _context.Context, exchange string)
 
 // EarningsCalendarOpts Optional parameters for the method 'EarningsCalendar'
 type EarningsCalendarOpts struct {
-    From optional.String
-    To optional.String
-    Symbol optional.String
-    International optional.Interface
+	From          optional.String
+	To            optional.String
+	Symbol        optional.String
+	International optional.Interface
 }
 
 /*
@@ -1724,12 +1725,12 @@ func (a *DefaultApiService) EconomicData(ctx _context.Context, code string) (Eco
 
 // FilingsOpts Optional parameters for the method 'Filings'
 type FilingsOpts struct {
-    Symbol optional.String
-    Cik optional.String
-    AccessNumber optional.String
-    Form optional.String
-    From optional.String
-    To optional.String
+	Symbol       optional.String
+	Cik          optional.String
+	AccessNumber optional.String
+	Form         optional.String
+	From         optional.String
+	To           optional.String
 }
 
 /*
@@ -1939,10 +1940,10 @@ func (a *DefaultApiService) Financials(ctx _context.Context, symbol string, stat
 
 // FinancialsReportedOpts Optional parameters for the method 'FinancialsReported'
 type FinancialsReportedOpts struct {
-    Symbol optional.String
-    Cik optional.String
-    AccessNumber optional.String
-    Freq optional.String
+	Symbol       optional.String
+	Cik          optional.String
+	AccessNumber optional.String
+	Freq         optional.String
 }
 
 /*
@@ -2233,7 +2234,7 @@ func (a *DefaultApiService) ForexExchanges(ctx _context.Context) ([]string, *_ne
 
 // ForexRatesOpts Optional parameters for the method 'ForexRates'
 type ForexRatesOpts struct {
-    Base optional.String
+	Base optional.String
 }
 
 /*
@@ -2419,7 +2420,7 @@ func (a *DefaultApiService) ForexSymbols(ctx _context.Context, exchange string) 
 
 // FundOwnershipOpts Optional parameters for the method 'FundOwnership'
 type FundOwnershipOpts struct {
-    Limit optional.Int64
+	Limit optional.Int64
 }
 
 /*
@@ -2518,7 +2519,7 @@ func (a *DefaultApiService) FundOwnership(ctx _context.Context, symbol string, l
 
 // GeneralNewsOpts Optional parameters for the method 'GeneralNews'
 type GeneralNewsOpts struct {
-    MinId optional.String
+	MinId optional.String
 }
 
 /*
@@ -2617,7 +2618,7 @@ func (a *DefaultApiService) GeneralNews(ctx _context.Context, category string, l
 
 // InvestorsOwnershipOpts Optional parameters for the method 'InvestorsOwnership'
 type InvestorsOwnershipOpts struct {
-    Limit optional.Int64
+	Limit optional.Int64
 }
 
 /*
@@ -2807,8 +2808,8 @@ func (a *DefaultApiService) IpoCalendar(ctx _context.Context, from string, to st
 
 // MajorDevelopmentsOpts Optional parameters for the method 'MajorDevelopments'
 type MajorDevelopmentsOpts struct {
-    From optional.String
-    To optional.String
+	From optional.String
+	To   optional.String
 }
 
 /*
@@ -3180,7 +3181,7 @@ func (a *DefaultApiService) PriceTarget(ctx _context.Context, symbol string) (Pr
 
 /*
 Quote Quote
-&lt;p&gt;Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.&lt;/p&gt;&lt;p&gt;Bulk download EOD international markets: &lt;a href&#x3D;\&quot;https://www.metastock.com/products/endofday/DataLink/?ref&#x3D;fih\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;Metastock Datalink&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.&lt;/p&gt;&lt;p&gt;Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol
 @return Quote
@@ -3447,12 +3448,12 @@ func (a *DefaultApiService) StockBidask(ctx _context.Context, symbol string) (La
 
 // StockCandlesOpts Optional parameters for the method 'StockCandles'
 type StockCandlesOpts struct {
-    Adjusted optional.String
+	Adjusted optional.String
 }
 
 /*
 StockCandles Stock Candles
-&lt;p&gt;Get candlestick data for stocks going back 25 years for US stocks.&lt;/p&gt;&lt;p&gt;Bulk download EOD international markets: &lt;a href&#x3D;\&quot;https://www.metastock.com/products/endofday/DataLink/?ref&#x3D;fih\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;Metastock Datalink&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get candlestick data for stocks going back 25 years for US stocks.&lt;/p&gt;&lt;p&gt;Real-time stock prices for international markets are supported for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol.
  * @param resolution Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
@@ -3827,7 +3828,7 @@ func (a *DefaultApiService) StockSymbols(ctx _context.Context, exchange string) 
 
 /*
 StockTick Tick Data
-&lt;p&gt;Get historical tick data for US stocks from all 13 exchanges. Return csv format. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.&lt;/p&gt;&lt;p&gt;Tick data from 1985 is available for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;p&gt;Get historical tick data for US stocks from all 13 exchanges. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.&lt;/p&gt;&lt;p&gt;Tick data from 1985 is available for Enterprise clients. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Symbol.
  * @param date Date: 2020-04-02.
@@ -4013,7 +4014,7 @@ func (a *DefaultApiService) SupportResistance(ctx _context.Context, symbol strin
 
 // TechnicalIndicatorOpts Optional parameters for the method 'TechnicalIndicator'
 type TechnicalIndicatorOpts struct {
-    IndicatorSpecificFields optional.Interface
+	IndicatorFields map[string]interface{}
 }
 
 /*
@@ -4026,12 +4027,12 @@ Return technical indicator with price data. List of supported indicators can be 
  * @param to UNIX timestamp. Interval end value.
  * @param indicator Indicator name. Full list can be found <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">here</a>.
  * @param optional nil or *TechnicalIndicatorOpts - Optional Parameters:
- * @param "IndicatorSpecificFields" (optional.Interface of map[string]interface{}) -  Check out <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">this page</a> to see which indicators and params are supported.
+ * @param "IndicatorFields" (optional.Map[string]interface{}) -  Check out <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">this page</a> to see which indicators and params are supported.
 @return map[string]interface{}
 */
 func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol string, resolution string, from int64, to int64, indicator string, localVarOptionals *TechnicalIndicatorOpts) (map[string]interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -4050,11 +4051,8 @@ func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol stri
 	localVarQueryParams.Add("from", parameterToString(from, ""))
 	localVarQueryParams.Add("to", parameterToString(to, ""))
 	localVarQueryParams.Add("indicator", parameterToString(indicator, ""))
-	if localVarOptionals != nil && localVarOptionals.IndicatorSpecificFields.IsSet() {
-		localVarQueryParams.Add("Indicator specific fields", parameterToString(localVarOptionals.IndicatorSpecificFields.Value(), ""))
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4070,6 +4068,11 @@ func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol stri
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	if localVarOptionals != nil && localVarOptionals.IndicatorFields != nil {
+		localVarPostBody = localVarOptionals.IndicatorFields
+	}
+
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -4120,7 +4123,7 @@ func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context, symbol stri
 
 /*
 Transcripts Earnings Call Transcripts
-&lt;p&gt;Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.&lt;/p&gt;&lt;p&gt;17+ years of data is available with 170,000+ audio which add up to 6TB in size.&lt;/p&gt;
+&lt;p&gt;Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US companies. &lt;p&gt;17+ years of data is available with 170,000+ audio which add up to 6TB in size.&lt;/p&gt;
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
 @return EarningsCallTranscripts
@@ -4209,7 +4212,7 @@ func (a *DefaultApiService) Transcripts(ctx _context.Context, id string) (Earnin
 
 /*
 TranscriptsList Earnings Call Transcripts List
-List earnings call transcripts&#39; metadata. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner&#39;s feed. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.
+List earnings call transcripts&#39; metadata. This endpoint is only available for US companies.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param symbol Company symbol: AAPL. Leave empty to list the latest transcripts
 @return EarningsCallTranscriptsList
@@ -4298,9 +4301,9 @@ func (a *DefaultApiService) TranscriptsList(ctx _context.Context, symbol string)
 
 // UpgradeDowngradeOpts Optional parameters for the method 'UpgradeDowngrade'
 type UpgradeDowngradeOpts struct {
-    Symbol optional.String
-    From optional.String
-    To optional.String
+	Symbol optional.String
+	From   optional.String
+	To     optional.String
 }
 
 /*

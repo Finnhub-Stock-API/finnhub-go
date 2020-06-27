@@ -46,7 +46,7 @@ Method | HTTP request | Description
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
 [**StockTick**](DefaultApi.md#StockTick) | **Get** /stock/tick | Tick Data
 [**SupportResistance**](DefaultApi.md#SupportResistance) | **Get** /scan/support-resistance | Support/Resistance
-[**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Get** /indicator | Technical Indicators
+[**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Post** /indicator | Technical Indicators
 [**Transcripts**](DefaultApi.md#Transcripts) | **Get** /stock/transcripts | Earnings Call Transcripts
 [**TranscriptsList**](DefaultApi.md#TranscriptsList) | **Get** /stock/transcripts/list | Earnings Call Transcripts List
 [**UpgradeDowngrade**](DefaultApi.md#UpgradeDowngrade) | **Get** /stock/upgrade-downgrade | Stock Upgrade/Downgrade
@@ -1322,7 +1322,7 @@ Name | Type | Description  | Notes
 
 Quote
 
-<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p>Bulk download EOD international markets: <a href=\"https://www.metastock.com/products/endofday/DataLink/?ref=fih\" target=\"_blank\" rel=\"nofollow\">Metastock Datalink</a></p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
+<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1424,7 +1424,7 @@ Name | Type | Description  | Notes
 
 Stock Candles
 
-<p>Get candlestick data for stocks going back 25 years for US stocks.</p><p>Bulk download EOD international markets: <a href=\"https://www.metastock.com/products/endofday/DataLink/?ref=fih\" target=\"_blank\" rel=\"nofollow\">Metastock Datalink</a></p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
+<p>Get candlestick data for stocks going back 25 years for US stocks.</p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1581,7 +1581,7 @@ Name | Type | Description  | Notes
 
 Tick Data
 
-<p>Get historical tick data for US stocks from all 13 exchanges. Return csv format. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.</p><p>Tick data from 1985 is available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
+<p>Get historical tick data for US stocks from all 13 exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.</p><p>Tick data from 1985 is available for Enterprise clients. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
 
 ### Required Parameters
 
@@ -1680,7 +1680,7 @@ Name | Type | Description  | Notes
 
 
 
- **indicatorSpecificFields** | [**optional.Interface of map[string]interface{}**](.md)| Check out &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;this page&lt;/a&gt; to see which indicators and params are supported. | 
+ **indicatorFields** | **optional.Map[string]interface{}**| Check out &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;this page&lt;/a&gt; to see which indicators and params are supported. | 
 
 ### Return type
 
@@ -1692,7 +1692,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1706,7 +1706,7 @@ Name | Type | Description  | Notes
 
 Earnings Call Transcripts
 
-<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p><p>17+ years of data is available with 170,000+ audio which add up to 6TB in size.</p>
+<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies. <p>17+ years of data is available with 170,000+ audio which add up to 6TB in size.</p>
 
 ### Required Parameters
 
@@ -1740,7 +1740,7 @@ Name | Type | Description  | Notes
 
 Earnings Call Transcripts List
 
-List earnings call transcripts' metadata. This endpoint is only available for US companies. Earnings call transcripts for international markets are available for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.
+List earnings call transcripts' metadata. This endpoint is only available for US companies.
 
 ### Required Parameters
 

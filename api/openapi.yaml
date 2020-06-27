@@ -752,13 +752,11 @@ paths:
       summary: Earnings Calendar
   /quote:
     get:
-      description: '<p>Get real-time quote data for US stocks. Constant polling is
-        not recommended. Use websocket if you need real-time update.</p><p>Bulk download
-        EOD international markets: <a href="https://www.metastock.com/products/endofday/DataLink/?ref=fih"
-        target="_blank" rel="nofollow">Metastock Datalink</a></p><p>Real-time stock
-        prices for international markets are supported for Enterprise clients via
-        our partner''s feed. <a href="mailto:support@finnhub.io">Contact Us</a> to
-        learn more.</p>'
+      description: <p>Get real-time quote data for US stocks. Constant polling is
+        not recommended. Use websocket if you need real-time update.</p><p>Real-time
+        stock prices for international markets are supported for Enterprise clients
+        via our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a>
+        to learn more.</p>
       operationId: quote
       parameters:
       - description: Symbol
@@ -779,12 +777,10 @@ paths:
       summary: Quote
   /stock/candle:
     get:
-      description: '<p>Get candlestick data for stocks going back 25 years for US
-        stocks.</p><p>Bulk download EOD international markets: <a href="https://www.metastock.com/products/endofday/DataLink/?ref=fih"
-        target="_blank" rel="nofollow">Metastock Datalink</a></p><p>Real-time stock
-        prices for international markets are supported for Enterprise clients via
-        our partner''s feed. <a href="mailto:support@finnhub.io">Contact Us</a> to
-        learn more.</p>'
+      description: <p>Get candlestick data for stocks going back 25 years for US stocks.</p><p>Real-time
+        stock prices for international markets are supported for Enterprise clients
+        via our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a>
+        to learn more.</p>
       operationId: stock-candles
       parameters:
       - description: Symbol.
@@ -833,11 +829,10 @@ paths:
   /stock/tick:
     get:
       description: <p>Get historical tick data for US stocks from all 13 exchanges.
-        Return csv format. You can send the request directly to our tick server at
-        <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same
-        path and parameters or get redirected there if you call our main server. Data
-        is updated at the end of each trading day.</p><p>Tick data from 1985 is available
-        for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
+        You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a>
+        with the same path and parameters or get redirected there if you call our
+        main server. Data is updated at the end of each trading day.</p><p>Tick data
+        from 1985 is available for Enterprise clients. <a href="mailto:support@finnhub.io">Contact
         us</a> to learn more.</p>
       operationId: stock-tick
       parameters:
@@ -1209,7 +1204,7 @@ paths:
       - api_key: []
       summary: Aggregate Indicators
   /indicator:
-    get:
+    post:
       description: Return technical indicator with price data. List of supported indicators
         can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
         target="_blank">here</a>.
@@ -1249,12 +1244,14 @@ paths:
         required: true
         schema:
           type: string
-      - description: Check out <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndicatorFields'
+        description: Check out <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
           target="_blank">this page</a> to see which indicators and params are supported.
-        in: query
-        name: Indicator specific fields
-        schema:
-          type: object
+        required: false
       responses:
         "200":
           content:
@@ -1265,12 +1262,11 @@ paths:
       security:
       - api_key: []
       summary: Technical Indicators
+      x-codegen-request-body-name: indicator_fields
   /stock/transcripts/list:
     get:
       description: List earnings call transcripts' metadata. This endpoint is only
-        available for US companies. Earnings call transcripts for international markets
-        are available for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact
-        us</a> to learn more.
+        available for US companies.
       operationId: transcripts-list
       parameters:
       - description: 'Company symbol: AAPL. Leave empty to list the latest transcripts'
@@ -1292,10 +1288,8 @@ paths:
   /stock/transcripts:
     get:
       description: <p>Get earnings call transcripts, audio and participants' list.
-        This endpoint is only available for US companies. Earnings call transcripts
-        for international markets are available for Enterprise clients via our partner's
-        feed. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.</p><p>17+
-        years of data is available with 170,000+ audio which add up to 6TB in size.</p>
+        This endpoint is only available for US companies. <p>17+ years of data is
+        available with 170,000+ audio which add up to 6TB in size.</p>
       operationId: transcripts
       parameters:
       - description: Transcript's id obtained with <a href="#transcripts-list">Transcripts
@@ -2755,6 +2749,8 @@ components:
           $ref: '#/components/schemas/Trend'
       type: object
     TechnicalIndicator:
+      type: object
+    IndicatorFields:
       type: object
     StockTranscripts:
       properties:
