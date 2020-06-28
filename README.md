@@ -200,7 +200,11 @@ func main() {
 	fmt.Printf("%+v\n", supportResitance)
 
 	// Technical indicator
-	technicalIndicator, _, err := finnhubClient.TechnicalIndicator(auth, "AAPL", "D", 1580988249, 1591852249, "macd", nil)
+	technicalIndicator, _, err := finnhubClient.TechnicalIndicator(auth, "AAPL", "D", 1583098857, 1584308457, "sma", &finnhub.TechnicalIndicatorOpts{
+		IndicatorFields: map[string]interface{}{
+			"timeperiod": 3,
+		},
+	})
 	fmt.Printf("%+v\n", technicalIndicator)
 
 	// Transcripts
