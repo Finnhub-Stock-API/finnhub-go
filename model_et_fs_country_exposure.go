@@ -8,10 +8,11 @@
  */
 
 package finnhub
+
 // EtFsCountryExposure struct for EtFsCountryExposure
 type EtFsCountryExposure struct {
 	// ETF symbol.
 	Symbol string `json:"symbol,omitempty"`
 	// Array of countries and and exposure levels.
-	Holdings []map[string]interface{} `json:"holdings,omitempty"`
+	CountryExposure []map[string]interface{} `json:"countryExposure,omitempty"`
 }

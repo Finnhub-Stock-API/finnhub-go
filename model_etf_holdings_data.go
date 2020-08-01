@@ -8,8 +8,8 @@
  */
 
 package finnhub
-// EtfHoldings struct for EtfHoldings
-type EtfHoldings struct {
+// EtfHoldingsData struct for EtfHoldingsData
+type EtfHoldingsData struct {
 	// Symbol description
 	Symbol string `json:"symbol,omitempty"`
 	// Number of shares owned by the ETF.

@@ -13,5 +13,5 @@ type EtFsIndustryExposure struct {
 	// ETF symbol.
 	Symbol string `json:"symbol,omitempty"`
 	// Array of industries and exposure levels.
-	Holdings []map[string]interface{} `json:"holdings,omitempty"`
+	SectorExposure []map[string]interface{} `json:"sectorExposure,omitempty"`
 }

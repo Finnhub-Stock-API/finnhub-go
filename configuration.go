@@ -84,7 +84,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://finnhub.io/api/v1",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/1.2.0/go",
+		UserAgent:     "OpenAPI-Generator/1.2.1/go",
 		Debug:         false,
 		Servers:       []ServerConfiguration{
 			{

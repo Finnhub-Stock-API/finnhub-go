@@ -2747,7 +2747,7 @@ components:
         profile:
           type: object
       type: object
-    ETFHoldings:
+    ETFHoldingsData:
       properties:
         symbol:
           description: Symbol description
@@ -2777,7 +2777,7 @@ components:
             type: object
           type: array
       type: object
-    ETFSectorExposure:
+    ETFSectorExposureData:
       properties:
         industry:
           description: Industry
@@ -2789,20 +2789,20 @@ components:
     ETFsIndustryExposure:
       example:
         symbol: symbol
-        holdings:
+        sectorExposure:
         - '{}'
         - '{}'
       properties:
         symbol:
           description: ETF symbol.
           type: string
-        holdings:
+        sectorExposure:
           description: Array of industries and exposure levels.
           items:
             type: object
           type: array
       type: object
-    ETFCountryExposure:
+    ETFCountryExposureData:
       properties:
         country:
           description: Country
@@ -2814,14 +2814,14 @@ components:
     ETFsCountryExposure:
       example:
         symbol: symbol
-        holdings:
+        countryExposure:
         - '{}'
         - '{}'
       properties:
         symbol:
           description: ETF symbol.
           type: string
-        holdings:
+        countryExposure:
           description: Array of countries and and exposure levels.
           items:
             type: object

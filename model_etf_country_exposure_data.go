@@ -8,10 +8,10 @@
  */
 
 package finnhub
-// EtfSectorExposure struct for EtfSectorExposure
-type EtfSectorExposure struct {
-	// Industry
-	Industry string `json:"industry,omitempty"`
+// EtfCountryExposureData struct for EtfCountryExposureData
+type EtfCountryExposureData struct {
+	// Country
+	Country string `json:"country,omitempty"`
 	// Percent of exposure.
 	Exposure string `json:"exposure,omitempty"`
 }
