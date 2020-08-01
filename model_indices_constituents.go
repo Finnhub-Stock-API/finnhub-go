@@ -8,10 +8,10 @@
  */
 
 package finnhub
-// Trend struct for Trend
-type Trend struct {
-	// ADX reading
-	Adx float32 `json:"adx,omitempty"`
-	// Whether market is trending or going sideway
-	Trending bool `json:"trending,omitempty"`
+// IndicesConstituents struct for IndicesConstituents
+type IndicesConstituents struct {
+	// Index's symbol.
+	Symbol string `json:"symbol,omitempty"`
+	// Array of constituents.
+	Constituents []string `json:"constituents,omitempty"`
 }

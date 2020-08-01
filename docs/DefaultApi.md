@@ -22,6 +22,10 @@ Method | HTTP request | Description
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
 [**EconomicCode**](DefaultApi.md#EconomicCode) | **Get** /economic/code | Economic Code
 [**EconomicData**](DefaultApi.md#EconomicData) | **Get** /economic | Economic Data
+[**EtfsCountryExposure**](DefaultApi.md#EtfsCountryExposure) | **Get** /etf/country | ETFs Country Exposure
+[**EtfsHoldings**](DefaultApi.md#EtfsHoldings) | **Get** /etf/holdings | ETFs Holdings
+[**EtfsIndustryExposure**](DefaultApi.md#EtfsIndustryExposure) | **Get** /etf/sector | ETFs Industry Exposure
+[**EtfsProfile**](DefaultApi.md#EtfsProfile) | **Get** /etf/profile | ETFs Profile
 [**Filings**](DefaultApi.md#Filings) | **Get** /stock/filings | Filings
 [**Financials**](DefaultApi.md#Financials) | **Get** /stock/financials | Financial Statements
 [**FinancialsReported**](DefaultApi.md#FinancialsReported) | **Get** /stock/financials-reported | Financials As Reported
@@ -31,6 +35,8 @@ Method | HTTP request | Description
 [**ForexSymbols**](DefaultApi.md#ForexSymbols) | **Get** /forex/symbol | Forex Symbol
 [**FundOwnership**](DefaultApi.md#FundOwnership) | **Get** /stock/fund-ownership | Fund Ownership
 [**GeneralNews**](DefaultApi.md#GeneralNews) | **Get** /news | General News
+[**IndicesConstituents**](DefaultApi.md#IndicesConstituents) | **Get** /index/constituents | Indices Constituents
+[**IndicesHistoricalConstituents**](DefaultApi.md#IndicesHistoricalConstituents) | **Get** /index/historical-constituents | Indices Historical Constituents
 [**InvestorsOwnership**](DefaultApi.md#InvestorsOwnership) | **Get** /stock/investor-ownership | Investors Ownership
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
 [**MajorDevelopments**](DefaultApi.md#MajorDevelopments) | **Get** /major-development | Major Developments
@@ -39,6 +45,7 @@ Method | HTTP request | Description
 [**PriceTarget**](DefaultApi.md#PriceTarget) | **Get** /stock/price-target | Price Target
 [**Quote**](DefaultApi.md#Quote) | **Get** /quote | Quote
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
+[**SimilarityIndex**](DefaultApi.md#SimilarityIndex) | **Get** /stock/similarity-index | Similarity Index
 [**StockBidask**](DefaultApi.md#StockBidask) | **Get** /stock/bidask | Last Bid-Ask
 [**StockCandles**](DefaultApi.md#StockCandles) | **Get** /stock/candle | Stock Candles
 [**StockDividends**](DefaultApi.md#StockDividends) | **Get** /stock/dividend | Dividends
@@ -639,7 +646,7 @@ Name | Type | Description  | Notes
  **from** | **optional.String**| From date: 2020-03-15. | 
  **to** | **optional.String**| To date: 2020-03-16. | 
  **symbol** | **optional.String**| Filter by symbol: AAPL. | 
- **international** | [**optional.Interface of interface{}**](.md)| Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt; | 
+ **international** | **optional.Bool**| Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt; | 
 
 ### Return type
 
@@ -708,6 +715,142 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EconomicData**](EconomicData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EtfsCountryExposure
+
+> EtFsCountryExposure EtfsCountryExposure(ctx, symbol)
+
+ETFs Country Exposure
+
+Get ETF country exposure data.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| ETF symbol. | 
+
+### Return type
+
+[**EtFsCountryExposure**](ETFsCountryExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EtfsHoldings
+
+> EtFsHoldings EtfsHoldings(ctx, symbol)
+
+ETFs Holdings
+
+Get current ETF holdings.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| ETF symbol. | 
+
+### Return type
+
+[**EtFsHoldings**](ETFsHoldings.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EtfsIndustryExposure
+
+> EtFsIndustryExposure EtfsIndustryExposure(ctx, symbol)
+
+ETFs Industry Exposure
+
+Get ETF industry exposure data.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| ETF symbol. | 
+
+### Return type
+
+[**EtFsIndustryExposure**](ETFsIndustryExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EtfsProfile
+
+> EtFsProfile EtfsProfile(ctx, symbol)
+
+ETFs Profile
+
+Get ETF profile information. Currently support all US ETFs.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| ETF symbol. | 
+
+### Return type
+
+[**EtFsProfile**](ETFsProfile.md)
 
 ### Authorization
 
@@ -1087,6 +1230,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## IndicesConstituents
+
+> IndicesConstituents IndicesConstituents(ctx, symbol)
+
+Indices Constituents
+
+Get a list of index's constituents. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| symbol | 
+
+### Return type
+
+[**IndicesConstituents**](IndicesConstituents.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## IndicesHistoricalConstituents
+
+> IndicesHistoricalConstituents IndicesHistoricalConstituents(ctx, symbol)
+
+Indices Historical Constituents
+
+Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**symbol** | **string**| symbol | 
+
+### Return type
+
+[**IndicesHistoricalConstituents**](IndicesHistoricalConstituents.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## InvestorsOwnership
 
 > InvestorsOwnership InvestorsOwnership(ctx, symbol, optional)
@@ -1384,6 +1595,51 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SimilarityIndex
+
+> SimilarityIndex SimilarityIndex(ctx, optional)
+
+Similarity Index
+
+<p>Calculate the textual difference between a company's 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company's stock price in the upcoming 4 quarters.</p>
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***SimilarityIndexOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a SimilarityIndexOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **optional.String**| Symbol. Required if cik is empty | 
+ **cik** | **optional.String**| CIK. Required if symbol is empty | 
+ **freq** | **optional.String**| &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt; | 
+
+### Return type
+
+[**SimilarityIndex**](SimilarityIndex.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## StockBidask
 
 > LastBidAsk StockBidask(ctx, symbol)
@@ -1547,7 +1803,7 @@ Name | Type | Description  | Notes
 
 Stock Symbol
 
-List supported stocks.
+List supported stocks. A list of supported CFD Indices can be found <a href=\"https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing\" target=\"_blank\">here</a>.
 
 ### Required Parameters
 

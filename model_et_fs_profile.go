@@ -8,10 +8,9 @@
  */
 
 package finnhub
-// Trend struct for Trend
-type Trend struct {
-	// ADX reading
-	Adx float32 `json:"adx,omitempty"`
-	// Whether market is trending or going sideway
-	Trending bool `json:"trending,omitempty"`
+// EtFsProfile struct for EtFsProfile
+type EtFsProfile struct {
+	// Use symbol returned in <code>/forex/symbol</code> endpoint for this field.
+	Symbol string `json:"symbol,omitempty"`
+	Profile map[string]interface{} `json:"profile,omitempty"`
 }

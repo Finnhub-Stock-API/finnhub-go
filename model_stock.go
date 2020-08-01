@@ -16,4 +16,8 @@ type Stock struct {
 	DisplaySymbol string `json:"displaySymbol,omitempty"`
 	// Unique symbol used to identify this symbol used in <code>/stock/candle</code> endpoint.
 	Symbol string `json:"symbol,omitempty"`
+	// Security type.
+	Type string `json:"type,omitempty"`
+	// Price's currency. This might be different from the reporting currency of fundamental data.
+	Currency string `json:"currency,omitempty"`
 }

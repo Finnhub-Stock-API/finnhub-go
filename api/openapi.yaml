@@ -73,7 +73,9 @@ paths:
       summary: Company Profile 2
   /stock/symbol:
     get:
-      description: List supported stocks.
+      description: List supported stocks. A list of supported CFD Indices can be found
+        <a href="https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing"
+        target="_blank">here</a>.
       operationId: stock-symbols
       parameters:
       - description: Exchange you want to get the list of symbols from. List of exchanges
@@ -481,6 +483,41 @@ paths:
       security:
       - api_key: []
       summary: Filings
+  /stock/similarity-index:
+    get:
+      description: <p>Calculate the textual difference between a company's 10-K /
+        10-Q reports and the same type of report in the previous year using Cosine
+        Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K.
+        Companies breaking from its routines in disclosure of financial condition
+        and risk analysis section can signal a significant change in the company's
+        stock price in the upcoming 4 quarters.</p>
+      operationId: similarity-index
+      parameters:
+      - description: Symbol. Required if cik is empty
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: CIK. Required if symbol is empty
+        in: query
+        name: cik
+        schema:
+          type: string
+      - description: <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>
+        in: query
+        name: freq
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimilarityIndex'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Similarity Index
   /calendar/ipo:
     get:
       description: Get recent and coming IPO.
@@ -739,7 +776,8 @@ paths:
           value is <code>false</code>
         in: query
         name: international
-        schema: {}
+        schema:
+          type: boolean
       responses:
         "200":
           content:
@@ -932,6 +970,135 @@ paths:
       security:
       - api_key: []
       summary: Splits
+  /index/constituents:
+    get:
+      description: Get a list of index's constituents. Currently support <code>^GSPC
+        (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+      operationId: indices-constituents
+      parameters:
+      - description: symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicesConstituents'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Indices Constituents
+  /index/historical-constituents:
+    get:
+      description: Get full history of index's constituents including symbols and
+        dates of joining and leaving the Index. Currently support <code>^GSPC (S&P
+        500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+      operationId: indices-historical-constituents
+      parameters:
+      - description: symbol
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicesHistoricalConstituents'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Indices Historical Constituents
+  /etf/profile:
+    get:
+      description: Get ETF profile information. Currently support all US ETFs.
+      operationId: etfs-profile
+      parameters:
+      - description: ETF symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ETFsProfile'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: ETFs Profile
+  /etf/holdings:
+    get:
+      description: Get current ETF holdings.
+      operationId: etfs-holdings
+      parameters:
+      - description: ETF symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ETFsHoldings'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: ETFs Holdings
+  /etf/sector:
+    get:
+      description: Get ETF industry exposure data.
+      operationId: etfs-industry-exposure
+      parameters:
+      - description: ETF symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ETFsIndustryExposure'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: ETFs Industry Exposure
+  /etf/country:
+    get:
+      description: Get ETF country exposure data.
+      operationId: etfs-country-exposure
+      parameters:
+      - description: ETF symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ETFsCountryExposure'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: ETFs Country Exposure
   /forex/exchange:
     get:
       description: List supported forex exchanges
@@ -1390,7 +1557,7 @@ components:
         city: city
         naicsSector: naicsSector
         description: description
-        employeeTotal: 5
+        employeeTotal: 1
         gsector: gsector
         weburl: weburl
         logo: logo
@@ -1399,10 +1566,10 @@ components:
         ggroup: ggroup
         ticker: ticker
         address: address
-        marketCapitalization: 6.0274563
+        marketCapitalization: 0.8008282
         gind: gind
         ipo: 2000-01-23
-        sedol: 0
+        sedol: sedol
         finnhubIndustry: finnhubIndustry
         naicsNationalIndustry: naicsNationalIndustry
         naicsSubsector: naicsSubsector
@@ -1412,7 +1579,7 @@ components:
         exchange: exchange
         naics: naics
         isin: isin
-        shareOutstanding: 1.4658129
+        shareOutstanding: 6.0274563
       properties:
         address:
           description: Address of company's headquarter.
@@ -1431,8 +1598,7 @@ components:
           type: string
         sedol:
           description: Sedol number.
-          format: int64
-          type: integer
+          type: string
         description:
           description: Company business summary.
           type: string
@@ -1564,6 +1730,8 @@ components:
         displaySymbol: displaySymbol
         symbol: symbol
         description: description
+        currency: currency
+        type: type
       properties:
         description:
           description: Symbol description
@@ -1574,6 +1742,13 @@ components:
         symbol:
           description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
             endpoint.
+          type: string
+        type:
+          description: Security type.
+          type: string
+        currency:
+          description: Price's currency. This might be different from the reporting
+            currency of fundamental data.
           type: string
       type: object
     Company:
@@ -1946,6 +2121,27 @@ components:
         filingUrl:
           description: Filing's URL.
           type: string
+      type: object
+    SimilarityIndex:
+      example:
+        symbol: symbol
+        cik: cik
+        similarity:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        cik:
+          description: CIK.
+          type: string
+        similarity:
+          description: Array of filings with its cosine similarity compared to the
+            same report of the previous year.
+          items:
+            type: object
+          type: array
       type: object
     IPOEvent:
       properties:
@@ -2492,6 +2688,145 @@ components:
           format: float
           type: number
       type: object
+    IndicesConstituents:
+      example:
+        symbol: symbol
+        constituents:
+        - constituents
+        - constituents
+      properties:
+        symbol:
+          description: Index's symbol.
+          type: string
+        constituents:
+          description: Array of constituents.
+          items:
+            type: string
+          type: array
+      type: object
+    IndexHistoricalConstituent:
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        action:
+          description: <code>add</code> or <code>remove</code>.
+          type: string
+        date:
+          description: Date of joining or leaving the index.
+          format: date
+          type: string
+      type: object
+    IndicesHistoricalConstituents:
+      example:
+        historicalConstituents:
+        - '{}'
+        - '{}'
+        symbol: symbol
+      properties:
+        symbol:
+          description: Index's symbol.
+          type: string
+        historicalConstituents:
+          description: Array of historical constituents.
+          items:
+            type: object
+          type: array
+      type: object
+    ETFProfileData:
+      type: object
+    ETFsProfile:
+      example:
+        symbol: symbol
+        profile: '{}'
+      properties:
+        symbol:
+          description: Use symbol returned in <code>/forex/symbol</code> endpoint
+            for this field.
+          type: string
+        profile:
+          type: object
+      type: object
+    ETFHoldings:
+      properties:
+        symbol:
+          description: Symbol description
+          type: string
+        share:
+          description: Number of shares owned by the ETF.
+          format: float
+          type: number
+        percent:
+          description: Portfolio's percent
+          format: float
+          type: number
+      type: object
+    ETFsHoldings:
+      example:
+        symbol: symbol
+        holdings:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: ETF symbol.
+          type: string
+        holdings:
+          description: Array of holdings.
+          items:
+            type: object
+          type: array
+      type: object
+    ETFSectorExposure:
+      properties:
+        industry:
+          description: Industry
+          type: string
+        exposure:
+          description: Percent of exposure.
+          type: string
+      type: object
+    ETFsIndustryExposure:
+      example:
+        symbol: symbol
+        holdings:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: ETF symbol.
+          type: string
+        holdings:
+          description: Array of industries and exposure levels.
+          items:
+            type: object
+          type: array
+      type: object
+    ETFCountryExposure:
+      properties:
+        country:
+          description: Country
+          type: string
+        exposure:
+          description: Percent of exposure.
+          type: string
+      type: object
+    ETFsCountryExposure:
+      example:
+        symbol: symbol
+        holdings:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: ETF symbol.
+          type: string
+        holdings:
+          description: Array of countries and and exposure levels.
+          items:
+            type: object
+          type: array
+      type: object
     ForexSymbol:
       example:
         displaySymbol: displaySymbol
@@ -2725,16 +3060,21 @@ components:
       type: object
     Trend:
       example:
+        trending: true
         adx: 5.962134
       properties:
         adx:
           description: ADX reading
           format: float
           type: number
+        trending:
+          description: Whether market is trending or going sideway
+          type: boolean
       type: object
     AggregateIndicators:
       example:
         trend:
+          trending: true
           adx: 5.962134
         technicalAnalysis:
           count:

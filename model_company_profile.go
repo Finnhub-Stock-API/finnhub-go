@@ -21,7 +21,7 @@ type CompanyProfile struct {
 	// CUSIP number.
 	Cusip string `json:"cusip,omitempty"`
 	// Sedol number.
-	Sedol int64 `json:"sedol,omitempty"`
+	Sedol string `json:"sedol,omitempty"`
 	// Company business summary.
 	Description string `json:"description,omitempty"`
 	// Listed exchange.

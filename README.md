@@ -221,7 +221,31 @@ func main() {
 
 	// Tick Data
 	tickData, _, err := client.StockTick(auth, "AAPL", "2020-03-25", 500, 0)
-	fmt.Printf("%+v\n", tickData)
+    fmt.Printf("%+v\n", tickData)
+
+    // Indices Constituents
+    indicesConstData, _, err := client.IndicesConstituents("^GSPC")
+    fmt.Printf("%+v\n", indicesConstData)
+
+    // Indices Historical Constituents
+    indicesHistoricalConstData, _, err := client.IndicesHistoricalConstituents("^GSPC")
+    fmt.Printf("%+v\n", indicesHistoricalConstData)
+
+    // ETFs Profile
+    etfsProfileData, _, err := client.EtfsProfile("^GSPC")
+    fmt.Printf("%+v\n", etfsProfileData)
+
+    // ETFs Holdings
+    etfsHoldingsData, _, err := client.EtfsHoldings("^GSPC")
+    fmt.Printf("%+v\n", etfsHoldingsData)
+
+    // ETFs Industry Exposure
+    etfsIndustryExposureData, _, err := client.EtfsIndustryExposure("^GSPC")
+    fmt.Printf("%+v\n", etfsIndustryExposureData)
+
+    // ETFs Country Exposure
+    etfsCountryExposureData, _, err := client.EtfsCountryExposure("^GSPC")
+    fmt.Printf("%+v\n", etfsCountryExposureData)
 }
 
 ```
