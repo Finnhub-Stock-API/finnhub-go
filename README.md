@@ -232,19 +232,19 @@ func main() {
     fmt.Printf("%+v\n", indicesHistoricalConstData)
 
     // ETFs Profile
-    etfsProfileData, _, err := client.EtfsProfile(auth, "^GSPC")
+    etfsProfileData, _, err := client.EtfsProfile(auth, "SPY")
     fmt.Printf("%+v\n", etfsProfileData)
 
     // ETFs Holdings
-    etfsHoldingsData, _, err := client.EtfsHoldings(auth, "^GSPC")
+    etfsHoldingsData, _, err := client.EtfsHoldings(auth, "SPY")
     fmt.Printf("%+v\n", etfsHoldingsData)
 
     // ETFs Industry Exposure
-    etfsIndustryExposureData, _, err := client.EtfsIndustryExposure(auth, "^GSPC")
+    etfsIndustryExposureData, _, err := client.EtfsIndustryExposure(auth, "SPY")
     fmt.Printf("%+v\n", etfsIndustryExposureData)
 
     // ETFs Country Exposure
-    etfsCountryExposureData, _, err := client.EtfsCountryExposure(auth, "^GSPC")
+    etfsCountryExposureData, _, err := client.EtfsCountryExposure(auth, "SPY")
     fmt.Printf("%+v\n", etfsCountryExposureData)
 }
 
