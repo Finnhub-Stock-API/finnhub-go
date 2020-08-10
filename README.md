@@ -47,7 +47,7 @@ func main() {
 	ownerships, _, err := finnhubClient.InvestorsOwnership(auth, "AAPL", investorsOwnershipOpts)
 	fmt.Printf("%+v\n", ownerships)
 
-	//Aggregate Indicator
+	// Aggregate Indicator
 	aggregateIndicator, _, err := finnhubClient.AggregateIndicator(auth, "AAPL", "D")
 	fmt.Printf("%+v\n", aggregateIndicator)
 
@@ -79,7 +79,7 @@ func main() {
 	profileCusip, _, err := finnhubClient.CompanyProfile(auth, &finnhub.CompanyProfileOpts{Cusip: optional.NewString("037833100")})
 	fmt.Printf("%+v\n", profileCusip)
 
-	//Company profile2
+	// Company profile2
 	profile2, _, err := finnhubClient.CompanyProfile2(auth, &finnhub.CompanyProfile2Opts{Symbol: optional.NewString("AAPL")})
 	fmt.Printf("%+v\n", profile2)
 
@@ -103,7 +103,7 @@ func main() {
 	cryptoExchange, _, err := finnhubClient.CryptoExchanges(auth)
 	fmt.Printf("%+v\n", cryptoExchange)
 
-	//Crypto symbols
+	// Crypto symbols
 	cryptoSymbol, _, err := finnhubClient.CryptoSymbols(auth, "BINANCE")
 	fmt.Printf("%+v\n", cryptoSymbol[0:5])
 
@@ -124,7 +124,7 @@ func main() {
 	filings, _, err := finnhubClient.Filings(auth, &finnhub.FilingsOpts{Symbol: optional.NewString("AAPL")})
 	fmt.Printf("%+v\n", filings)
 
-	//Financials
+	// Financials
 	financials, _, err := finnhubClient.Financials(auth, "AAPL", "bs", "annual")
 	fmt.Printf("%+v\n", financials)
 
@@ -147,7 +147,7 @@ func main() {
 	forexSymbols, _, err := finnhubClient.ForexSymbols(auth, "OANDA")
 	fmt.Printf("%+v\n", forexSymbols)
 
-	//Fund ownership
+	// Fund ownership
 	fundOwnership, _, err := finnhubClient.FundOwnership(auth, "AAPL", nil)
 	fmt.Printf("%+v\n", fundOwnership)
 
@@ -159,7 +159,7 @@ func main() {
 	ipoCalendar, _, err := finnhubClient.IpoCalendar(auth, "2020-01-01", "2020-06-15")
 	fmt.Printf("%+v\n", ipoCalendar)
 
-	//Major development
+	// Major development
 	majorDevelopment, _, err := finnhubClient.MajorDevelopments(auth, "AAPL", nil)
 	fmt.Printf("%+v\n", majorDevelopment)
 
@@ -175,7 +175,7 @@ func main() {
 	priceTarget, _, err := finnhubClient.PriceTarget(auth, "AAPL")
 	fmt.Printf("%+v\n", priceTarget)
 
-	//Quote
+	// Quote
 	quote, _, err := finnhubClient.Quote(auth, "AAPL")
 	fmt.Printf("%+v\n", quote)
 
@@ -220,32 +220,32 @@ func main() {
 	fmt.Printf("%+v\n", upgradeDowngrade)
 
 	// Tick Data
-	tickData, _, err := client.StockTick(auth, "AAPL", "2020-03-25", 500, 0)
-    fmt.Printf("%+v\n", tickData)
+	tickData, _, err := finnhubClient.StockTick(auth, "AAPL", "2020-03-25", 500, 0)
+	fmt.Printf("%+v\n", tickData)
 
-    // Indices Constituents
-    indicesConstData, _, err := client.IndicesConstituents(auth, "^GSPC")
-    fmt.Printf("%+v\n", indicesConstData)
+	// Indices Constituents
+	indicesConstData, _, err := finnhubClient.IndicesConstituents(auth, "^GSPC")
+	fmt.Printf("%+v\n", indicesConstData)
 
-    // Indices Historical Constituents
-    indicesHistoricalConstData, _, err := client.IndicesHistoricalConstituents(auth, "^GSPC")
-    fmt.Printf("%+v\n", indicesHistoricalConstData)
+	// Indices Historical Constituents
+	indicesHistoricalConstData, _, err := finnhubClient.IndicesHistoricalConstituents(auth, "^GSPC")
+	fmt.Printf("%+v\n", indicesHistoricalConstData)
 
-    // ETFs Profile
-    etfsProfileData, _, err := client.EtfsProfile(auth, "SPY")
-    fmt.Printf("%+v\n", etfsProfileData)
+	// ETFs Profile
+	etfsProfileData, _, err := finnhubClient.EtfsProfile(auth, "SPY")
+	fmt.Printf("%+v\n", etfsProfileData)
 
-    // ETFs Holdings
-    etfsHoldingsData, _, err := client.EtfsHoldings(auth, "SPY")
-    fmt.Printf("%+v\n", etfsHoldingsData)
+	// ETFs Holdings
+	etfsHoldingsData, _, err := finnhubClient.EtfsHoldings(auth, "SPY")
+	fmt.Printf("%+v\n", etfsHoldingsData)
 
-    // ETFs Industry Exposure
-    etfsIndustryExposureData, _, err := client.EtfsIndustryExposure(auth, "SPY")
-    fmt.Printf("%+v\n", etfsIndustryExposureData)
+	// ETFs Industry Exposure
+	etfsIndustryExposureData, _, err := finnhubClient.EtfsIndustryExposure(auth, "SPY")
+	fmt.Printf("%+v\n", etfsIndustryExposureData)
 
-    // ETFs Country Exposure
-    etfsCountryExposureData, _, err := client.EtfsCountryExposure(auth, "SPY")
-    fmt.Printf("%+v\n", etfsCountryExposureData)
+	// ETFs Country Exposure
+	etfsCountryExposureData, _, err := finnhubClient.EtfsCountryExposure(auth, "SPY")
+	fmt.Printf("%+v\n", etfsCountryExposureData)
 }
 
 ```
