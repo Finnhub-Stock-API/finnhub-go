@@ -20,4 +20,6 @@ type Stock struct {
 	Type string `json:"type,omitempty"`
 	// Price's currency. This might be different from the reporting currency of fundamental data.
 	Currency string `json:"currency,omitempty"`
+	// MIC code
+	MIC string `json:"mic,omitempty"`
 }
