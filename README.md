@@ -91,6 +91,10 @@ func main() {
 	countries, _, err := finnhubClient.Country(auth)
 	fmt.Printf("%+v\n", countries)
 
+	// Economic Calendar
+	economicCalendar, _, err := finnhubClient.EconomicCalendar(auth)
+	fmt.Printf("%+v\n", economicCalendar)
+	
 	// Covid-19
 	covid19, _, err := finnhubClient.Covid19(auth)
 	fmt.Printf("%+v\n", covid19)
