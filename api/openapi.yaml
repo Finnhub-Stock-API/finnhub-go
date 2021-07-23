@@ -8,6 +8,77 @@ info:
 servers:
 - url: https://finnhub.io/api/v1
 paths:
+  /search:
+    get:
+      description: Search for best-matching symbols based on your query. You can input
+        anything from symbol, security's name to ISIN and Cusip.
+      operationId: symbol-search
+      parameters:
+      - description: Query text can be symbol, name, isin, or cusip.
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolLookup'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Symbol Lookup
+      tags:
+      - Default
+  /stock/symbol:
+    get:
+      description: List supported stocks. We use the following symbology to identify
+        stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported
+        exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing"
+        target="_blank">here</a>. A list of supported CFD Indices can be found <a
+        href="https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing"
+        target="_blank">here</a>.
+      operationId: stock-symbols
+      parameters:
+      - description: Exchange you want to get the list of symbols from. List of exchange
+          codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing"
+          target="_blank">here</a>.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      - description: Filter by MIC code.
+        in: query
+        name: mic
+        schema:
+          type: string
+      - description: Filter by security type used by OpenFigi standard.
+        in: query
+        name: securityType
+        schema:
+          type: string
+      - description: Filter by currency.
+        in: query
+        name: currency
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Stock'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Stock Symbol
+      tags:
+      - Default
   /stock/profile:
     get:
       description: Get general information of a company. You can query by symbol,
@@ -39,6 +110,8 @@ paths:
       security:
       - api_key: []
       summary: Company Profile
+      tags:
+      - Default
   /stock/profile2:
     get:
       description: Get general information of a company. You can query by symbol,
@@ -71,33 +144,8 @@ paths:
       security:
       - api_key: []
       summary: Company Profile 2
-  /stock/symbol:
-    get:
-      description: List supported stocks. A list of supported CFD Indices can be found
-        <a href="https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing"
-        target="_blank">here</a>.
-      operationId: stock-symbols
-      parameters:
-      - description: Exchange you want to get the list of symbols from. List of exchanges
-          with fundamental data can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing"
-          target="_blank">here</a>.
-        in: query
-        name: exchange
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Stock'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: Stock Symbol
+      tags:
+      - Default
   /stock/executive:
     get:
       description: Get a list of company's executives and members of the Board.
@@ -119,10 +167,12 @@ paths:
       security:
       - api_key: []
       summary: Company Executive
+      tags:
+      - Default
   /news:
     get:
       description: Get latest market news.
-      operationId: general-news
+      operationId: market-news
       parameters:
       - description: This parameter can be 1 of the following values <code>general,
           forex, crypto, merger</code>.
@@ -147,7 +197,9 @@ paths:
           description: successful operation
       security:
       - api_key: []
-      summary: General News
+      summary: Market News
+      tags:
+      - Default
   /company-news:
     get:
       description: List latest company news by symbol. This endpoint is only available
@@ -186,12 +238,15 @@ paths:
       security:
       - api_key: []
       summary: Company News
-  /major-development:
+      tags:
+      - Default
+  /press-releases:
     get:
-      description: List latest major developments of a company going back 20 years
-        with 12M+ data points. This data can be used to highlight the most significant
-        events.
-      operationId: major-developments
+      description: Get latest major press releases of a company. This data can be
+        used to highlight the most significant events comprised of mostly press releases
+        sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile,
+        and PRNewswire.
+      operationId: press-releases
       parameters:
       - description: Company symbol.
         in: query
@@ -216,11 +271,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MajorDevelopments'
+                $ref: '#/components/schemas/MajorPressReleases'
           description: successful operation
       security:
       - api_key: []
-      summary: Major Developments
+      summary: Major Press Releases
+      tags:
+      - Default
   /news-sentiment:
     get:
       description: Get company's news sentiment and statistics. This endpoint is only
@@ -243,6 +300,8 @@ paths:
       security:
       - api_key: []
       summary: News Sentiment
+      tags:
+      - Default
   /stock/peers:
     get:
       description: Get company peers. Return a list of peers in the same country and
@@ -267,6 +326,8 @@ paths:
       security:
       - api_key: []
       summary: Peers
+      tags:
+      - Default
   /stock/metric:
     get:
       description: Get company basic financials such as margin, P/E ratio, 52-week
@@ -279,8 +340,7 @@ paths:
         required: true
         schema:
           type: string
-      - description: Metric type. Can be 1 of the following values <code>all, price,
-          valuation, margin</code>
+      - description: Metric type. Can be 1 of the following values <code>all</code>
         in: query
         name: metric
         required: true
@@ -296,11 +356,16 @@ paths:
       security:
       - api_key: []
       summary: Basic Financials
-  /stock/investor-ownership:
+      tags:
+      - Default
+  /stock/ownership:
     get:
-      description: Get a full list of shareholders/investors of a company in descending
-        order of the number of shares held.
-      operationId: investors-ownership
+      description: Get a full list of shareholders of a company in descending order
+        of the number of shares held. Data is sourced from <code>13F form</code>,
+        <code>Schedule 13D</code> and <code>13G</code> for US market, <code>UK Share
+        Register</code> for UK market, <code>SEDI</code> for Canadian market and equivalent
+        filings for other international markets.
+      operationId: ownership
       parameters:
       - description: 'Symbol of the company: AAPL.'
         in: query
@@ -319,15 +384,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InvestorsOwnership'
+                $ref: '#/components/schemas/Ownership'
           description: successful operation
       security:
       - api_key: []
-      summary: Investors Ownership
+      summary: Ownership
+      tags:
+      - Default
   /stock/fund-ownership:
     get:
       description: Get a full list fund and institutional investors of a company in
-        descending order of the number of shares held.
+        descending order of the number of shares held. Data is sourced from <code>13F
+        form</code>, <code>Schedule 13D</code> and <code>13G</code> for US market,
+        <code>UK Share Register</code> for UK market, <code>SEDI</code> for Canadian
+        market and equivalent filings for other international markets.
       operationId: fund-ownership
       parameters:
       - description: 'Symbol of the company: AAPL.'
@@ -352,10 +422,53 @@ paths:
       security:
       - api_key: []
       summary: Fund Ownership
+      tags:
+      - Default
+  /stock/insider-transactions:
+    get:
+      description: Company insider transactions data sourced from <code>Form 3,4,5</code>.
+        This endpoint only covers US companies at the moment. Limit to 100 transactions
+        per API call.
+      operationId: insider-transactions
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'From date: 2020-03-15.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2020-03-16.'
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsiderTransactions'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Insider Transactions
+      tags:
+      - Default
   /stock/financials:
     get:
-      description: Get standardized balance sheet, income statement and cash flow
-        for global companies going back 30+ years.
+      description: <p>Get standardized balance sheet, income statement and cash flow
+        for global companies going back 30+ years. Data is sourced from original filings
+        most of which made available through <a href="#filings">SEC Filings</a> and
+        <a href="#international-filings">International Filings</a> endpoints.</p><p><i>Wondering
+        why our standardized data is different from Bloomberg, Reuters, Factset, S&P
+        or Yahoo Finance ? Check out our <a href="/faq">FAQ page</a> to learn more</i></p>
       operationId: financials
       parameters:
       - description: 'Symbol of the company: AAPL.'
@@ -390,6 +503,8 @@ paths:
       security:
       - api_key: []
       summary: Financial Statements
+      tags:
+      - Default
   /stock/financials-reported:
     get:
       description: Get financials as reported. This data is available for bulk download
@@ -429,6 +544,37 @@ paths:
       security:
       - api_key: []
       summary: Financials As Reported
+      tags:
+      - Default
+  /stock/revenue-breakdown:
+    get:
+      description: Get revenue breakdown by product. This dataset is only available
+        for US companies which disclose their revenue breakdown in the annual or quarterly
+        reports.
+      operationId: revenue-breakdown
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: CIK.
+        in: query
+        name: cik
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevenueBreakdown'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Revenue Breakdown
+      tags:
+      - Default
   /stock/filings:
     get:
       description: List company's filing. Limit to 250 documents at a time. This data
@@ -482,7 +628,69 @@ paths:
           description: successful operation
       security:
       - api_key: []
-      summary: Filings
+      summary: SEC Filings
+      tags:
+      - Default
+  /stock/international-filings:
+    get:
+      description: List filings for international companies which covers 95%+ of global
+        market cap. Limit to 250 documents at a time. These are the documents we use
+        to source our fundamental data.
+      operationId: international-filings
+      parameters:
+      - description: Symbol. Leave empty to list latest filings.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: Filter by country using country's 2-letter code.
+        in: query
+        name: country
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InternationalFiling'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: International Filings
+      tags:
+      - Default
+  /stock/filings-sentiment:
+    get:
+      description: Get sentiment analysis of 10-K and 10-Q filings from SEC. An abnormal
+        increase in the number of positive/negative words in filings can signal a
+        significant change in the company's stock price in the upcoming 4 quarters.
+        We make use of <a href= "https://sraf.nd.edu/textual-analysis/resources/"
+        target="_blank">Loughran and McDonald Sentiment Word Lists</a> to calculate
+        the sentiment for each filing.
+      operationId: filings-sentiment
+      parameters:
+      - description: Access number of a specific report you want to retrieve data
+          from.
+        in: query
+        name: accessNumber
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SECSentimentAnalysis'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: SEC Sentiment Analysis
+      tags:
+      - Default
   /stock/similarity-index:
     get:
       description: <p>Calculate the textual difference between a company's 10-K /
@@ -518,9 +726,11 @@ paths:
       security:
       - api_key: []
       summary: Similarity Index
+      tags:
+      - Default
   /calendar/ipo:
     get:
-      description: Get recent and coming IPO.
+      description: Get recent and upcoming IPO.
       operationId: ipo-calendar
       parameters:
       - description: 'From date: 2020-03-15.'
@@ -547,6 +757,8 @@ paths:
       security:
       - api_key: []
       summary: IPO Calendar
+      tags:
+      - Default
   /stock/dividend:
     get:
       description: Get dividends data for common stocks going back 30 years.
@@ -584,6 +796,8 @@ paths:
       security:
       - api_key: []
       summary: Dividends
+      tags:
+      - Default
   /stock/recommendation:
     get:
       description: Get latest analyst recommendation trends for a company.
@@ -607,6 +821,8 @@ paths:
       security:
       - api_key: []
       summary: Recommendation Trends
+      tags:
+      - Default
   /stock/price-target:
     get:
       description: Get latest price target consensus.
@@ -628,6 +844,8 @@ paths:
       security:
       - api_key: []
       summary: Price Target
+      tags:
+      - Default
   /stock/upgrade-downgrade:
     get:
       description: Get latest stock upgrade and downgrade.
@@ -663,6 +881,8 @@ paths:
       security:
       - api_key: []
       summary: Stock Upgrade/Downgrade
+      tags:
+      - Default
   /stock/revenue-estimate:
     get:
       description: Get company's revenue estimates.
@@ -690,6 +910,8 @@ paths:
       security:
       - api_key: []
       summary: Revenue Estimates
+      tags:
+      - Default
   /stock/eps-estimate:
     get:
       description: Get company's EPS estimates.
@@ -717,6 +939,8 @@ paths:
       security:
       - api_key: []
       summary: Earnings Estimates
+      tags:
+      - Default
   /stock/earnings:
     get:
       description: Get company historical quarterly earnings surprise going back to
@@ -748,11 +972,15 @@ paths:
       security:
       - api_key: []
       summary: Earnings Surprises
+      tags:
+      - Default
   /calendar/earnings:
     get:
-      description: Get historical and coming earnings release dating back to 2003.
-        You can setup <a href="#webhook">webhook</a> to receive real-time earnings
-        update.
+      description: Get historical and coming earnings release. EPS and Revenue in
+        this endpoint are non-GAAP, which means they are adjusted to exclude some
+        one-time or unusual items. This is the same data investors usually react to
+        and talked about on the media. Estimates are sourced from both sell-side and
+        buy-side analysts.
       operationId: earnings-calendar
       parameters:
       - description: 'From date: 2020-03-15.'
@@ -788,10 +1016,12 @@ paths:
       security:
       - api_key: []
       summary: Earnings Calendar
+      tags:
+      - Default
   /quote:
     get:
       description: <p>Get real-time quote data for US stocks. Constant polling is
-        not recommended. Use websocket if you need real-time update.</p><p>Real-time
+        not recommended. Use websocket if you need real-time updates.</p><p>Real-time
         stock prices for international markets are supported for Enterprise clients
         via our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a>
         to learn more.</p>
@@ -813,12 +1043,11 @@ paths:
       security:
       - api_key: []
       summary: Quote
+      tags:
+      - Default
   /stock/candle:
     get:
-      description: <p>Get candlestick data for stocks going back 25 years for US stocks.</p><p>Real-time
-        stock prices for international markets are supported for Enterprise clients
-        via our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a>
-        to learn more.</p>
+      description: <p>Get candlestick data (OHLCV) for stocks
       operationId: stock-candles
       parameters:
       - description: Symbol.
@@ -848,8 +1077,8 @@ paths:
         schema:
           format: int64
           type: integer
-      - description: By default, <code>adjusted=false</code>. Use <code>true</code>
-          to get adjusted data.
+      - description: 'DEPRECATED: this option has been deprecated. All Daily data
+          will be adjusted for Splits and intraday data will remain unadjusted.'
         in: query
         name: adjusted
         schema:
@@ -864,14 +1093,52 @@ paths:
       security:
       - api_key: []
       summary: Stock Candles
+      tags:
+      - Default
   /stock/tick:
     get:
-      description: <p>Get historical tick data for US stocks from all 13 exchanges.
-        You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a>
-        with the same path and parameters or get redirected there if you call our
-        main server. Data is updated at the end of each trading day.</p><p>Tick data
-        from 1985 is available for Enterprise clients. <a href="mailto:support@finnhub.io">Contact
-        us</a> to learn more.</p>
+      description: |-
+        <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><p>Note that for Nasdaq Nordic and Baltic, you need to use ISIN instead of symbol to query tick data. </p><table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Exchange</th>
+              <th>Segment</th>
+              <th>Delay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-blue">US CTA/UTP</th>
+              <td>Full SIP</td>
+              <td>15 minute</td>
+            </tr>
+            <tr>
+              <td class="text-blue">TSX</th>
+              <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>
+              <td>End-of-day</td>
+            </tr>
+            <tr>
+              <td class="text-blue">LSE</th>
+              <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>
+              <td>15 minute</td>
+            </tr>
+            <tr>
+              <td class="text-blue">Euronext</th>
+              <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>
+              <td>End-of-day</td>
+            </tr>
+            <tr>
+              <td class="text-blue">Deutsche Börse</th>
+              <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>
+              <td>End-of-day</td>
+            </tr>
+            <tr>
+              <td class="text-blue">Nasdaq Nordic & Baltic</th>
+              <td> <ul> <li>Copenhagen (CO)</li> <li>Stockholm (ST)</li> <li>Helsinki (HE)</li> <li>Iceland (IC)</li> <li>Riga (RG)</li> <li>Tallinn (TL)</li> <li>Vilnius(VS)</li> <li>Fixed Income</li> <li>Derivatives</li> <li>Commodities</li></ul></td>
+              <td>End-of-day</td>
+            </tr>
+          </tbody>
+        </table>
       operationId: stock-tick
       parameters:
       - description: Symbol.
@@ -912,6 +1179,56 @@ paths:
       security:
       - api_key: []
       summary: Tick Data
+      tags:
+      - Default
+  /stock/bbo:
+    get:
+      description: <p>Get historical best bid and offer for US stocks, LSE, TSX, Euronext
+        and Deutsche Borse.</p><p>For US market, this endpoint only serves historical
+        NBBO from the beginning of 2020. To download more historical data, please
+        visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a>.</p>
+      operationId: stock-nbbo
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'Date: 2020-04-02.'
+        in: query
+        name: date
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: 'Limit number of ticks returned. Maximum value: <code>25000</code>'
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: Number of ticks to skip. Use this parameter to loop through the
+          entire data.
+        in: query
+        name: skip
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalNBBO'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Historical NBBO
+      tags:
+      - Default
   /stock/bidask:
     get:
       description: Get last bid/ask data for US stocks.
@@ -933,6 +1250,8 @@ paths:
       security:
       - api_key: []
       summary: Last Bid-Ask
+      tags:
+      - Default
   /stock/split:
     get:
       description: Get splits data for stocks.
@@ -970,10 +1289,36 @@ paths:
       security:
       - api_key: []
       summary: Splits
+      tags:
+      - Default
+  /stock/dividend2:
+    get:
+      description: Get global dividends data.
+      operationId: stock-basic-dividends
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dividends2(Basic)'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Dividends 2 (Basic)
+      tags:
+      - Default
   /index/constituents:
     get:
-      description: Get a list of index's constituents. Currently support <code>^GSPC
-        (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+      description: Get a list of index's constituents. A list of supported indices
+        for this endpoint can be found <a href="https://docs.google.com/spreadsheets/d/1Syr2eLielHWsorxkDEZXyc55d6bNx1M3ZeI4vdn7Qzo/edit?usp=sharing"
+        target="_blank">here</a>.
       operationId: indices-constituents
       parameters:
       - description: symbol
@@ -992,6 +1337,8 @@ paths:
       security:
       - api_key: []
       summary: Indices Constituents
+      tags:
+      - Default
   /index/historical-constituents:
     get:
       description: Get full history of index's constituents including symbols and
@@ -1015,15 +1362,21 @@ paths:
       security:
       - api_key: []
       summary: Indices Historical Constituents
+      tags:
+      - Default
   /etf/profile:
     get:
-      description: Get ETF profile information. Currently support all US ETFs.
+      description: Get ETF profile information. This endpoint has global coverage.
       operationId: etfs-profile
       parameters:
       - description: ETF symbol.
         in: query
         name: symbol
-        required: true
+        schema:
+          type: string
+      - description: ETF isin.
+        in: query
+        name: isin
         schema:
           type: string
       responses:
@@ -1036,17 +1389,32 @@ paths:
       security:
       - api_key: []
       summary: ETFs Profile
+      tags:
+      - Default
   /etf/holdings:
     get:
-      description: Get current ETF holdings.
+      description: Get full ETF holdings/constituents. This endpoint has global coverage.
+        Widget only shows top 10 holdings.
       operationId: etfs-holdings
       parameters:
       - description: ETF symbol.
         in: query
         name: symbol
-        required: true
         schema:
           type: string
+      - description: ETF isin.
+        in: query
+        name: isin
+        schema:
+          type: string
+      - description: Skip the first n results. You can use this parameter to query
+          historical constituents data. The latest result is returned if skip=0 or
+          not set.
+        in: query
+        name: skip
+        schema:
+          format: int64
+          type: integer
       responses:
         "200":
           content:
@@ -1057,10 +1425,12 @@ paths:
       security:
       - api_key: []
       summary: ETFs Holdings
+      tags:
+      - Default
   /etf/sector:
     get:
-      description: Get ETF industry exposure data.
-      operationId: etfs-industry-exposure
+      description: Get ETF sector exposure data.
+      operationId: etfs-sector-exposure
       parameters:
       - description: ETF symbol.
         in: query
@@ -1073,11 +1443,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ETFsIndustryExposure'
+                $ref: '#/components/schemas/ETFsSectorExposure'
           description: successful operation
       security:
       - api_key: []
-      summary: ETFs Industry Exposure
+      summary: ETFs Sector Exposure
+      tags:
+      - Default
   /etf/country:
     get:
       description: Get ETF country exposure data.
@@ -1099,6 +1471,117 @@ paths:
       security:
       - api_key: []
       summary: ETFs Country Exposure
+      tags:
+      - Default
+  /mutual-fund/profile:
+    get:
+      description: Get mutual funds profile information. This endpoint covers US mutual
+        funds only.
+      operationId: mutual-fund-profile
+      parameters:
+      - description: Fund's symbol.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: Fund's isin.
+        in: query
+        name: isin
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutualFundsProfile'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Mutual Funds Profile
+      tags:
+      - Default
+  /mutual-fund/holdings:
+    get:
+      description: Get full Mutual Funds holdings/constituents.
+      operationId: mutual-fund-holdings
+      parameters:
+      - description: Fund's symbol.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: Fund's isin.
+        in: query
+        name: isin
+        schema:
+          type: string
+      - description: Skip the first n results. You can use this parameter to query
+          historical constituents data. The latest result is returned if skip=0 or
+          not set.
+        in: query
+        name: skip
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutualFundsHoldings'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Mutual Funds Holdings
+      tags:
+      - Default
+  /mutual-fund/sector:
+    get:
+      description: Get Mutual Funds sector exposure data.
+      operationId: mutual-fund-sector-exposure
+      parameters:
+      - description: Mutual Fund symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mutual-fundSectorExposure'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Mutual-fund Sector Exposure
+      tags:
+      - Default
+  /mutual-fund/country:
+    get:
+      description: Get Mutual Funds country exposure data.
+      operationId: mutual-fund-country-exposure
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutualFundsCountryExposure'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Mutual Funds Country Exposure
+      tags:
+      - Default
   /forex/exchange:
     get:
       description: List supported forex exchanges
@@ -1115,6 +1598,8 @@ paths:
       security:
       - api_key: []
       summary: Forex Exchanges
+      tags:
+      - Default
   /forex/symbol:
     get:
       description: List supported forex symbols.
@@ -1138,6 +1623,8 @@ paths:
       security:
       - api_key: []
       summary: Forex Symbol
+      tags:
+      - Default
   /forex/candle:
     get:
       description: Get candlestick data for forex symbols.
@@ -1181,6 +1668,8 @@ paths:
       security:
       - api_key: []
       summary: Forex Candles
+      tags:
+      - Default
   /forex/rates:
     get:
       description: Get rates for all forex pairs. Ideal for currency conversion
@@ -1201,6 +1690,8 @@ paths:
       security:
       - api_key: []
       summary: Forex rates
+      tags:
+      - Default
   /crypto/exchange:
     get:
       description: List supported crypto exchanges
@@ -1217,6 +1708,8 @@ paths:
       security:
       - api_key: []
       summary: Crypto Exchanges
+      tags:
+      - Default
   /crypto/symbol:
     get:
       description: List supported crypto symbols by exchange
@@ -1240,6 +1733,8 @@ paths:
       security:
       - api_key: []
       summary: Crypto Symbol
+      tags:
+      - Default
   /crypto/candle:
     get:
       description: Get candlestick data for crypto symbols.
@@ -1283,6 +1778,8 @@ paths:
       security:
       - api_key: []
       summary: Crypto Candles
+      tags:
+      - Default
   /scan/pattern:
     get:
       description: Run pattern recognition algorithm on a symbol. Support double top/bottom,
@@ -1313,6 +1810,8 @@ paths:
       security:
       - api_key: []
       summary: Pattern Recognition
+      tags:
+      - Default
   /scan/support-resistance:
     get:
       description: Get support and resistance levels for a symbol.
@@ -1341,6 +1840,8 @@ paths:
       security:
       - api_key: []
       summary: Support/Resistance
+      tags:
+      - Default
   /scan/technical-indicator:
     get:
       description: Get aggregate signal of multiple technical indicators such as MACD,
@@ -1370,6 +1871,8 @@ paths:
       security:
       - api_key: []
       summary: Aggregate Indicators
+      tags:
+      - Default
   /indicator:
     post:
       description: Return technical indicator with price data. List of supported indicators
@@ -1429,11 +1932,13 @@ paths:
       security:
       - api_key: []
       summary: Technical Indicators
+      tags:
+      - Default
       x-codegen-request-body-name: indicator_fields
   /stock/transcripts/list:
     get:
-      description: List earnings call transcripts' metadata. This endpoint is only
-        available for US companies.
+      description: List earnings call transcripts' metadata. This endpoint is available
+        for US, UK and Canadian companies.
       operationId: transcripts-list
       parameters:
       - description: 'Company symbol: AAPL. Leave empty to list the latest transcripts'
@@ -1452,12 +1957,14 @@ paths:
       security:
       - api_key: []
       summary: Earnings Call Transcripts List
+      tags:
+      - Default
   /stock/transcripts:
     get:
       description: <p>Get earnings call transcripts, audio and participants' list.
-        This endpoint is only available for US companies. <p>17+ years of data is
-        available with 170,000+ audio which add up to 6TB in size.</p>
-      operationId: transcripts
+        This endpoint is only available for US, UK, and Candian companies. <p>15+
+        years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+      operationId: earnings-call-transcripts-api
       parameters:
       - description: Transcript's id obtained with <a href="#transcripts-list">Transcripts
           List endpoint</a>.
@@ -1476,6 +1983,106 @@ paths:
       security:
       - api_key: []
       summary: Earnings Call Transcripts
+      tags:
+      - Default
+  /stock/social-sentiment:
+    get:
+      description: <p>Get social sentiment for stocks on Reddit and Twitter. This
+        endpoint is currently in Beta.</p>
+      operationId: social-sentiment
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialSentiment'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Social Sentiment
+      tags:
+      - Default
+  /stock/investment-theme:
+    get:
+      description: <p>Thematic investing involves creating a portfolio (or portion
+        of a portfolio) by gathering together a collection of companies involved in
+        certain areas that you predict will generate above-market returns over the
+        long term. Themes can be based on a concept such as ageing populations or
+        a sub-sector such as robotics, and drones. Thematic investing focuses on predicted
+        long-term trends rather than specific companies or sectors, enabling investors
+        to access structural, one-off shifts that can change an entire industry.</p><p>This
+        endpoint will help you get portfolios of different investment themes that
+        are changing our life and are the way of the future.</p><p>A full list of
+        themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
+        The theme coverage and portfolios are updated bi-weekly by our analysts. Our
+        approach excludes penny, super-small cap and illiquid stocks.</p>
+      operationId: investment-themes-thematic-investing
+      parameters:
+      - description: Investment theme. A full list of themes supported can be found
+          <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
+        in: query
+        name: theme
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestmentThemes(ThematicInvesting)'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Investment Themes (Thematic Investing)
+      tags:
+      - Default
+  /stock/supply-chain:
+    get:
+      description: <p>This endpoint provides an overall map of public companies' key
+        customers and suppliers. The data offers a deeper look into a company's supply
+        chain and how products are created. The data will help investors manage risk,
+        limit exposure or generate alpha-generating ideas and trading insights.</p><p>We
+        currently cover data for S&P500 and Nasdaq 100 companies.</p>
+      operationId: supply-chain-relationships
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplyChainRelationships'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Supply Chain Relationships
+      tags:
+      - Default
   /covid19/us:
     get:
       description: Get real-time updates on the number of COVID-19 (Corona virus)
@@ -1495,6 +2102,31 @@ paths:
       security:
       - api_key: []
       summary: COVID-19
+      tags:
+      - Default
+  /fda-advisory-committee-calendar:
+    get:
+      description: FDA's advisory committees are established to provide functions
+        which support the agency's mission of protecting and promoting the public
+        health, while meeting the requirements set forth in the Federal Advisory Committee
+        Act. Committees are either mandated by statute or established at the discretion
+        of the Department of Health and Human Services. Each committee is subject
+        to renewal at two-year intervals unless the committee charter states otherwise.
+      operationId: fda-committee-meeting-calendar
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FDAComitteeMeeting'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: FDA Committee Meeting Calendar
+      tags:
+      - Default
   /country:
     get:
       description: List all countries and metadata.
@@ -1511,6 +2143,8 @@ paths:
       security:
       - api_key: []
       summary: Country Metadata
+      tags:
+      - Default
   /economic/code:
     get:
       description: List codes of supported economic data.
@@ -1527,6 +2161,8 @@ paths:
       security:
       - api_key: []
       summary: Economic Code
+      tags:
+      - Default
   /economic:
     get:
       description: Get economic data.
@@ -1548,8 +2184,48 @@ paths:
       security:
       - api_key: []
       summary: Economic Data
+      tags:
+      - Default
 components:
   schemas:
+    Stock:
+      example:
+        displaySymbol: displaySymbol
+        symbol: symbol
+        description: description
+        type: type
+      properties:
+        description:
+          description: Symbol description
+          type: string
+        displaySymbol:
+          description: Display symbol name.
+          type: string
+        symbol:
+          description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
+            endpoint.
+          type: string
+        type:
+          description: Security type.
+          type: string
+      type: object
+    SymbolLookup:
+      example:
+        result:
+        - '{}'
+        - '{}'
+        count: 0
+      properties:
+        result:
+          description: Array of search results.
+          items:
+            type: object
+          type: array
+        count:
+          description: Number of results.
+          format: int64
+          type: integer
+      type: object
     CompanyProfile:
       example:
         country: country
@@ -1725,32 +2401,6 @@ components:
           description: Finnhub industry classification.
           type: string
       type: object
-    Stock:
-      example:
-        displaySymbol: displaySymbol
-        symbol: symbol
-        description: description
-        currency: currency
-        type: type
-      properties:
-        description:
-          description: Symbol description
-          type: string
-        displaySymbol:
-          description: Display symbol name.
-          type: string
-        symbol:
-          description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
-            endpoint.
-          type: string
-        type:
-          description: Security type.
-          type: string
-        currency:
-          description: Price's currency. This might be different from the reporting
-            currency of fundamental data.
-          type: string
-      type: object
     Company:
       properties:
         name:
@@ -1851,8 +2501,11 @@ components:
         description:
           description: Development description.
           type: string
+        url:
+          description: URL.
+          type: string
       type: object
-    MajorDevelopments:
+    MajorPressReleases:
       example:
         majorDevelopment:
         - '{}'
@@ -1935,6 +2588,8 @@ components:
           description: Requested symbol.
           type: string
       type: object
+    MetricSeriesMap:
+      type: object
     MetricMap:
       type: object
     BasicFinancials:
@@ -1942,6 +2597,7 @@ components:
         symbol: symbol
         metricType: metricType
         metric: '{}'
+        series: '{}'
       properties:
         symbol:
           description: Symbol of the company.
@@ -1949,6 +2605,8 @@ components:
         metricType:
           description: Metric type.
           type: string
+        series:
+          type: object
         metric:
           type: object
       type: object
@@ -1970,7 +2628,7 @@ components:
           format: date
           type: string
       type: object
-    InvestorsOwnership:
+    Ownership:
       example:
         symbol: symbol
         ownership:
@@ -1998,6 +2656,56 @@ components:
           type: string
         ownership:
           description: Array of investors with detailed information about their holdings.
+          items:
+            type: object
+          type: array
+      type: object
+    Transactions:
+      properties:
+        name:
+          description: Insider's name.
+          type: string
+        share:
+          description: Number of shares held after the transaction.
+          format: int64
+          type: integer
+        change:
+          description: Number of share changed from the last period. A positive value
+            suggests a <code>BUY</code> transaction. A negative value suggests a <code>SELL</code>
+            transaction.
+          format: int64
+          type: integer
+        filingDate:
+          description: Filing date.
+          format: date
+          type: string
+        transactionDate:
+          description: Transaction date.
+          format: date
+          type: string
+        transactionPrice:
+          description: Average transaction price.
+          format: float
+          type: number
+        transactionCode:
+          description: Transaction code. A list of codes and their meanings can be
+            found <a href="https://www.sec.gov/about/forms/form4data.pdf" target="_blank"
+            rel="noopener">here</a>.
+          format: date
+          type: string
+      type: object
+    InsiderTransactions:
+      example:
+        symbol: symbol
+        data:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        data:
+          description: Array of insider transactions.
           items:
             type: object
           type: array
@@ -2084,6 +2792,36 @@ components:
             type: object
           type: array
       type: object
+    BreakdownItemMap:
+      type: object
+    BreakdownItem:
+      properties:
+        accessNumber:
+          description: Access number of the report from which the data is sourced.
+          type: string
+        breakdown:
+          type: object
+      type: object
+    RevenueBreakdown:
+      example:
+        symbol: symbol
+        cik: cik
+        data:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        cik:
+          description: CIK
+          type: string
+        data:
+          description: Array of revenue breakdown over multiple periods.
+          items:
+            type: object
+          type: array
+      type: object
     Filing:
       example:
         symbol: symbol
@@ -2121,6 +2859,124 @@ components:
         filingUrl:
           description: Filing's URL.
           type: string
+      type: object
+    InternationalFiling:
+      example:
+        symbol: symbol
+        country: country
+        companyName: companyName
+        description: description
+        language: language
+        category: category
+        title: title
+        filedDate: 2000-01-23T04:56:07.000+00:00
+        url: url
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        companyName:
+          description: Company name.
+          type: string
+        filedDate:
+          description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
+          format: date-time
+          type: string
+        category:
+          description: Category.
+          type: string
+        title:
+          description: Document's title.
+          type: string
+        description:
+          description: Document's description.
+          type: string
+        url:
+          description: Url.
+          type: string
+        language:
+          description: Language.
+          type: string
+        country:
+          description: Country.
+          type: string
+      type: object
+    FilingSentiment:
+      example:
+        modal-strong: 9.301444
+        negative: 0.8008282
+        constraining: 2.302136
+        modal-weak: 7.0614014
+        modal-moderate: 3.6160767
+        positive: 6.0274563
+        uncertainty: 5.637377
+        polarity: 1.4658129
+        litigious: 5.962134
+      properties:
+        negative:
+          description: '% of negative words in the filing.'
+          format: float
+          type: number
+        positive:
+          description: '% of positive words in the filing.'
+          format: float
+          type: number
+        polarity:
+          description: '% of polarity words in the filing.'
+          format: float
+          type: number
+        litigious:
+          description: '% of litigious words in the filing.'
+          format: float
+          type: number
+        uncertainty:
+          description: '% of uncertainty words in the filing.'
+          format: float
+          type: number
+        constraining:
+          description: '% of constraining words in the filing.'
+          format: float
+          type: number
+        modal-weak:
+          description: '% of modal-weak words in the filing.'
+          format: float
+          type: number
+        modal-strong:
+          description: '% of modal-strong words in the filing.'
+          format: float
+          type: number
+        modal-moderate:
+          description: '% of modal-moderate words in the filing.'
+          format: float
+          type: number
+      type: object
+    SECSentimentAnalysis:
+      example:
+        symbol: symbol
+        sentiment:
+          modal-strong: 9.301444
+          negative: 0.8008282
+          constraining: 2.302136
+          modal-weak: 7.0614014
+          modal-moderate: 3.6160767
+          positive: 6.0274563
+          uncertainty: 5.637377
+          polarity: 1.4658129
+          litigious: 5.962134
+        cik: cik
+        accessNumber: accessNumber
+      properties:
+        accessNumber:
+          description: Access number.
+          type: string
+        symbol:
+          description: Symbol.
+          type: string
+        cik:
+          description: CIK.
+          type: string
+        sentiment:
+          $ref: '#/components/schemas/FilingSentiment'
       type: object
     SimilarityIndex:
       example:
@@ -2330,7 +3186,7 @@ components:
     Estimate:
       properties:
         revenueAvg:
-          description: Average revenue estimates.
+          description: Average revenue estimates including Finnhub's proprietary estimates.
           format: int64
           type: integer
         revenueHigh:
@@ -2373,7 +3229,7 @@ components:
     EarningEstimate:
       properties:
         epsAvg:
-          description: Average EPS estimates.
+          description: Average EPS estimates including Finnhub's proprietary estimates.
           format: float
           type: number
         epsHigh:
@@ -2416,8 +3272,10 @@ components:
     EarningResult:
       example:
         actual: 0.8008282
+        surprise: 1.4658129
         symbol: symbol
         period: 2000-01-23
+        surprisePercent: 5.962134
         estimate: 6.0274563
       properties:
         actual:
@@ -2426,6 +3284,14 @@ components:
           type: number
         estimate:
           description: Estimated earning.
+          format: float
+          type: number
+        surprise:
+          description: Surprise - The difference between actual and estimate.
+          format: float
+          type: number
+        surprisePercent:
+          description: Surprise percent.
           format: float
           type: number
         period:
@@ -2466,7 +3332,7 @@ components:
           format: float
           type: number
         revenueEstimate:
-          description: Revenue estimate.
+          description: Revenue estimate including Finnhub's proprietary estimates.
           format: int64
           type: integer
         revenueActual:
@@ -2490,8 +3356,10 @@ components:
       example:
         c: 5.962134
         pc: 5.637377
+        d: 2.302136
         h: 6.0274563
         l: 1.4658129
+        dp: 7.0614014
         o: 0.8008282
       properties:
         o:
@@ -2512,6 +3380,14 @@ components:
           type: number
         pc:
           description: Previous close price
+          format: float
+          type: number
+        d:
+          description: Change
+          format: float
+          type: number
+        dp:
+          description: Percent change
           format: float
           type: number
       type: object
@@ -2584,6 +3460,11 @@ components:
         - 5.637377
         total: 1
         s: s
+        c:
+        - - c
+          - c
+        - - c
+          - c
         t:
         - 2
         - 2
@@ -2631,9 +3512,120 @@ components:
             type: integer
           type: array
         x:
-          description: List of venues/exchanges.
+          description: List of venues/exchanges. A list of exchange codes can be found
+            <a target="_blank" href="https://docs.google.com/spreadsheets/d/1Tj53M1svmr-hfEtbk6_NpVR1yAyGLMaH6ByYU6CG0ZY/edit?usp=sharing",>here</a>
           items:
             type: string
+          type: array
+        c:
+          description: List of trade conditions. A comprehensive list of trade conditions
+            code can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1PUxiSWPHSODbaTaoL2Vef6DgU-yFtlRGZf19oBb9Hp0/edit?usp=sharing">here</a>
+          items:
+            items:
+              description: TODO default missing array inner type to string
+              type: string
+            type: array
+          type: array
+      type: object
+    HistoricalNBBO:
+      example:
+        a:
+        - 5.637377
+        - 5.637377
+        total: 1
+        b:
+        - 7.0614014
+        - 7.0614014
+        s: s
+        c:
+        - - c
+          - c
+        - - c
+          - c
+        bv:
+        - 2.302136
+        - 2.302136
+        t:
+        - 9
+        - 9
+        av:
+        - 5.962134
+        - 5.962134
+        bx:
+        - bx
+        - bx
+        ax:
+        - ax
+        - ax
+        count: 6
+        skip: 0
+      properties:
+        s:
+          description: Symbol.
+          type: string
+        skip:
+          description: Number of ticks skipped.
+          format: int64
+          type: integer
+        count:
+          description: Number of ticks returned. If <code>count</code> < <code>limit</code>,
+            all data for that date has been returned.
+          format: int64
+          type: integer
+        total:
+          description: Total number of ticks for that date.
+          format: int64
+          type: integer
+        av:
+          description: List of Ask volume data.
+          items:
+            format: float
+            type: number
+          type: array
+        a:
+          description: List of Ask price data.
+          items:
+            format: float
+            type: number
+          type: array
+        ax:
+          description: List of venues/exchanges - Ask price. A list of exchange codes
+            can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1Tj53M1svmr-hfEtbk6_NpVR1yAyGLMaH6ByYU6CG0ZY/edit?usp=sharing",>here</a>
+          items:
+            type: string
+          type: array
+        bv:
+          description: List of Bid volume data.
+          items:
+            format: float
+            type: number
+          type: array
+        b:
+          description: List of Bid price data.
+          items:
+            format: float
+            type: number
+          type: array
+        bx:
+          description: List of venues/exchanges - Bid price. A list of exchange codes
+            can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1Tj53M1svmr-hfEtbk6_NpVR1yAyGLMaH6ByYU6CG0ZY/edit?usp=sharing",>here</a>
+          items:
+            type: string
+          type: array
+        t:
+          description: List of timestamp in UNIX ms.
+          items:
+            format: int64
+            type: integer
+          type: array
+        c:
+          description: List of quote conditions. A comprehensive list of quote conditions
+            code can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1iiA6e7Osdtai0oPMOUzgAIKXCsay89dFDmsegz6OpEg/edit?usp=sharing">here</a>
+          items:
+            items:
+              description: TODO default missing array inner type to string
+              type: string
+            type: array
           type: array
       type: object
     LastBid-Ask:
@@ -2688,6 +3680,22 @@ components:
           format: float
           type: number
       type: object
+    Dividends2(Basic):
+      example:
+        symbol: symbol
+        data:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        data:
+          description: ""
+          items:
+            type: object
+          type: array
+      type: object
     IndicesConstituents:
       example:
         symbol: symbol
@@ -2734,23 +3742,130 @@ components:
           type: array
       type: object
     ETFProfileData:
+      example:
+        nav: 6.0274563
+        website: website
+        cusip: cusip
+        priceToEarnings: 5.962134
+        avgVolume: 2.302136
+        description: description
+        assetClass: assetClass
+        etfCompany: etfCompany
+        inceptionDate: 2000-01-23
+        expenseRatio: 1.4658129
+        name: name
+        aum: 0.8008282
+        domicile: domicile
+        trackingIndex: trackingIndex
+        priceToBook: 5.637377
+        investmentSegment: investmentSegment
+        navCurrency: navCurrency
+        isin: isin
+      properties:
+        name:
+          description: Name
+          type: string
+        assetClass:
+          description: Asset Class.
+          type: string
+        investmentSegment:
+          description: Investment Segment.
+          type: string
+        aum:
+          description: AUM.
+          format: float
+          type: number
+        nav:
+          description: NAV.
+          format: float
+          type: number
+        navCurrency:
+          description: NAV currency.
+          type: string
+        expenseRatio:
+          description: Expense ratio.
+          format: float
+          type: number
+        trackingIndex:
+          description: Tracking Index.
+          type: string
+        etfCompany:
+          description: ETF issuer.
+          type: string
+        domicile:
+          description: ETF domicile.
+          type: string
+        inceptionDate:
+          description: Inception date.
+          format: date
+          type: string
+        website:
+          description: ETF's website.
+          type: string
+        isin:
+          description: ISIN.
+          type: string
+        cusip:
+          description: CUSIP.
+          type: string
+        priceToEarnings:
+          description: P/E.
+          format: float
+          type: number
+        priceToBook:
+          description: P/B.
+          format: float
+          type: number
+        avgVolume:
+          description: 30-day average volume.
+          format: float
+          type: number
+        description:
+          description: ETF's description.
+          type: string
       type: object
     ETFsProfile:
       example:
         symbol: symbol
-        profile: '{}'
+        profile:
+          nav: 6.0274563
+          website: website
+          cusip: cusip
+          priceToEarnings: 5.962134
+          avgVolume: 2.302136
+          description: description
+          assetClass: assetClass
+          etfCompany: etfCompany
+          inceptionDate: 2000-01-23
+          expenseRatio: 1.4658129
+          name: name
+          aum: 0.8008282
+          domicile: domicile
+          trackingIndex: trackingIndex
+          priceToBook: 5.637377
+          investmentSegment: investmentSegment
+          navCurrency: navCurrency
+          isin: isin
       properties:
         symbol:
-          description: Use symbol returned in <code>/forex/symbol</code> endpoint
-            for this field.
+          description: Symbol.
           type: string
         profile:
-          type: object
+          $ref: '#/components/schemas/ETFProfileData'
       type: object
     ETFHoldingsData:
       properties:
         symbol:
           description: Symbol description
+          type: string
+        name:
+          description: Security name
+          type: string
+        isin:
+          description: ISIN.
+          type: string
+        cusip:
+          description: CUSIP.
           type: string
         share:
           description: Number of shares owned by the ETF.
@@ -2760,17 +3875,31 @@ components:
           description: Portfolio's percent
           format: float
           type: number
+        value:
+          description: Market value
+          format: float
+          type: number
       type: object
     ETFsHoldings:
       example:
         symbol: symbol
+        atDate: 2000-01-23
         holdings:
         - '{}'
         - '{}'
+        numberOfHoldings: 0
       properties:
         symbol:
           description: ETF symbol.
           type: string
+        atDate:
+          description: Holdings update date.
+          format: date
+          type: string
+        numberOfHoldings:
+          description: Number of holdings.
+          format: int64
+          type: integer
         holdings:
           description: Array of holdings.
           items:
@@ -2784,9 +3913,10 @@ components:
           type: string
         exposure:
           description: Percent of exposure.
-          type: string
+          format: float
+          type: number
       type: object
-    ETFsIndustryExposure:
+    ETFsSectorExposure:
       example:
         symbol: symbol
         sectorExposure:
@@ -2809,7 +3939,8 @@ components:
           type: string
         exposure:
           description: Percent of exposure.
-          type: string
+          format: float
+          type: number
       type: object
     ETFsCountryExposure:
       example:
@@ -2820,6 +3951,113 @@ components:
       properties:
         symbol:
           description: ETF symbol.
+          type: string
+        countryExposure:
+          description: Array of countries and and exposure levels.
+          items:
+            type: object
+          type: array
+      type: object
+    MutualFundsProfile:
+      example:
+        symbol: symbol
+        profile:
+          nav: 6.0274563
+          website: website
+          cusip: cusip
+          priceToEarnings: 5.962134
+          avgVolume: 2.302136
+          description: description
+          assetClass: assetClass
+          etfCompany: etfCompany
+          inceptionDate: 2000-01-23
+          expenseRatio: 1.4658129
+          name: name
+          aum: 0.8008282
+          domicile: domicile
+          trackingIndex: trackingIndex
+          priceToBook: 5.637377
+          investmentSegment: investmentSegment
+          navCurrency: navCurrency
+          isin: isin
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        profile:
+          $ref: '#/components/schemas/ETFProfileData'
+      type: object
+    MutualFundsHoldings:
+      example:
+        symbol: symbol
+        atDate: 2000-01-23
+        holdings:
+        - '{}'
+        - '{}'
+        numberOfHoldings: 0
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        atDate:
+          description: Holdings update date.
+          format: date
+          type: string
+        numberOfHoldings:
+          description: Number of holdings.
+          format: int64
+          type: integer
+        holdings:
+          description: Array of holdings.
+          items:
+            type: object
+          type: array
+      type: object
+    MutualFundSectorExposureData:
+      properties:
+        sector:
+          description: Sector
+          type: string
+        exposure:
+          description: Percent of exposure.
+          format: float
+          type: number
+      type: object
+    Mutual-fundSectorExposure:
+      example:
+        symbol: symbol
+        sectorExposure:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Mutual symbol.
+          type: string
+        sectorExposure:
+          description: Array of sector and exposure levels.
+          items:
+            type: object
+          type: array
+      type: object
+    MutualFundCountryExposureData:
+      properties:
+        country:
+          description: Country
+          type: string
+        exposure:
+          description: Percent of exposure.
+          format: float
+          type: number
+      type: object
+    MutualFundsCountryExposure:
+      example:
+        symbol: symbol
+        countryExposure:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Symbol.
           type: string
         countryExposure:
           description: Array of countries and and exposure levels.
@@ -3140,6 +4378,9 @@ components:
           items:
             type: string
           type: array
+        session:
+          description: Earnings calls section (management discussion or Q&A)
+          type: string
       type: object
     TranscriptParticipant:
       properties:
@@ -3148,6 +4389,9 @@ components:
           type: string
         description:
           description: Participant's description
+          type: string
+        role:
+          description: Whether the speak is a company's executive or an analyst
           type: string
       type: object
     EarningsCallTranscripts:
@@ -3201,6 +4445,147 @@ components:
           format: int64
           type: integer
       type: object
+    RedditSentimentContent:
+      properties:
+        mention:
+          description: Number of mentions
+          format: int64
+          type: integer
+        positiveMention:
+          description: Number of positive mentions
+          format: int64
+          type: integer
+        negativeMention:
+          description: Number of negative mentions
+          format: int64
+          type: integer
+        positiveScore:
+          description: Positive score. Range 0-1
+          format: float
+          type: number
+        negativeScore:
+          description: Negative score. Range 0-1
+          format: float
+          type: number
+        score:
+          description: 'Final score. Range: -1 to 1 with 1 is very positive and -1
+            is very negative'
+          format: float
+          type: number
+        atTime:
+          description: Period.
+          format: date-time
+          type: string
+      type: object
+    TwitterSentimentContent:
+      properties:
+        mention:
+          description: Number of mentions
+          format: int64
+          type: integer
+        positiveMention:
+          description: Number of positive mentions
+          format: int64
+          type: integer
+        negativeMention:
+          description: Number of negative mentions
+          format: int64
+          type: integer
+        positiveScore:
+          description: Positive score. Range 0-1
+          format: float
+          type: number
+        negativeScore:
+          description: Negative score. Range 0-1
+          format: float
+          type: number
+        score:
+          description: 'Final score. Range: -1 to 1 with 1 is very positive and -1
+            is very negative'
+          format: float
+          type: number
+        atTime:
+          description: Period.
+          format: date-time
+          type: string
+      type: object
+    SocialSentiment:
+      example:
+        symbol: symbol
+        twitter:
+        - '{}'
+        - '{}'
+        reddit:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        reddit:
+          description: Reddit sentiment.
+          items:
+            type: object
+          type: array
+        twitter:
+          description: Twitter sentiment.
+          items:
+            type: object
+          type: array
+      type: object
+    InvestmentThemePortfolio:
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+      type: object
+    InvestmentThemes(ThematicInvesting):
+      example:
+        data:
+        - '{}'
+        - '{}'
+        theme: theme
+      properties:
+        theme:
+          description: Investment theme
+          type: string
+        data:
+          description: Investment theme portfolio.
+          items:
+            type: object
+          type: array
+      type: object
+    KeyCustomersSuppliers:
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        name:
+          description: Name
+          type: string
+        customer:
+          description: Whether the company is a customer.
+          type: boolean
+        supplier:
+          description: Whether the company is a supplier
+          type: boolean
+      type: object
+    SupplyChainRelationships:
+      example:
+        symbol: symbol
+        data:
+        - '{}'
+        - '{}'
+      properties:
+        symbol:
+          description: symbol
+          type: string
+        data:
+          description: Key customers and suppliers.
+          items:
+            type: object
+          type: array
+      type: object
     CovidInfo:
       example:
         death: 6.0274563
@@ -3222,6 +4607,28 @@ components:
         updated:
           description: Updated time.
           format: date-time
+          type: string
+      type: object
+    FDAComitteeMeeting:
+      example:
+        fromDate: 2000-01-23T04:56:07.000+00:00
+        toDate: 2000-01-23T04:56:07.000+00:00
+        eventDescription: eventDescription
+        url: url
+      properties:
+        fromDate:
+          description: Start time of the event in EST.
+          format: date-time
+          type: string
+        toDate:
+          description: End time of the event in EST.
+          format: date-time
+          type: string
+        eventDescription:
+          description: Event's description.
+          type: string
+        url:
+          description: URL.
           type: string
       type: object
     CountryMetadata:
@@ -3341,3 +4748,4 @@ components:
       in: query
       name: token
       type: apiKey
+x-original-swagger-version: "2.0"

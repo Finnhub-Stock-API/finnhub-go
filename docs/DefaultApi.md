@@ -20,13 +20,16 @@ Method | HTTP request | Description
 [**CryptoExchanges**](DefaultApi.md#CryptoExchanges) | **Get** /crypto/exchange | Crypto Exchanges
 [**CryptoSymbols**](DefaultApi.md#CryptoSymbols) | **Get** /crypto/symbol | Crypto Symbol
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
+[**EarningsCallTranscriptsApi**](DefaultApi.md#EarningsCallTranscriptsApi) | **Get** /stock/transcripts | Earnings Call Transcripts
 [**EconomicCode**](DefaultApi.md#EconomicCode) | **Get** /economic/code | Economic Code
 [**EconomicData**](DefaultApi.md#EconomicData) | **Get** /economic | Economic Data
 [**EtfsCountryExposure**](DefaultApi.md#EtfsCountryExposure) | **Get** /etf/country | ETFs Country Exposure
 [**EtfsHoldings**](DefaultApi.md#EtfsHoldings) | **Get** /etf/holdings | ETFs Holdings
-[**EtfsIndustryExposure**](DefaultApi.md#EtfsIndustryExposure) | **Get** /etf/sector | ETFs Industry Exposure
 [**EtfsProfile**](DefaultApi.md#EtfsProfile) | **Get** /etf/profile | ETFs Profile
-[**Filings**](DefaultApi.md#Filings) | **Get** /stock/filings | Filings
+[**EtfsSectorExposure**](DefaultApi.md#EtfsSectorExposure) | **Get** /etf/sector | ETFs Sector Exposure
+[**FdaCommitteeMeetingCalendar**](DefaultApi.md#FdaCommitteeMeetingCalendar) | **Get** /fda-advisory-committee-calendar | FDA Committee Meeting Calendar
+[**Filings**](DefaultApi.md#Filings) | **Get** /stock/filings | SEC Filings
+[**FilingsSentiment**](DefaultApi.md#FilingsSentiment) | **Get** /stock/filings-sentiment | SEC Sentiment Analysis
 [**Financials**](DefaultApi.md#Financials) | **Get** /stock/financials | Financial Statements
 [**FinancialsReported**](DefaultApi.md#FinancialsReported) | **Get** /stock/financials-reported | Financials As Reported
 [**ForexCandles**](DefaultApi.md#ForexCandles) | **Get** /forex/candle | Forex Candles
@@ -34,27 +37,39 @@ Method | HTTP request | Description
 [**ForexRates**](DefaultApi.md#ForexRates) | **Get** /forex/rates | Forex rates
 [**ForexSymbols**](DefaultApi.md#ForexSymbols) | **Get** /forex/symbol | Forex Symbol
 [**FundOwnership**](DefaultApi.md#FundOwnership) | **Get** /stock/fund-ownership | Fund Ownership
-[**GeneralNews**](DefaultApi.md#GeneralNews) | **Get** /news | General News
 [**IndicesConstituents**](DefaultApi.md#IndicesConstituents) | **Get** /index/constituents | Indices Constituents
 [**IndicesHistoricalConstituents**](DefaultApi.md#IndicesHistoricalConstituents) | **Get** /index/historical-constituents | Indices Historical Constituents
-[**InvestorsOwnership**](DefaultApi.md#InvestorsOwnership) | **Get** /stock/investor-ownership | Investors Ownership
+[**InsiderTransactions**](DefaultApi.md#InsiderTransactions) | **Get** /stock/insider-transactions | Insider Transactions
+[**InternationalFilings**](DefaultApi.md#InternationalFilings) | **Get** /stock/international-filings | International Filings
+[**InvestmentThemesThematicInvesting**](DefaultApi.md#InvestmentThemesThematicInvesting) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
-[**MajorDevelopments**](DefaultApi.md#MajorDevelopments) | **Get** /major-development | Major Developments
+[**MarketNews**](DefaultApi.md#MarketNews) | **Get** /news | Market News
+[**MutualFundCountryExposure**](DefaultApi.md#MutualFundCountryExposure) | **Get** /mutual-fund/country | Mutual Funds Country Exposure
+[**MutualFundHoldings**](DefaultApi.md#MutualFundHoldings) | **Get** /mutual-fund/holdings | Mutual Funds Holdings
+[**MutualFundProfile**](DefaultApi.md#MutualFundProfile) | **Get** /mutual-fund/profile | Mutual Funds Profile
+[**MutualFundSectorExposure**](DefaultApi.md#MutualFundSectorExposure) | **Get** /mutual-fund/sector | Mutual-fund Sector Exposure
 [**NewsSentiment**](DefaultApi.md#NewsSentiment) | **Get** /news-sentiment | News Sentiment
+[**Ownership**](DefaultApi.md#Ownership) | **Get** /stock/ownership | Ownership
 [**PatternRecognition**](DefaultApi.md#PatternRecognition) | **Get** /scan/pattern | Pattern Recognition
+[**PressReleases**](DefaultApi.md#PressReleases) | **Get** /press-releases | Major Press Releases
 [**PriceTarget**](DefaultApi.md#PriceTarget) | **Get** /stock/price-target | Price Target
 [**Quote**](DefaultApi.md#Quote) | **Get** /quote | Quote
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
+[**RevenueBreakdown**](DefaultApi.md#RevenueBreakdown) | **Get** /stock/revenue-breakdown | Revenue Breakdown
 [**SimilarityIndex**](DefaultApi.md#SimilarityIndex) | **Get** /stock/similarity-index | Similarity Index
+[**SocialSentiment**](DefaultApi.md#SocialSentiment) | **Get** /stock/social-sentiment | Social Sentiment
+[**StockBasicDividends**](DefaultApi.md#StockBasicDividends) | **Get** /stock/dividend2 | Dividends 2 (Basic)
 [**StockBidask**](DefaultApi.md#StockBidask) | **Get** /stock/bidask | Last Bid-Ask
 [**StockCandles**](DefaultApi.md#StockCandles) | **Get** /stock/candle | Stock Candles
 [**StockDividends**](DefaultApi.md#StockDividends) | **Get** /stock/dividend | Dividends
+[**StockNbbo**](DefaultApi.md#StockNbbo) | **Get** /stock/bbo | Historical NBBO
 [**StockSplits**](DefaultApi.md#StockSplits) | **Get** /stock/split | Splits
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
 [**StockTick**](DefaultApi.md#StockTick) | **Get** /stock/tick | Tick Data
+[**SupplyChainRelationships**](DefaultApi.md#SupplyChainRelationships) | **Get** /stock/supply-chain | Supply Chain Relationships
 [**SupportResistance**](DefaultApi.md#SupportResistance) | **Get** /scan/support-resistance | Support/Resistance
+[**SymbolSearch**](DefaultApi.md#SymbolSearch) | **Get** /search | Symbol Lookup
 [**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Post** /indicator | Technical Indicators
-[**Transcripts**](DefaultApi.md#Transcripts) | **Get** /stock/transcripts | Earnings Call Transcripts
 [**TranscriptsList**](DefaultApi.md#TranscriptsList) | **Get** /stock/transcripts/list | Earnings Call Transcripts List
 [**UpgradeDowngrade**](DefaultApi.md#UpgradeDowngrade) | **Get** /stock/upgrade-downgrade | Stock Upgrade/Downgrade
 
@@ -62,20 +77,53 @@ Method | HTTP request | Description
 
 ## AggregateIndicator
 
-> AggregateIndicators AggregateIndicator(ctx, symbol, resolution)
+> AggregateIndicators AggregateIndicator(ctx).Symbol(symbol).Resolution(resolution).Execute()
 
 Aggregate Indicators
 
-Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | symbol
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.AggregateIndicator(context.Background()).Symbol(symbol).Resolution(resolution).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AggregateIndicator``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AggregateIndicator`: AggregateIndicators
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AggregateIndicator`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAggregateIndicatorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| symbol | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **symbol** | **string** | symbol | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
 
 ### Return type
 
@@ -97,20 +145,53 @@ Name | Type | Description  | Notes
 
 ## CompanyBasicFinancials
 
-> BasicFinancials CompanyBasicFinancials(ctx, symbol, metric)
+> BasicFinancials CompanyBasicFinancials(ctx).Symbol(symbol).Metric(metric).Execute()
 
 Basic Financials
 
-Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    metric := "metric_example" // string | Metric type. Can be 1 of the following values <code>all</code>
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyBasicFinancials(context.Background()).Symbol(symbol).Metric(metric).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyBasicFinancials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyBasicFinancials`: BasicFinancials
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyBasicFinancials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyBasicFinancialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
-**metric** | **string**| Metric type. Can be 1 of the following values &lt;code&gt;all, price, valuation, margin&lt;/code&gt; | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **metric** | **string** | Metric type. Can be 1 of the following values &lt;code&gt;all&lt;/code&gt; | 
 
 ### Return type
 
@@ -132,30 +213,53 @@ Name | Type | Description  | Notes
 
 ## CompanyEarnings
 
-> []EarningResult CompanyEarnings(ctx, symbol, optional)
+> []EarningResult CompanyEarnings(ctx).Symbol(symbol).Limit(limit).Execute()
 
 Earnings Surprises
 
-Get company historical quarterly earnings surprise going back to 2000.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    limit := int64(789) // int64 | Limit number of period returned. Leave blank to get the full history. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyEarnings(context.Background()).Symbol(symbol).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyEarnings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyEarnings`: []EarningResult
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyEarnings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyEarningsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
- **optional** | ***CompanyEarningsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CompanyEarningsOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **optional.Int64**| Limit number of period returned. Leave blank to get the full history. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **limit** | **int64** | Limit number of period returned. Leave blank to get the full history. | 
 
 ### Return type
 
@@ -177,30 +281,53 @@ Name | Type | Description  | Notes
 
 ## CompanyEpsEstimates
 
-> EarningsEstimates CompanyEpsEstimates(ctx, symbol, optional)
+> EarningsEstimates CompanyEpsEstimates(ctx).Symbol(symbol).Freq(freq).Execute()
 
 Earnings Estimates
 
-Get company's EPS estimates.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    freq := "freq_example" // string | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code> (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyEpsEstimates(context.Background()).Symbol(symbol).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyEpsEstimates``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyEpsEstimates`: EarningsEstimates
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyEpsEstimates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyEpsEstimatesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
- **optional** | ***CompanyEpsEstimatesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CompanyEpsEstimatesOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **freq** | **optional.String**| Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt; | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **freq** | **string** | Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt; | 
 
 ### Return type
 
@@ -222,19 +349,51 @@ Name | Type | Description  | Notes
 
 ## CompanyExecutive
 
-> CompanyExecutive CompanyExecutive(ctx, symbol)
+> CompanyExecutive CompanyExecutive(ctx).Symbol(symbol).Execute()
 
 Company Executive
 
-Get a list of company's executives and members of the Board.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyExecutive(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyExecutive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyExecutive`: CompanyExecutive
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyExecutive`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyExecutiveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
 
 ### Return type
 
@@ -256,21 +415,56 @@ Name | Type | Description  | Notes
 
 ## CompanyNews
 
-> []News CompanyNews(ctx, symbol, from, to)
+> []News CompanyNews(ctx).Symbol(symbol).From(from).To(to).Execute()
 
 Company News
 
-List latest company news by symbol. This endpoint is only available for North American companies.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyNews(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyNews``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyNews`: []News
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyNews`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyNewsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Company symbol. | 
-**from** | **string**| From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
-**to** | **string**| To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **symbol** | **string** | Company symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
 
 ### Return type
 
@@ -292,19 +486,51 @@ Name | Type | Description  | Notes
 
 ## CompanyPeers
 
-> []string CompanyPeers(ctx, symbol)
+> []string CompanyPeers(ctx).Symbol(symbol).Execute()
 
 Peers
 
-Get company peers. Return a list of peers in the same country and GICS sub-industry
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyPeers(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyPeers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyPeers`: []string
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyPeers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyPeersRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
 
 ### Return type
 
@@ -326,30 +552,55 @@ Name | Type | Description  | Notes
 
 ## CompanyProfile
 
-> CompanyProfile CompanyProfile(ctx, optional)
+> CompanyProfile CompanyProfile(ctx).Symbol(symbol).Isin(isin).Cusip(cusip).Execute()
 
 Company Profile
 
-Get general information of a company. You can query by symbol, ISIN or CUSIP
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL e.g. (optional)
+    isin := "isin_example" // string | ISIN (optional)
+    cusip := "cusip_example" // string | CUSIP (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyProfile(context.Background()).Symbol(symbol).Isin(isin).Cusip(cusip).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyProfile`: CompanyProfile
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyProfileRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CompanyProfileOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CompanyProfileOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol of the company: AAPL e.g. | 
- **isin** | **optional.String**| ISIN | 
- **cusip** | **optional.String**| CUSIP | 
+ **symbol** | **string** | Symbol of the company: AAPL e.g. | 
+ **isin** | **string** | ISIN | 
+ **cusip** | **string** | CUSIP | 
 
 ### Return type
 
@@ -371,30 +622,55 @@ Name | Type | Description  | Notes
 
 ## CompanyProfile2
 
-> CompanyProfile2 CompanyProfile2(ctx, optional)
+> CompanyProfile2 CompanyProfile2(ctx).Symbol(symbol).Isin(isin).Cusip(cusip).Execute()
 
 Company Profile 2
 
-Get general information of a company. You can query by symbol, ISIN or CUSIP. This is the free version of <a href=\"#company-profile\">Company Profile</a>.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL e.g. (optional)
+    isin := "isin_example" // string | ISIN (optional)
+    cusip := "cusip_example" // string | CUSIP (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyProfile2(context.Background()).Symbol(symbol).Isin(isin).Cusip(cusip).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyProfile2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyProfile2`: CompanyProfile2
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyProfile2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyProfile2Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CompanyProfile2Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CompanyProfile2Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol of the company: AAPL e.g. | 
- **isin** | **optional.String**| ISIN | 
- **cusip** | **optional.String**| CUSIP | 
+ **symbol** | **string** | Symbol of the company: AAPL e.g. | 
+ **isin** | **string** | ISIN | 
+ **cusip** | **string** | CUSIP | 
 
 ### Return type
 
@@ -416,30 +692,53 @@ Name | Type | Description  | Notes
 
 ## CompanyRevenueEstimates
 
-> RevenueEstimates CompanyRevenueEstimates(ctx, symbol, optional)
+> RevenueEstimates CompanyRevenueEstimates(ctx).Symbol(symbol).Freq(freq).Execute()
 
 Revenue Estimates
 
-Get company's revenue estimates.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    freq := "freq_example" // string | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code> (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyRevenueEstimates(context.Background()).Symbol(symbol).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyRevenueEstimates``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyRevenueEstimates`: RevenueEstimates
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyRevenueEstimates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyRevenueEstimatesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
- **optional** | ***CompanyRevenueEstimatesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CompanyRevenueEstimatesOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **freq** | **optional.String**| Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt; | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **freq** | **string** | Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt; | 
 
 ### Return type
 
@@ -461,15 +760,46 @@ Name | Type | Description  | Notes
 
 ## Country
 
-> []CountryMetadata Country(ctx, )
+> []CountryMetadata Country(ctx).Execute()
 
 Country Metadata
 
-List all countries and metadata.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Country(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Country``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Country`: []CountryMetadata
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Country`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCountryRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -491,15 +821,46 @@ This endpoint does not need any parameter.
 
 ## Covid19
 
-> []CovidInfo Covid19(ctx, )
+> []CovidInfo Covid19(ctx).Execute()
 
 COVID-19
 
-Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources. You can also access this API <a href=\"https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19\" target=\"_blank\" rel=\"nofollow\">here</a>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Covid19(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Covid19``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Covid19`: []CovidInfo
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Covid19`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCovid19Request struct via the builder pattern
+
 
 ### Return type
 
@@ -521,22 +882,57 @@ This endpoint does not need any parameter.
 
 ## CryptoCandles
 
-> CryptoCandles CryptoCandles(ctx, symbol, resolution, from, to)
+> CryptoCandles CryptoCandles(ctx).Symbol(symbol).Resolution(resolution).From(from).To(to).Execute()
 
 Crypto Candles
 
-Get candlestick data for crypto symbols.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Use symbol returned in <code>/crypto/symbol</code> endpoint for this field.
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+    from := int64(789) // int64 | UNIX timestamp. Interval initial value.
+    to := int64(789) // int64 | UNIX timestamp. Interval end value.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CryptoCandles(context.Background()).Symbol(symbol).Resolution(resolution).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CryptoCandles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CryptoCandles`: CryptoCandles
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CryptoCandles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCryptoCandlesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Use symbol returned in &lt;code&gt;/crypto/symbol&lt;/code&gt; endpoint for this field. | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
-**from** | **int64**| UNIX timestamp. Interval initial value. | 
-**to** | **int64**| UNIX timestamp. Interval end value. | 
+ **symbol** | **string** | Use symbol returned in &lt;code&gt;/crypto/symbol&lt;/code&gt; endpoint for this field. | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **from** | **int64** | UNIX timestamp. Interval initial value. | 
+ **to** | **int64** | UNIX timestamp. Interval end value. | 
 
 ### Return type
 
@@ -558,15 +954,46 @@ Name | Type | Description  | Notes
 
 ## CryptoExchanges
 
-> []string CryptoExchanges(ctx, )
+> []string CryptoExchanges(ctx).Execute()
 
 Crypto Exchanges
 
-List supported crypto exchanges
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CryptoExchanges(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CryptoExchanges``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CryptoExchanges`: []string
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CryptoExchanges`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCryptoExchangesRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -588,19 +1015,51 @@ This endpoint does not need any parameter.
 
 ## CryptoSymbols
 
-> []CryptoSymbol CryptoSymbols(ctx, exchange)
+> []CryptoSymbol CryptoSymbols(ctx).Exchange(exchange).Execute()
 
 Crypto Symbol
 
-List supported crypto symbols by exchange
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    exchange := "exchange_example" // string | Exchange you want to get the list of symbols from.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CryptoSymbols(context.Background()).Exchange(exchange).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CryptoSymbols``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CryptoSymbols`: []CryptoSymbol
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CryptoSymbols`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCryptoSymbolsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**exchange** | **string**| Exchange you want to get the list of symbols from. | 
+ **exchange** | **string** | Exchange you want to get the list of symbols from. | 
 
 ### Return type
 
@@ -622,31 +1081,58 @@ Name | Type | Description  | Notes
 
 ## EarningsCalendar
 
-> EarningsCalendar EarningsCalendar(ctx, optional)
+> EarningsCalendar EarningsCalendar(ctx).From(from).To(to).Symbol(symbol).International(international).Execute()
 
 Earnings Calendar
 
-Get historical and coming earnings release dating back to 2003. You can setup <a href=\"#webhook\">webhook</a> to receive real-time earnings update.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    from := time.Now() // string | From date: 2020-03-15. (optional)
+    to := time.Now() // string | To date: 2020-03-16. (optional)
+    symbol := "symbol_example" // string | Filter by symbol: AAPL. (optional)
+    international := true // bool | Set to <code>true</code> to include international markets. Default value is <code>false</code> (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EarningsCalendar(context.Background()).From(from).To(to).Symbol(symbol).International(international).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EarningsCalendar``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EarningsCalendar`: EarningsCalendar
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EarningsCalendar`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEarningsCalendarRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***EarningsCalendarOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a EarningsCalendarOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **from** | **optional.String**| From date: 2020-03-15. | 
- **to** | **optional.String**| To date: 2020-03-16. | 
- **symbol** | **optional.String**| Filter by symbol: AAPL. | 
- **international** | **optional.Bool**| Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt; | 
+ **from** | **string** | From date: 2020-03-15. | 
+ **to** | **string** | To date: 2020-03-16. | 
+ **symbol** | **string** | Filter by symbol: AAPL. | 
+ **international** | **bool** | Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt; | 
 
 ### Return type
 
@@ -666,17 +1152,114 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EarningsCallTranscriptsApi
+
+> EarningsCallTranscripts EarningsCallTranscriptsApi(ctx).Id(id).Execute()
+
+Earnings Call Transcripts
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EarningsCallTranscriptsApi(context.Background()).Id(id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EarningsCallTranscriptsApi``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EarningsCallTranscriptsApi`: EarningsCallTranscripts
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EarningsCallTranscriptsApi`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEarningsCallTranscriptsApiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;. | 
+
+### Return type
+
+[**EarningsCallTranscripts**](EarningsCallTranscripts.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## EconomicCode
 
-> []EconomicCode EconomicCode(ctx, )
+> []EconomicCode EconomicCode(ctx).Execute()
 
 Economic Code
 
-List codes of supported economic data.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EconomicCode(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EconomicCode``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EconomicCode`: []EconomicCode
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EconomicCode`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEconomicCodeRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -698,19 +1281,51 @@ This endpoint does not need any parameter.
 
 ## EconomicData
 
-> EconomicData EconomicData(ctx, code)
+> EconomicData EconomicData(ctx).Code(code).Execute()
 
 Economic Data
 
-Get economic data.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    code := "code_example" // string | Economic code.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EconomicData(context.Background()).Code(code).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EconomicData``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EconomicData`: EconomicData
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EconomicData`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEconomicDataRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**code** | **string**| Economic code. | 
+ **code** | **string** | Economic code. | 
 
 ### Return type
 
@@ -732,23 +1347,55 @@ Name | Type | Description  | Notes
 
 ## EtfsCountryExposure
 
-> EtFsCountryExposure EtfsCountryExposure(ctx, symbol)
+> ETFsCountryExposure EtfsCountryExposure(ctx).Symbol(symbol).Execute()
 
 ETFs Country Exposure
 
-Get ETF country exposure data.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | ETF symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EtfsCountryExposure(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsCountryExposure``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EtfsCountryExposure`: ETFsCountryExposure
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EtfsCountryExposure`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEtfsCountryExposureRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| ETF symbol. | 
+ **symbol** | **string** | ETF symbol. | 
 
 ### Return type
 
-[**EtFsCountryExposure**](ETFsCountryExposure.md)
+[**ETFsCountryExposure**](ETFsCountryExposure.md)
 
 ### Authorization
 
@@ -766,57 +1413,59 @@ Name | Type | Description  | Notes
 
 ## EtfsHoldings
 
-> EtFsHoldings EtfsHoldings(ctx, symbol)
+> ETFsHoldings EtfsHoldings(ctx).Symbol(symbol).Isin(isin).Skip(skip).Execute()
 
 ETFs Holdings
 
-Get current ETF holdings.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | ETF symbol. (optional)
+    isin := "isin_example" // string | ETF isin. (optional)
+    skip := int64(789) // int64 | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EtfsHoldings(context.Background()).Symbol(symbol).Isin(isin).Skip(skip).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsHoldings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EtfsHoldings`: ETFsHoldings
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EtfsHoldings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEtfsHoldingsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| ETF symbol. | 
+ **symbol** | **string** | ETF symbol. | 
+ **isin** | **string** | ETF isin. | 
+ **skip** | **int64** | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set. | 
 
 ### Return type
 
-[**EtFsHoldings**](ETFsHoldings.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EtfsIndustryExposure
-
-> EtFsIndustryExposure EtfsIndustryExposure(ctx, symbol)
-
-ETFs Industry Exposure
-
-Get ETF industry exposure data.
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| ETF symbol. | 
-
-### Return type
-
-[**EtFsIndustryExposure**](ETFsIndustryExposure.md)
+[**ETFsHoldings**](ETFsHoldings.md)
 
 ### Authorization
 
@@ -834,23 +1483,184 @@ Name | Type | Description  | Notes
 
 ## EtfsProfile
 
-> EtFsProfile EtfsProfile(ctx, symbol)
+> ETFsProfile EtfsProfile(ctx).Symbol(symbol).Isin(isin).Execute()
 
 ETFs Profile
 
-Get ETF profile information. Currently support all US ETFs.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | ETF symbol. (optional)
+    isin := "isin_example" // string | ETF isin. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EtfsProfile(context.Background()).Symbol(symbol).Isin(isin).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EtfsProfile`: ETFsProfile
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EtfsProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEtfsProfileRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| ETF symbol. | 
+ **symbol** | **string** | ETF symbol. | 
+ **isin** | **string** | ETF isin. | 
 
 ### Return type
 
-[**EtFsProfile**](ETFsProfile.md)
+[**ETFsProfile**](ETFsProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EtfsSectorExposure
+
+> ETFsSectorExposure EtfsSectorExposure(ctx).Symbol(symbol).Execute()
+
+ETFs Sector Exposure
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | ETF symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EtfsSectorExposure(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsSectorExposure``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EtfsSectorExposure`: ETFsSectorExposure
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EtfsSectorExposure`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEtfsSectorExposureRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | ETF symbol. | 
+
+### Return type
+
+[**ETFsSectorExposure**](ETFsSectorExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FdaCommitteeMeetingCalendar
+
+> []FDAComitteeMeeting FdaCommitteeMeetingCalendar(ctx).Execute()
+
+FDA Committee Meeting Calendar
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FdaCommitteeMeetingCalendar(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FdaCommitteeMeetingCalendar``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FdaCommitteeMeetingCalendar`: []FDAComitteeMeeting
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FdaCommitteeMeetingCalendar`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFdaCommitteeMeetingCalendarRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]FDAComitteeMeeting**](FDAComitteeMeeting.md)
 
 ### Authorization
 
@@ -868,33 +1678,62 @@ Name | Type | Description  | Notes
 
 ## Filings
 
-> []Filing Filings(ctx, optional)
+> []Filing Filings(ctx).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Form(form).From(from).To(to).Execute()
 
-Filings
+SEC Filings
 
-List company's filing. Limit to 250 documents at a time. This data is available for bulk download on <a href=\"https://www.kaggle.com/finnhub/sec-filings\" target=\"_blank\">Kaggle SEC Filings database</a>.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol. Leave <code>symbol</code>,<code>cik</code> and <code>accessNumber</code> empty to list latest filings. (optional)
+    cik := "cik_example" // string | CIK. (optional)
+    accessNumber := "accessNumber_example" // string | Access number of a specific report you want to retrieve data from. (optional)
+    form := "form_example" // string | Filter by form. You can use this value <code>NT 10-K</code> to find non-timely filings for a company. (optional)
+    from := time.Now() // string | From date: 2020-03-15. (optional)
+    to := time.Now() // string | To date: 2020-03-16. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Filings(context.Background()).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Form(form).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Filings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Filings`: []Filing
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Filings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFilingsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***FilingsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a FilingsOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol. Leave &lt;code&gt;symbol&lt;/code&gt;,&lt;code&gt;cik&lt;/code&gt; and &lt;code&gt;accessNumber&lt;/code&gt; empty to list latest filings. | 
- **cik** | **optional.String**| CIK. | 
- **accessNumber** | **optional.String**| Access number of a specific report you want to retrieve data from. | 
- **form** | **optional.String**| Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company. | 
- **from** | **optional.String**| From date: 2020-03-15. | 
- **to** | **optional.String**| To date: 2020-03-16. | 
+ **symbol** | **string** | Symbol. Leave &lt;code&gt;symbol&lt;/code&gt;,&lt;code&gt;cik&lt;/code&gt; and &lt;code&gt;accessNumber&lt;/code&gt; empty to list latest filings. | 
+ **cik** | **string** | CIK. | 
+ **accessNumber** | **string** | Access number of a specific report you want to retrieve data from. | 
+ **form** | **string** | Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company. | 
+ **from** | **string** | From date: 2020-03-15. | 
+ **to** | **string** | To date: 2020-03-16. | 
 
 ### Return type
 
@@ -914,23 +1753,123 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## Financials
+## FilingsSentiment
 
-> FinancialStatements Financials(ctx, symbol, statement, freq)
+> SECSentimentAnalysis FilingsSentiment(ctx).AccessNumber(accessNumber).Execute()
 
-Financial Statements
+SEC Sentiment Analysis
 
-Get standardized balance sheet, income statement and cash flow for global companies going back 30+ years.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    accessNumber := "accessNumber_example" // string | Access number of a specific report you want to retrieve data from.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FilingsSentiment(context.Background()).AccessNumber(accessNumber).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FilingsSentiment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FilingsSentiment`: SECSentimentAnalysis
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FilingsSentiment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFilingsSentimentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
-**statement** | **string**| Statement can take 1 of these values &lt;code&gt;bs, ic, cf&lt;/code&gt; for Balance Sheet, Income Statement, Cash Flow respectively. | 
-**freq** | **string**| Frequency can take 1 of these values &lt;code&gt;annual, quarterly, ttm, ytd&lt;/code&gt;.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. | 
+ **accessNumber** | **string** | Access number of a specific report you want to retrieve data from. | 
+
+### Return type
+
+[**SECSentimentAnalysis**](SECSentimentAnalysis.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Financials
+
+> FinancialStatements Financials(ctx).Symbol(symbol).Statement(statement).Freq(freq).Execute()
+
+Financial Statements
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    statement := "statement_example" // string | Statement can take 1 of these values <code>bs, ic, cf</code> for Balance Sheet, Income Statement, Cash Flow respectively.
+    freq := "freq_example" // string | Frequency can take 1 of these values <code>annual, quarterly, ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Financials(context.Background()).Symbol(symbol).Statement(statement).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Financials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Financials`: FinancialStatements
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Financials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFinancialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **statement** | **string** | Statement can take 1 of these values &lt;code&gt;bs, ic, cf&lt;/code&gt; for Balance Sheet, Income Statement, Cash Flow respectively. | 
+ **freq** | **string** | Frequency can take 1 of these values &lt;code&gt;annual, quarterly, ttm, ytd&lt;/code&gt;.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. | 
 
 ### Return type
 
@@ -952,31 +1891,57 @@ Name | Type | Description  | Notes
 
 ## FinancialsReported
 
-> FinancialsAsReported FinancialsReported(ctx, optional)
+> FinancialsAsReported FinancialsReported(ctx).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Freq(freq).Execute()
 
 Financials As Reported
 
-Get financials as reported. This data is available for bulk download on <a href=\"https://www.kaggle.com/finnhub/reported-financials\" target=\"_blank\">Kaggle SEC Financials database</a>.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol. (optional)
+    cik := "cik_example" // string | CIK. (optional)
+    accessNumber := "accessNumber_example" // string | Access number of a specific report you want to retrieve financials from. (optional)
+    freq := "freq_example" // string | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FinancialsReported(context.Background()).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FinancialsReported``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FinancialsReported`: FinancialsAsReported
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FinancialsReported`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFinancialsReportedRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***FinancialsReportedOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a FinancialsReportedOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol. | 
- **cik** | **optional.String**| CIK. | 
- **accessNumber** | **optional.String**| Access number of a specific report you want to retrieve financials from. | 
- **freq** | **optional.String**| Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;. | 
+ **symbol** | **string** | Symbol. | 
+ **cik** | **string** | CIK. | 
+ **accessNumber** | **string** | Access number of a specific report you want to retrieve financials from. | 
+ **freq** | **string** | Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;. | 
 
 ### Return type
 
@@ -998,22 +1963,57 @@ Name | Type | Description  | Notes
 
 ## ForexCandles
 
-> ForexCandles ForexCandles(ctx, symbol, resolution, from, to)
+> ForexCandles ForexCandles(ctx).Symbol(symbol).Resolution(resolution).From(from).To(to).Execute()
 
 Forex Candles
 
-Get candlestick data for forex symbols.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Use symbol returned in <code>/forex/symbol</code> endpoint for this field.
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+    from := int64(789) // int64 | UNIX timestamp. Interval initial value.
+    to := int64(789) // int64 | UNIX timestamp. Interval end value.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ForexCandles(context.Background()).Symbol(symbol).Resolution(resolution).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ForexCandles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ForexCandles`: ForexCandles
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ForexCandles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiForexCandlesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Use symbol returned in &lt;code&gt;/forex/symbol&lt;/code&gt; endpoint for this field. | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
-**from** | **int64**| UNIX timestamp. Interval initial value. | 
-**to** | **int64**| UNIX timestamp. Interval end value. | 
+ **symbol** | **string** | Use symbol returned in &lt;code&gt;/forex/symbol&lt;/code&gt; endpoint for this field. | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **from** | **int64** | UNIX timestamp. Interval initial value. | 
+ **to** | **int64** | UNIX timestamp. Interval end value. | 
 
 ### Return type
 
@@ -1035,15 +2035,46 @@ Name | Type | Description  | Notes
 
 ## ForexExchanges
 
-> []string ForexExchanges(ctx, )
+> []string ForexExchanges(ctx).Execute()
 
 Forex Exchanges
 
-List supported forex exchanges
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ForexExchanges(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ForexExchanges``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ForexExchanges`: []string
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ForexExchanges`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiForexExchangesRequest struct via the builder pattern
+
 
 ### Return type
 
@@ -1065,28 +2096,51 @@ This endpoint does not need any parameter.
 
 ## ForexRates
 
-> Forexrates ForexRates(ctx, optional)
+> Forexrates ForexRates(ctx).Base(base).Execute()
 
 Forex rates
 
-Get rates for all forex pairs. Ideal for currency conversion
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    base := "base_example" // string | Base currency. Default to EUR. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ForexRates(context.Background()).Base(base).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ForexRates``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ForexRates`: Forexrates
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ForexRates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiForexRatesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ForexRatesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ForexRatesOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **base** | **optional.String**| Base currency. Default to EUR. | 
+ **base** | **string** | Base currency. Default to EUR. | 
 
 ### Return type
 
@@ -1108,19 +2162,51 @@ Name | Type | Description  | Notes
 
 ## ForexSymbols
 
-> []ForexSymbol ForexSymbols(ctx, exchange)
+> []ForexSymbol ForexSymbols(ctx).Exchange(exchange).Execute()
 
 Forex Symbol
 
-List supported forex symbols.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    exchange := "exchange_example" // string | Exchange you want to get the list of symbols from.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ForexSymbols(context.Background()).Exchange(exchange).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ForexSymbols``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ForexSymbols`: []ForexSymbol
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ForexSymbols`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiForexSymbolsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**exchange** | **string**| Exchange you want to get the list of symbols from. | 
+ **exchange** | **string** | Exchange you want to get the list of symbols from. | 
 
 ### Return type
 
@@ -1142,30 +2228,53 @@ Name | Type | Description  | Notes
 
 ## FundOwnership
 
-> FundOwnership FundOwnership(ctx, symbol, optional)
+> FundOwnership FundOwnership(ctx).Symbol(symbol).Limit(limit).Execute()
 
 Fund Ownership
 
-Get a full list fund and institutional investors of a company in descending order of the number of shares held.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    limit := int64(789) // int64 | Limit number of results. Leave empty to get the full list. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FundOwnership(context.Background()).Symbol(symbol).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FundOwnership``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FundOwnership`: FundOwnership
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FundOwnership`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFundOwnershipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
- **optional** | ***FundOwnershipOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a FundOwnershipOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **optional.Int64**| Limit number of results. Leave empty to get the full list. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **limit** | **int64** | Limit number of results. Leave empty to get the full list. | 
 
 ### Return type
 
@@ -1185,66 +2294,53 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GeneralNews
-
-> []News GeneralNews(ctx, category, optional)
-
-General News
-
-Get latest market news.
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**category** | **string**| This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;. | 
- **optional** | ***GeneralNewsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GeneralNewsOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **minId** | **optional.String**| Use this field to get only news after this ID. Default to 0 | 
-
-### Return type
-
-[**[]News**](News.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## IndicesConstituents
 
-> IndicesConstituents IndicesConstituents(ctx, symbol)
+> IndicesConstituents IndicesConstituents(ctx).Symbol(symbol).Execute()
 
 Indices Constituents
 
-Get a list of index's constituents. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | symbol
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.IndicesConstituents(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.IndicesConstituents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `IndicesConstituents`: IndicesConstituents
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.IndicesConstituents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiIndicesConstituentsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| symbol | 
+ **symbol** | **string** | symbol | 
 
 ### Return type
 
@@ -1266,19 +2362,51 @@ Name | Type | Description  | Notes
 
 ## IndicesHistoricalConstituents
 
-> IndicesHistoricalConstituents IndicesHistoricalConstituents(ctx, symbol)
+> IndicesHistoricalConstituents IndicesHistoricalConstituents(ctx).Symbol(symbol).Execute()
 
 Indices Historical Constituents
 
-Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | symbol
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.IndicesHistoricalConstituents(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.IndicesHistoricalConstituents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `IndicesHistoricalConstituents`: IndicesHistoricalConstituents
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.IndicesHistoricalConstituents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiIndicesHistoricalConstituentsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| symbol | 
+ **symbol** | **string** | symbol | 
 
 ### Return type
 
@@ -1298,36 +2426,196 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InvestorsOwnership
+## InsiderTransactions
 
-> InvestorsOwnership InvestorsOwnership(ctx, symbol, optional)
+> InsiderTransactions InsiderTransactions(ctx).Symbol(symbol).From(from).To(to).Execute()
 
-Investors Ownership
+Insider Transactions
 
-Get a full list of shareholders/investors of a company in descending order of the number of shares held.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    from := time.Now() // string | From date: 2020-03-15. (optional)
+    to := time.Now() // string | To date: 2020-03-16. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InsiderTransactions(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InsiderTransactions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InsiderTransactions`: InsiderTransactions
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InsiderTransactions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInsiderTransactionsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
- **optional** | ***InvestorsOwnershipOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a InvestorsOwnershipOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **optional.Int64**| Limit number of results. Leave empty to get the full list. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **from** | **string** | From date: 2020-03-15. | 
+ **to** | **string** | To date: 2020-03-16. | 
 
 ### Return type
 
-[**InvestorsOwnership**](InvestorsOwnership.md)
+[**InsiderTransactions**](InsiderTransactions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InternationalFilings
+
+> []InternationalFiling InternationalFilings(ctx).Symbol(symbol).Country(country).Execute()
+
+International Filings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol. Leave empty to list latest filings. (optional)
+    country := "country_example" // string | Filter by country using country's 2-letter code. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InternationalFilings(context.Background()).Symbol(symbol).Country(country).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InternationalFilings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InternationalFilings`: []InternationalFiling
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InternationalFilings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInternationalFilingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. Leave empty to list latest filings. | 
+ **country** | **string** | Filter by country using country&#39;s 2-letter code. | 
+
+### Return type
+
+[**[]InternationalFiling**](InternationalFiling.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InvestmentThemesThematicInvesting
+
+> InvestmentThemesThematicInvesting InvestmentThemesThematicInvesting(ctx).Theme(theme).Execute()
+
+Investment Themes (Thematic Investing)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    theme := "theme_example" // string | Investment theme. A full list of themes supported can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing\">here</a>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InvestmentThemesThematicInvesting(context.Background()).Theme(theme).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InvestmentThemesThematicInvesting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InvestmentThemesThematicInvesting`: InvestmentThemesThematicInvesting
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InvestmentThemesThematicInvesting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInvestmentThemesThematicInvestingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **theme** | **string** | Investment theme. A full list of themes supported can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt;. | 
+
+### Return type
+
+[**InvestmentThemesThematicInvesting**](InvestmentThemesThematicInvesting.md)
 
 ### Authorization
 
@@ -1345,24 +2633,58 @@ Name | Type | Description  | Notes
 
 ## IpoCalendar
 
-> IpoCalendar IpoCalendar(ctx, from, to)
+> IPOCalendar IpoCalendar(ctx).From(from).To(to).Execute()
 
 IPO Calendar
 
-Get recent and coming IPO.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    from := time.Now() // string | From date: 2020-03-15.
+    to := time.Now() // string | To date: 2020-03-16.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.IpoCalendar(context.Background()).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.IpoCalendar``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `IpoCalendar`: IPOCalendar
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.IpoCalendar`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiIpoCalendarRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**from** | **string**| From date: 2020-03-15. | 
-**to** | **string**| To date: 2020-03-16. | 
+ **from** | **string** | From date: 2020-03-15. | 
+ **to** | **string** | To date: 2020-03-16. | 
 
 ### Return type
 
-[**IpoCalendar**](IPOCalendar.md)
+[**IPOCalendar**](IPOCalendar.md)
 
 ### Authorization
 
@@ -1378,37 +2700,329 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## MajorDevelopments
+## MarketNews
 
-> MajorDevelopments MajorDevelopments(ctx, symbol, optional)
+> []News MarketNews(ctx).Category(category).MinId(minId).Execute()
 
-Major Developments
+Market News
 
-List latest major developments of a company going back 20 years with 12M+ data points. This data can be used to highlight the most significant events.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    category := "category_example" // string | This parameter can be 1 of the following values <code>general, forex, crypto, merger</code>.
+    minId := "minId_example" // string | Use this field to get only news after this ID. Default to 0 (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MarketNews(context.Background()).Category(category).MinId(minId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MarketNews``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MarketNews`: []News
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MarketNews`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMarketNewsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Company symbol. | 
- **optional** | ***MajorDevelopmentsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a MajorDevelopmentsOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **from** | **optional.String**| From time: 2020-01-01. | 
- **to** | **optional.String**| To time: 2020-01-05. | 
+ **category** | **string** | This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;. | 
+ **minId** | **string** | Use this field to get only news after this ID. Default to 0 | 
 
 ### Return type
 
-[**MajorDevelopments**](MajorDevelopments.md)
+[**[]News**](News.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MutualFundCountryExposure
+
+> MutualFundsCountryExposure MutualFundCountryExposure(ctx).Symbol(symbol).Execute()
+
+Mutual Funds Country Exposure
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MutualFundCountryExposure(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundCountryExposure``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MutualFundCountryExposure`: MutualFundsCountryExposure
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundCountryExposure`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMutualFundCountryExposureRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**MutualFundsCountryExposure**](MutualFundsCountryExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MutualFundHoldings
+
+> MutualFundsHoldings MutualFundHoldings(ctx).Symbol(symbol).Isin(isin).Skip(skip).Execute()
+
+Mutual Funds Holdings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Fund's symbol. (optional)
+    isin := "isin_example" // string | Fund's isin. (optional)
+    skip := int64(789) // int64 | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MutualFundHoldings(context.Background()).Symbol(symbol).Isin(isin).Skip(skip).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundHoldings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MutualFundHoldings`: MutualFundsHoldings
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundHoldings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMutualFundHoldingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Fund&#39;s symbol. | 
+ **isin** | **string** | Fund&#39;s isin. | 
+ **skip** | **int64** | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set. | 
+
+### Return type
+
+[**MutualFundsHoldings**](MutualFundsHoldings.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MutualFundProfile
+
+> MutualFundsProfile MutualFundProfile(ctx).Symbol(symbol).Isin(isin).Execute()
+
+Mutual Funds Profile
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Fund's symbol. (optional)
+    isin := "isin_example" // string | Fund's isin. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MutualFundProfile(context.Background()).Symbol(symbol).Isin(isin).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MutualFundProfile`: MutualFundsProfile
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMutualFundProfileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Fund&#39;s symbol. | 
+ **isin** | **string** | Fund&#39;s isin. | 
+
+### Return type
+
+[**MutualFundsProfile**](MutualFundsProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MutualFundSectorExposure
+
+> MutualFundSectorExposure MutualFundSectorExposure(ctx).Symbol(symbol).Execute()
+
+Mutual-fund Sector Exposure
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Mutual Fund symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MutualFundSectorExposure(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundSectorExposure``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MutualFundSectorExposure`: MutualFundSectorExposure
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundSectorExposure`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMutualFundSectorExposureRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Mutual Fund symbol. | 
+
+### Return type
+
+[**MutualFundSectorExposure**](MutualFundSectorExposure.md)
 
 ### Authorization
 
@@ -1426,19 +3040,51 @@ Name | Type | Description  | Notes
 
 ## NewsSentiment
 
-> NewsSentiment NewsSentiment(ctx, symbol)
+> NewsSentiment NewsSentiment(ctx).Symbol(symbol).Execute()
 
 News Sentiment
 
-Get company's news sentiment and statistics. This endpoint is only available for US companies.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.NewsSentiment(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.NewsSentiment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `NewsSentiment`: NewsSentiment
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.NewsSentiment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNewsSentimentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Company symbol. | 
+ **symbol** | **string** | Company symbol. | 
 
 ### Return type
 
@@ -1458,22 +3104,123 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PatternRecognition
+## Ownership
 
-> PatternRecognition PatternRecognition(ctx, symbol, resolution)
+> Ownership Ownership(ctx).Symbol(symbol).Limit(limit).Execute()
 
-Pattern Recognition
+Ownership
 
-Run pattern recognition algorithm on a symbol. Support double top/bottom, triple top/bottom, head and shoulders, triangle, wedge, channel, flag, and candlestick patterns.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    limit := int64(789) // int64 | Limit number of results. Leave empty to get the full list. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Ownership(context.Background()).Symbol(symbol).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Ownership``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Ownership`: Ownership
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Ownership`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOwnershipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **limit** | **int64** | Limit number of results. Leave empty to get the full list. | 
+
+### Return type
+
+[**Ownership**](Ownership.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatternRecognition
+
+> PatternRecognition PatternRecognition(ctx).Symbol(symbol).Resolution(resolution).Execute()
+
+Pattern Recognition
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.PatternRecognition(context.Background()).Symbol(symbol).Resolution(resolution).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PatternRecognition``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatternRecognition`: PatternRecognition
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.PatternRecognition`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatternRecognitionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
 
 ### Return type
 
@@ -1493,21 +3240,124 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PriceTarget
+## PressReleases
 
-> PriceTarget PriceTarget(ctx, symbol)
+> MajorPressReleases PressReleases(ctx).Symbol(symbol).From(from).To(to).Execute()
 
-Price Target
+Major Press Releases
 
-Get latest price target consensus.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+    from := time.Now() // string | From time: 2020-01-01. (optional)
+    to := time.Now() // string | To time: 2020-01-05. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.PressReleases(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PressReleases``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PressReleases`: MajorPressReleases
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.PressReleases`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPressReleasesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
+ **symbol** | **string** | Company symbol. | 
+ **from** | **string** | From time: 2020-01-01. | 
+ **to** | **string** | To time: 2020-01-05. | 
+
+### Return type
+
+[**MajorPressReleases**](MajorPressReleases.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PriceTarget
+
+> PriceTarget PriceTarget(ctx).Symbol(symbol).Execute()
+
+Price Target
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.PriceTarget(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PriceTarget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PriceTarget`: PriceTarget
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.PriceTarget`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPriceTargetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
 
 ### Return type
 
@@ -1529,19 +3379,51 @@ Name | Type | Description  | Notes
 
 ## Quote
 
-> Quote Quote(ctx, symbol)
+> Quote Quote(ctx).Symbol(symbol).Execute()
 
 Quote
 
-<p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time update.</p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Quote(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Quote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Quote`: Quote
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Quote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiQuoteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol | 
+ **symbol** | **string** | Symbol | 
 
 ### Return type
 
@@ -1563,19 +3445,51 @@ Name | Type | Description  | Notes
 
 ## RecommendationTrends
 
-> []RecommendationTrend RecommendationTrends(ctx, symbol)
+> []RecommendationTrend RecommendationTrends(ctx).Symbol(symbol).Execute()
 
 Recommendation Trends
 
-Get latest analyst recommendation trends for a company.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.RecommendationTrends(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.RecommendationTrends``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RecommendationTrends`: []RecommendationTrend
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.RecommendationTrends`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRecommendationTrendsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol of the company: AAPL. | 
+ **symbol** | **string** | Symbol of the company: AAPL. | 
 
 ### Return type
 
@@ -1595,32 +3509,125 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RevenueBreakdown
+
+> RevenueBreakdown RevenueBreakdown(ctx).Symbol(symbol).Cik(cik).Execute()
+
+Revenue Breakdown
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol. (optional)
+    cik := "cik_example" // string | CIK. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.RevenueBreakdown(context.Background()).Symbol(symbol).Cik(cik).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.RevenueBreakdown``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RevenueBreakdown`: RevenueBreakdown
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.RevenueBreakdown`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRevenueBreakdownRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+ **cik** | **string** | CIK. | 
+
+### Return type
+
+[**RevenueBreakdown**](RevenueBreakdown.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SimilarityIndex
 
-> SimilarityIndex SimilarityIndex(ctx, optional)
+> SimilarityIndex SimilarityIndex(ctx).Symbol(symbol).Cik(cik).Freq(freq).Execute()
 
 Similarity Index
 
-<p>Calculate the textual difference between a company's 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company's stock price in the upcoming 4 quarters.</p>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol. Required if cik is empty (optional)
+    cik := "cik_example" // string | CIK. Required if symbol is empty (optional)
+    freq := "freq_example" // string | <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code> (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SimilarityIndex(context.Background()).Symbol(symbol).Cik(cik).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SimilarityIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SimilarityIndex`: SimilarityIndex
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SimilarityIndex`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSimilarityIndexRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***SimilarityIndexOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a SimilarityIndexOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol. Required if cik is empty | 
- **cik** | **optional.String**| CIK. Required if symbol is empty | 
- **freq** | **optional.String**| &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt; | 
+ **symbol** | **string** | Symbol. Required if cik is empty | 
+ **cik** | **string** | CIK. Required if symbol is empty | 
+ **freq** | **string** | &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt; | 
 
 ### Return type
 
@@ -1640,25 +3647,194 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## StockBidask
+## SocialSentiment
 
-> LastBidAsk StockBidask(ctx, symbol)
+> SocialSentiment SocialSentiment(ctx).Symbol(symbol).From(from).To(to).Execute()
 
-Last Bid-Ask
+Social Sentiment
 
-Get last bid/ask data for US stocks.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>. (optional)
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SocialSentiment(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SocialSentiment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SocialSentiment`: SocialSentiment
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SocialSentiment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSocialSentimentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol. | 
+ **symbol** | **string** | Company symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
 
 ### Return type
 
-[**LastBidAsk**](LastBid-Ask.md)
+[**SocialSentiment**](SocialSentiment.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockBasicDividends
+
+> Dividends2Basic StockBasicDividends(ctx).Symbol(symbol).Execute()
+
+Dividends 2 (Basic)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockBasicDividends(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockBasicDividends``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockBasicDividends`: Dividends2Basic
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockBasicDividends`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockBasicDividendsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**Dividends2Basic**](Dividends2Basic.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockBidask
+
+> LastBidAsk StockBidask(ctx).Symbol(symbol).Execute()
+
+Last Bid-Ask
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockBidask(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockBidask``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockBidask`: LastBidAsk
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockBidask`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockBidaskRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**LastBidAsk**](LastBidAsk.md)
 
 ### Authorization
 
@@ -1676,36 +3852,59 @@ Name | Type | Description  | Notes
 
 ## StockCandles
 
-> StockCandles StockCandles(ctx, symbol, resolution, from, to, optional)
+> StockCandles StockCandles(ctx).Symbol(symbol).Resolution(resolution).From(from).To(to).Adjusted(adjusted).Execute()
 
 Stock Candles
 
-<p>Get candlestick data for stocks going back 25 years for US stocks.</p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+    from := int64(789) // int64 | UNIX timestamp. Interval initial value.
+    to := int64(789) // int64 | UNIX timestamp. Interval end value.
+    adjusted := "adjusted_example" // string | DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockCandles(context.Background()).Symbol(symbol).Resolution(resolution).From(from).To(to).Adjusted(adjusted).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockCandles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockCandles`: StockCandles
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockCandles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockCandlesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol. | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
-**from** | **int64**| UNIX timestamp. Interval initial value. | 
-**to** | **int64**| UNIX timestamp. Interval end value. | 
- **optional** | ***StockCandlesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a StockCandlesOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
- **adjusted** | **optional.String**| By default, &lt;code&gt;adjusted&#x3D;false&lt;/code&gt;. Use &lt;code&gt;true&lt;/code&gt; to get adjusted data. | 
+ **symbol** | **string** | Symbol. | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **from** | **int64** | UNIX timestamp. Interval initial value. | 
+ **to** | **int64** | UNIX timestamp. Interval end value. | 
+ **adjusted** | **string** | DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted. | 
 
 ### Return type
 
@@ -1727,21 +3926,56 @@ Name | Type | Description  | Notes
 
 ## StockDividends
 
-> []Dividends StockDividends(ctx, symbol, from, to)
+> []Dividends StockDividends(ctx).Symbol(symbol).From(from).To(to).Execute()
 
 Dividends
 
-Get dividends data for common stocks going back 30 years.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    from := time.Now() // string | YYYY-MM-DD.
+    to := time.Now() // string | YYYY-MM-DD.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockDividends(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockDividends``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockDividends`: []Dividends
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockDividends`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockDividendsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol. | 
-**from** | **string**| YYYY-MM-DD. | 
-**to** | **string**| YYYY-MM-DD. | 
+ **symbol** | **string** | Symbol. | 
+ **from** | **string** | YYYY-MM-DD. | 
+ **to** | **string** | YYYY-MM-DD. | 
 
 ### Return type
 
@@ -1761,23 +3995,131 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## StockSplits
+## StockNbbo
 
-> []Split StockSplits(ctx, symbol, from, to)
+> HistoricalNBBO StockNbbo(ctx).Symbol(symbol).Date(date).Limit(limit).Skip(skip).Execute()
 
-Splits
+Historical NBBO
 
-Get splits data for stocks.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    date := time.Now() // string | Date: 2020-04-02.
+    limit := int64(789) // int64 | Limit number of ticks returned. Maximum value: <code>25000</code>
+    skip := int64(789) // int64 | Number of ticks to skip. Use this parameter to loop through the entire data.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockNbbo(context.Background()).Symbol(symbol).Date(date).Limit(limit).Skip(skip).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockNbbo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockNbbo`: HistoricalNBBO
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockNbbo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockNbboRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol. | 
-**from** | **string**| YYYY-MM-DD. | 
-**to** | **string**| YYYY-MM-DD. | 
+ **symbol** | **string** | Symbol. | 
+ **date** | **string** | Date: 2020-04-02. | 
+ **limit** | **int64** | Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt; | 
+ **skip** | **int64** | Number of ticks to skip. Use this parameter to loop through the entire data. | 
+
+### Return type
+
+[**HistoricalNBBO**](HistoricalNBBO.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockSplits
+
+> []Split StockSplits(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Splits
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    from := time.Now() // string | YYYY-MM-DD.
+    to := time.Now() // string | YYYY-MM-DD.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockSplits(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockSplits``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockSplits`: []Split
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockSplits`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockSplitsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+ **from** | **string** | YYYY-MM-DD. | 
+ **to** | **string** | YYYY-MM-DD. | 
 
 ### Return type
 
@@ -1799,19 +4141,57 @@ Name | Type | Description  | Notes
 
 ## StockSymbols
 
-> []Stock StockSymbols(ctx, exchange)
+> []Stock StockSymbols(ctx).Exchange(exchange).Mic(mic).SecurityType(securityType).Currency(currency).Execute()
 
 Stock Symbol
 
-List supported stocks. A list of supported CFD Indices can be found <a href=\"https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing\" target=\"_blank\">here</a>.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    exchange := "exchange_example" // string | Exchange you want to get the list of symbols from. List of exchange codes can be found <a href=\"https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing\" target=\"_blank\">here</a>.
+    mic := "mic_example" // string | Filter by MIC code. (optional)
+    securityType := "securityType_example" // string | Filter by security type used by OpenFigi standard. (optional)
+    currency := "currency_example" // string | Filter by currency. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockSymbols(context.Background()).Exchange(exchange).Mic(mic).SecurityType(securityType).Currency(currency).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockSymbols``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockSymbols`: []Stock
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockSymbols`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockSymbolsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**exchange** | **string**| Exchange you want to get the list of symbols from. List of exchanges with fundamental data can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
+ **exchange** | **string** | Exchange you want to get the list of symbols from. List of exchange codes can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
+ **mic** | **string** | Filter by MIC code. | 
+ **securityType** | **string** | Filter by security type used by OpenFigi standard. | 
+ **currency** | **string** | Filter by currency. | 
 
 ### Return type
 
@@ -1833,22 +4213,58 @@ Name | Type | Description  | Notes
 
 ## StockTick
 
-> TickData StockTick(ctx, symbol, date, limit, skip)
+> TickData StockTick(ctx).Symbol(symbol).Date(date).Limit(limit).Skip(skip).Execute()
 
 Tick Data
 
-<p>Get historical tick data for US stocks from all 13 exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server. Data is updated at the end of each trading day.</p><p>Tick data from 1985 is available for Enterprise clients. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    date := time.Now() // string | Date: 2020-04-02.
+    limit := int64(789) // int64 | Limit number of ticks returned. Maximum value: <code>25000</code>
+    skip := int64(789) // int64 | Number of ticks to skip. Use this parameter to loop through the entire data.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockTick(context.Background()).Symbol(symbol).Date(date).Limit(limit).Skip(skip).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockTick``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockTick`: TickData
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockTick`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockTickRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol. | 
-**date** | **string**| Date: 2020-04-02. | 
-**limit** | **int64**| Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt; | 
-**skip** | **int64**| Number of ticks to skip. Use this parameter to loop through the entire data. | 
+ **symbol** | **string** | Symbol. | 
+ **date** | **string** | Date: 2020-04-02. | 
+ **limit** | **int64** | Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt; | 
+ **skip** | **int64** | Number of ticks to skip. Use this parameter to loop through the entire data. | 
 
 ### Return type
 
@@ -1868,22 +4284,121 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SupportResistance
+## SupplyChainRelationships
 
-> SupportResistance SupportResistance(ctx, symbol, resolution)
+> SupplyChainRelationships SupplyChainRelationships(ctx).Symbol(symbol).Execute()
 
-Support/Resistance
+Supply Chain Relationships
 
-Get support and resistance levels for a symbol.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SupplyChainRelationships(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SupplyChainRelationships``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SupplyChainRelationships`: SupplyChainRelationships
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SupplyChainRelationships`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSupplyChainRelationshipsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Symbol | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**SupplyChainRelationships**](SupplyChainRelationships.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SupportResistance
+
+> SupportResistance SupportResistance(ctx).Symbol(symbol).Resolution(resolution).Execute()
+
+Support/Resistance
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SupportResistance(context.Background()).Symbol(symbol).Resolution(resolution).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SupportResistance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SupportResistance`: SupportResistance
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SupportResistance`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSupportResistanceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
 
 ### Return type
 
@@ -1903,40 +4418,129 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SymbolSearch
+
+> SymbolLookup SymbolSearch(ctx).Q(q).Execute()
+
+Symbol Lookup
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    q := "q_example" // string | Query text can be symbol, name, isin, or cusip.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SymbolSearch(context.Background()).Q(q).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SymbolSearch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SymbolSearch`: SymbolLookup
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SymbolSearch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSymbolSearchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string** | Query text can be symbol, name, isin, or cusip. | 
+
+### Return type
+
+[**SymbolLookup**](SymbolLookup.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## TechnicalIndicator
 
-> map[string]interface{} TechnicalIndicator(ctx, symbol, resolution, from, to, indicator, optional)
+> map[string]interface{} TechnicalIndicator(ctx).Symbol(symbol).Resolution(resolution).From(from).To(to).Indicator(indicator).IndicatorFields(indicatorFields).Execute()
 
 Technical Indicators
 
-Return technical indicator with price data. List of supported indicators can be found <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">here</a>.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | symbol
+    resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
+    from := int64(789) // int64 | UNIX timestamp. Interval initial value.
+    to := int64(789) // int64 | UNIX timestamp. Interval end value.
+    indicator := "indicator_example" // string | Indicator name. Full list can be found <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">here</a>.
+    indicatorFields := map[string]interface{}(Object) // map[string]interface{} | Check out <a href=\"https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing\" target=\"_blank\">this page</a> to see which indicators and params are supported. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.TechnicalIndicator(context.Background()).Symbol(symbol).Resolution(resolution).From(from).To(to).Indicator(indicator).IndicatorFields(indicatorFields).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.TechnicalIndicator``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TechnicalIndicator`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.TechnicalIndicator`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTechnicalIndicatorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| symbol | 
-**resolution** | **string**| Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
-**from** | **int64**| UNIX timestamp. Interval initial value. | 
-**to** | **int64**| UNIX timestamp. Interval end value. | 
-**indicator** | **string**| Indicator name. Full list can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
- **optional** | ***TechnicalIndicatorOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a TechnicalIndicatorOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
-
- **indicatorFields** | **optional.Map[string]interface{}**| Check out &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;this page&lt;/a&gt; to see which indicators and params are supported. | 
+ **symbol** | **string** | symbol | 
+ **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
+ **from** | **int64** | UNIX timestamp. Interval initial value. | 
+ **to** | **int64** | UNIX timestamp. Interval end value. | 
+ **indicator** | **string** | Indicator name. Full list can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
+ **indicatorFields** | **map[string]interface{}** | Check out &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;this page&lt;/a&gt; to see which indicators and params are supported. | 
 
 ### Return type
 
@@ -1956,55 +4560,53 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## Transcripts
-
-> EarningsCallTranscripts Transcripts(ctx, id)
-
-Earnings Call Transcripts
-
-<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US companies. <p>17+ years of data is available with 170,000+ audio which add up to 6TB in size.</p>
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string**| Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;. | 
-
-### Return type
-
-[**EarningsCallTranscripts**](EarningsCallTranscripts.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## TranscriptsList
 
-> EarningsCallTranscriptsList TranscriptsList(ctx, symbol)
+> EarningsCallTranscriptsList TranscriptsList(ctx).Symbol(symbol).Execute()
 
 Earnings Call Transcripts List
 
-List earnings call transcripts' metadata. This endpoint is only available for US companies.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol: AAPL. Leave empty to list the latest transcripts
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.TranscriptsList(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.TranscriptsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TranscriptsList`: EarningsCallTranscriptsList
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.TranscriptsList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTranscriptsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**symbol** | **string**| Company symbol: AAPL. Leave empty to list the latest transcripts | 
+ **symbol** | **string** | Company symbol: AAPL. Leave empty to list the latest transcripts | 
 
 ### Return type
 
@@ -2026,30 +4628,56 @@ Name | Type | Description  | Notes
 
 ## UpgradeDowngrade
 
-> []UpgradeDowngrade UpgradeDowngrade(ctx, optional)
+> []UpgradeDowngrade UpgradeDowngrade(ctx).Symbol(symbol).From(from).To(to).Execute()
 
 Stock Upgrade/Downgrade
 
-Get latest stock upgrade and downgrade.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades. (optional)
+    from := time.Now() // string | From date: 2000-03-15. (optional)
+    to := time.Now() // string | To date: 2020-03-16. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.UpgradeDowngrade(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpgradeDowngrade``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpgradeDowngrade`: []UpgradeDowngrade
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.UpgradeDowngrade`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpgradeDowngradeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UpgradeDowngradeOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a UpgradeDowngradeOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades. | 
- **from** | **optional.String**| From date: 2000-03-15. | 
- **to** | **optional.String**| To date: 2020-03-16. | 
+ **symbol** | **string** | Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades. | 
+ **from** | **string** | From date: 2000-03-15. | 
+ **to** | **string** | To date: 2020-03-16. | 
 
 ### Return type
 
