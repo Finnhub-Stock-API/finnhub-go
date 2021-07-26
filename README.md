@@ -25,9 +25,9 @@ import (
 )
 
 func main() {
-	cfg := finnhub.NewConfiguration()
-	cfg.AddDefaultHeader("X-Finnhub-Token", "c0i3e9f48v6qfc9d1rhg")
-	finnhubClient := finnhub.NewAPIClient(cfg).DefaultApi
+    cfg := finnhub.NewConfiguration()
+    cfg.AddDefaultHeader("X-Finnhub-Token", "<API_key>")
+    finnhubClient := finnhub.NewAPIClient(cfg).DefaultApi
 	//Stock candles
     stockCandles, _, err := finnhubClient.StockCandles(context.Background()).Symbol("AAPL").Resolution("D").From(1590988249).To(1591852249).Execute()
     fmt.Printf("%+v\n", stockCandles)
