@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Mutual symbol. | [optional] 
-**SectorExposure** | Pointer to **[]map[string]interface{}** | Array of sector and exposure levels. | [optional] 
+**SectorExposure** | Pointer to [**[]MutualFundSectorExposureData**](MutualFundSectorExposureData.md) | Array of sector and exposure levels. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetSectorExposure
 
-`func (o *MutualFundSectorExposure) GetSectorExposure() []map[string]interface{}`
+`func (o *MutualFundSectorExposure) GetSectorExposure() []MutualFundSectorExposureData`
 
 GetSectorExposure returns the SectorExposure field if non-nil, zero value otherwise.
 
 ### GetSectorExposureOk
 
-`func (o *MutualFundSectorExposure) GetSectorExposureOk() (*[]map[string]interface{}, bool)`
+`func (o *MutualFundSectorExposure) GetSectorExposureOk() (*[]MutualFundSectorExposureData, bool)`
 
 GetSectorExposureOk returns a tuple with the SectorExposure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectorExposure
 
-`func (o *MutualFundSectorExposure) SetSectorExposure(v []map[string]interface{})`
+`func (o *MutualFundSectorExposure) SetSectorExposure(v []MutualFundSectorExposureData)`
 
 SetSectorExposure sets SectorExposure field to given value.
 

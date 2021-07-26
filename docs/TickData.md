@@ -235,20 +235,20 @@ HasX returns a boolean if a field has been set.
 
 ### GetC
 
-`func (o *TickData) GetC() [][]interface{}`
+`func (o *TickData) GetC() [][]string`
 
 GetC returns the C field if non-nil, zero value otherwise.
 
 ### GetCOk
 
-`func (o *TickData) GetCOk() (*[][]interface{}, bool)`
+`func (o *TickData) GetCOk() (*[][]string, bool)`
 
 GetCOk returns a tuple with the C field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetC
 
-`func (o *TickData) SetC(v [][]interface{})`
+`func (o *TickData) SetC(v [][]string)`
 
 SetC sets C field to given value.
 

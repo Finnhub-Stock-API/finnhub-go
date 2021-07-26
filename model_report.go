@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // Report struct for Report
@@ -30,13 +29,13 @@ type Report struct {
 	// Form type.
 	Form *string `json:"form,omitempty"`
 	// Period start date <code>%Y-%m-%d %H:%M:%S</code>.
-	StartDate *time.Time `json:"startDate,omitempty"`
+	StartDate *string `json:"startDate,omitempty"`
 	// Period end date <code>%Y-%m-%d %H:%M:%S</code>.
-	EndDate *time.Time `json:"endDate,omitempty"`
+	EndDate *string `json:"endDate,omitempty"`
 	// Filed date <code>%Y-%m-%d %H:%M:%S</code>.
-	FiledDate *time.Time `json:"filedDate,omitempty"`
+	FiledDate *string `json:"filedDate,omitempty"`
 	// Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
-	AcceptedDate *time.Time `json:"acceptedDate,omitempty"`
+	AcceptedDate *string `json:"acceptedDate,omitempty"`
 	Report *map[string]interface{} `json:"report,omitempty"`
 }
 
@@ -250,9 +249,9 @@ func (o *Report) SetForm(v string) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *Report) GetStartDate() time.Time {
+func (o *Report) GetStartDate() string {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.StartDate
@@ -260,7 +259,7 @@ func (o *Report) GetStartDate() time.Time {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Report) GetStartDateOk() (*time.Time, bool) {
+func (o *Report) GetStartDateOk() (*string, bool) {
 	if o == nil || o.StartDate == nil {
 		return nil, false
 	}
@@ -276,15 +275,15 @@ func (o *Report) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
-func (o *Report) SetStartDate(v time.Time) {
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *Report) SetStartDate(v string) {
 	o.StartDate = &v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *Report) GetEndDate() time.Time {
+func (o *Report) GetEndDate() string {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.EndDate
@@ -292,7 +291,7 @@ func (o *Report) GetEndDate() time.Time {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Report) GetEndDateOk() (*time.Time, bool) {
+func (o *Report) GetEndDateOk() (*string, bool) {
 	if o == nil || o.EndDate == nil {
 		return nil, false
 	}
@@ -308,15 +307,15 @@ func (o *Report) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
-func (o *Report) SetEndDate(v time.Time) {
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *Report) SetEndDate(v string) {
 	o.EndDate = &v
 }
 
 // GetFiledDate returns the FiledDate field value if set, zero value otherwise.
-func (o *Report) GetFiledDate() time.Time {
+func (o *Report) GetFiledDate() string {
 	if o == nil || o.FiledDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.FiledDate
@@ -324,7 +323,7 @@ func (o *Report) GetFiledDate() time.Time {
 
 // GetFiledDateOk returns a tuple with the FiledDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Report) GetFiledDateOk() (*time.Time, bool) {
+func (o *Report) GetFiledDateOk() (*string, bool) {
 	if o == nil || o.FiledDate == nil {
 		return nil, false
 	}
@@ -340,15 +339,15 @@ func (o *Report) HasFiledDate() bool {
 	return false
 }
 
-// SetFiledDate gets a reference to the given time.Time and assigns it to the FiledDate field.
-func (o *Report) SetFiledDate(v time.Time) {
+// SetFiledDate gets a reference to the given string and assigns it to the FiledDate field.
+func (o *Report) SetFiledDate(v string) {
 	o.FiledDate = &v
 }
 
 // GetAcceptedDate returns the AcceptedDate field value if set, zero value otherwise.
-func (o *Report) GetAcceptedDate() time.Time {
+func (o *Report) GetAcceptedDate() string {
 	if o == nil || o.AcceptedDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.AcceptedDate
@@ -356,7 +355,7 @@ func (o *Report) GetAcceptedDate() time.Time {
 
 // GetAcceptedDateOk returns a tuple with the AcceptedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Report) GetAcceptedDateOk() (*time.Time, bool) {
+func (o *Report) GetAcceptedDateOk() (*string, bool) {
 	if o == nil || o.AcceptedDate == nil {
 		return nil, false
 	}
@@ -372,8 +371,8 @@ func (o *Report) HasAcceptedDate() bool {
 	return false
 }
 
-// SetAcceptedDate gets a reference to the given time.Time and assigns it to the AcceptedDate field.
-func (o *Report) SetAcceptedDate(v time.Time) {
+// SetAcceptedDate gets a reference to the given string and assigns it to the AcceptedDate field.
+func (o *Report) SetAcceptedDate(v string) {
 	o.AcceptedDate = &v
 }
 

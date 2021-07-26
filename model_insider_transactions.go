@@ -19,7 +19,7 @@ type InsiderTransactions struct {
 	// Symbol of the company.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of insider transactions.
-	Data *[]map[string]interface{} `json:"data,omitempty"`
+	Data *[]Transactions `json:"data,omitempty"`
 }
 
 // NewInsiderTransactions instantiates a new InsiderTransactions object
@@ -72,9 +72,9 @@ func (o *InsiderTransactions) SetSymbol(v string) {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *InsiderTransactions) GetData() []map[string]interface{} {
+func (o *InsiderTransactions) GetData() []Transactions {
 	if o == nil || o.Data == nil {
-		var ret []map[string]interface{}
+		var ret []Transactions
 		return ret
 	}
 	return *o.Data
@@ -82,7 +82,7 @@ func (o *InsiderTransactions) GetData() []map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InsiderTransactions) GetDataOk() (*[]map[string]interface{}, bool) {
+func (o *InsiderTransactions) GetDataOk() (*[]Transactions, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *InsiderTransactions) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *InsiderTransactions) SetData(v []map[string]interface{}) {
+// SetData gets a reference to the given []Transactions and assigns it to the Data field.
+func (o *InsiderTransactions) SetData(v []Transactions) {
 	o.Data = &v
 }
 

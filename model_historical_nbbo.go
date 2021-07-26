@@ -39,7 +39,7 @@ type HistoricalNBBO struct {
 	// List of timestamp in UNIX ms.
 	T *[]int64 `json:"t,omitempty"`
 	// List of quote conditions. A comprehensive list of quote conditions code can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1iiA6e7Osdtai0oPMOUzgAIKXCsay89dFDmsegz6OpEg/edit?usp=sharing\">here</a>
-	C *[][]interface{} `json:"c,omitempty"`
+	C *[][]string `json:"c,omitempty"`
 }
 
 // NewHistoricalNBBO instantiates a new HistoricalNBBO object
@@ -412,9 +412,9 @@ func (o *HistoricalNBBO) SetT(v []int64) {
 }
 
 // GetC returns the C field value if set, zero value otherwise.
-func (o *HistoricalNBBO) GetC() [][]interface{} {
+func (o *HistoricalNBBO) GetC() [][]string {
 	if o == nil || o.C == nil {
-		var ret [][]interface{}
+		var ret [][]string
 		return ret
 	}
 	return *o.C
@@ -422,7 +422,7 @@ func (o *HistoricalNBBO) GetC() [][]interface{} {
 
 // GetCOk returns a tuple with the C field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalNBBO) GetCOk() (*[][]interface{}, bool) {
+func (o *HistoricalNBBO) GetCOk() (*[][]string, bool) {
 	if o == nil || o.C == nil {
 		return nil, false
 	}
@@ -438,8 +438,8 @@ func (o *HistoricalNBBO) HasC() bool {
 	return false
 }
 
-// SetC gets a reference to the given [][]interface{} and assigns it to the C field.
-func (o *HistoricalNBBO) SetC(v [][]interface{}) {
+// SetC gets a reference to the given [][]string and assigns it to the C field.
+func (o *HistoricalNBBO) SetC(v [][]string) {
 	o.C = &v
 }
 

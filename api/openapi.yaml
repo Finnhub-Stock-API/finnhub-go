@@ -71,7 +71,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Stock'
+                  $ref: '#/components/schemas/StockSymbol'
                 type: array
           description: successful operation
       security:
@@ -192,7 +192,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/News'
+                  $ref: '#/components/schemas/MarketNews'
                 type: array
           description: successful operation
       security:
@@ -232,7 +232,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/News'
+                  $ref: '#/components/schemas/CompanyNews'
                 type: array
           description: successful operation
       security:
@@ -271,7 +271,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MajorPressReleases'
+                $ref: '#/components/schemas/PressRelease'
           description: successful operation
       security:
       - api_key: []
@@ -1307,7 +1307,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Dividends2(Basic)'
+                $ref: '#/components/schemas/Dividends2'
           description: successful operation
       security:
       - api_key: []
@@ -1494,7 +1494,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MutualFundsProfile'
+                $ref: '#/components/schemas/MutualFundProfile'
           description: successful operation
       security:
       - api_key: []
@@ -1529,7 +1529,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MutualFundsHoldings'
+                $ref: '#/components/schemas/MutualFundHoldings'
           description: successful operation
       security:
       - api_key: []
@@ -1552,11 +1552,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mutual-fundSectorExposure'
+                $ref: '#/components/schemas/MutualFundSectorExposure'
           description: successful operation
       security:
       - api_key: []
-      summary: Mutual-fund Sector Exposure
+      summary: Mutual Funds Sector Exposure
       tags:
       - Default
   /mutual-fund/country:
@@ -1575,7 +1575,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MutualFundsCountryExposure'
+                $ref: '#/components/schemas/MutualFundCountryExposure'
           description: successful operation
       security:
       - api_key: []
@@ -1964,7 +1964,7 @@ paths:
       description: <p>Get earnings call transcripts, audio and participants' list.
         This endpoint is only available for US, UK, and Candian companies. <p>15+
         years of data is available with 220,000+ audio which add up to 7TB in size.</p>
-      operationId: earnings-call-transcripts-api
+      operationId: transcripts
       parameters:
       - description: Transcript's id obtained with <a href="#transcripts-list">Transcripts
           List endpoint</a>.
@@ -2035,7 +2035,7 @@ paths:
         themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
         The theme coverage and portfolios are updated bi-weekly by our analysts. Our
         approach excludes penny, super-small cap and illiquid stocks.</p>
-      operationId: investment-themes-thematic-investing
+      operationId: investment-themes
       parameters:
       - description: Investment theme. A full list of themes supported can be found
           <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>.
@@ -2049,7 +2049,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InvestmentThemes(ThematicInvesting)'
+                $ref: '#/components/schemas/InvestmentThemes'
           description: successful operation
       security:
       - api_key: []
@@ -2145,6 +2145,23 @@ paths:
       summary: Country Metadata
       tags:
       - Default
+  /calendar/economic:
+    get:
+      description: <p>Get recent and upcoming economic releases.</p><p>Historical
+        events and surprises are available for Enterprise clients.</p>
+      operationId: economic-calendar
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EconomicCalendar'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Economic Calendar
+      tags:
+      - Default
   /economic/code:
     get:
       description: List codes of supported economic data.
@@ -2188,7 +2205,64 @@ paths:
       - Default
 components:
   schemas:
-    Stock:
+    StockSymbol:
+      example:
+        displaySymbol: displaySymbol
+        symbol: symbol
+        mic: mic
+        description: description
+        figi: figi
+        currency: currency
+        type: type
+      properties:
+        description:
+          description: Symbol description
+          type: string
+        displaySymbol:
+          description: Display symbol name.
+          type: string
+        symbol:
+          description: Unique symbol used to identify this symbol used in <code>/stock/candle</code>
+            endpoint.
+          type: string
+        type:
+          description: Security type.
+          type: string
+        mic:
+          description: Primary exchange's MIC.
+          type: string
+        figi:
+          description: FIGI identifier.
+          type: string
+        currency:
+          description: Price's currency. This might be different from the reporting
+            currency of fundamental data.
+          type: string
+      type: object
+    SymbolLookup:
+      example:
+        result:
+        - displaySymbol: displaySymbol
+          symbol: symbol
+          description: description
+          type: type
+        - displaySymbol: displaySymbol
+          symbol: symbol
+          description: description
+          type: type
+        count: 0
+      properties:
+        result:
+          description: Array of search results.
+          items:
+            $ref: '#/components/schemas/SymbolLookupInfo'
+          type: array
+        count:
+          description: Number of results.
+          format: int64
+          type: integer
+      type: object
+    SymbolLookupInfo:
       example:
         displaySymbol: displaySymbol
         symbol: symbol
@@ -2208,23 +2282,6 @@ components:
         type:
           description: Security type.
           type: string
-      type: object
-    SymbolLookup:
-      example:
-        result:
-        - '{}'
-        - '{}'
-        count: 0
-      properties:
-        result:
-          description: Array of search results.
-          items:
-            type: object
-          type: array
-        count:
-          description: Number of results.
-          format: int64
-          type: integer
       type: object
     CompanyProfile:
       example:
@@ -2402,6 +2459,14 @@ components:
           type: string
       type: object
     Company:
+      example:
+        sex: sex
+        name: name
+        compensation: 6
+        currency: currency
+        title: title
+        age: 0
+        since: since
       properties:
         name:
           description: Executive name
@@ -2431,8 +2496,20 @@ components:
       example:
         symbol: symbol
         executive:
-        - '{}'
-        - '{}'
+        - sex: sex
+          name: name
+          compensation: 6
+          currency: currency
+          title: title
+          age: 0
+          since: since
+        - sex: sex
+          name: name
+          compensation: 6
+          currency: currency
+          title: title
+          age: 0
+          since: since
       properties:
         symbol:
           description: Company symbol.
@@ -2440,10 +2517,53 @@ components:
         executive:
           description: Array of company's executives and members of the Board.
           items:
-            type: object
+            $ref: '#/components/schemas/Company'
           type: array
       type: object
-    News:
+    MarketNews:
+      example:
+        summary: summary
+        image: image
+        datetime: 0
+        related: related
+        id: 6
+        source: source
+        category: category
+        headline: headline
+        url: url
+      properties:
+        category:
+          description: News category.
+          type: string
+        datetime:
+          description: Published time in UNIX timestamp.
+          format: int64
+          type: integer
+        headline:
+          description: News headline.
+          type: string
+        id:
+          description: News ID. This value can be used for <code>minId</code> params
+            to get the latest news only.
+          format: int64
+          type: integer
+        image:
+          description: Thumbnail image URL.
+          type: string
+        related:
+          description: Related stocks and companies mentioned in the article.
+          type: string
+        source:
+          description: News source.
+          type: string
+        summary:
+          description: News summary.
+          type: string
+        url:
+          description: URL of the original article.
+          type: string
+      type: object
+    CompanyNews:
       example:
         summary: summary
         image: image
@@ -2487,13 +2607,18 @@ components:
           type: string
       type: object
     Development:
+      example:
+        symbol: symbol
+        datetime: datetime
+        description: description
+        headline: headline
+        url: url
       properties:
         symbol:
           description: Company symbol.
           type: string
         datetime:
           description: Published time in <code>YYYY-MM-DD HH:MM:SS</code> format.
-          format: date-time
           type: string
         headline:
           description: Development headline.
@@ -2505,11 +2630,19 @@ components:
           description: URL.
           type: string
       type: object
-    MajorPressReleases:
+    PressRelease:
       example:
         majorDevelopment:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+          datetime: datetime
+          description: description
+          headline: headline
+          url: url
+        - symbol: symbol
+          datetime: datetime
+          description: description
+          headline: headline
+          url: url
         symbol: symbol
       properties:
         symbol:
@@ -2518,7 +2651,7 @@ components:
         majorDevelopment:
           description: Array of major developments.
           items:
-            type: object
+            $ref: '#/components/schemas/Development'
           type: array
       type: object
     CompanyNewsStatistics:
@@ -2610,7 +2743,12 @@ components:
         metric:
           type: object
       type: object
-    Investor:
+    OwnershipInfo:
+      example:
+        filingDate: 2000-01-23
+        change: 6
+        name: name
+        share: 0
       properties:
         name:
           description: Investor's name.
@@ -2632,8 +2770,14 @@ components:
       example:
         symbol: symbol
         ownership:
-        - '{}'
-        - '{}'
+        - filingDate: 2000-01-23
+          change: 6
+          name: name
+          share: 0
+        - filingDate: 2000-01-23
+          change: 6
+          name: name
+          share: 0
       properties:
         symbol:
           description: Symbol of the company.
@@ -2641,15 +2785,52 @@ components:
         ownership:
           description: Array of investors with detailed information about their holdings.
           items:
-            type: object
+            $ref: '#/components/schemas/OwnershipInfo'
           type: array
+      type: object
+    FundOwnershipInfo:
+      example:
+        filingDate: 2000-01-23
+        portfolioPercent: 1.4658129
+        change: 6
+        name: name
+        share: 0
+      properties:
+        name:
+          description: Investor's name.
+          type: string
+        share:
+          description: Number of shares held by the investor.
+          format: int64
+          type: integer
+        change:
+          description: Number of share changed (net buy or sell) from the last period.
+          format: int64
+          type: integer
+        filingDate:
+          description: Filing date.
+          format: date
+          type: string
+        portfolioPercent:
+          description: Percent of the fund's portfolio comprised of the company's
+            share.
+          format: float
+          type: number
       type: object
     FundOwnership:
       example:
         symbol: symbol
         ownership:
-        - '{}'
-        - '{}'
+        - filingDate: 2000-01-23
+          portfolioPercent: 1.4658129
+          change: 6
+          name: name
+          share: 0
+        - filingDate: 2000-01-23
+          portfolioPercent: 1.4658129
+          change: 6
+          name: name
+          share: 0
       properties:
         symbol:
           description: Symbol of the company.
@@ -2657,10 +2838,18 @@ components:
         ownership:
           description: Array of investors with detailed information about their holdings.
           items:
-            type: object
+            $ref: '#/components/schemas/FundOwnershipInfo'
           type: array
       type: object
     Transactions:
+      example:
+        filingDate: 2000-01-23
+        change: 6
+        name: name
+        transactionPrice: 1.4658129
+        share: 0
+        transactionCode: 2000-01-23
+        transactionDate: 2000-01-23
       properties:
         name:
           description: Insider's name.
@@ -2698,8 +2887,20 @@ components:
       example:
         symbol: symbol
         data:
-        - '{}'
-        - '{}'
+        - filingDate: 2000-01-23
+          change: 6
+          name: name
+          transactionPrice: 1.4658129
+          share: 0
+          transactionCode: 2000-01-23
+          transactionDate: 2000-01-23
+        - filingDate: 2000-01-23
+          change: 6
+          name: name
+          transactionPrice: 1.4658129
+          share: 0
+          transactionCode: 2000-01-23
+          transactionDate: 2000-01-23
       properties:
         symbol:
           description: Symbol of the company.
@@ -2707,7 +2908,7 @@ components:
         data:
           description: Array of insider transactions.
           items:
-            type: object
+            $ref: '#/components/schemas/Transactions'
           type: array
       type: object
     FinancialMap:
@@ -2716,8 +2917,8 @@ components:
       example:
         symbol: symbol
         financials:
-        - '{}'
-        - '{}'
+        - null
+        - null
       properties:
         symbol:
           description: Symbol of the company.
@@ -2726,12 +2927,24 @@ components:
           description: An array of map of key, value pairs containing the data for
             each period.
           items:
-            type: object
+            $ref: '#/components/schemas/FinancialMap'
           type: array
       type: object
     ReportDataMap:
       type: object
     Report:
+      example:
+        symbol: symbol
+        cik: cik
+        form: form
+        accessNumber: accessNumber
+        year: 0
+        endDate: endDate
+        report: '{}'
+        filedDate: filedDate
+        acceptedDate: acceptedDate
+        startDate: startDate
+        quarter: 6
       properties:
         accessNumber:
           description: Access number.
@@ -2755,19 +2968,15 @@ components:
           type: string
         startDate:
           description: Period start date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         endDate:
           description: Period end date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         filedDate:
           description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         acceptedDate:
           description: Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         report:
           type: object
@@ -2777,8 +2986,28 @@ components:
         symbol: symbol
         cik: cik
         data:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+          cik: cik
+          form: form
+          accessNumber: accessNumber
+          year: 0
+          endDate: endDate
+          report: '{}'
+          filedDate: filedDate
+          acceptedDate: acceptedDate
+          startDate: startDate
+          quarter: 6
+        - symbol: symbol
+          cik: cik
+          form: form
+          accessNumber: accessNumber
+          year: 0
+          endDate: endDate
+          report: '{}'
+          filedDate: filedDate
+          acceptedDate: acceptedDate
+          startDate: startDate
+          quarter: 6
       properties:
         symbol:
           description: Symbol
@@ -2789,12 +3018,15 @@ components:
         data:
           description: Array of filings.
           items:
-            type: object
+            $ref: '#/components/schemas/Report'
           type: array
       type: object
     BreakdownItemMap:
       type: object
     BreakdownItem:
+      example:
+        accessNumber: accessNumber
+        breakdown: '{}'
       properties:
         accessNumber:
           description: Access number of the report from which the data is sourced.
@@ -2807,8 +3039,10 @@ components:
         symbol: symbol
         cik: cik
         data:
-        - '{}'
-        - '{}'
+        - accessNumber: accessNumber
+          breakdown: '{}'
+        - accessNumber: accessNumber
+          breakdown: '{}'
       properties:
         symbol:
           description: Symbol
@@ -2819,7 +3053,7 @@ components:
         data:
           description: Array of revenue breakdown over multiple periods.
           items:
-            type: object
+            $ref: '#/components/schemas/BreakdownItem'
           type: array
       type: object
     Filing:
@@ -2829,8 +3063,8 @@ components:
         form: form
         accessNumber: accessNumber
         reportUrl: reportUrl
-        filedDate: 2000-01-23T04:56:07.000+00:00
-        acceptedDate: 2000-01-23T04:56:07.000+00:00
+        filedDate: filedDate
+        acceptedDate: acceptedDate
         filingUrl: filingUrl
       properties:
         accessNumber:
@@ -2847,11 +3081,9 @@ components:
           type: string
         filedDate:
           description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         acceptedDate:
           description: Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         reportUrl:
           description: Report's URL.
@@ -2869,7 +3101,7 @@ components:
         language: language
         category: category
         title: title
-        filedDate: 2000-01-23T04:56:07.000+00:00
+        filedDate: filedDate
         url: url
       properties:
         symbol:
@@ -2880,7 +3112,6 @@ components:
           type: string
         filedDate:
           description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
-          format: date-time
           type: string
         category:
           description: Category.
@@ -2983,8 +3214,22 @@ components:
         symbol: symbol
         cik: cik
         similarity:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+          cik: cik
+          form: form
+          accessNumber: accessNumber
+          reportUrl: reportUrl
+          filedDate: filedDate
+          acceptedDate: acceptedDate
+          filingUrl: filingUrl
+        - symbol: symbol
+          cik: cik
+          form: form
+          accessNumber: accessNumber
+          reportUrl: reportUrl
+          filedDate: filedDate
+          acceptedDate: acceptedDate
+          filingUrl: filingUrl
       properties:
         symbol:
           description: Symbol.
@@ -2996,10 +3241,19 @@ components:
           description: Array of filings with its cosine similarity compared to the
             same report of the previous year.
           items:
-            type: object
+            $ref: '#/components/schemas/Filing'
           type: array
       type: object
     IPOEvent:
+      example:
+        date: 2000-01-23
+        symbol: symbol
+        price: price
+        numberOfShares: 0
+        totalSharesValue: 6
+        name: name
+        exchange: exchange
+        status: status
       properties:
         symbol:
           description: Symbol.
@@ -3032,13 +3286,27 @@ components:
     IPOCalendar:
       example:
         ipoCalendar:
-        - '{}'
-        - '{}'
+        - date: 2000-01-23
+          symbol: symbol
+          price: price
+          numberOfShares: 0
+          totalSharesValue: 6
+          name: name
+          exchange: exchange
+          status: status
+        - date: 2000-01-23
+          symbol: symbol
+          price: price
+          numberOfShares: 0
+          totalSharesValue: 6
+          name: name
+          exchange: exchange
+          status: status
       properties:
         ipoCalendar:
           description: Array of IPO events.
           items:
-            type: object
+            $ref: '#/components/schemas/IPOEvent'
           type: array
       type: object
     Dividends:
@@ -3083,6 +3351,20 @@ components:
           description: Currency.
           type: string
       type: object
+    Dividends2Info:
+      example:
+        amount: 0.8008282
+        exDate: 2000-01-23
+      properties:
+        exDate:
+          description: Ex-Dividend date.
+          format: date
+          type: string
+        amount:
+          description: Amount in local currency.
+          format: float
+          type: number
+      type: object
     RecommendationTrend:
       example:
         symbol: symbol
@@ -3124,7 +3406,7 @@ components:
       example:
         targetLow: 6.0274563
         symbol: symbol
-        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        lastUpdated: lastUpdated
         targetHigh: 0.8008282
         targetMean: 1.4658129
         targetMedian: 5.962134
@@ -3150,7 +3432,6 @@ components:
           type: number
         lastUpdated:
           description: Updated time of the data
-          format: date-time
           type: string
       type: object
     UpgradeDowngrade:
@@ -3184,6 +3465,12 @@ components:
           type: string
       type: object
     Estimate:
+      example:
+        revenueLow: 1
+        period: 2000-01-23
+        numberAnalysts: 5
+        revenueHigh: 6
+        revenueAvg: 0
       properties:
         revenueAvg:
           description: Average revenue estimates including Finnhub's proprietary estimates.
@@ -3210,14 +3497,22 @@ components:
       example:
         symbol: symbol
         data:
-        - '{}'
-        - '{}'
+        - revenueLow: 1
+          period: 2000-01-23
+          numberAnalysts: 5
+          revenueHigh: 6
+          revenueAvg: 0
+        - revenueLow: 1
+          period: 2000-01-23
+          numberAnalysts: 5
+          revenueHigh: 6
+          revenueAvg: 0
         freq: freq
       properties:
         data:
           description: List of estimates
           items:
-            type: object
+            $ref: '#/components/schemas/Estimate'
           type: array
         freq:
           description: 'Frequency: annual or quarterly.'
@@ -3227,6 +3522,12 @@ components:
           type: string
       type: object
     EarningEstimate:
+      example:
+        epsHigh: 6.0274563
+        period: 2000-01-23
+        epsAvg: 0.8008282
+        epsLow: 1.4658129
+        numberAnalysts: 5
       properties:
         epsAvg:
           description: Average EPS estimates including Finnhub's proprietary estimates.
@@ -3253,14 +3554,22 @@ components:
       example:
         symbol: symbol
         data:
-        - '{}'
-        - '{}'
+        - epsHigh: 6.0274563
+          period: 2000-01-23
+          epsAvg: 0.8008282
+          epsLow: 1.4658129
+          numberAnalysts: 5
+        - epsHigh: 6.0274563
+          period: 2000-01-23
+          epsAvg: 0.8008282
+          epsLow: 1.4658129
+          numberAnalysts: 5
         freq: freq
       properties:
         data:
           description: List of estimates
           items:
-            type: object
+            $ref: '#/components/schemas/EarningEstimate'
           type: array
         freq:
           description: 'Frequency: annual or quarterly.'
@@ -3303,6 +3612,16 @@ components:
           type: string
       type: object
     EarningRelease:
+      example:
+        date: 2000-01-23
+        symbol: symbol
+        epsActual: 5.962134
+        hour: hour
+        epsEstimate: 1.4658129
+        revenueEstimate: 5
+        revenueActual: 2
+        year: 0
+        quarter: 6
       properties:
         symbol:
           description: Symbol.
@@ -3343,13 +3662,29 @@ components:
     EarningsCalendar:
       example:
         earningsCalendar:
-        - '{}'
-        - '{}'
+        - date: 2000-01-23
+          symbol: symbol
+          epsActual: 5.962134
+          hour: hour
+          epsEstimate: 1.4658129
+          revenueEstimate: 5
+          revenueActual: 2
+          year: 0
+          quarter: 6
+        - date: 2000-01-23
+          symbol: symbol
+          epsActual: 5.962134
+          hour: hour
+          epsEstimate: 1.4658129
+          revenueEstimate: 5
+          revenueActual: 2
+          year: 0
+          quarter: 6
       properties:
         earningsCalendar:
           description: Array of earnings release.
           items:
-            type: object
+            $ref: '#/components/schemas/EarningRelease'
           type: array
       type: object
     Quote:
@@ -3522,7 +3857,6 @@ components:
             code can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1PUxiSWPHSODbaTaoL2Vef6DgU-yFtlRGZf19oBb9Hp0/edit?usp=sharing">here</a>
           items:
             items:
-              description: TODO default missing array inner type to string
               type: string
             type: array
           type: array
@@ -3623,7 +3957,6 @@ components:
             code can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1iiA6e7Osdtai0oPMOUzgAIKXCsay89dFDmsegz6OpEg/edit?usp=sharing">here</a>
           items:
             items:
-              description: TODO default missing array inner type to string
               type: string
             type: array
           type: array
@@ -3680,12 +4013,14 @@ components:
           format: float
           type: number
       type: object
-    Dividends2(Basic):
+    Dividends2:
       example:
         symbol: symbol
         data:
-        - '{}'
-        - '{}'
+        - amount: 0.8008282
+          exDate: 2000-01-23
+        - amount: 0.8008282
+          exDate: 2000-01-23
       properties:
         symbol:
           description: Symbol
@@ -3693,7 +4028,7 @@ components:
         data:
           description: ""
           items:
-            type: object
+            $ref: '#/components/schemas/Dividends2Info'
           type: array
       type: object
     IndicesConstituents:
@@ -3713,6 +4048,10 @@ components:
           type: array
       type: object
     IndexHistoricalConstituent:
+      example:
+        date: 2000-01-23
+        symbol: symbol
+        action: action
       properties:
         symbol:
           description: Symbol
@@ -3728,8 +4067,12 @@ components:
     IndicesHistoricalConstituents:
       example:
         historicalConstituents:
-        - '{}'
-        - '{}'
+        - date: 2000-01-23
+          symbol: symbol
+          action: action
+        - date: 2000-01-23
+          symbol: symbol
+          action: action
         symbol: symbol
       properties:
         symbol:
@@ -3738,7 +4081,7 @@ components:
         historicalConstituents:
           description: Array of historical constituents.
           items:
-            type: object
+            $ref: '#/components/schemas/IndexHistoricalConstituent'
           type: array
       type: object
     ETFProfileData:
@@ -3854,6 +4197,14 @@ components:
           $ref: '#/components/schemas/ETFProfileData'
       type: object
     ETFHoldingsData:
+      example:
+        symbol: symbol
+        cusip: cusip
+        name: name
+        share: 6.0274563
+        percent: 1.4658129
+        value: 5.962134
+        isin: isin
       properties:
         symbol:
           description: Symbol description
@@ -3885,8 +4236,20 @@ components:
         symbol: symbol
         atDate: 2000-01-23
         holdings:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+          cusip: cusip
+          name: name
+          share: 6.0274563
+          percent: 1.4658129
+          value: 5.962134
+          isin: isin
+        - symbol: symbol
+          cusip: cusip
+          name: name
+          share: 6.0274563
+          percent: 1.4658129
+          value: 5.962134
+          isin: isin
         numberOfHoldings: 0
       properties:
         symbol:
@@ -3903,10 +4266,13 @@ components:
         holdings:
           description: Array of holdings.
           items:
-            type: object
+            $ref: '#/components/schemas/ETFHoldingsData'
           type: array
       type: object
     ETFSectorExposureData:
+      example:
+        exposure: 0.8008282
+        industry: industry
       properties:
         industry:
           description: Industry
@@ -3920,8 +4286,10 @@ components:
       example:
         symbol: symbol
         sectorExposure:
-        - '{}'
-        - '{}'
+        - exposure: 0.8008282
+          industry: industry
+        - exposure: 0.8008282
+          industry: industry
       properties:
         symbol:
           description: ETF symbol.
@@ -3929,10 +4297,13 @@ components:
         sectorExposure:
           description: Array of industries and exposure levels.
           items:
-            type: object
+            $ref: '#/components/schemas/ETFSectorExposureData'
           type: array
       type: object
     ETFCountryExposureData:
+      example:
+        country: country
+        exposure: 0.8008282
       properties:
         country:
           description: Country
@@ -3946,8 +4317,10 @@ components:
       example:
         symbol: symbol
         countryExposure:
-        - '{}'
-        - '{}'
+        - country: country
+          exposure: 0.8008282
+        - country: country
+          exposure: 0.8008282
       properties:
         symbol:
           description: ETF symbol.
@@ -3955,45 +4328,194 @@ components:
         countryExposure:
           description: Array of countries and and exposure levels.
           items:
-            type: object
+            $ref: '#/components/schemas/ETFCountryExposureData'
           type: array
       type: object
-    MutualFundsProfile:
+    MutualFundProfileData:
+      example:
+        cusip: cusip
+        manager: manager
+        iraMinInvestment: 7.0614014
+        totalNav: 0.8008282
+        deferredLoad: 5.962134
+        description: description
+        fee12b1: 5.637377
+        benchmark: benchmark
+        standardMinInvestment: 3.6160767
+        inceptionDate: 2000-01-23
+        frontLoad: 2.302136
+        expenseRatio: 6.0274563
+        name: name
+        category: category
+        turnover: 2.027123
+        investmentSegment: investmentSegment
+        fundFamily: fundFamily
+        beta: 1.4658129
+        isin: isin
+        status: status
+        maxRedemptionFee: 9.301444
+      properties:
+        name:
+          description: Name
+          type: string
+        category:
+          description: Fund's category.
+          type: string
+        investmentSegment:
+          description: Investment Segment.
+          type: string
+        totalNav:
+          description: NAV.
+          format: float
+          type: number
+        expenseRatio:
+          description: Expense ratio.
+          format: float
+          type: number
+        benchmark:
+          description: Index benchmark.
+          type: string
+        inceptionDate:
+          description: Inception date.
+          format: date
+          type: string
+        description:
+          description: Fund's description.
+          type: string
+        fundFamily:
+          description: Fund Family.
+          type: string
+        manager:
+          description: Fund's managers.
+          type: string
+        status:
+          description: Status.
+          type: string
+        beta:
+          description: Beta.
+          format: float
+          type: number
+        deferredLoad:
+          description: Deferred load.
+          format: float
+          type: number
+        fee12b1:
+          description: 12B-1 fee.
+          format: float
+          type: number
+        frontLoad:
+          description: Front Load.
+          format: float
+          type: number
+        iraMinInvestment:
+          description: IRA minimum investment.
+          format: float
+          type: number
+        isin:
+          description: ISIN.
+          type: string
+        cusip:
+          description: CUSIP.
+          type: string
+        maxRedemptionFee:
+          description: Max redemption fee.
+          format: float
+          type: number
+        standardMinInvestment:
+          description: Minimum investment for standard accounts.
+          format: float
+          type: number
+        turnover:
+          description: Turnover.
+          format: float
+          type: number
+      type: object
+    MutualFundProfile:
       example:
         symbol: symbol
         profile:
-          nav: 6.0274563
-          website: website
           cusip: cusip
-          priceToEarnings: 5.962134
-          avgVolume: 2.302136
+          manager: manager
+          iraMinInvestment: 7.0614014
+          totalNav: 0.8008282
+          deferredLoad: 5.962134
           description: description
-          assetClass: assetClass
-          etfCompany: etfCompany
+          fee12b1: 5.637377
+          benchmark: benchmark
+          standardMinInvestment: 3.6160767
           inceptionDate: 2000-01-23
-          expenseRatio: 1.4658129
+          frontLoad: 2.302136
+          expenseRatio: 6.0274563
           name: name
-          aum: 0.8008282
-          domicile: domicile
-          trackingIndex: trackingIndex
-          priceToBook: 5.637377
+          category: category
+          turnover: 2.027123
           investmentSegment: investmentSegment
-          navCurrency: navCurrency
+          fundFamily: fundFamily
+          beta: 1.4658129
           isin: isin
+          status: status
+          maxRedemptionFee: 9.301444
       properties:
         symbol:
           description: Symbol.
           type: string
         profile:
-          $ref: '#/components/schemas/ETFProfileData'
+          $ref: '#/components/schemas/MutualFundProfileData'
       type: object
-    MutualFundsHoldings:
+    MutualFundHoldingsData:
+      example:
+        symbol: symbol
+        cusip: cusip
+        name: name
+        share: 6.0274563
+        percent: 1.4658129
+        value: 5.962134
+        isin: isin
+      properties:
+        symbol:
+          description: Symbol description
+          type: string
+        name:
+          description: Security name
+          type: string
+        isin:
+          description: ISIN.
+          type: string
+        cusip:
+          description: CUSIP.
+          type: string
+        share:
+          description: Number of shares.
+          format: float
+          type: number
+        percent:
+          description: Portfolio's percent
+          format: float
+          type: number
+        value:
+          description: Market value
+          format: float
+          type: number
+      type: object
+    MutualFundHoldings:
       example:
         symbol: symbol
         atDate: 2000-01-23
         holdings:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+          cusip: cusip
+          name: name
+          share: 6.0274563
+          percent: 1.4658129
+          value: 5.962134
+          isin: isin
+        - symbol: symbol
+          cusip: cusip
+          name: name
+          share: 6.0274563
+          percent: 1.4658129
+          value: 5.962134
+          isin: isin
         numberOfHoldings: 0
       properties:
         symbol:
@@ -4010,10 +4532,13 @@ components:
         holdings:
           description: Array of holdings.
           items:
-            type: object
+            $ref: '#/components/schemas/MutualFundHoldingsData'
           type: array
       type: object
     MutualFundSectorExposureData:
+      example:
+        exposure: 0.8008282
+        sector: sector
       properties:
         sector:
           description: Sector
@@ -4023,12 +4548,14 @@ components:
           format: float
           type: number
       type: object
-    Mutual-fundSectorExposure:
+    MutualFundSectorExposure:
       example:
         symbol: symbol
         sectorExposure:
-        - '{}'
-        - '{}'
+        - exposure: 0.8008282
+          sector: sector
+        - exposure: 0.8008282
+          sector: sector
       properties:
         symbol:
           description: Mutual symbol.
@@ -4036,10 +4563,13 @@ components:
         sectorExposure:
           description: Array of sector and exposure levels.
           items:
-            type: object
+            $ref: '#/components/schemas/MutualFundSectorExposureData'
           type: array
       type: object
     MutualFundCountryExposureData:
+      example:
+        country: country
+        exposure: 0.8008282
       properties:
         country:
           description: Country
@@ -4049,12 +4579,14 @@ components:
           format: float
           type: number
       type: object
-    MutualFundsCountryExposure:
+    MutualFundCountryExposure:
       example:
         symbol: symbol
         countryExposure:
-        - '{}'
-        - '{}'
+        - country: country
+          exposure: 0.8008282
+        - country: country
+          exposure: 0.8008282
       properties:
         symbol:
           description: Symbol.
@@ -4062,7 +4594,7 @@ components:
         countryExposure:
           description: Array of countries and and exposure levels.
           items:
-            type: object
+            $ref: '#/components/schemas/MutualFundCountryExposureData'
           type: array
       type: object
     ForexSymbol:
@@ -4144,7 +4676,7 @@ components:
           description: Status of the response. This field can either be ok or no_data.
           type: string
       type: object
-    ForexRare:
+    ForexRate:
       type: object
     Forexrates:
       example:
@@ -4241,13 +4773,13 @@ components:
     PatternRecognition:
       example:
         points:
-        - '{}'
-        - '{}'
+        - null
+        - null
       properties:
         points:
           description: Array of patterns.
           items:
-            type: object
+            $ref: '#/components/schemas/ScanPattern'
           type: array
       type: object
     SupportResistance:
@@ -4331,6 +4863,12 @@ components:
     IndicatorFields:
       type: object
     StockTranscripts:
+      example:
+        year: 0
+        id: id
+        time: time
+        title: title
+        quarter: 6
       properties:
         id:
           description: Transcript's ID used to get the <a href="#transcripts">full
@@ -4341,7 +4879,6 @@ components:
           type: string
         time:
           description: Time of the event.
-          format: date-time
           type: string
         year:
           description: Year of earnings result in the case of earnings call transcript.
@@ -4356,8 +4893,16 @@ components:
       example:
         symbol: symbol
         transcripts:
-        - '{}'
-        - '{}'
+        - year: 0
+          id: id
+          time: time
+          title: title
+          quarter: 6
+        - year: 0
+          id: id
+          time: time
+          title: title
+          quarter: 6
       properties:
         symbol:
           description: Company symbol.
@@ -4365,10 +4910,16 @@ components:
         transcripts:
           description: Array of transcripts' metadata
           items:
-            type: object
+            $ref: '#/components/schemas/StockTranscripts'
           type: array
       type: object
     TranscriptContent:
+      example:
+        speech:
+        - speech
+        - speech
+        session: session
+        name: name
       properties:
         name:
           description: Speaker's name
@@ -4383,6 +4934,10 @@ components:
           type: string
       type: object
     TranscriptParticipant:
+      example:
+        role: role
+        name: name
+        description: description
       properties:
         name:
           description: Participant's name
@@ -4398,16 +4953,28 @@ components:
       example:
         symbol: symbol
         transcript:
-        - '{}'
-        - '{}'
+        - speech:
+          - speech
+          - speech
+          session: session
+          name: name
+        - speech:
+          - speech
+          - speech
+          session: session
+          name: name
         year: 0
         audio: audio
         id: id
-        time: 2000-01-23T04:56:07.000+00:00
+        time: time
         title: title
         participant:
-        - '{}'
-        - '{}'
+        - role: role
+          name: name
+          description: description
+        - role: role
+          name: name
+          description: description
         quarter: 6
       properties:
         symbol:
@@ -4416,12 +4983,12 @@ components:
         transcript:
           description: Transcript content.
           items:
-            type: object
+            $ref: '#/components/schemas/TranscriptContent'
           type: array
         participant:
           description: Participant list
           items:
-            type: object
+            $ref: '#/components/schemas/TranscriptParticipant'
           type: array
         audio:
           description: Audio link.
@@ -4434,7 +5001,6 @@ components:
           type: string
         time:
           description: Time of the event.
-          format: date-time
           type: string
         year:
           description: Year of earnings result in the case of earnings call transcript.
@@ -4446,6 +5012,14 @@ components:
           type: integer
       type: object
     RedditSentimentContent:
+      example:
+        positiveMention: 6
+        atTime: atTime
+        score: 2.302136
+        positiveScore: 5.962134
+        negativeMention: 1
+        negativeScore: 5.637377
+        mention: 0
       properties:
         mention:
           description: Number of mentions
@@ -4474,10 +5048,17 @@ components:
           type: number
         atTime:
           description: Period.
-          format: date-time
           type: string
       type: object
     TwitterSentimentContent:
+      example:
+        positiveMention: 9
+        atTime: atTime
+        score: 7.386282
+        positiveScore: 2.027123
+        negativeMention: 3
+        negativeScore: 4.145608
+        mention: 7
       properties:
         mention:
           description: Number of mentions
@@ -4506,18 +5087,41 @@ components:
           type: number
         atTime:
           description: Period.
-          format: date-time
           type: string
       type: object
     SocialSentiment:
       example:
         symbol: symbol
         twitter:
-        - '{}'
-        - '{}'
+        - positiveMention: 9
+          atTime: atTime
+          score: 7.386282
+          positiveScore: 2.027123
+          negativeMention: 3
+          negativeScore: 4.145608
+          mention: 7
+        - positiveMention: 9
+          atTime: atTime
+          score: 7.386282
+          positiveScore: 2.027123
+          negativeMention: 3
+          negativeScore: 4.145608
+          mention: 7
         reddit:
-        - '{}'
-        - '{}'
+        - positiveMention: 6
+          atTime: atTime
+          score: 2.302136
+          positiveScore: 5.962134
+          negativeMention: 1
+          negativeScore: 5.637377
+          mention: 0
+        - positiveMention: 6
+          atTime: atTime
+          score: 2.302136
+          positiveScore: 5.962134
+          negativeMention: 1
+          negativeScore: 5.637377
+          mention: 0
       properties:
         symbol:
           description: Company symbol.
@@ -4525,25 +5129,27 @@ components:
         reddit:
           description: Reddit sentiment.
           items:
-            type: object
+            $ref: '#/components/schemas/RedditSentimentContent'
           type: array
         twitter:
           description: Twitter sentiment.
           items:
-            type: object
+            $ref: '#/components/schemas/TwitterSentimentContent'
           type: array
       type: object
     InvestmentThemePortfolio:
+      example:
+        symbol: symbol
       properties:
         symbol:
           description: Symbol
           type: string
       type: object
-    InvestmentThemes(ThematicInvesting):
+    InvestmentThemes:
       example:
         data:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+        - symbol: symbol
         theme: theme
       properties:
         theme:
@@ -4552,10 +5158,15 @@ components:
         data:
           description: Investment theme portfolio.
           items:
-            type: object
+            $ref: '#/components/schemas/InvestmentThemePortfolio'
           type: array
       type: object
     KeyCustomersSuppliers:
+      example:
+        symbol: symbol
+        supplier: true
+        name: name
+        customer: true
       properties:
         symbol:
           description: Symbol
@@ -4574,8 +5185,14 @@ components:
       example:
         symbol: symbol
         data:
-        - '{}'
-        - '{}'
+        - symbol: symbol
+          supplier: true
+          name: name
+          customer: true
+        - symbol: symbol
+          supplier: true
+          name: name
+          customer: true
       properties:
         symbol:
           description: symbol
@@ -4583,14 +5200,14 @@ components:
         data:
           description: Key customers and suppliers.
           items:
-            type: object
+            $ref: '#/components/schemas/KeyCustomersSuppliers'
           type: array
       type: object
     CovidInfo:
       example:
         death: 6.0274563
         state: state
-        updated: 2000-01-23T04:56:07.000+00:00
+        updated: updated
         case: 0.8008282
       properties:
         state:
@@ -4606,23 +5223,20 @@ components:
           type: number
         updated:
           description: Updated time.
-          format: date-time
           type: string
       type: object
     FDAComitteeMeeting:
       example:
-        fromDate: 2000-01-23T04:56:07.000+00:00
-        toDate: 2000-01-23T04:56:07.000+00:00
+        fromDate: fromDate
+        toDate: toDate
         eventDescription: eventDescription
         url: url
       properties:
         fromDate:
           description: Start time of the event in EST.
-          format: date-time
           type: string
         toDate:
           description: End time of the event in EST.
-          format: date-time
           type: string
         eventDescription:
           description: Event's description.
@@ -4660,6 +5274,15 @@ components:
           type: string
       type: object
     Economic event:
+      example:
+        actual: 0.8008282
+        country: country
+        unit: unit
+        prev: 6.0274563
+        impact: impact
+        estimate: 1.4658129
+        time: time
+        event: event
       properties:
         actual:
           description: Actual release
@@ -4690,11 +5313,29 @@ components:
           type: string
       type: object
     EconomicCalendar:
+      example:
+        economicCalendar:
+        - actual: 0.8008282
+          country: country
+          unit: unit
+          prev: 6.0274563
+          impact: impact
+          estimate: 1.4658129
+          time: time
+          event: event
+        - actual: 0.8008282
+          country: country
+          unit: unit
+          prev: 6.0274563
+          impact: impact
+          estimate: 1.4658129
+          time: time
+          event: event
       properties:
         economicCalendar:
           description: Array of economic events.
           items:
-            type: object
+            $ref: '#/components/schemas/Economic event'
           type: array
       type: object
     EconomicCode:
@@ -4717,7 +5358,10 @@ components:
           description: Unit
           type: string
       type: object
-    Economic data:
+    EconomicDataInfo:
+      example:
+        date: date
+        value: 0.8008282
       properties:
         date:
           description: Date of the reading
@@ -4731,13 +5375,15 @@ components:
       example:
         code: code
         data:
-        - '{}'
-        - '{}'
+        - date: date
+          value: 0.8008282
+        - date: date
+          value: 0.8008282
       properties:
         data:
           description: Array of economic data for requested code.
           items:
-            type: object
+            $ref: '#/components/schemas/EconomicDataInfo'
           type: array
         code:
           description: Finnhub economic code

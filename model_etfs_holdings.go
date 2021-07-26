@@ -23,7 +23,7 @@ type ETFsHoldings struct {
 	// Number of holdings.
 	NumberOfHoldings *int64 `json:"numberOfHoldings,omitempty"`
 	// Array of holdings.
-	Holdings *[]map[string]interface{} `json:"holdings,omitempty"`
+	Holdings *[]ETFHoldingsData `json:"holdings,omitempty"`
 }
 
 // NewETFsHoldings instantiates a new ETFsHoldings object
@@ -140,9 +140,9 @@ func (o *ETFsHoldings) SetNumberOfHoldings(v int64) {
 }
 
 // GetHoldings returns the Holdings field value if set, zero value otherwise.
-func (o *ETFsHoldings) GetHoldings() []map[string]interface{} {
+func (o *ETFsHoldings) GetHoldings() []ETFHoldingsData {
 	if o == nil || o.Holdings == nil {
-		var ret []map[string]interface{}
+		var ret []ETFHoldingsData
 		return ret
 	}
 	return *o.Holdings
@@ -150,7 +150,7 @@ func (o *ETFsHoldings) GetHoldings() []map[string]interface{} {
 
 // GetHoldingsOk returns a tuple with the Holdings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ETFsHoldings) GetHoldingsOk() (*[]map[string]interface{}, bool) {
+func (o *ETFsHoldings) GetHoldingsOk() (*[]ETFHoldingsData, bool) {
 	if o == nil || o.Holdings == nil {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *ETFsHoldings) HasHoldings() bool {
 	return false
 }
 
-// SetHoldings gets a reference to the given []map[string]interface{} and assigns it to the Holdings field.
-func (o *ETFsHoldings) SetHoldings(v []map[string]interface{}) {
+// SetHoldings gets a reference to the given []ETFHoldingsData and assigns it to the Holdings field.
+func (o *ETFsHoldings) SetHoldings(v []ETFHoldingsData) {
 	o.Holdings = &v
 }
 

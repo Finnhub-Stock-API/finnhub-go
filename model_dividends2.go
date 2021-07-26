@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// Dividends2Basic struct for Dividends2Basic
-type Dividends2Basic struct {
+// Dividends2 struct for Dividends2
+type Dividends2 struct {
 	// Symbol
 	Symbol *string `json:"symbol,omitempty"`
 	// 
-	Data *[]map[string]interface{} `json:"data,omitempty"`
+	Data *[]Dividends2Info `json:"data,omitempty"`
 }
 
-// NewDividends2Basic instantiates a new Dividends2Basic object
+// NewDividends2 instantiates a new Dividends2 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDividends2Basic() *Dividends2Basic {
-	this := Dividends2Basic{}
+func NewDividends2() *Dividends2 {
+	this := Dividends2{}
 	return &this
 }
 
-// NewDividends2BasicWithDefaults instantiates a new Dividends2Basic object
+// NewDividends2WithDefaults instantiates a new Dividends2 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDividends2BasicWithDefaults() *Dividends2Basic {
-	this := Dividends2Basic{}
+func NewDividends2WithDefaults() *Dividends2 {
+	this := Dividends2{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *Dividends2Basic) GetSymbol() string {
+func (o *Dividends2) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *Dividends2Basic) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dividends2Basic) GetSymbolOk() (*string, bool) {
+func (o *Dividends2) GetSymbolOk() (*string, bool) {
 	if o == nil || o.Symbol == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *Dividends2Basic) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *Dividends2Basic) HasSymbol() bool {
+func (o *Dividends2) HasSymbol() bool {
 	if o != nil && o.Symbol != nil {
 		return true
 	}
@@ -67,14 +67,14 @@ func (o *Dividends2Basic) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *Dividends2Basic) SetSymbol(v string) {
+func (o *Dividends2) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *Dividends2Basic) GetData() []map[string]interface{} {
+func (o *Dividends2) GetData() []Dividends2Info {
 	if o == nil || o.Data == nil {
-		var ret []map[string]interface{}
+		var ret []Dividends2Info
 		return ret
 	}
 	return *o.Data
@@ -82,7 +82,7 @@ func (o *Dividends2Basic) GetData() []map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dividends2Basic) GetDataOk() (*[]map[string]interface{}, bool) {
+func (o *Dividends2) GetDataOk() (*[]Dividends2Info, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *Dividends2Basic) GetDataOk() (*[]map[string]interface{}, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *Dividends2Basic) HasData() bool {
+func (o *Dividends2) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -98,12 +98,12 @@ func (o *Dividends2Basic) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *Dividends2Basic) SetData(v []map[string]interface{}) {
+// SetData gets a reference to the given []Dividends2Info and assigns it to the Data field.
+func (o *Dividends2) SetData(v []Dividends2Info) {
 	o.Data = &v
 }
 
-func (o Dividends2Basic) MarshalJSON() ([]byte, error) {
+func (o Dividends2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
@@ -114,38 +114,38 @@ func (o Dividends2Basic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableDividends2Basic struct {
-	value *Dividends2Basic
+type NullableDividends2 struct {
+	value *Dividends2
 	isSet bool
 }
 
-func (v NullableDividends2Basic) Get() *Dividends2Basic {
+func (v NullableDividends2) Get() *Dividends2 {
 	return v.value
 }
 
-func (v *NullableDividends2Basic) Set(val *Dividends2Basic) {
+func (v *NullableDividends2) Set(val *Dividends2) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDividends2Basic) IsSet() bool {
+func (v NullableDividends2) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDividends2Basic) Unset() {
+func (v *NullableDividends2) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDividends2Basic(val *Dividends2Basic) *NullableDividends2Basic {
-	return &NullableDividends2Basic{value: val, isSet: true}
+func NewNullableDividends2(val *Dividends2) *NullableDividends2 {
+	return &NullableDividends2{value: val, isSet: true}
 }
 
-func (v NullableDividends2Basic) MarshalJSON() ([]byte, error) {
+func (v NullableDividends2) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDividends2Basic) UnmarshalJSON(src []byte) error {
+func (v *NullableDividends2) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

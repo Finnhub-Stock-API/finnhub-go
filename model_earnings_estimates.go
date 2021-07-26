@@ -17,7 +17,7 @@ import (
 // EarningsEstimates struct for EarningsEstimates
 type EarningsEstimates struct {
 	// List of estimates
-	Data *[]map[string]interface{} `json:"data,omitempty"`
+	Data *[]EarningEstimate `json:"data,omitempty"`
 	// Frequency: annual or quarterly.
 	Freq *string `json:"freq,omitempty"`
 	// Company symbol.
@@ -42,9 +42,9 @@ func NewEarningsEstimatesWithDefaults() *EarningsEstimates {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *EarningsEstimates) GetData() []map[string]interface{} {
+func (o *EarningsEstimates) GetData() []EarningEstimate {
 	if o == nil || o.Data == nil {
-		var ret []map[string]interface{}
+		var ret []EarningEstimate
 		return ret
 	}
 	return *o.Data
@@ -52,7 +52,7 @@ func (o *EarningsEstimates) GetData() []map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsEstimates) GetDataOk() (*[]map[string]interface{}, bool) {
+func (o *EarningsEstimates) GetDataOk() (*[]EarningEstimate, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *EarningsEstimates) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *EarningsEstimates) SetData(v []map[string]interface{}) {
+// SetData gets a reference to the given []EarningEstimate and assigns it to the Data field.
+func (o *EarningsEstimates) SetData(v []EarningEstimate) {
 	o.Data = &v
 }
 

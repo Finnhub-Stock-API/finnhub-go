@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **TargetLow** | Pointer to **float32** | Lowest analysts&#39; target. | [optional] 
 **TargetMean** | Pointer to **float32** | Mean of all analysts&#39; targets. | [optional] 
 **TargetMedian** | Pointer to **float32** | Median of all analysts&#39; targets. | [optional] 
-**LastUpdated** | Pointer to **time.Time** | Updated time of the data | [optional] 
+**LastUpdated** | Pointer to **string** | Updated time of the data | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasTargetMedian returns a boolean if a field has been set.
 
 ### GetLastUpdated
 
-`func (o *PriceTarget) GetLastUpdated() time.Time`
+`func (o *PriceTarget) GetLastUpdated() string`
 
 GetLastUpdated returns the LastUpdated field if non-nil, zero value otherwise.
 
 ### GetLastUpdatedOk
 
-`func (o *PriceTarget) GetLastUpdatedOk() (*time.Time, bool)`
+`func (o *PriceTarget) GetLastUpdatedOk() (*string, bool)`
 
 GetLastUpdatedOk returns a tuple with the LastUpdated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastUpdated
 
-`func (o *PriceTarget) SetLastUpdated(v time.Time)`
+`func (o *PriceTarget) SetLastUpdated(v string)`
 
 SetLastUpdated sets LastUpdated field to given value.
 

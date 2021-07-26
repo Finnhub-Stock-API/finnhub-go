@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// MutualFundsHoldings struct for MutualFundsHoldings
-type MutualFundsHoldings struct {
+// MutualFundHoldings struct for MutualFundHoldings
+type MutualFundHoldings struct {
 	// Symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Holdings update date.
@@ -23,28 +23,28 @@ type MutualFundsHoldings struct {
 	// Number of holdings.
 	NumberOfHoldings *int64 `json:"numberOfHoldings,omitempty"`
 	// Array of holdings.
-	Holdings *[]map[string]interface{} `json:"holdings,omitempty"`
+	Holdings *[]MutualFundHoldingsData `json:"holdings,omitempty"`
 }
 
-// NewMutualFundsHoldings instantiates a new MutualFundsHoldings object
+// NewMutualFundHoldings instantiates a new MutualFundHoldings object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMutualFundsHoldings() *MutualFundsHoldings {
-	this := MutualFundsHoldings{}
+func NewMutualFundHoldings() *MutualFundHoldings {
+	this := MutualFundHoldings{}
 	return &this
 }
 
-// NewMutualFundsHoldingsWithDefaults instantiates a new MutualFundsHoldings object
+// NewMutualFundHoldingsWithDefaults instantiates a new MutualFundHoldings object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMutualFundsHoldingsWithDefaults() *MutualFundsHoldings {
-	this := MutualFundsHoldings{}
+func NewMutualFundHoldingsWithDefaults() *MutualFundHoldings {
+	this := MutualFundHoldings{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *MutualFundsHoldings) GetSymbol() string {
+func (o *MutualFundHoldings) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *MutualFundsHoldings) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsHoldings) GetSymbolOk() (*string, bool) {
+func (o *MutualFundHoldings) GetSymbolOk() (*string, bool) {
 	if o == nil || o.Symbol == nil {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *MutualFundsHoldings) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *MutualFundsHoldings) HasSymbol() bool {
+func (o *MutualFundHoldings) HasSymbol() bool {
 	if o != nil && o.Symbol != nil {
 		return true
 	}
@@ -71,12 +71,12 @@ func (o *MutualFundsHoldings) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *MutualFundsHoldings) SetSymbol(v string) {
+func (o *MutualFundHoldings) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetAtDate returns the AtDate field value if set, zero value otherwise.
-func (o *MutualFundsHoldings) GetAtDate() string {
+func (o *MutualFundHoldings) GetAtDate() string {
 	if o == nil || o.AtDate == nil {
 		var ret string
 		return ret
@@ -86,7 +86,7 @@ func (o *MutualFundsHoldings) GetAtDate() string {
 
 // GetAtDateOk returns a tuple with the AtDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsHoldings) GetAtDateOk() (*string, bool) {
+func (o *MutualFundHoldings) GetAtDateOk() (*string, bool) {
 	if o == nil || o.AtDate == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *MutualFundsHoldings) GetAtDateOk() (*string, bool) {
 }
 
 // HasAtDate returns a boolean if a field has been set.
-func (o *MutualFundsHoldings) HasAtDate() bool {
+func (o *MutualFundHoldings) HasAtDate() bool {
 	if o != nil && o.AtDate != nil {
 		return true
 	}
@@ -103,12 +103,12 @@ func (o *MutualFundsHoldings) HasAtDate() bool {
 }
 
 // SetAtDate gets a reference to the given string and assigns it to the AtDate field.
-func (o *MutualFundsHoldings) SetAtDate(v string) {
+func (o *MutualFundHoldings) SetAtDate(v string) {
 	o.AtDate = &v
 }
 
 // GetNumberOfHoldings returns the NumberOfHoldings field value if set, zero value otherwise.
-func (o *MutualFundsHoldings) GetNumberOfHoldings() int64 {
+func (o *MutualFundHoldings) GetNumberOfHoldings() int64 {
 	if o == nil || o.NumberOfHoldings == nil {
 		var ret int64
 		return ret
@@ -118,7 +118,7 @@ func (o *MutualFundsHoldings) GetNumberOfHoldings() int64 {
 
 // GetNumberOfHoldingsOk returns a tuple with the NumberOfHoldings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsHoldings) GetNumberOfHoldingsOk() (*int64, bool) {
+func (o *MutualFundHoldings) GetNumberOfHoldingsOk() (*int64, bool) {
 	if o == nil || o.NumberOfHoldings == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *MutualFundsHoldings) GetNumberOfHoldingsOk() (*int64, bool) {
 }
 
 // HasNumberOfHoldings returns a boolean if a field has been set.
-func (o *MutualFundsHoldings) HasNumberOfHoldings() bool {
+func (o *MutualFundHoldings) HasNumberOfHoldings() bool {
 	if o != nil && o.NumberOfHoldings != nil {
 		return true
 	}
@@ -135,14 +135,14 @@ func (o *MutualFundsHoldings) HasNumberOfHoldings() bool {
 }
 
 // SetNumberOfHoldings gets a reference to the given int64 and assigns it to the NumberOfHoldings field.
-func (o *MutualFundsHoldings) SetNumberOfHoldings(v int64) {
+func (o *MutualFundHoldings) SetNumberOfHoldings(v int64) {
 	o.NumberOfHoldings = &v
 }
 
 // GetHoldings returns the Holdings field value if set, zero value otherwise.
-func (o *MutualFundsHoldings) GetHoldings() []map[string]interface{} {
+func (o *MutualFundHoldings) GetHoldings() []MutualFundHoldingsData {
 	if o == nil || o.Holdings == nil {
-		var ret []map[string]interface{}
+		var ret []MutualFundHoldingsData
 		return ret
 	}
 	return *o.Holdings
@@ -150,7 +150,7 @@ func (o *MutualFundsHoldings) GetHoldings() []map[string]interface{} {
 
 // GetHoldingsOk returns a tuple with the Holdings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsHoldings) GetHoldingsOk() (*[]map[string]interface{}, bool) {
+func (o *MutualFundHoldings) GetHoldingsOk() (*[]MutualFundHoldingsData, bool) {
 	if o == nil || o.Holdings == nil {
 		return nil, false
 	}
@@ -158,7 +158,7 @@ func (o *MutualFundsHoldings) GetHoldingsOk() (*[]map[string]interface{}, bool) 
 }
 
 // HasHoldings returns a boolean if a field has been set.
-func (o *MutualFundsHoldings) HasHoldings() bool {
+func (o *MutualFundHoldings) HasHoldings() bool {
 	if o != nil && o.Holdings != nil {
 		return true
 	}
@@ -166,12 +166,12 @@ func (o *MutualFundsHoldings) HasHoldings() bool {
 	return false
 }
 
-// SetHoldings gets a reference to the given []map[string]interface{} and assigns it to the Holdings field.
-func (o *MutualFundsHoldings) SetHoldings(v []map[string]interface{}) {
+// SetHoldings gets a reference to the given []MutualFundHoldingsData and assigns it to the Holdings field.
+func (o *MutualFundHoldings) SetHoldings(v []MutualFundHoldingsData) {
 	o.Holdings = &v
 }
 
-func (o MutualFundsHoldings) MarshalJSON() ([]byte, error) {
+func (o MutualFundHoldings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
@@ -188,38 +188,38 @@ func (o MutualFundsHoldings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMutualFundsHoldings struct {
-	value *MutualFundsHoldings
+type NullableMutualFundHoldings struct {
+	value *MutualFundHoldings
 	isSet bool
 }
 
-func (v NullableMutualFundsHoldings) Get() *MutualFundsHoldings {
+func (v NullableMutualFundHoldings) Get() *MutualFundHoldings {
 	return v.value
 }
 
-func (v *NullableMutualFundsHoldings) Set(val *MutualFundsHoldings) {
+func (v *NullableMutualFundHoldings) Set(val *MutualFundHoldings) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMutualFundsHoldings) IsSet() bool {
+func (v NullableMutualFundHoldings) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMutualFundsHoldings) Unset() {
+func (v *NullableMutualFundHoldings) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMutualFundsHoldings(val *MutualFundsHoldings) *NullableMutualFundsHoldings {
-	return &NullableMutualFundsHoldings{value: val, isSet: true}
+func NewNullableMutualFundHoldings(val *MutualFundHoldings) *NullableMutualFundHoldings {
+	return &NullableMutualFundHoldings{value: val, isSet: true}
 }
 
-func (v NullableMutualFundsHoldings) MarshalJSON() ([]byte, error) {
+func (v NullableMutualFundHoldings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMutualFundsHoldings) UnmarshalJSON(src []byte) error {
+func (v *NullableMutualFundHoldings) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

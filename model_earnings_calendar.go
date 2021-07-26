@@ -17,7 +17,7 @@ import (
 // EarningsCalendar struct for EarningsCalendar
 type EarningsCalendar struct {
 	// Array of earnings release.
-	EarningsCalendar *[]map[string]interface{} `json:"earningsCalendar,omitempty"`
+	EarningsCalendar *[]EarningRelease `json:"earningsCalendar,omitempty"`
 }
 
 // NewEarningsCalendar instantiates a new EarningsCalendar object
@@ -38,9 +38,9 @@ func NewEarningsCalendarWithDefaults() *EarningsCalendar {
 }
 
 // GetEarningsCalendar returns the EarningsCalendar field value if set, zero value otherwise.
-func (o *EarningsCalendar) GetEarningsCalendar() []map[string]interface{} {
+func (o *EarningsCalendar) GetEarningsCalendar() []EarningRelease {
 	if o == nil || o.EarningsCalendar == nil {
-		var ret []map[string]interface{}
+		var ret []EarningRelease
 		return ret
 	}
 	return *o.EarningsCalendar
@@ -48,7 +48,7 @@ func (o *EarningsCalendar) GetEarningsCalendar() []map[string]interface{} {
 
 // GetEarningsCalendarOk returns a tuple with the EarningsCalendar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsCalendar) GetEarningsCalendarOk() (*[]map[string]interface{}, bool) {
+func (o *EarningsCalendar) GetEarningsCalendarOk() (*[]EarningRelease, bool) {
 	if o == nil || o.EarningsCalendar == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *EarningsCalendar) HasEarningsCalendar() bool {
 	return false
 }
 
-// SetEarningsCalendar gets a reference to the given []map[string]interface{} and assigns it to the EarningsCalendar field.
-func (o *EarningsCalendar) SetEarningsCalendar(v []map[string]interface{}) {
+// SetEarningsCalendar gets a reference to the given []EarningRelease and assigns it to the EarningsCalendar field.
+func (o *EarningsCalendar) SetEarningsCalendar(v []EarningRelease) {
 	o.EarningsCalendar = &v
 }
 

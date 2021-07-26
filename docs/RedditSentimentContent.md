@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **PositiveScore** | Pointer to **float32** | Positive score. Range 0-1 | [optional] 
 **NegativeScore** | Pointer to **float32** | Negative score. Range 0-1 | [optional] 
 **Score** | Pointer to **float32** | Final score. Range: -1 to 1 with 1 is very positive and -1 is very negative | [optional] 
-**AtTime** | Pointer to **time.Time** | Period. | [optional] 
+**AtTime** | Pointer to **string** | Period. | [optional] 
 
 ## Methods
 
@@ -183,20 +183,20 @@ HasScore returns a boolean if a field has been set.
 
 ### GetAtTime
 
-`func (o *RedditSentimentContent) GetAtTime() time.Time`
+`func (o *RedditSentimentContent) GetAtTime() string`
 
 GetAtTime returns the AtTime field if non-nil, zero value otherwise.
 
 ### GetAtTimeOk
 
-`func (o *RedditSentimentContent) GetAtTimeOk() (*time.Time, bool)`
+`func (o *RedditSentimentContent) GetAtTimeOk() (*string, bool)`
 
 GetAtTimeOk returns a tuple with the AtTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAtTime
 
-`func (o *RedditSentimentContent) SetAtTime(v time.Time)`
+`func (o *RedditSentimentContent) SetAtTime(v string)`
 
 SetAtTime sets AtTime field to given value.
 

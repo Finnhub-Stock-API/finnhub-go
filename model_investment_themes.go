@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// InvestmentThemesThematicInvesting struct for InvestmentThemesThematicInvesting
-type InvestmentThemesThematicInvesting struct {
+// InvestmentThemes struct for InvestmentThemes
+type InvestmentThemes struct {
 	// Investment theme
 	Theme *string `json:"theme,omitempty"`
 	// Investment theme portfolio.
-	Data *[]map[string]interface{} `json:"data,omitempty"`
+	Data *[]InvestmentThemePortfolio `json:"data,omitempty"`
 }
 
-// NewInvestmentThemesThematicInvesting instantiates a new InvestmentThemesThematicInvesting object
+// NewInvestmentThemes instantiates a new InvestmentThemes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvestmentThemesThematicInvesting() *InvestmentThemesThematicInvesting {
-	this := InvestmentThemesThematicInvesting{}
+func NewInvestmentThemes() *InvestmentThemes {
+	this := InvestmentThemes{}
 	return &this
 }
 
-// NewInvestmentThemesThematicInvestingWithDefaults instantiates a new InvestmentThemesThematicInvesting object
+// NewInvestmentThemesWithDefaults instantiates a new InvestmentThemes object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInvestmentThemesThematicInvestingWithDefaults() *InvestmentThemesThematicInvesting {
-	this := InvestmentThemesThematicInvesting{}
+func NewInvestmentThemesWithDefaults() *InvestmentThemes {
+	this := InvestmentThemes{}
 	return &this
 }
 
 // GetTheme returns the Theme field value if set, zero value otherwise.
-func (o *InvestmentThemesThematicInvesting) GetTheme() string {
+func (o *InvestmentThemes) GetTheme() string {
 	if o == nil || o.Theme == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *InvestmentThemesThematicInvesting) GetTheme() string {
 
 // GetThemeOk returns a tuple with the Theme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvestmentThemesThematicInvesting) GetThemeOk() (*string, bool) {
+func (o *InvestmentThemes) GetThemeOk() (*string, bool) {
 	if o == nil || o.Theme == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *InvestmentThemesThematicInvesting) GetThemeOk() (*string, bool) {
 }
 
 // HasTheme returns a boolean if a field has been set.
-func (o *InvestmentThemesThematicInvesting) HasTheme() bool {
+func (o *InvestmentThemes) HasTheme() bool {
 	if o != nil && o.Theme != nil {
 		return true
 	}
@@ -67,14 +67,14 @@ func (o *InvestmentThemesThematicInvesting) HasTheme() bool {
 }
 
 // SetTheme gets a reference to the given string and assigns it to the Theme field.
-func (o *InvestmentThemesThematicInvesting) SetTheme(v string) {
+func (o *InvestmentThemes) SetTheme(v string) {
 	o.Theme = &v
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *InvestmentThemesThematicInvesting) GetData() []map[string]interface{} {
+func (o *InvestmentThemes) GetData() []InvestmentThemePortfolio {
 	if o == nil || o.Data == nil {
-		var ret []map[string]interface{}
+		var ret []InvestmentThemePortfolio
 		return ret
 	}
 	return *o.Data
@@ -82,7 +82,7 @@ func (o *InvestmentThemesThematicInvesting) GetData() []map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvestmentThemesThematicInvesting) GetDataOk() (*[]map[string]interface{}, bool) {
+func (o *InvestmentThemes) GetDataOk() (*[]InvestmentThemePortfolio, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *InvestmentThemesThematicInvesting) GetDataOk() (*[]map[string]interface
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *InvestmentThemesThematicInvesting) HasData() bool {
+func (o *InvestmentThemes) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -98,12 +98,12 @@ func (o *InvestmentThemesThematicInvesting) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *InvestmentThemesThematicInvesting) SetData(v []map[string]interface{}) {
+// SetData gets a reference to the given []InvestmentThemePortfolio and assigns it to the Data field.
+func (o *InvestmentThemes) SetData(v []InvestmentThemePortfolio) {
 	o.Data = &v
 }
 
-func (o InvestmentThemesThematicInvesting) MarshalJSON() ([]byte, error) {
+func (o InvestmentThemes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Theme != nil {
 		toSerialize["theme"] = o.Theme
@@ -114,38 +114,38 @@ func (o InvestmentThemesThematicInvesting) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableInvestmentThemesThematicInvesting struct {
-	value *InvestmentThemesThematicInvesting
+type NullableInvestmentThemes struct {
+	value *InvestmentThemes
 	isSet bool
 }
 
-func (v NullableInvestmentThemesThematicInvesting) Get() *InvestmentThemesThematicInvesting {
+func (v NullableInvestmentThemes) Get() *InvestmentThemes {
 	return v.value
 }
 
-func (v *NullableInvestmentThemesThematicInvesting) Set(val *InvestmentThemesThematicInvesting) {
+func (v *NullableInvestmentThemes) Set(val *InvestmentThemes) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInvestmentThemesThematicInvesting) IsSet() bool {
+func (v NullableInvestmentThemes) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInvestmentThemesThematicInvesting) Unset() {
+func (v *NullableInvestmentThemes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInvestmentThemesThematicInvesting(val *InvestmentThemesThematicInvesting) *NullableInvestmentThemesThematicInvesting {
-	return &NullableInvestmentThemesThematicInvesting{value: val, isSet: true}
+func NewNullableInvestmentThemes(val *InvestmentThemes) *NullableInvestmentThemes {
+	return &NullableInvestmentThemes{value: val, isSet: true}
 }
 
-func (v NullableInvestmentThemesThematicInvesting) MarshalJSON() ([]byte, error) {
+func (v NullableInvestmentThemes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInvestmentThemesThematicInvesting) UnmarshalJSON(src []byte) error {
+func (v *NullableInvestmentThemes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

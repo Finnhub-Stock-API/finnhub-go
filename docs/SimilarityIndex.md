@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol. | [optional] 
 **Cik** | Pointer to **string** | CIK. | [optional] 
-**Similarity** | Pointer to **[]map[string]interface{}** | Array of filings with its cosine similarity compared to the same report of the previous year. | [optional] 
+**Similarity** | Pointer to [**[]Filing**](Filing.md) | Array of filings with its cosine similarity compared to the same report of the previous year. | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasCik returns a boolean if a field has been set.
 
 ### GetSimilarity
 
-`func (o *SimilarityIndex) GetSimilarity() []map[string]interface{}`
+`func (o *SimilarityIndex) GetSimilarity() []Filing`
 
 GetSimilarity returns the Similarity field if non-nil, zero value otherwise.
 
 ### GetSimilarityOk
 
-`func (o *SimilarityIndex) GetSimilarityOk() (*[]map[string]interface{}, bool)`
+`func (o *SimilarityIndex) GetSimilarityOk() (*[]Filing, bool)`
 
 GetSimilarityOk returns a tuple with the Similarity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSimilarity
 
-`func (o *SimilarityIndex) SetSimilarity(v []map[string]interface{})`
+`func (o *SimilarityIndex) SetSimilarity(v []Filing)`
 
 SetSimilarity sets Similarity field to given value.
 

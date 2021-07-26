@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol of the company. | [optional] 
-**Data** | Pointer to **[]map[string]interface{}** | Array of insider transactions. | [optional] 
+**Data** | Pointer to [**[]Transactions**](Transactions.md) | Array of insider transactions. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InsiderTransactions) GetData() []map[string]interface{}`
+`func (o *InsiderTransactions) GetData() []Transactions`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InsiderTransactions) GetDataOk() (*[]map[string]interface{}, bool)`
+`func (o *InsiderTransactions) GetDataOk() (*[]Transactions, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InsiderTransactions) SetData(v []map[string]interface{})`
+`func (o *InsiderTransactions) SetData(v []Transactions)`
 
 SetData sets Data field to given value.
 

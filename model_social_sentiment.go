@@ -19,9 +19,9 @@ type SocialSentiment struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Reddit sentiment.
-	Reddit *[]map[string]interface{} `json:"reddit,omitempty"`
+	Reddit *[]RedditSentimentContent `json:"reddit,omitempty"`
 	// Twitter sentiment.
-	Twitter *[]map[string]interface{} `json:"twitter,omitempty"`
+	Twitter *[]TwitterSentimentContent `json:"twitter,omitempty"`
 }
 
 // NewSocialSentiment instantiates a new SocialSentiment object
@@ -74,9 +74,9 @@ func (o *SocialSentiment) SetSymbol(v string) {
 }
 
 // GetReddit returns the Reddit field value if set, zero value otherwise.
-func (o *SocialSentiment) GetReddit() []map[string]interface{} {
+func (o *SocialSentiment) GetReddit() []RedditSentimentContent {
 	if o == nil || o.Reddit == nil {
-		var ret []map[string]interface{}
+		var ret []RedditSentimentContent
 		return ret
 	}
 	return *o.Reddit
@@ -84,7 +84,7 @@ func (o *SocialSentiment) GetReddit() []map[string]interface{} {
 
 // GetRedditOk returns a tuple with the Reddit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SocialSentiment) GetRedditOk() (*[]map[string]interface{}, bool) {
+func (o *SocialSentiment) GetRedditOk() (*[]RedditSentimentContent, bool) {
 	if o == nil || o.Reddit == nil {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *SocialSentiment) HasReddit() bool {
 	return false
 }
 
-// SetReddit gets a reference to the given []map[string]interface{} and assigns it to the Reddit field.
-func (o *SocialSentiment) SetReddit(v []map[string]interface{}) {
+// SetReddit gets a reference to the given []RedditSentimentContent and assigns it to the Reddit field.
+func (o *SocialSentiment) SetReddit(v []RedditSentimentContent) {
 	o.Reddit = &v
 }
 
 // GetTwitter returns the Twitter field value if set, zero value otherwise.
-func (o *SocialSentiment) GetTwitter() []map[string]interface{} {
+func (o *SocialSentiment) GetTwitter() []TwitterSentimentContent {
 	if o == nil || o.Twitter == nil {
-		var ret []map[string]interface{}
+		var ret []TwitterSentimentContent
 		return ret
 	}
 	return *o.Twitter
@@ -116,7 +116,7 @@ func (o *SocialSentiment) GetTwitter() []map[string]interface{} {
 
 // GetTwitterOk returns a tuple with the Twitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SocialSentiment) GetTwitterOk() (*[]map[string]interface{}, bool) {
+func (o *SocialSentiment) GetTwitterOk() (*[]TwitterSentimentContent, bool) {
 	if o == nil || o.Twitter == nil {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *SocialSentiment) HasTwitter() bool {
 	return false
 }
 
-// SetTwitter gets a reference to the given []map[string]interface{} and assigns it to the Twitter field.
-func (o *SocialSentiment) SetTwitter(v []map[string]interface{}) {
+// SetTwitter gets a reference to the given []TwitterSentimentContent and assigns it to the Twitter field.
+func (o *SocialSentiment) SetTwitter(v []TwitterSentimentContent) {
 	o.Twitter = &v
 }
 

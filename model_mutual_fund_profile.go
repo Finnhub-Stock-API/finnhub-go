@@ -14,32 +14,32 @@ import (
 	"encoding/json"
 )
 
-// MutualFundsProfile struct for MutualFundsProfile
-type MutualFundsProfile struct {
+// MutualFundProfile struct for MutualFundProfile
+type MutualFundProfile struct {
 	// Symbol.
 	Symbol *string `json:"symbol,omitempty"`
-	Profile *ETFProfileData `json:"profile,omitempty"`
+	Profile *MutualFundProfileData `json:"profile,omitempty"`
 }
 
-// NewMutualFundsProfile instantiates a new MutualFundsProfile object
+// NewMutualFundProfile instantiates a new MutualFundProfile object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMutualFundsProfile() *MutualFundsProfile {
-	this := MutualFundsProfile{}
+func NewMutualFundProfile() *MutualFundProfile {
+	this := MutualFundProfile{}
 	return &this
 }
 
-// NewMutualFundsProfileWithDefaults instantiates a new MutualFundsProfile object
+// NewMutualFundProfileWithDefaults instantiates a new MutualFundProfile object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMutualFundsProfileWithDefaults() *MutualFundsProfile {
-	this := MutualFundsProfile{}
+func NewMutualFundProfileWithDefaults() *MutualFundProfile {
+	this := MutualFundProfile{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *MutualFundsProfile) GetSymbol() string {
+func (o *MutualFundProfile) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
 		var ret string
 		return ret
@@ -49,7 +49,7 @@ func (o *MutualFundsProfile) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsProfile) GetSymbolOk() (*string, bool) {
+func (o *MutualFundProfile) GetSymbolOk() (*string, bool) {
 	if o == nil || o.Symbol == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *MutualFundsProfile) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *MutualFundsProfile) HasSymbol() bool {
+func (o *MutualFundProfile) HasSymbol() bool {
 	if o != nil && o.Symbol != nil {
 		return true
 	}
@@ -66,14 +66,14 @@ func (o *MutualFundsProfile) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *MutualFundsProfile) SetSymbol(v string) {
+func (o *MutualFundProfile) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
-func (o *MutualFundsProfile) GetProfile() ETFProfileData {
+func (o *MutualFundProfile) GetProfile() MutualFundProfileData {
 	if o == nil || o.Profile == nil {
-		var ret ETFProfileData
+		var ret MutualFundProfileData
 		return ret
 	}
 	return *o.Profile
@@ -81,7 +81,7 @@ func (o *MutualFundsProfile) GetProfile() ETFProfileData {
 
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsProfile) GetProfileOk() (*ETFProfileData, bool) {
+func (o *MutualFundProfile) GetProfileOk() (*MutualFundProfileData, bool) {
 	if o == nil || o.Profile == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *MutualFundsProfile) GetProfileOk() (*ETFProfileData, bool) {
 }
 
 // HasProfile returns a boolean if a field has been set.
-func (o *MutualFundsProfile) HasProfile() bool {
+func (o *MutualFundProfile) HasProfile() bool {
 	if o != nil && o.Profile != nil {
 		return true
 	}
@@ -97,12 +97,12 @@ func (o *MutualFundsProfile) HasProfile() bool {
 	return false
 }
 
-// SetProfile gets a reference to the given ETFProfileData and assigns it to the Profile field.
-func (o *MutualFundsProfile) SetProfile(v ETFProfileData) {
+// SetProfile gets a reference to the given MutualFundProfileData and assigns it to the Profile field.
+func (o *MutualFundProfile) SetProfile(v MutualFundProfileData) {
 	o.Profile = &v
 }
 
-func (o MutualFundsProfile) MarshalJSON() ([]byte, error) {
+func (o MutualFundProfile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
@@ -113,38 +113,38 @@ func (o MutualFundsProfile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMutualFundsProfile struct {
-	value *MutualFundsProfile
+type NullableMutualFundProfile struct {
+	value *MutualFundProfile
 	isSet bool
 }
 
-func (v NullableMutualFundsProfile) Get() *MutualFundsProfile {
+func (v NullableMutualFundProfile) Get() *MutualFundProfile {
 	return v.value
 }
 
-func (v *NullableMutualFundsProfile) Set(val *MutualFundsProfile) {
+func (v *NullableMutualFundProfile) Set(val *MutualFundProfile) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMutualFundsProfile) IsSet() bool {
+func (v NullableMutualFundProfile) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMutualFundsProfile) Unset() {
+func (v *NullableMutualFundProfile) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMutualFundsProfile(val *MutualFundsProfile) *NullableMutualFundsProfile {
-	return &NullableMutualFundsProfile{value: val, isSet: true}
+func NewNullableMutualFundProfile(val *MutualFundProfile) *NullableMutualFundProfile {
+	return &NullableMutualFundProfile{value: val, isSet: true}
 }
 
-func (v NullableMutualFundsProfile) MarshalJSON() ([]byte, error) {
+func (v NullableMutualFundProfile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMutualFundsProfile) UnmarshalJSON(src []byte) error {
+func (v *NullableMutualFundProfile) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

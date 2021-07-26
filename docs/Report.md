@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **Year** | Pointer to **int64** | Year. | [optional] 
 **Quarter** | Pointer to **int64** | Quarter. | [optional] 
 **Form** | Pointer to **string** | Form type. | [optional] 
-**StartDate** | Pointer to **time.Time** | Period start date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
-**EndDate** | Pointer to **time.Time** | Period end date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
-**FiledDate** | Pointer to **time.Time** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
-**AcceptedDate** | Pointer to **time.Time** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**StartDate** | Pointer to **string** | Period start date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**EndDate** | Pointer to **string** | Period end date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**FiledDate** | Pointer to **string** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**AcceptedDate** | Pointer to **string** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
 **Report** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
@@ -187,20 +187,20 @@ HasForm returns a boolean if a field has been set.
 
 ### GetStartDate
 
-`func (o *Report) GetStartDate() time.Time`
+`func (o *Report) GetStartDate() string`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *Report) GetStartDateOk() (*time.Time, bool)`
+`func (o *Report) GetStartDateOk() (*string, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *Report) SetStartDate(v time.Time)`
+`func (o *Report) SetStartDate(v string)`
 
 SetStartDate sets StartDate field to given value.
 
@@ -212,20 +212,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetEndDate
 
-`func (o *Report) GetEndDate() time.Time`
+`func (o *Report) GetEndDate() string`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *Report) GetEndDateOk() (*time.Time, bool)`
+`func (o *Report) GetEndDateOk() (*string, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *Report) SetEndDate(v time.Time)`
+`func (o *Report) SetEndDate(v string)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -237,20 +237,20 @@ HasEndDate returns a boolean if a field has been set.
 
 ### GetFiledDate
 
-`func (o *Report) GetFiledDate() time.Time`
+`func (o *Report) GetFiledDate() string`
 
 GetFiledDate returns the FiledDate field if non-nil, zero value otherwise.
 
 ### GetFiledDateOk
 
-`func (o *Report) GetFiledDateOk() (*time.Time, bool)`
+`func (o *Report) GetFiledDateOk() (*string, bool)`
 
 GetFiledDateOk returns a tuple with the FiledDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiledDate
 
-`func (o *Report) SetFiledDate(v time.Time)`
+`func (o *Report) SetFiledDate(v string)`
 
 SetFiledDate sets FiledDate field to given value.
 
@@ -262,20 +262,20 @@ HasFiledDate returns a boolean if a field has been set.
 
 ### GetAcceptedDate
 
-`func (o *Report) GetAcceptedDate() time.Time`
+`func (o *Report) GetAcceptedDate() string`
 
 GetAcceptedDate returns the AcceptedDate field if non-nil, zero value otherwise.
 
 ### GetAcceptedDateOk
 
-`func (o *Report) GetAcceptedDateOk() (*time.Time, bool)`
+`func (o *Report) GetAcceptedDateOk() (*string, bool)`
 
 GetAcceptedDateOk returns a tuple with the AcceptedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAcceptedDate
 
-`func (o *Report) SetAcceptedDate(v time.Time)`
+`func (o *Report) SetAcceptedDate(v string)`
 
 SetAcceptedDate sets AcceptedDate field to given value.
 

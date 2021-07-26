@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IpoCalendar** | Pointer to **[]map[string]interface{}** | Array of IPO events. | [optional] 
+**IpoCalendar** | Pointer to [**[]IPOEvent**](IPOEvent.md) | Array of IPO events. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetIpoCalendar
 
-`func (o *IPOCalendar) GetIpoCalendar() []map[string]interface{}`
+`func (o *IPOCalendar) GetIpoCalendar() []IPOEvent`
 
 GetIpoCalendar returns the IpoCalendar field if non-nil, zero value otherwise.
 
 ### GetIpoCalendarOk
 
-`func (o *IPOCalendar) GetIpoCalendarOk() (*[]map[string]interface{}, bool)`
+`func (o *IPOCalendar) GetIpoCalendarOk() (*[]IPOEvent, bool)`
 
 GetIpoCalendarOk returns a tuple with the IpoCalendar field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpoCalendar
 
-`func (o *IPOCalendar) SetIpoCalendar(v []map[string]interface{})`
+`func (o *IPOCalendar) SetIpoCalendar(v []IPOEvent)`
 
 SetIpoCalendar sets IpoCalendar field to given value.
 

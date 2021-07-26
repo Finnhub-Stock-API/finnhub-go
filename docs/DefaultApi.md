@@ -20,7 +20,7 @@ Method | HTTP request | Description
 [**CryptoExchanges**](DefaultApi.md#CryptoExchanges) | **Get** /crypto/exchange | Crypto Exchanges
 [**CryptoSymbols**](DefaultApi.md#CryptoSymbols) | **Get** /crypto/symbol | Crypto Symbol
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
-[**EarningsCallTranscriptsApi**](DefaultApi.md#EarningsCallTranscriptsApi) | **Get** /stock/transcripts | Earnings Call Transcripts
+[**EconomicCalendar**](DefaultApi.md#EconomicCalendar) | **Get** /calendar/economic | Economic Calendar
 [**EconomicCode**](DefaultApi.md#EconomicCode) | **Get** /economic/code | Economic Code
 [**EconomicData**](DefaultApi.md#EconomicData) | **Get** /economic | Economic Data
 [**EtfsCountryExposure**](DefaultApi.md#EtfsCountryExposure) | **Get** /etf/country | ETFs Country Exposure
@@ -41,13 +41,13 @@ Method | HTTP request | Description
 [**IndicesHistoricalConstituents**](DefaultApi.md#IndicesHistoricalConstituents) | **Get** /index/historical-constituents | Indices Historical Constituents
 [**InsiderTransactions**](DefaultApi.md#InsiderTransactions) | **Get** /stock/insider-transactions | Insider Transactions
 [**InternationalFilings**](DefaultApi.md#InternationalFilings) | **Get** /stock/international-filings | International Filings
-[**InvestmentThemesThematicInvesting**](DefaultApi.md#InvestmentThemesThematicInvesting) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
+[**InvestmentThemes**](DefaultApi.md#InvestmentThemes) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
 [**MarketNews**](DefaultApi.md#MarketNews) | **Get** /news | Market News
 [**MutualFundCountryExposure**](DefaultApi.md#MutualFundCountryExposure) | **Get** /mutual-fund/country | Mutual Funds Country Exposure
 [**MutualFundHoldings**](DefaultApi.md#MutualFundHoldings) | **Get** /mutual-fund/holdings | Mutual Funds Holdings
 [**MutualFundProfile**](DefaultApi.md#MutualFundProfile) | **Get** /mutual-fund/profile | Mutual Funds Profile
-[**MutualFundSectorExposure**](DefaultApi.md#MutualFundSectorExposure) | **Get** /mutual-fund/sector | Mutual-fund Sector Exposure
+[**MutualFundSectorExposure**](DefaultApi.md#MutualFundSectorExposure) | **Get** /mutual-fund/sector | Mutual Funds Sector Exposure
 [**NewsSentiment**](DefaultApi.md#NewsSentiment) | **Get** /news-sentiment | News Sentiment
 [**Ownership**](DefaultApi.md#Ownership) | **Get** /stock/ownership | Ownership
 [**PatternRecognition**](DefaultApi.md#PatternRecognition) | **Get** /scan/pattern | Pattern Recognition
@@ -70,6 +70,7 @@ Method | HTTP request | Description
 [**SupportResistance**](DefaultApi.md#SupportResistance) | **Get** /scan/support-resistance | Support/Resistance
 [**SymbolSearch**](DefaultApi.md#SymbolSearch) | **Get** /search | Symbol Lookup
 [**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Post** /indicator | Technical Indicators
+[**Transcripts**](DefaultApi.md#Transcripts) | **Get** /stock/transcripts | Earnings Call Transcripts
 [**TranscriptsList**](DefaultApi.md#TranscriptsList) | **Get** /stock/transcripts/list | Earnings Call Transcripts List
 [**UpgradeDowngrade**](DefaultApi.md#UpgradeDowngrade) | **Get** /stock/upgrade-downgrade | Stock Upgrade/Downgrade
 
@@ -415,7 +416,7 @@ Name | Type | Description  | Notes
 
 ## CompanyNews
 
-> []News CompanyNews(ctx).Symbol(symbol).From(from).To(to).Execute()
+> []CompanyNews CompanyNews(ctx).Symbol(symbol).From(from).To(to).Execute()
 
 Company News
 
@@ -446,7 +447,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyNews``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CompanyNews`: []News
+    // response from `CompanyNews`: []CompanyNews
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyNews`: %v\n", resp)
 }
 ```
@@ -468,7 +469,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]News**](News.md)
+[**[]CompanyNews**](CompanyNews.md)
 
 ### Authorization
 
@@ -1152,11 +1153,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EarningsCallTranscriptsApi
+## EconomicCalendar
 
-> EarningsCallTranscripts EarningsCallTranscriptsApi(ctx).Id(id).Execute()
+> EconomicCalendar EconomicCalendar(ctx).Execute()
 
-Earnings Call Transcripts
+Economic Calendar
 
 
 
@@ -1173,36 +1174,31 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.EarningsCallTranscriptsApi(context.Background()).Id(id).Execute()
+    resp, r, err := api_client.DefaultApi.EconomicCalendar(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EarningsCallTranscriptsApi``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EconomicCalendar``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `EarningsCallTranscriptsApi`: EarningsCallTranscripts
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EarningsCallTranscriptsApi`: %v\n", resp)
+    // response from `EconomicCalendar`: EconomicCalendar
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EconomicCalendar`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiEarningsCallTranscriptsApiRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiEconomicCalendarRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;. | 
 
 ### Return type
 
-[**EarningsCallTranscripts**](EarningsCallTranscripts.md)
+[**EconomicCalendar**](EconomicCalendar.md)
 
 ### Authorization
 
@@ -2565,9 +2561,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InvestmentThemesThematicInvesting
+## InvestmentThemes
 
-> InvestmentThemesThematicInvesting InvestmentThemesThematicInvesting(ctx).Theme(theme).Execute()
+> InvestmentThemes InvestmentThemes(ctx).Theme(theme).Execute()
 
 Investment Themes (Thematic Investing)
 
@@ -2590,13 +2586,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.InvestmentThemesThematicInvesting(context.Background()).Theme(theme).Execute()
+    resp, r, err := api_client.DefaultApi.InvestmentThemes(context.Background()).Theme(theme).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InvestmentThemesThematicInvesting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InvestmentThemes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InvestmentThemesThematicInvesting`: InvestmentThemesThematicInvesting
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InvestmentThemesThematicInvesting`: %v\n", resp)
+    // response from `InvestmentThemes`: InvestmentThemes
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InvestmentThemes`: %v\n", resp)
 }
 ```
 
@@ -2606,7 +2602,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInvestmentThemesThematicInvestingRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInvestmentThemesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -2615,7 +2611,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InvestmentThemesThematicInvesting**](InvestmentThemesThematicInvesting.md)
+[**InvestmentThemes**](InvestmentThemes.md)
 
 ### Authorization
 
@@ -2702,7 +2698,7 @@ Name | Type | Description  | Notes
 
 ## MarketNews
 
-> []News MarketNews(ctx).Category(category).MinId(minId).Execute()
+> []MarketNews MarketNews(ctx).Category(category).MinId(minId).Execute()
 
 Market News
 
@@ -2731,7 +2727,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MarketNews``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MarketNews`: []News
+    // response from `MarketNews`: []MarketNews
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MarketNews`: %v\n", resp)
 }
 ```
@@ -2752,7 +2748,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]News**](News.md)
+[**[]MarketNews**](MarketNews.md)
 
 ### Authorization
 
@@ -2770,7 +2766,7 @@ Name | Type | Description  | Notes
 
 ## MutualFundCountryExposure
 
-> MutualFundsCountryExposure MutualFundCountryExposure(ctx).Symbol(symbol).Execute()
+> MutualFundCountryExposure MutualFundCountryExposure(ctx).Symbol(symbol).Execute()
 
 Mutual Funds Country Exposure
 
@@ -2798,7 +2794,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundCountryExposure``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MutualFundCountryExposure`: MutualFundsCountryExposure
+    // response from `MutualFundCountryExposure`: MutualFundCountryExposure
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundCountryExposure`: %v\n", resp)
 }
 ```
@@ -2818,7 +2814,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MutualFundsCountryExposure**](MutualFundsCountryExposure.md)
+[**MutualFundCountryExposure**](MutualFundCountryExposure.md)
 
 ### Authorization
 
@@ -2836,7 +2832,7 @@ Name | Type | Description  | Notes
 
 ## MutualFundHoldings
 
-> MutualFundsHoldings MutualFundHoldings(ctx).Symbol(symbol).Isin(isin).Skip(skip).Execute()
+> MutualFundHoldings MutualFundHoldings(ctx).Symbol(symbol).Isin(isin).Skip(skip).Execute()
 
 Mutual Funds Holdings
 
@@ -2866,7 +2862,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundHoldings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MutualFundHoldings`: MutualFundsHoldings
+    // response from `MutualFundHoldings`: MutualFundHoldings
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundHoldings`: %v\n", resp)
 }
 ```
@@ -2888,7 +2884,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MutualFundsHoldings**](MutualFundsHoldings.md)
+[**MutualFundHoldings**](MutualFundHoldings.md)
 
 ### Authorization
 
@@ -2906,7 +2902,7 @@ Name | Type | Description  | Notes
 
 ## MutualFundProfile
 
-> MutualFundsProfile MutualFundProfile(ctx).Symbol(symbol).Isin(isin).Execute()
+> MutualFundProfile MutualFundProfile(ctx).Symbol(symbol).Isin(isin).Execute()
 
 Mutual Funds Profile
 
@@ -2935,7 +2931,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MutualFundProfile`: MutualFundsProfile
+    // response from `MutualFundProfile`: MutualFundProfile
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundProfile`: %v\n", resp)
 }
 ```
@@ -2956,7 +2952,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MutualFundsProfile**](MutualFundsProfile.md)
+[**MutualFundProfile**](MutualFundProfile.md)
 
 ### Authorization
 
@@ -2976,7 +2972,7 @@ Name | Type | Description  | Notes
 
 > MutualFundSectorExposure MutualFundSectorExposure(ctx).Symbol(symbol).Execute()
 
-Mutual-fund Sector Exposure
+Mutual Funds Sector Exposure
 
 
 
@@ -3242,7 +3238,7 @@ Name | Type | Description  | Notes
 
 ## PressReleases
 
-> MajorPressReleases PressReleases(ctx).Symbol(symbol).From(from).To(to).Execute()
+> PressRelease PressReleases(ctx).Symbol(symbol).From(from).To(to).Execute()
 
 Major Press Releases
 
@@ -3273,7 +3269,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PressReleases``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PressReleases`: MajorPressReleases
+    // response from `PressReleases`: PressRelease
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.PressReleases`: %v\n", resp)
 }
 ```
@@ -3295,7 +3291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MajorPressReleases**](MajorPressReleases.md)
+[**PressRelease**](PressRelease.md)
 
 ### Authorization
 
@@ -3720,7 +3716,7 @@ Name | Type | Description  | Notes
 
 ## StockBasicDividends
 
-> Dividends2Basic StockBasicDividends(ctx).Symbol(symbol).Execute()
+> Dividends2 StockBasicDividends(ctx).Symbol(symbol).Execute()
 
 Dividends 2 (Basic)
 
@@ -3748,7 +3744,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockBasicDividends``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StockBasicDividends`: Dividends2Basic
+    // response from `StockBasicDividends`: Dividends2
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockBasicDividends`: %v\n", resp)
 }
 ```
@@ -3768,7 +3764,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dividends2Basic**](Dividends2Basic.md)
+[**Dividends2**](Dividends2.md)
 
 ### Authorization
 
@@ -4141,7 +4137,7 @@ Name | Type | Description  | Notes
 
 ## StockSymbols
 
-> []Stock StockSymbols(ctx).Exchange(exchange).Mic(mic).SecurityType(securityType).Currency(currency).Execute()
+> []StockSymbol StockSymbols(ctx).Exchange(exchange).Mic(mic).SecurityType(securityType).Currency(currency).Execute()
 
 Stock Symbol
 
@@ -4172,7 +4168,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockSymbols``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StockSymbols`: []Stock
+    // response from `StockSymbols`: []StockSymbol
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockSymbols`: %v\n", resp)
 }
 ```
@@ -4195,7 +4191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]Stock**](Stock.md)
+[**[]StockSymbol**](StockSymbol.md)
 
 ### Authorization
 
@@ -4553,6 +4549,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Transcripts
+
+> EarningsCallTranscripts Transcripts(ctx).Id(id).Execute()
+
+Earnings Call Transcripts
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Transcripts(context.Background()).Id(id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Transcripts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Transcripts`: EarningsCallTranscripts
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Transcripts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTranscriptsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;. | 
+
+### Return type
+
+[**EarningsCallTranscripts**](EarningsCallTranscripts.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

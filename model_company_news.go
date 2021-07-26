@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// News struct for News
-type News struct {
+// CompanyNews struct for CompanyNews
+type CompanyNews struct {
 	// News category.
 	Category *string `json:"category,omitempty"`
 	// Published time in UNIX timestamp.
@@ -36,25 +36,25 @@ type News struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// NewNews instantiates a new News object
+// NewCompanyNews instantiates a new CompanyNews object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNews() *News {
-	this := News{}
+func NewCompanyNews() *CompanyNews {
+	this := CompanyNews{}
 	return &this
 }
 
-// NewNewsWithDefaults instantiates a new News object
+// NewCompanyNewsWithDefaults instantiates a new CompanyNews object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNewsWithDefaults() *News {
-	this := News{}
+func NewCompanyNewsWithDefaults() *CompanyNews {
+	this := CompanyNews{}
 	return &this
 }
 
 // GetCategory returns the Category field value if set, zero value otherwise.
-func (o *News) GetCategory() string {
+func (o *CompanyNews) GetCategory() string {
 	if o == nil || o.Category == nil {
 		var ret string
 		return ret
@@ -64,7 +64,7 @@ func (o *News) GetCategory() string {
 
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetCategoryOk() (*string, bool) {
+func (o *CompanyNews) GetCategoryOk() (*string, bool) {
 	if o == nil || o.Category == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *News) GetCategoryOk() (*string, bool) {
 }
 
 // HasCategory returns a boolean if a field has been set.
-func (o *News) HasCategory() bool {
+func (o *CompanyNews) HasCategory() bool {
 	if o != nil && o.Category != nil {
 		return true
 	}
@@ -81,12 +81,12 @@ func (o *News) HasCategory() bool {
 }
 
 // SetCategory gets a reference to the given string and assigns it to the Category field.
-func (o *News) SetCategory(v string) {
+func (o *CompanyNews) SetCategory(v string) {
 	o.Category = &v
 }
 
 // GetDatetime returns the Datetime field value if set, zero value otherwise.
-func (o *News) GetDatetime() int64 {
+func (o *CompanyNews) GetDatetime() int64 {
 	if o == nil || o.Datetime == nil {
 		var ret int64
 		return ret
@@ -96,7 +96,7 @@ func (o *News) GetDatetime() int64 {
 
 // GetDatetimeOk returns a tuple with the Datetime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetDatetimeOk() (*int64, bool) {
+func (o *CompanyNews) GetDatetimeOk() (*int64, bool) {
 	if o == nil || o.Datetime == nil {
 		return nil, false
 	}
@@ -104,7 +104,7 @@ func (o *News) GetDatetimeOk() (*int64, bool) {
 }
 
 // HasDatetime returns a boolean if a field has been set.
-func (o *News) HasDatetime() bool {
+func (o *CompanyNews) HasDatetime() bool {
 	if o != nil && o.Datetime != nil {
 		return true
 	}
@@ -113,12 +113,12 @@ func (o *News) HasDatetime() bool {
 }
 
 // SetDatetime gets a reference to the given int64 and assigns it to the Datetime field.
-func (o *News) SetDatetime(v int64) {
+func (o *CompanyNews) SetDatetime(v int64) {
 	o.Datetime = &v
 }
 
 // GetHeadline returns the Headline field value if set, zero value otherwise.
-func (o *News) GetHeadline() string {
+func (o *CompanyNews) GetHeadline() string {
 	if o == nil || o.Headline == nil {
 		var ret string
 		return ret
@@ -128,7 +128,7 @@ func (o *News) GetHeadline() string {
 
 // GetHeadlineOk returns a tuple with the Headline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetHeadlineOk() (*string, bool) {
+func (o *CompanyNews) GetHeadlineOk() (*string, bool) {
 	if o == nil || o.Headline == nil {
 		return nil, false
 	}
@@ -136,7 +136,7 @@ func (o *News) GetHeadlineOk() (*string, bool) {
 }
 
 // HasHeadline returns a boolean if a field has been set.
-func (o *News) HasHeadline() bool {
+func (o *CompanyNews) HasHeadline() bool {
 	if o != nil && o.Headline != nil {
 		return true
 	}
@@ -145,12 +145,12 @@ func (o *News) HasHeadline() bool {
 }
 
 // SetHeadline gets a reference to the given string and assigns it to the Headline field.
-func (o *News) SetHeadline(v string) {
+func (o *CompanyNews) SetHeadline(v string) {
 	o.Headline = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *News) GetId() int64 {
+func (o *CompanyNews) GetId() int64 {
 	if o == nil || o.Id == nil {
 		var ret int64
 		return ret
@@ -160,7 +160,7 @@ func (o *News) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetIdOk() (*int64, bool) {
+func (o *CompanyNews) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -168,7 +168,7 @@ func (o *News) GetIdOk() (*int64, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *News) HasId() bool {
+func (o *CompanyNews) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -177,12 +177,12 @@ func (o *News) HasId() bool {
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *News) SetId(v int64) {
+func (o *CompanyNews) SetId(v int64) {
 	o.Id = &v
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
-func (o *News) GetImage() string {
+func (o *CompanyNews) GetImage() string {
 	if o == nil || o.Image == nil {
 		var ret string
 		return ret
@@ -192,7 +192,7 @@ func (o *News) GetImage() string {
 
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetImageOk() (*string, bool) {
+func (o *CompanyNews) GetImageOk() (*string, bool) {
 	if o == nil || o.Image == nil {
 		return nil, false
 	}
@@ -200,7 +200,7 @@ func (o *News) GetImageOk() (*string, bool) {
 }
 
 // HasImage returns a boolean if a field has been set.
-func (o *News) HasImage() bool {
+func (o *CompanyNews) HasImage() bool {
 	if o != nil && o.Image != nil {
 		return true
 	}
@@ -209,12 +209,12 @@ func (o *News) HasImage() bool {
 }
 
 // SetImage gets a reference to the given string and assigns it to the Image field.
-func (o *News) SetImage(v string) {
+func (o *CompanyNews) SetImage(v string) {
 	o.Image = &v
 }
 
 // GetRelated returns the Related field value if set, zero value otherwise.
-func (o *News) GetRelated() string {
+func (o *CompanyNews) GetRelated() string {
 	if o == nil || o.Related == nil {
 		var ret string
 		return ret
@@ -224,7 +224,7 @@ func (o *News) GetRelated() string {
 
 // GetRelatedOk returns a tuple with the Related field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetRelatedOk() (*string, bool) {
+func (o *CompanyNews) GetRelatedOk() (*string, bool) {
 	if o == nil || o.Related == nil {
 		return nil, false
 	}
@@ -232,7 +232,7 @@ func (o *News) GetRelatedOk() (*string, bool) {
 }
 
 // HasRelated returns a boolean if a field has been set.
-func (o *News) HasRelated() bool {
+func (o *CompanyNews) HasRelated() bool {
 	if o != nil && o.Related != nil {
 		return true
 	}
@@ -241,12 +241,12 @@ func (o *News) HasRelated() bool {
 }
 
 // SetRelated gets a reference to the given string and assigns it to the Related field.
-func (o *News) SetRelated(v string) {
+func (o *CompanyNews) SetRelated(v string) {
 	o.Related = &v
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *News) GetSource() string {
+func (o *CompanyNews) GetSource() string {
 	if o == nil || o.Source == nil {
 		var ret string
 		return ret
@@ -256,7 +256,7 @@ func (o *News) GetSource() string {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetSourceOk() (*string, bool) {
+func (o *CompanyNews) GetSourceOk() (*string, bool) {
 	if o == nil || o.Source == nil {
 		return nil, false
 	}
@@ -264,7 +264,7 @@ func (o *News) GetSourceOk() (*string, bool) {
 }
 
 // HasSource returns a boolean if a field has been set.
-func (o *News) HasSource() bool {
+func (o *CompanyNews) HasSource() bool {
 	if o != nil && o.Source != nil {
 		return true
 	}
@@ -273,12 +273,12 @@ func (o *News) HasSource() bool {
 }
 
 // SetSource gets a reference to the given string and assigns it to the Source field.
-func (o *News) SetSource(v string) {
+func (o *CompanyNews) SetSource(v string) {
 	o.Source = &v
 }
 
 // GetSummary returns the Summary field value if set, zero value otherwise.
-func (o *News) GetSummary() string {
+func (o *CompanyNews) GetSummary() string {
 	if o == nil || o.Summary == nil {
 		var ret string
 		return ret
@@ -288,7 +288,7 @@ func (o *News) GetSummary() string {
 
 // GetSummaryOk returns a tuple with the Summary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetSummaryOk() (*string, bool) {
+func (o *CompanyNews) GetSummaryOk() (*string, bool) {
 	if o == nil || o.Summary == nil {
 		return nil, false
 	}
@@ -296,7 +296,7 @@ func (o *News) GetSummaryOk() (*string, bool) {
 }
 
 // HasSummary returns a boolean if a field has been set.
-func (o *News) HasSummary() bool {
+func (o *CompanyNews) HasSummary() bool {
 	if o != nil && o.Summary != nil {
 		return true
 	}
@@ -305,12 +305,12 @@ func (o *News) HasSummary() bool {
 }
 
 // SetSummary gets a reference to the given string and assigns it to the Summary field.
-func (o *News) SetSummary(v string) {
+func (o *CompanyNews) SetSummary(v string) {
 	o.Summary = &v
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
-func (o *News) GetUrl() string {
+func (o *CompanyNews) GetUrl() string {
 	if o == nil || o.Url == nil {
 		var ret string
 		return ret
@@ -320,7 +320,7 @@ func (o *News) GetUrl() string {
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *News) GetUrlOk() (*string, bool) {
+func (o *CompanyNews) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
 		return nil, false
 	}
@@ -328,7 +328,7 @@ func (o *News) GetUrlOk() (*string, bool) {
 }
 
 // HasUrl returns a boolean if a field has been set.
-func (o *News) HasUrl() bool {
+func (o *CompanyNews) HasUrl() bool {
 	if o != nil && o.Url != nil {
 		return true
 	}
@@ -337,11 +337,11 @@ func (o *News) HasUrl() bool {
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
-func (o *News) SetUrl(v string) {
+func (o *CompanyNews) SetUrl(v string) {
 	o.Url = &v
 }
 
-func (o News) MarshalJSON() ([]byte, error) {
+func (o CompanyNews) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Category != nil {
 		toSerialize["category"] = o.Category
@@ -373,38 +373,38 @@ func (o News) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableNews struct {
-	value *News
+type NullableCompanyNews struct {
+	value *CompanyNews
 	isSet bool
 }
 
-func (v NullableNews) Get() *News {
+func (v NullableCompanyNews) Get() *CompanyNews {
 	return v.value
 }
 
-func (v *NullableNews) Set(val *News) {
+func (v *NullableCompanyNews) Set(val *CompanyNews) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNews) IsSet() bool {
+func (v NullableCompanyNews) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNews) Unset() {
+func (v *NullableCompanyNews) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNews(val *News) *NullableNews {
-	return &NullableNews{value: val, isSet: true}
+func NewNullableCompanyNews(val *CompanyNews) *NullableCompanyNews {
+	return &NullableCompanyNews{value: val, isSet: true}
 }
 
-func (v NullableNews) MarshalJSON() ([]byte, error) {
+func (v NullableCompanyNews) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNews) UnmarshalJSON(src []byte) error {
+func (v *NullableCompanyNews) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

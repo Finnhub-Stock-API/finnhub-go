@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // Filing struct for Filing
@@ -26,9 +25,9 @@ type Filing struct {
 	// Form type.
 	Form *string `json:"form,omitempty"`
 	// Filed date <code>%Y-%m-%d %H:%M:%S</code>.
-	FiledDate *time.Time `json:"filedDate,omitempty"`
+	FiledDate *string `json:"filedDate,omitempty"`
 	// Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
-	AcceptedDate *time.Time `json:"acceptedDate,omitempty"`
+	AcceptedDate *string `json:"acceptedDate,omitempty"`
 	// Report's URL.
 	ReportUrl *string `json:"reportUrl,omitempty"`
 	// Filing's URL.
@@ -181,9 +180,9 @@ func (o *Filing) SetForm(v string) {
 }
 
 // GetFiledDate returns the FiledDate field value if set, zero value otherwise.
-func (o *Filing) GetFiledDate() time.Time {
+func (o *Filing) GetFiledDate() string {
 	if o == nil || o.FiledDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.FiledDate
@@ -191,7 +190,7 @@ func (o *Filing) GetFiledDate() time.Time {
 
 // GetFiledDateOk returns a tuple with the FiledDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Filing) GetFiledDateOk() (*time.Time, bool) {
+func (o *Filing) GetFiledDateOk() (*string, bool) {
 	if o == nil || o.FiledDate == nil {
 		return nil, false
 	}
@@ -207,15 +206,15 @@ func (o *Filing) HasFiledDate() bool {
 	return false
 }
 
-// SetFiledDate gets a reference to the given time.Time and assigns it to the FiledDate field.
-func (o *Filing) SetFiledDate(v time.Time) {
+// SetFiledDate gets a reference to the given string and assigns it to the FiledDate field.
+func (o *Filing) SetFiledDate(v string) {
 	o.FiledDate = &v
 }
 
 // GetAcceptedDate returns the AcceptedDate field value if set, zero value otherwise.
-func (o *Filing) GetAcceptedDate() time.Time {
+func (o *Filing) GetAcceptedDate() string {
 	if o == nil || o.AcceptedDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.AcceptedDate
@@ -223,7 +222,7 @@ func (o *Filing) GetAcceptedDate() time.Time {
 
 // GetAcceptedDateOk returns a tuple with the AcceptedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Filing) GetAcceptedDateOk() (*time.Time, bool) {
+func (o *Filing) GetAcceptedDateOk() (*string, bool) {
 	if o == nil || o.AcceptedDate == nil {
 		return nil, false
 	}
@@ -239,8 +238,8 @@ func (o *Filing) HasAcceptedDate() bool {
 	return false
 }
 
-// SetAcceptedDate gets a reference to the given time.Time and assigns it to the AcceptedDate field.
-func (o *Filing) SetAcceptedDate(v time.Time) {
+// SetAcceptedDate gets a reference to the given string and assigns it to the AcceptedDate field.
+func (o *Filing) SetAcceptedDate(v string) {
 	o.AcceptedDate = &v
 }
 

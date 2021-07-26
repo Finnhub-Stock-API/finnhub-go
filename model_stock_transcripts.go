@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // StockTranscripts struct for StockTranscripts
@@ -22,7 +21,7 @@ type StockTranscripts struct {
 	// Title.
 	Title *string `json:"title,omitempty"`
 	// Time of the event.
-	Time *time.Time `json:"time,omitempty"`
+	Time *string `json:"time,omitempty"`
 	// Year of earnings result in the case of earnings call transcript.
 	Year *int64 `json:"year,omitempty"`
 	// Quarter of earnings result in the case of earnings call transcript.
@@ -111,9 +110,9 @@ func (o *StockTranscripts) SetTitle(v string) {
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
-func (o *StockTranscripts) GetTime() time.Time {
+func (o *StockTranscripts) GetTime() string {
 	if o == nil || o.Time == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Time
@@ -121,7 +120,7 @@ func (o *StockTranscripts) GetTime() time.Time {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StockTranscripts) GetTimeOk() (*time.Time, bool) {
+func (o *StockTranscripts) GetTimeOk() (*string, bool) {
 	if o == nil || o.Time == nil {
 		return nil, false
 	}
@@ -137,8 +136,8 @@ func (o *StockTranscripts) HasTime() bool {
 	return false
 }
 
-// SetTime gets a reference to the given time.Time and assigns it to the Time field.
-func (o *StockTranscripts) SetTime(v time.Time) {
+// SetTime gets a reference to the given string and assigns it to the Time field.
+func (o *StockTranscripts) SetTime(v string) {
 	o.Time = &v
 }
 

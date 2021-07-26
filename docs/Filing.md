@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Symbol** | Pointer to **string** | Symbol. | [optional] 
 **Cik** | Pointer to **string** | CIK. | [optional] 
 **Form** | Pointer to **string** | Form type. | [optional] 
-**FiledDate** | Pointer to **time.Time** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
-**AcceptedDate** | Pointer to **time.Time** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**FiledDate** | Pointer to **string** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**AcceptedDate** | Pointer to **string** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
 **ReportUrl** | Pointer to **string** | Report&#39;s URL. | [optional] 
 **FilingUrl** | Pointer to **string** | Filing&#39;s URL. | [optional] 
 
@@ -134,20 +134,20 @@ HasForm returns a boolean if a field has been set.
 
 ### GetFiledDate
 
-`func (o *Filing) GetFiledDate() time.Time`
+`func (o *Filing) GetFiledDate() string`
 
 GetFiledDate returns the FiledDate field if non-nil, zero value otherwise.
 
 ### GetFiledDateOk
 
-`func (o *Filing) GetFiledDateOk() (*time.Time, bool)`
+`func (o *Filing) GetFiledDateOk() (*string, bool)`
 
 GetFiledDateOk returns a tuple with the FiledDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiledDate
 
-`func (o *Filing) SetFiledDate(v time.Time)`
+`func (o *Filing) SetFiledDate(v string)`
 
 SetFiledDate sets FiledDate field to given value.
 
@@ -159,20 +159,20 @@ HasFiledDate returns a boolean if a field has been set.
 
 ### GetAcceptedDate
 
-`func (o *Filing) GetAcceptedDate() time.Time`
+`func (o *Filing) GetAcceptedDate() string`
 
 GetAcceptedDate returns the AcceptedDate field if non-nil, zero value otherwise.
 
 ### GetAcceptedDateOk
 
-`func (o *Filing) GetAcceptedDateOk() (*time.Time, bool)`
+`func (o *Filing) GetAcceptedDateOk() (*string, bool)`
 
 GetAcceptedDateOk returns a tuple with the AcceptedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAcceptedDate
 
-`func (o *Filing) SetAcceptedDate(v time.Time)`
+`func (o *Filing) SetAcceptedDate(v string)`
 
 SetAcceptedDate sets AcceptedDate field to given value.
 

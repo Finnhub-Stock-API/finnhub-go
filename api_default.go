@@ -706,7 +706,7 @@ func (r ApiCompanyNewsRequest) To(to string) ApiCompanyNewsRequest {
 	return r
 }
 
-func (r ApiCompanyNewsRequest) Execute() ([]News, *_nethttp.Response, error) {
+func (r ApiCompanyNewsRequest) Execute() ([]CompanyNews, *_nethttp.Response, error) {
 	return r.ApiService.CompanyNewsExecute(r)
 }
 
@@ -725,16 +725,16 @@ func (a *DefaultApiService) CompanyNews(ctx _context.Context) ApiCompanyNewsRequ
 
 /*
  * Execute executes the request
- * @return []News
+ * @return []CompanyNews
  */
-func (a *DefaultApiService) CompanyNewsExecute(r ApiCompanyNewsRequest) ([]News, *_nethttp.Response, error) {
+func (a *DefaultApiService) CompanyNewsExecute(r ApiCompanyNewsRequest) ([]CompanyNews, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []News
+		localVarReturnValue  []CompanyNews
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompanyNews")
@@ -2139,29 +2139,24 @@ func (a *DefaultApiService) EarningsCalendarExecute(r ApiEarningsCalendarRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEarningsCallTranscriptsApiRequest struct {
+type ApiEconomicCalendarRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	id *string
 }
 
-func (r ApiEarningsCallTranscriptsApiRequest) Id(id string) ApiEarningsCallTranscriptsApiRequest {
-	r.id = &id
-	return r
-}
 
-func (r ApiEarningsCallTranscriptsApiRequest) Execute() (EarningsCallTranscripts, *_nethttp.Response, error) {
-	return r.ApiService.EarningsCallTranscriptsApiExecute(r)
+func (r ApiEconomicCalendarRequest) Execute() (EconomicCalendar, *_nethttp.Response, error) {
+	return r.ApiService.EconomicCalendarExecute(r)
 }
 
 /*
- * EarningsCallTranscriptsApi Earnings Call Transcripts
- * <p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+ * EconomicCalendar Economic Calendar
+ * <p>Get recent and upcoming economic releases.</p><p>Historical events and surprises are available for Enterprise clients.</p>
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiEarningsCallTranscriptsApiRequest
+ * @return ApiEconomicCalendarRequest
  */
-func (a *DefaultApiService) EarningsCallTranscriptsApi(ctx _context.Context) ApiEarningsCallTranscriptsApiRequest {
-	return ApiEarningsCallTranscriptsApiRequest{
+func (a *DefaultApiService) EconomicCalendar(ctx _context.Context) ApiEconomicCalendarRequest {
+	return ApiEconomicCalendarRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -2169,33 +2164,29 @@ func (a *DefaultApiService) EarningsCallTranscriptsApi(ctx _context.Context) Api
 
 /*
  * Execute executes the request
- * @return EarningsCallTranscripts
+ * @return EconomicCalendar
  */
-func (a *DefaultApiService) EarningsCallTranscriptsApiExecute(r ApiEarningsCallTranscriptsApiRequest) (EarningsCallTranscripts, *_nethttp.Response, error) {
+func (a *DefaultApiService) EconomicCalendarExecute(r ApiEconomicCalendarRequest) (EconomicCalendar, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  EarningsCallTranscripts
+		localVarReturnValue  EconomicCalendar
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EarningsCallTranscriptsApi")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EconomicCalendar")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/stock/transcripts"
+	localVarPath := localBasePath + "/calendar/economic"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.id == nil {
-		return localVarReturnValue, nil, reportError("id is required and must be specified")
-	}
 
-	localVarQueryParams.Add("id", parameterToString(*r.id, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4896,29 +4887,29 @@ func (a *DefaultApiService) InternationalFilingsExecute(r ApiInternationalFiling
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInvestmentThemesThematicInvestingRequest struct {
+type ApiInvestmentThemesRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	theme *string
 }
 
-func (r ApiInvestmentThemesThematicInvestingRequest) Theme(theme string) ApiInvestmentThemesThematicInvestingRequest {
+func (r ApiInvestmentThemesRequest) Theme(theme string) ApiInvestmentThemesRequest {
 	r.theme = &theme
 	return r
 }
 
-func (r ApiInvestmentThemesThematicInvestingRequest) Execute() (InvestmentThemesThematicInvesting, *_nethttp.Response, error) {
-	return r.ApiService.InvestmentThemesThematicInvestingExecute(r)
+func (r ApiInvestmentThemesRequest) Execute() (InvestmentThemes, *_nethttp.Response, error) {
+	return r.ApiService.InvestmentThemesExecute(r)
 }
 
 /*
- * InvestmentThemesThematicInvesting Investment Themes (Thematic Investing)
+ * InvestmentThemes Investment Themes (Thematic Investing)
  * <p>Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a collection of companies involved in certain areas that you predict will generate above-market returns over the long term. Themes can be based on a concept such as ageing populations or a sub-sector such as robotics, and drones. Thematic investing focuses on predicted long-term trends rather than specific companies or sectors, enabling investors to access structural, one-off shifts that can change an entire industry.</p><p>This endpoint will help you get portfolios of different investment themes that are changing our life and are the way of the future.</p><p>A full list of themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>. The theme coverage and portfolios are updated bi-weekly by our analysts. Our approach excludes penny, super-small cap and illiquid stocks.</p>
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiInvestmentThemesThematicInvestingRequest
+ * @return ApiInvestmentThemesRequest
  */
-func (a *DefaultApiService) InvestmentThemesThematicInvesting(ctx _context.Context) ApiInvestmentThemesThematicInvestingRequest {
-	return ApiInvestmentThemesThematicInvestingRequest{
+func (a *DefaultApiService) InvestmentThemes(ctx _context.Context) ApiInvestmentThemesRequest {
+	return ApiInvestmentThemesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -4926,19 +4917,19 @@ func (a *DefaultApiService) InvestmentThemesThematicInvesting(ctx _context.Conte
 
 /*
  * Execute executes the request
- * @return InvestmentThemesThematicInvesting
+ * @return InvestmentThemes
  */
-func (a *DefaultApiService) InvestmentThemesThematicInvestingExecute(r ApiInvestmentThemesThematicInvestingRequest) (InvestmentThemesThematicInvesting, *_nethttp.Response, error) {
+func (a *DefaultApiService) InvestmentThemesExecute(r ApiInvestmentThemesRequest) (InvestmentThemes, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InvestmentThemesThematicInvesting
+		localVarReturnValue  InvestmentThemes
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InvestmentThemesThematicInvesting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InvestmentThemes")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -5171,7 +5162,7 @@ func (r ApiMarketNewsRequest) MinId(minId string) ApiMarketNewsRequest {
 	return r
 }
 
-func (r ApiMarketNewsRequest) Execute() ([]News, *_nethttp.Response, error) {
+func (r ApiMarketNewsRequest) Execute() ([]MarketNews, *_nethttp.Response, error) {
 	return r.ApiService.MarketNewsExecute(r)
 }
 
@@ -5190,16 +5181,16 @@ func (a *DefaultApiService) MarketNews(ctx _context.Context) ApiMarketNewsReques
 
 /*
  * Execute executes the request
- * @return []News
+ * @return []MarketNews
  */
-func (a *DefaultApiService) MarketNewsExecute(r ApiMarketNewsRequest) ([]News, *_nethttp.Response, error) {
+func (a *DefaultApiService) MarketNewsExecute(r ApiMarketNewsRequest) ([]MarketNews, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []News
+		localVarReturnValue  []MarketNews
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MarketNews")
@@ -5299,7 +5290,7 @@ func (r ApiMutualFundCountryExposureRequest) Symbol(symbol string) ApiMutualFund
 	return r
 }
 
-func (r ApiMutualFundCountryExposureRequest) Execute() (MutualFundsCountryExposure, *_nethttp.Response, error) {
+func (r ApiMutualFundCountryExposureRequest) Execute() (MutualFundCountryExposure, *_nethttp.Response, error) {
 	return r.ApiService.MutualFundCountryExposureExecute(r)
 }
 
@@ -5318,16 +5309,16 @@ func (a *DefaultApiService) MutualFundCountryExposure(ctx _context.Context) ApiM
 
 /*
  * Execute executes the request
- * @return MutualFundsCountryExposure
+ * @return MutualFundCountryExposure
  */
-func (a *DefaultApiService) MutualFundCountryExposureExecute(r ApiMutualFundCountryExposureRequest) (MutualFundsCountryExposure, *_nethttp.Response, error) {
+func (a *DefaultApiService) MutualFundCountryExposureExecute(r ApiMutualFundCountryExposureRequest) (MutualFundCountryExposure, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MutualFundsCountryExposure
+		localVarReturnValue  MutualFundCountryExposure
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MutualFundCountryExposure")
@@ -5434,7 +5425,7 @@ func (r ApiMutualFundHoldingsRequest) Skip(skip int64) ApiMutualFundHoldingsRequ
 	return r
 }
 
-func (r ApiMutualFundHoldingsRequest) Execute() (MutualFundsHoldings, *_nethttp.Response, error) {
+func (r ApiMutualFundHoldingsRequest) Execute() (MutualFundHoldings, *_nethttp.Response, error) {
 	return r.ApiService.MutualFundHoldingsExecute(r)
 }
 
@@ -5453,16 +5444,16 @@ func (a *DefaultApiService) MutualFundHoldings(ctx _context.Context) ApiMutualFu
 
 /*
  * Execute executes the request
- * @return MutualFundsHoldings
+ * @return MutualFundHoldings
  */
-func (a *DefaultApiService) MutualFundHoldingsExecute(r ApiMutualFundHoldingsRequest) (MutualFundsHoldings, *_nethttp.Response, error) {
+func (a *DefaultApiService) MutualFundHoldingsExecute(r ApiMutualFundHoldingsRequest) (MutualFundHoldings, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MutualFundsHoldings
+		localVarReturnValue  MutualFundHoldings
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MutualFundHoldings")
@@ -5569,7 +5560,7 @@ func (r ApiMutualFundProfileRequest) Isin(isin string) ApiMutualFundProfileReque
 	return r
 }
 
-func (r ApiMutualFundProfileRequest) Execute() (MutualFundsProfile, *_nethttp.Response, error) {
+func (r ApiMutualFundProfileRequest) Execute() (MutualFundProfile, *_nethttp.Response, error) {
 	return r.ApiService.MutualFundProfileExecute(r)
 }
 
@@ -5588,16 +5579,16 @@ func (a *DefaultApiService) MutualFundProfile(ctx _context.Context) ApiMutualFun
 
 /*
  * Execute executes the request
- * @return MutualFundsProfile
+ * @return MutualFundProfile
  */
-func (a *DefaultApiService) MutualFundProfileExecute(r ApiMutualFundProfileRequest) (MutualFundsProfile, *_nethttp.Response, error) {
+func (a *DefaultApiService) MutualFundProfileExecute(r ApiMutualFundProfileRequest) (MutualFundProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MutualFundsProfile
+		localVarReturnValue  MutualFundProfile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MutualFundProfile")
@@ -5701,7 +5692,7 @@ func (r ApiMutualFundSectorExposureRequest) Execute() (MutualFundSectorExposure,
 }
 
 /*
- * MutualFundSectorExposure Mutual-fund Sector Exposure
+ * MutualFundSectorExposure Mutual Funds Sector Exposure
  * Get Mutual Funds sector exposure data.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiMutualFundSectorExposureRequest
@@ -6223,7 +6214,7 @@ func (r ApiPressReleasesRequest) To(to string) ApiPressReleasesRequest {
 	return r
 }
 
-func (r ApiPressReleasesRequest) Execute() (MajorPressReleases, *_nethttp.Response, error) {
+func (r ApiPressReleasesRequest) Execute() (PressRelease, *_nethttp.Response, error) {
 	return r.ApiService.PressReleasesExecute(r)
 }
 
@@ -6242,16 +6233,16 @@ func (a *DefaultApiService) PressReleases(ctx _context.Context) ApiPressReleases
 
 /*
  * Execute executes the request
- * @return MajorPressReleases
+ * @return PressRelease
  */
-func (a *DefaultApiService) PressReleasesExecute(r ApiPressReleasesRequest) (MajorPressReleases, *_nethttp.Response, error) {
+func (a *DefaultApiService) PressReleasesExecute(r ApiPressReleasesRequest) (PressRelease, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MajorPressReleases
+		localVarReturnValue  PressRelease
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PressReleases")
@@ -7142,7 +7133,7 @@ func (r ApiStockBasicDividendsRequest) Symbol(symbol string) ApiStockBasicDivide
 	return r
 }
 
-func (r ApiStockBasicDividendsRequest) Execute() (Dividends2Basic, *_nethttp.Response, error) {
+func (r ApiStockBasicDividendsRequest) Execute() (Dividends2, *_nethttp.Response, error) {
 	return r.ApiService.StockBasicDividendsExecute(r)
 }
 
@@ -7161,16 +7152,16 @@ func (a *DefaultApiService) StockBasicDividends(ctx _context.Context) ApiStockBa
 
 /*
  * Execute executes the request
- * @return Dividends2Basic
+ * @return Dividends2
  */
-func (a *DefaultApiService) StockBasicDividendsExecute(r ApiStockBasicDividendsRequest) (Dividends2Basic, *_nethttp.Response, error) {
+func (a *DefaultApiService) StockBasicDividendsExecute(r ApiStockBasicDividendsRequest) (Dividends2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Dividends2Basic
+		localVarReturnValue  Dividends2
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StockBasicDividends")
@@ -8005,7 +7996,7 @@ func (r ApiStockSymbolsRequest) Currency(currency string) ApiStockSymbolsRequest
 	return r
 }
 
-func (r ApiStockSymbolsRequest) Execute() ([]Stock, *_nethttp.Response, error) {
+func (r ApiStockSymbolsRequest) Execute() ([]StockSymbol, *_nethttp.Response, error) {
 	return r.ApiService.StockSymbolsExecute(r)
 }
 
@@ -8024,16 +8015,16 @@ func (a *DefaultApiService) StockSymbols(ctx _context.Context) ApiStockSymbolsRe
 
 /*
  * Execute executes the request
- * @return []Stock
+ * @return []StockSymbol
  */
-func (a *DefaultApiService) StockSymbolsExecute(r ApiStockSymbolsRequest) ([]Stock, *_nethttp.Response, error) {
+func (a *DefaultApiService) StockSymbolsExecute(r ApiStockSymbolsRequest) ([]StockSymbol, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Stock
+		localVarReturnValue  []StockSymbol
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StockSymbols")
@@ -8821,6 +8812,131 @@ func (a *DefaultApiService) TechnicalIndicatorExecute(r ApiTechnicalIndicatorReq
 	}
 	// body params
 	localVarPostBody = r.indicatorFields
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiTranscriptsRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	id *string
+}
+
+func (r ApiTranscriptsRequest) Id(id string) ApiTranscriptsRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiTranscriptsRequest) Execute() (EarningsCallTranscripts, *_nethttp.Response, error) {
+	return r.ApiService.TranscriptsExecute(r)
+}
+
+/*
+ * Transcripts Earnings Call Transcripts
+ * <p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiTranscriptsRequest
+ */
+func (a *DefaultApiService) Transcripts(ctx _context.Context) ApiTranscriptsRequest {
+	return ApiTranscriptsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return EarningsCallTranscripts
+ */
+func (a *DefaultApiService) TranscriptsExecute(r ApiTranscriptsRequest) (EarningsCallTranscripts, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  EarningsCallTranscripts
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Transcripts")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/transcripts"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.id == nil {
+		return localVarReturnValue, nil, reportError("id is required and must be specified")
+	}
+
+	localVarQueryParams.Add("id", parameterToString(*r.id, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

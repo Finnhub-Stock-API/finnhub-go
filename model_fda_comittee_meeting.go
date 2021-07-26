@@ -12,15 +12,14 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // FDAComitteeMeeting struct for FDAComitteeMeeting
 type FDAComitteeMeeting struct {
 	// Start time of the event in EST.
-	FromDate *time.Time `json:"fromDate,omitempty"`
+	FromDate *string `json:"fromDate,omitempty"`
 	// End time of the event in EST.
-	ToDate *time.Time `json:"toDate,omitempty"`
+	ToDate *string `json:"toDate,omitempty"`
 	// Event's description.
 	EventDescription *string `json:"eventDescription,omitempty"`
 	// URL.
@@ -45,9 +44,9 @@ func NewFDAComitteeMeetingWithDefaults() *FDAComitteeMeeting {
 }
 
 // GetFromDate returns the FromDate field value if set, zero value otherwise.
-func (o *FDAComitteeMeeting) GetFromDate() time.Time {
+func (o *FDAComitteeMeeting) GetFromDate() string {
 	if o == nil || o.FromDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.FromDate
@@ -55,7 +54,7 @@ func (o *FDAComitteeMeeting) GetFromDate() time.Time {
 
 // GetFromDateOk returns a tuple with the FromDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FDAComitteeMeeting) GetFromDateOk() (*time.Time, bool) {
+func (o *FDAComitteeMeeting) GetFromDateOk() (*string, bool) {
 	if o == nil || o.FromDate == nil {
 		return nil, false
 	}
@@ -71,15 +70,15 @@ func (o *FDAComitteeMeeting) HasFromDate() bool {
 	return false
 }
 
-// SetFromDate gets a reference to the given time.Time and assigns it to the FromDate field.
-func (o *FDAComitteeMeeting) SetFromDate(v time.Time) {
+// SetFromDate gets a reference to the given string and assigns it to the FromDate field.
+func (o *FDAComitteeMeeting) SetFromDate(v string) {
 	o.FromDate = &v
 }
 
 // GetToDate returns the ToDate field value if set, zero value otherwise.
-func (o *FDAComitteeMeeting) GetToDate() time.Time {
+func (o *FDAComitteeMeeting) GetToDate() string {
 	if o == nil || o.ToDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.ToDate
@@ -87,7 +86,7 @@ func (o *FDAComitteeMeeting) GetToDate() time.Time {
 
 // GetToDateOk returns a tuple with the ToDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FDAComitteeMeeting) GetToDateOk() (*time.Time, bool) {
+func (o *FDAComitteeMeeting) GetToDateOk() (*string, bool) {
 	if o == nil || o.ToDate == nil {
 		return nil, false
 	}
@@ -103,8 +102,8 @@ func (o *FDAComitteeMeeting) HasToDate() bool {
 	return false
 }
 
-// SetToDate gets a reference to the given time.Time and assigns it to the ToDate field.
-func (o *FDAComitteeMeeting) SetToDate(v time.Time) {
+// SetToDate gets a reference to the given string and assigns it to the ToDate field.
+func (o *FDAComitteeMeeting) SetToDate(v string) {
 	o.ToDate = &v
 }
 

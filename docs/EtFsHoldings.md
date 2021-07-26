@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Symbol** | Pointer to **string** | ETF symbol. | [optional] 
 **AtDate** | Pointer to **string** | Holdings update date. | [optional] 
 **NumberOfHoldings** | Pointer to **int64** | Number of holdings. | [optional] 
-**Holdings** | Pointer to **[]map[string]interface{}** | Array of holdings. | [optional] 
+**Holdings** | Pointer to [**[]ETFHoldingsData**](ETFHoldingsData.md) | Array of holdings. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasNumberOfHoldings returns a boolean if a field has been set.
 
 ### GetHoldings
 
-`func (o *ETFsHoldings) GetHoldings() []map[string]interface{}`
+`func (o *ETFsHoldings) GetHoldings() []ETFHoldingsData`
 
 GetHoldings returns the Holdings field if non-nil, zero value otherwise.
 
 ### GetHoldingsOk
 
-`func (o *ETFsHoldings) GetHoldingsOk() (*[]map[string]interface{}, bool)`
+`func (o *ETFsHoldings) GetHoldingsOk() (*[]ETFHoldingsData, bool)`
 
 GetHoldingsOk returns a tuple with the Holdings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHoldings
 
-`func (o *ETFsHoldings) SetHoldings(v []map[string]interface{})`
+`func (o *ETFsHoldings) SetHoldings(v []ETFHoldingsData)`
 
 SetHoldings sets Holdings field to given value.
 

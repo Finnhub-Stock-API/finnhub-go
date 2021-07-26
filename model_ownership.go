@@ -19,7 +19,7 @@ type Ownership struct {
 	// Symbol of the company.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of investors with detailed information about their holdings.
-	Ownership *[]map[string]interface{} `json:"ownership,omitempty"`
+	Ownership *[]OwnershipInfo `json:"ownership,omitempty"`
 }
 
 // NewOwnership instantiates a new Ownership object
@@ -72,9 +72,9 @@ func (o *Ownership) SetSymbol(v string) {
 }
 
 // GetOwnership returns the Ownership field value if set, zero value otherwise.
-func (o *Ownership) GetOwnership() []map[string]interface{} {
+func (o *Ownership) GetOwnership() []OwnershipInfo {
 	if o == nil || o.Ownership == nil {
-		var ret []map[string]interface{}
+		var ret []OwnershipInfo
 		return ret
 	}
 	return *o.Ownership
@@ -82,7 +82,7 @@ func (o *Ownership) GetOwnership() []map[string]interface{} {
 
 // GetOwnershipOk returns a tuple with the Ownership field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ownership) GetOwnershipOk() (*[]map[string]interface{}, bool) {
+func (o *Ownership) GetOwnershipOk() (*[]OwnershipInfo, bool) {
 	if o == nil || o.Ownership == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *Ownership) HasOwnership() bool {
 	return false
 }
 
-// SetOwnership gets a reference to the given []map[string]interface{} and assigns it to the Ownership field.
-func (o *Ownership) SetOwnership(v []map[string]interface{}) {
+// SetOwnership gets a reference to the given []OwnershipInfo and assigns it to the Ownership field.
+func (o *Ownership) SetOwnership(v []OwnershipInfo) {
 	o.Ownership = &v
 }
 

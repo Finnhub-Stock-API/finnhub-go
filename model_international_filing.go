@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // InternationalFiling struct for InternationalFiling
@@ -22,7 +21,7 @@ type InternationalFiling struct {
 	// Company name.
 	CompanyName *string `json:"companyName,omitempty"`
 	// Filed date <code>%Y-%m-%d %H:%M:%S</code>.
-	FiledDate *time.Time `json:"filedDate,omitempty"`
+	FiledDate *string `json:"filedDate,omitempty"`
 	// Category.
 	Category *string `json:"category,omitempty"`
 	// Document's title.
@@ -119,9 +118,9 @@ func (o *InternationalFiling) SetCompanyName(v string) {
 }
 
 // GetFiledDate returns the FiledDate field value if set, zero value otherwise.
-func (o *InternationalFiling) GetFiledDate() time.Time {
+func (o *InternationalFiling) GetFiledDate() string {
 	if o == nil || o.FiledDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.FiledDate
@@ -129,7 +128,7 @@ func (o *InternationalFiling) GetFiledDate() time.Time {
 
 // GetFiledDateOk returns a tuple with the FiledDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InternationalFiling) GetFiledDateOk() (*time.Time, bool) {
+func (o *InternationalFiling) GetFiledDateOk() (*string, bool) {
 	if o == nil || o.FiledDate == nil {
 		return nil, false
 	}
@@ -145,8 +144,8 @@ func (o *InternationalFiling) HasFiledDate() bool {
 	return false
 }
 
-// SetFiledDate gets a reference to the given time.Time and assigns it to the FiledDate field.
-func (o *InternationalFiling) SetFiledDate(v time.Time) {
+// SetFiledDate gets a reference to the given string and assigns it to the FiledDate field.
+func (o *InternationalFiling) SetFiledDate(v string) {
 	o.FiledDate = &v
 }
 

@@ -17,7 +17,7 @@ import (
 // IPOCalendar struct for IPOCalendar
 type IPOCalendar struct {
 	// Array of IPO events.
-	IpoCalendar *[]map[string]interface{} `json:"ipoCalendar,omitempty"`
+	IpoCalendar *[]IPOEvent `json:"ipoCalendar,omitempty"`
 }
 
 // NewIPOCalendar instantiates a new IPOCalendar object
@@ -38,9 +38,9 @@ func NewIPOCalendarWithDefaults() *IPOCalendar {
 }
 
 // GetIpoCalendar returns the IpoCalendar field value if set, zero value otherwise.
-func (o *IPOCalendar) GetIpoCalendar() []map[string]interface{} {
+func (o *IPOCalendar) GetIpoCalendar() []IPOEvent {
 	if o == nil || o.IpoCalendar == nil {
-		var ret []map[string]interface{}
+		var ret []IPOEvent
 		return ret
 	}
 	return *o.IpoCalendar
@@ -48,7 +48,7 @@ func (o *IPOCalendar) GetIpoCalendar() []map[string]interface{} {
 
 // GetIpoCalendarOk returns a tuple with the IpoCalendar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPOCalendar) GetIpoCalendarOk() (*[]map[string]interface{}, bool) {
+func (o *IPOCalendar) GetIpoCalendarOk() (*[]IPOEvent, bool) {
 	if o == nil || o.IpoCalendar == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *IPOCalendar) HasIpoCalendar() bool {
 	return false
 }
 
-// SetIpoCalendar gets a reference to the given []map[string]interface{} and assigns it to the IpoCalendar field.
-func (o *IPOCalendar) SetIpoCalendar(v []map[string]interface{}) {
+// SetIpoCalendar gets a reference to the given []IPOEvent and assigns it to the IpoCalendar field.
+func (o *IPOCalendar) SetIpoCalendar(v []IPOEvent) {
 	o.IpoCalendar = &v
 }
 

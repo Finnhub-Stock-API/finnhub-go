@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol of the company. | [optional] 
-**Ownership** | Pointer to **[]map[string]interface{}** | Array of investors with detailed information about their holdings. | [optional] 
+**Ownership** | Pointer to [**[]OwnershipInfo**](OwnershipInfo.md) | Array of investors with detailed information about their holdings. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetOwnership
 
-`func (o *Ownership) GetOwnership() []map[string]interface{}`
+`func (o *Ownership) GetOwnership() []OwnershipInfo`
 
 GetOwnership returns the Ownership field if non-nil, zero value otherwise.
 
 ### GetOwnershipOk
 
-`func (o *Ownership) GetOwnershipOk() (*[]map[string]interface{}, bool)`
+`func (o *Ownership) GetOwnershipOk() (*[]OwnershipInfo, bool)`
 
 GetOwnershipOk returns a tuple with the Ownership field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnership
 
-`func (o *Ownership) SetOwnership(v []map[string]interface{})`
+`func (o *Ownership) SetOwnership(v []OwnershipInfo)`
 
 SetOwnership sets Ownership field to given value.
 

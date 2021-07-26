@@ -19,7 +19,7 @@ type ETFsCountryExposure struct {
 	// ETF symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of countries and and exposure levels.
-	CountryExposure *[]map[string]interface{} `json:"countryExposure,omitempty"`
+	CountryExposure *[]ETFCountryExposureData `json:"countryExposure,omitempty"`
 }
 
 // NewETFsCountryExposure instantiates a new ETFsCountryExposure object
@@ -72,9 +72,9 @@ func (o *ETFsCountryExposure) SetSymbol(v string) {
 }
 
 // GetCountryExposure returns the CountryExposure field value if set, zero value otherwise.
-func (o *ETFsCountryExposure) GetCountryExposure() []map[string]interface{} {
+func (o *ETFsCountryExposure) GetCountryExposure() []ETFCountryExposureData {
 	if o == nil || o.CountryExposure == nil {
-		var ret []map[string]interface{}
+		var ret []ETFCountryExposureData
 		return ret
 	}
 	return *o.CountryExposure
@@ -82,7 +82,7 @@ func (o *ETFsCountryExposure) GetCountryExposure() []map[string]interface{} {
 
 // GetCountryExposureOk returns a tuple with the CountryExposure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ETFsCountryExposure) GetCountryExposureOk() (*[]map[string]interface{}, bool) {
+func (o *ETFsCountryExposure) GetCountryExposureOk() (*[]ETFCountryExposureData, bool) {
 	if o == nil || o.CountryExposure == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *ETFsCountryExposure) HasCountryExposure() bool {
 	return false
 }
 
-// SetCountryExposure gets a reference to the given []map[string]interface{} and assigns it to the CountryExposure field.
-func (o *ETFsCountryExposure) SetCountryExposure(v []map[string]interface{}) {
+// SetCountryExposure gets a reference to the given []ETFCountryExposureData and assigns it to the CountryExposure field.
+func (o *ETFsCountryExposure) SetCountryExposure(v []ETFCountryExposureData) {
 	o.CountryExposure = &v
 }
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Executive** | Pointer to **[]map[string]interface{}** | Array of company&#39;s executives and members of the Board. | [optional] 
+**Executive** | Pointer to [**[]Company**](Company.md) | Array of company&#39;s executives and members of the Board. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetExecutive
 
-`func (o *CompanyExecutive) GetExecutive() []map[string]interface{}`
+`func (o *CompanyExecutive) GetExecutive() []Company`
 
 GetExecutive returns the Executive field if non-nil, zero value otherwise.
 
 ### GetExecutiveOk
 
-`func (o *CompanyExecutive) GetExecutiveOk() (*[]map[string]interface{}, bool)`
+`func (o *CompanyExecutive) GetExecutiveOk() (*[]Company, bool)`
 
 GetExecutiveOk returns a tuple with the Executive field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecutive
 
-`func (o *CompanyExecutive) SetExecutive(v []map[string]interface{})`
+`func (o *CompanyExecutive) SetExecutive(v []Company)`
 
 SetExecutive sets Executive field to given value.
 

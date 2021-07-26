@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | State. | [optional] 
 **Case** | Pointer to **float32** | Number of confirmed cases. | [optional] 
 **Death** | Pointer to **float32** | Number of confirmed deaths. | [optional] 
-**Updated** | Pointer to **time.Time** | Updated time. | [optional] 
+**Updated** | Pointer to **string** | Updated time. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasDeath returns a boolean if a field has been set.
 
 ### GetUpdated
 
-`func (o *CovidInfo) GetUpdated() time.Time`
+`func (o *CovidInfo) GetUpdated() string`
 
 GetUpdated returns the Updated field if non-nil, zero value otherwise.
 
 ### GetUpdatedOk
 
-`func (o *CovidInfo) GetUpdatedOk() (*time.Time, bool)`
+`func (o *CovidInfo) GetUpdatedOk() (*string, bool)`
 
 GetUpdatedOk returns a tuple with the Updated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdated
 
-`func (o *CovidInfo) SetUpdated(v time.Time)`
+`func (o *CovidInfo) SetUpdated(v string)`
 
 SetUpdated sets Updated field to given value.
 

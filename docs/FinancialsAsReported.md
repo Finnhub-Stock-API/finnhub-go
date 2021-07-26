@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol | [optional] 
 **Cik** | Pointer to **string** | CIK | [optional] 
-**Data** | Pointer to **[]map[string]interface{}** | Array of filings. | [optional] 
+**Data** | Pointer to [**[]Report**](Report.md) | Array of filings. | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasCik returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *FinancialsAsReported) GetData() []map[string]interface{}`
+`func (o *FinancialsAsReported) GetData() []Report`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *FinancialsAsReported) GetDataOk() (*[]map[string]interface{}, bool)`
+`func (o *FinancialsAsReported) GetDataOk() (*[]Report, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *FinancialsAsReported) SetData(v []map[string]interface{})`
+`func (o *FinancialsAsReported) SetData(v []Report)`
 
 SetData sets Data field to given value.
 

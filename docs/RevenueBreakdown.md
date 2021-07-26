@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol | [optional] 
 **Cik** | Pointer to **string** | CIK | [optional] 
-**Data** | Pointer to **[]map[string]interface{}** | Array of revenue breakdown over multiple periods. | [optional] 
+**Data** | Pointer to [**[]BreakdownItem**](BreakdownItem.md) | Array of revenue breakdown over multiple periods. | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasCik returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *RevenueBreakdown) GetData() []map[string]interface{}`
+`func (o *RevenueBreakdown) GetData() []BreakdownItem`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *RevenueBreakdown) GetDataOk() (*[]map[string]interface{}, bool)`
+`func (o *RevenueBreakdown) GetDataOk() (*[]BreakdownItem, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *RevenueBreakdown) SetData(v []map[string]interface{})`
+`func (o *RevenueBreakdown) SetData(v []BreakdownItem)`
 
 SetData sets Data field to given value.
 

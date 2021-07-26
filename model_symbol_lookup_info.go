@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// Stock struct for Stock
-type Stock struct {
+// SymbolLookupInfo struct for SymbolLookupInfo
+type SymbolLookupInfo struct {
 	// Symbol description
 	Description *string `json:"description,omitempty"`
 	// Display symbol name.
@@ -26,25 +26,25 @@ type Stock struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// NewStock instantiates a new Stock object
+// NewSymbolLookupInfo instantiates a new SymbolLookupInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStock() *Stock {
-	this := Stock{}
+func NewSymbolLookupInfo() *SymbolLookupInfo {
+	this := SymbolLookupInfo{}
 	return &this
 }
 
-// NewStockWithDefaults instantiates a new Stock object
+// NewSymbolLookupInfoWithDefaults instantiates a new SymbolLookupInfo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewStockWithDefaults() *Stock {
-	this := Stock{}
+func NewSymbolLookupInfoWithDefaults() *SymbolLookupInfo {
+	this := SymbolLookupInfo{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Stock) GetDescription() string {
+func (o *SymbolLookupInfo) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *Stock) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Stock) GetDescriptionOk() (*string, bool) {
+func (o *SymbolLookupInfo) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *Stock) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *Stock) HasDescription() bool {
+func (o *SymbolLookupInfo) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -71,12 +71,12 @@ func (o *Stock) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Stock) SetDescription(v string) {
+func (o *SymbolLookupInfo) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetDisplaySymbol returns the DisplaySymbol field value if set, zero value otherwise.
-func (o *Stock) GetDisplaySymbol() string {
+func (o *SymbolLookupInfo) GetDisplaySymbol() string {
 	if o == nil || o.DisplaySymbol == nil {
 		var ret string
 		return ret
@@ -86,7 +86,7 @@ func (o *Stock) GetDisplaySymbol() string {
 
 // GetDisplaySymbolOk returns a tuple with the DisplaySymbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Stock) GetDisplaySymbolOk() (*string, bool) {
+func (o *SymbolLookupInfo) GetDisplaySymbolOk() (*string, bool) {
 	if o == nil || o.DisplaySymbol == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *Stock) GetDisplaySymbolOk() (*string, bool) {
 }
 
 // HasDisplaySymbol returns a boolean if a field has been set.
-func (o *Stock) HasDisplaySymbol() bool {
+func (o *SymbolLookupInfo) HasDisplaySymbol() bool {
 	if o != nil && o.DisplaySymbol != nil {
 		return true
 	}
@@ -103,12 +103,12 @@ func (o *Stock) HasDisplaySymbol() bool {
 }
 
 // SetDisplaySymbol gets a reference to the given string and assigns it to the DisplaySymbol field.
-func (o *Stock) SetDisplaySymbol(v string) {
+func (o *SymbolLookupInfo) SetDisplaySymbol(v string) {
 	o.DisplaySymbol = &v
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *Stock) GetSymbol() string {
+func (o *SymbolLookupInfo) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
 		var ret string
 		return ret
@@ -118,7 +118,7 @@ func (o *Stock) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Stock) GetSymbolOk() (*string, bool) {
+func (o *SymbolLookupInfo) GetSymbolOk() (*string, bool) {
 	if o == nil || o.Symbol == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *Stock) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *Stock) HasSymbol() bool {
+func (o *SymbolLookupInfo) HasSymbol() bool {
 	if o != nil && o.Symbol != nil {
 		return true
 	}
@@ -135,12 +135,12 @@ func (o *Stock) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *Stock) SetSymbol(v string) {
+func (o *SymbolLookupInfo) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Stock) GetType() string {
+func (o *SymbolLookupInfo) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -150,7 +150,7 @@ func (o *Stock) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Stock) GetTypeOk() (*string, bool) {
+func (o *SymbolLookupInfo) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -158,7 +158,7 @@ func (o *Stock) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *Stock) HasType() bool {
+func (o *SymbolLookupInfo) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -167,11 +167,11 @@ func (o *Stock) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Stock) SetType(v string) {
+func (o *SymbolLookupInfo) SetType(v string) {
 	o.Type = &v
 }
 
-func (o Stock) MarshalJSON() ([]byte, error) {
+func (o SymbolLookupInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
@@ -188,38 +188,38 @@ func (o Stock) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableStock struct {
-	value *Stock
+type NullableSymbolLookupInfo struct {
+	value *SymbolLookupInfo
 	isSet bool
 }
 
-func (v NullableStock) Get() *Stock {
+func (v NullableSymbolLookupInfo) Get() *SymbolLookupInfo {
 	return v.value
 }
 
-func (v *NullableStock) Set(val *Stock) {
+func (v *NullableSymbolLookupInfo) Set(val *SymbolLookupInfo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableStock) IsSet() bool {
+func (v NullableSymbolLookupInfo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableStock) Unset() {
+func (v *NullableSymbolLookupInfo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableStock(val *Stock) *NullableStock {
-	return &NullableStock{value: val, isSet: true}
+func NewNullableSymbolLookupInfo(val *SymbolLookupInfo) *NullableSymbolLookupInfo {
+	return &NullableSymbolLookupInfo{value: val, isSet: true}
 }
 
-func (v NullableStock) MarshalJSON() ([]byte, error) {
+func (v NullableSymbolLookupInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableStock) UnmarshalJSON(src []byte) error {
+func (v *NullableSymbolLookupInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

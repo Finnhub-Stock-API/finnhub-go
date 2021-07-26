@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | Pointer to **[]map[string]interface{}** | Array of search results. | [optional] 
+**Result** | Pointer to [**[]SymbolLookupInfo**](SymbolLookupInfo.md) | Array of search results. | [optional] 
 **Count** | Pointer to **int64** | Number of results. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetResult
 
-`func (o *SymbolLookup) GetResult() []map[string]interface{}`
+`func (o *SymbolLookup) GetResult() []SymbolLookupInfo`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *SymbolLookup) GetResultOk() (*[]map[string]interface{}, bool)`
+`func (o *SymbolLookup) GetResultOk() (*[]SymbolLookupInfo, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *SymbolLookup) SetResult(v []map[string]interface{})`
+`func (o *SymbolLookup) SetResult(v []SymbolLookupInfo)`
 
 SetResult sets Result field to given value.
 

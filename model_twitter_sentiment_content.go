@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // TwitterSentimentContent struct for TwitterSentimentContent
@@ -30,7 +29,7 @@ type TwitterSentimentContent struct {
 	// Final score. Range: -1 to 1 with 1 is very positive and -1 is very negative
 	Score *float32 `json:"score,omitempty"`
 	// Period.
-	AtTime *time.Time `json:"atTime,omitempty"`
+	AtTime *string `json:"atTime,omitempty"`
 }
 
 // NewTwitterSentimentContent instantiates a new TwitterSentimentContent object
@@ -243,9 +242,9 @@ func (o *TwitterSentimentContent) SetScore(v float32) {
 }
 
 // GetAtTime returns the AtTime field value if set, zero value otherwise.
-func (o *TwitterSentimentContent) GetAtTime() time.Time {
+func (o *TwitterSentimentContent) GetAtTime() string {
 	if o == nil || o.AtTime == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.AtTime
@@ -253,7 +252,7 @@ func (o *TwitterSentimentContent) GetAtTime() time.Time {
 
 // GetAtTimeOk returns a tuple with the AtTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TwitterSentimentContent) GetAtTimeOk() (*time.Time, bool) {
+func (o *TwitterSentimentContent) GetAtTimeOk() (*string, bool) {
 	if o == nil || o.AtTime == nil {
 		return nil, false
 	}
@@ -269,8 +268,8 @@ func (o *TwitterSentimentContent) HasAtTime() bool {
 	return false
 }
 
-// SetAtTime gets a reference to the given time.Time and assigns it to the AtTime field.
-func (o *TwitterSentimentContent) SetAtTime(v time.Time) {
+// SetAtTime gets a reference to the given string and assigns it to the AtTime field.
+func (o *TwitterSentimentContent) SetAtTime(v string) {
 	o.AtTime = &v
 }
 

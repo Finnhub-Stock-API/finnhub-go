@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Transcripts** | Pointer to **[]map[string]interface{}** | Array of transcripts&#39; metadata | [optional] 
+**Transcripts** | Pointer to [**[]StockTranscripts**](StockTranscripts.md) | Array of transcripts&#39; metadata | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetTranscripts
 
-`func (o *EarningsCallTranscriptsList) GetTranscripts() []map[string]interface{}`
+`func (o *EarningsCallTranscriptsList) GetTranscripts() []StockTranscripts`
 
 GetTranscripts returns the Transcripts field if non-nil, zero value otherwise.
 
 ### GetTranscriptsOk
 
-`func (o *EarningsCallTranscriptsList) GetTranscriptsOk() (*[]map[string]interface{}, bool)`
+`func (o *EarningsCallTranscriptsList) GetTranscriptsOk() (*[]StockTranscripts, bool)`
 
 GetTranscriptsOk returns a tuple with the Transcripts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTranscripts
 
-`func (o *EarningsCallTranscriptsList) SetTranscripts(v []map[string]interface{})`
+`func (o *EarningsCallTranscriptsList) SetTranscripts(v []StockTranscripts)`
 
 SetTranscripts sets Transcripts field to given value.
 

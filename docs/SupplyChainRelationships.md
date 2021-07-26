@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | symbol | [optional] 
-**Data** | Pointer to **[]map[string]interface{}** | Key customers and suppliers. | [optional] 
+**Data** | Pointer to [**[]KeyCustomersSuppliers**](KeyCustomersSuppliers.md) | Key customers and suppliers. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *SupplyChainRelationships) GetData() []map[string]interface{}`
+`func (o *SupplyChainRelationships) GetData() []KeyCustomersSuppliers`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *SupplyChainRelationships) GetDataOk() (*[]map[string]interface{}, bool)`
+`func (o *SupplyChainRelationships) GetDataOk() (*[]KeyCustomersSuppliers, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *SupplyChainRelationships) SetData(v []map[string]interface{})`
+`func (o *SupplyChainRelationships) SetData(v []KeyCustomersSuppliers)`
 
 SetData sets Data field to given value.
 

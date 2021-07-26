@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | ETF symbol. | [optional] 
-**SectorExposure** | Pointer to **[]map[string]interface{}** | Array of industries and exposure levels. | [optional] 
+**SectorExposure** | Pointer to [**[]ETFSectorExposureData**](ETFSectorExposureData.md) | Array of industries and exposure levels. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetSectorExposure
 
-`func (o *ETFsSectorExposure) GetSectorExposure() []map[string]interface{}`
+`func (o *ETFsSectorExposure) GetSectorExposure() []ETFSectorExposureData`
 
 GetSectorExposure returns the SectorExposure field if non-nil, zero value otherwise.
 
 ### GetSectorExposureOk
 
-`func (o *ETFsSectorExposure) GetSectorExposureOk() (*[]map[string]interface{}, bool)`
+`func (o *ETFsSectorExposure) GetSectorExposureOk() (*[]ETFSectorExposureData, bool)`
 
 GetSectorExposureOk returns a tuple with the SectorExposure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSectorExposure
 
-`func (o *ETFsSectorExposure) SetSectorExposure(v []map[string]interface{})`
+`func (o *ETFsSectorExposure) SetSectorExposure(v []ETFSectorExposureData)`
 
 SetSectorExposure sets SectorExposure field to given value.
 

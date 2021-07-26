@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Datetime** | Pointer to **time.Time** | Published time in &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt; format. | [optional] 
+**Datetime** | Pointer to **string** | Published time in &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt; format. | [optional] 
 **Headline** | Pointer to **string** | Development headline. | [optional] 
 **Description** | Pointer to **string** | Development description. | [optional] 
 **Url** | Pointer to **string** | URL. | [optional] 
@@ -56,20 +56,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetDatetime
 
-`func (o *Development) GetDatetime() time.Time`
+`func (o *Development) GetDatetime() string`
 
 GetDatetime returns the Datetime field if non-nil, zero value otherwise.
 
 ### GetDatetimeOk
 
-`func (o *Development) GetDatetimeOk() (*time.Time, bool)`
+`func (o *Development) GetDatetimeOk() (*string, bool)`
 
 GetDatetimeOk returns a tuple with the Datetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDatetime
 
-`func (o *Development) SetDatetime(v time.Time)`
+`func (o *Development) SetDatetime(v string)`
 
 SetDatetime sets Datetime field to given value.
 

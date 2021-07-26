@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// MajorPressReleases struct for MajorPressReleases
-type MajorPressReleases struct {
+// PressRelease struct for PressRelease
+type PressRelease struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of major developments.
-	MajorDevelopment *[]map[string]interface{} `json:"majorDevelopment,omitempty"`
+	MajorDevelopment *[]Development `json:"majorDevelopment,omitempty"`
 }
 
-// NewMajorPressReleases instantiates a new MajorPressReleases object
+// NewPressRelease instantiates a new PressRelease object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMajorPressReleases() *MajorPressReleases {
-	this := MajorPressReleases{}
+func NewPressRelease() *PressRelease {
+	this := PressRelease{}
 	return &this
 }
 
-// NewMajorPressReleasesWithDefaults instantiates a new MajorPressReleases object
+// NewPressReleaseWithDefaults instantiates a new PressRelease object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMajorPressReleasesWithDefaults() *MajorPressReleases {
-	this := MajorPressReleases{}
+func NewPressReleaseWithDefaults() *PressRelease {
+	this := PressRelease{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *MajorPressReleases) GetSymbol() string {
+func (o *PressRelease) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *MajorPressReleases) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MajorPressReleases) GetSymbolOk() (*string, bool) {
+func (o *PressRelease) GetSymbolOk() (*string, bool) {
 	if o == nil || o.Symbol == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *MajorPressReleases) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *MajorPressReleases) HasSymbol() bool {
+func (o *PressRelease) HasSymbol() bool {
 	if o != nil && o.Symbol != nil {
 		return true
 	}
@@ -67,14 +67,14 @@ func (o *MajorPressReleases) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *MajorPressReleases) SetSymbol(v string) {
+func (o *PressRelease) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetMajorDevelopment returns the MajorDevelopment field value if set, zero value otherwise.
-func (o *MajorPressReleases) GetMajorDevelopment() []map[string]interface{} {
+func (o *PressRelease) GetMajorDevelopment() []Development {
 	if o == nil || o.MajorDevelopment == nil {
-		var ret []map[string]interface{}
+		var ret []Development
 		return ret
 	}
 	return *o.MajorDevelopment
@@ -82,7 +82,7 @@ func (o *MajorPressReleases) GetMajorDevelopment() []map[string]interface{} {
 
 // GetMajorDevelopmentOk returns a tuple with the MajorDevelopment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MajorPressReleases) GetMajorDevelopmentOk() (*[]map[string]interface{}, bool) {
+func (o *PressRelease) GetMajorDevelopmentOk() (*[]Development, bool) {
 	if o == nil || o.MajorDevelopment == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *MajorPressReleases) GetMajorDevelopmentOk() (*[]map[string]interface{},
 }
 
 // HasMajorDevelopment returns a boolean if a field has been set.
-func (o *MajorPressReleases) HasMajorDevelopment() bool {
+func (o *PressRelease) HasMajorDevelopment() bool {
 	if o != nil && o.MajorDevelopment != nil {
 		return true
 	}
@@ -98,12 +98,12 @@ func (o *MajorPressReleases) HasMajorDevelopment() bool {
 	return false
 }
 
-// SetMajorDevelopment gets a reference to the given []map[string]interface{} and assigns it to the MajorDevelopment field.
-func (o *MajorPressReleases) SetMajorDevelopment(v []map[string]interface{}) {
+// SetMajorDevelopment gets a reference to the given []Development and assigns it to the MajorDevelopment field.
+func (o *PressRelease) SetMajorDevelopment(v []Development) {
 	o.MajorDevelopment = &v
 }
 
-func (o MajorPressReleases) MarshalJSON() ([]byte, error) {
+func (o PressRelease) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
@@ -114,38 +114,38 @@ func (o MajorPressReleases) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMajorPressReleases struct {
-	value *MajorPressReleases
+type NullablePressRelease struct {
+	value *PressRelease
 	isSet bool
 }
 
-func (v NullableMajorPressReleases) Get() *MajorPressReleases {
+func (v NullablePressRelease) Get() *PressRelease {
 	return v.value
 }
 
-func (v *NullableMajorPressReleases) Set(val *MajorPressReleases) {
+func (v *NullablePressRelease) Set(val *PressRelease) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMajorPressReleases) IsSet() bool {
+func (v NullablePressRelease) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMajorPressReleases) Unset() {
+func (v *NullablePressRelease) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMajorPressReleases(val *MajorPressReleases) *NullableMajorPressReleases {
-	return &NullableMajorPressReleases{value: val, isSet: true}
+func NewNullablePressRelease(val *PressRelease) *NullablePressRelease {
+	return &NullablePressRelease{value: val, isSet: true}
 }
 
-func (v NullableMajorPressReleases) MarshalJSON() ([]byte, error) {
+func (v NullablePressRelease) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMajorPressReleases) UnmarshalJSON(src []byte) error {
+func (v *NullablePressRelease) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

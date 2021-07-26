@@ -17,7 +17,7 @@ import (
 // EconomicData struct for EconomicData
 type EconomicData struct {
 	// Array of economic data for requested code.
-	Data *[]map[string]interface{} `json:"data,omitempty"`
+	Data *[]EconomicDataInfo `json:"data,omitempty"`
 	// Finnhub economic code
 	Code *string `json:"code,omitempty"`
 }
@@ -40,9 +40,9 @@ func NewEconomicDataWithDefaults() *EconomicData {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *EconomicData) GetData() []map[string]interface{} {
+func (o *EconomicData) GetData() []EconomicDataInfo {
 	if o == nil || o.Data == nil {
-		var ret []map[string]interface{}
+		var ret []EconomicDataInfo
 		return ret
 	}
 	return *o.Data
@@ -50,7 +50,7 @@ func (o *EconomicData) GetData() []map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EconomicData) GetDataOk() (*[]map[string]interface{}, bool) {
+func (o *EconomicData) GetDataOk() (*[]EconomicDataInfo, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *EconomicData) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *EconomicData) SetData(v []map[string]interface{}) {
+// SetData gets a reference to the given []EconomicDataInfo and assigns it to the Data field.
+func (o *EconomicData) SetData(v []EconomicDataInfo) {
 	o.Data = &v
 }
 

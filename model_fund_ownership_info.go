@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// Investor struct for Investor
-type Investor struct {
+// FundOwnershipInfo struct for FundOwnershipInfo
+type FundOwnershipInfo struct {
 	// Investor's name.
 	Name *string `json:"name,omitempty"`
 	// Number of shares held by the investor.
@@ -24,27 +24,29 @@ type Investor struct {
 	Change *int64 `json:"change,omitempty"`
 	// Filing date.
 	FilingDate *string `json:"filingDate,omitempty"`
+	// Percent of the fund's portfolio comprised of the company's share.
+	PortfolioPercent *float32 `json:"portfolioPercent,omitempty"`
 }
 
-// NewInvestor instantiates a new Investor object
+// NewFundOwnershipInfo instantiates a new FundOwnershipInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvestor() *Investor {
-	this := Investor{}
+func NewFundOwnershipInfo() *FundOwnershipInfo {
+	this := FundOwnershipInfo{}
 	return &this
 }
 
-// NewInvestorWithDefaults instantiates a new Investor object
+// NewFundOwnershipInfoWithDefaults instantiates a new FundOwnershipInfo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInvestorWithDefaults() *Investor {
-	this := Investor{}
+func NewFundOwnershipInfoWithDefaults() *FundOwnershipInfo {
+	this := FundOwnershipInfo{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Investor) GetName() string {
+func (o *FundOwnershipInfo) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -54,7 +56,7 @@ func (o *Investor) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Investor) GetNameOk() (*string, bool) {
+func (o *FundOwnershipInfo) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -62,7 +64,7 @@ func (o *Investor) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *Investor) HasName() bool {
+func (o *FundOwnershipInfo) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -71,12 +73,12 @@ func (o *Investor) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Investor) SetName(v string) {
+func (o *FundOwnershipInfo) SetName(v string) {
 	o.Name = &v
 }
 
 // GetShare returns the Share field value if set, zero value otherwise.
-func (o *Investor) GetShare() int64 {
+func (o *FundOwnershipInfo) GetShare() int64 {
 	if o == nil || o.Share == nil {
 		var ret int64
 		return ret
@@ -86,7 +88,7 @@ func (o *Investor) GetShare() int64 {
 
 // GetShareOk returns a tuple with the Share field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Investor) GetShareOk() (*int64, bool) {
+func (o *FundOwnershipInfo) GetShareOk() (*int64, bool) {
 	if o == nil || o.Share == nil {
 		return nil, false
 	}
@@ -94,7 +96,7 @@ func (o *Investor) GetShareOk() (*int64, bool) {
 }
 
 // HasShare returns a boolean if a field has been set.
-func (o *Investor) HasShare() bool {
+func (o *FundOwnershipInfo) HasShare() bool {
 	if o != nil && o.Share != nil {
 		return true
 	}
@@ -103,12 +105,12 @@ func (o *Investor) HasShare() bool {
 }
 
 // SetShare gets a reference to the given int64 and assigns it to the Share field.
-func (o *Investor) SetShare(v int64) {
+func (o *FundOwnershipInfo) SetShare(v int64) {
 	o.Share = &v
 }
 
 // GetChange returns the Change field value if set, zero value otherwise.
-func (o *Investor) GetChange() int64 {
+func (o *FundOwnershipInfo) GetChange() int64 {
 	if o == nil || o.Change == nil {
 		var ret int64
 		return ret
@@ -118,7 +120,7 @@ func (o *Investor) GetChange() int64 {
 
 // GetChangeOk returns a tuple with the Change field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Investor) GetChangeOk() (*int64, bool) {
+func (o *FundOwnershipInfo) GetChangeOk() (*int64, bool) {
 	if o == nil || o.Change == nil {
 		return nil, false
 	}
@@ -126,7 +128,7 @@ func (o *Investor) GetChangeOk() (*int64, bool) {
 }
 
 // HasChange returns a boolean if a field has been set.
-func (o *Investor) HasChange() bool {
+func (o *FundOwnershipInfo) HasChange() bool {
 	if o != nil && o.Change != nil {
 		return true
 	}
@@ -135,12 +137,12 @@ func (o *Investor) HasChange() bool {
 }
 
 // SetChange gets a reference to the given int64 and assigns it to the Change field.
-func (o *Investor) SetChange(v int64) {
+func (o *FundOwnershipInfo) SetChange(v int64) {
 	o.Change = &v
 }
 
 // GetFilingDate returns the FilingDate field value if set, zero value otherwise.
-func (o *Investor) GetFilingDate() string {
+func (o *FundOwnershipInfo) GetFilingDate() string {
 	if o == nil || o.FilingDate == nil {
 		var ret string
 		return ret
@@ -150,7 +152,7 @@ func (o *Investor) GetFilingDate() string {
 
 // GetFilingDateOk returns a tuple with the FilingDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Investor) GetFilingDateOk() (*string, bool) {
+func (o *FundOwnershipInfo) GetFilingDateOk() (*string, bool) {
 	if o == nil || o.FilingDate == nil {
 		return nil, false
 	}
@@ -158,7 +160,7 @@ func (o *Investor) GetFilingDateOk() (*string, bool) {
 }
 
 // HasFilingDate returns a boolean if a field has been set.
-func (o *Investor) HasFilingDate() bool {
+func (o *FundOwnershipInfo) HasFilingDate() bool {
 	if o != nil && o.FilingDate != nil {
 		return true
 	}
@@ -167,11 +169,43 @@ func (o *Investor) HasFilingDate() bool {
 }
 
 // SetFilingDate gets a reference to the given string and assigns it to the FilingDate field.
-func (o *Investor) SetFilingDate(v string) {
+func (o *FundOwnershipInfo) SetFilingDate(v string) {
 	o.FilingDate = &v
 }
 
-func (o Investor) MarshalJSON() ([]byte, error) {
+// GetPortfolioPercent returns the PortfolioPercent field value if set, zero value otherwise.
+func (o *FundOwnershipInfo) GetPortfolioPercent() float32 {
+	if o == nil || o.PortfolioPercent == nil {
+		var ret float32
+		return ret
+	}
+	return *o.PortfolioPercent
+}
+
+// GetPortfolioPercentOk returns a tuple with the PortfolioPercent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FundOwnershipInfo) GetPortfolioPercentOk() (*float32, bool) {
+	if o == nil || o.PortfolioPercent == nil {
+		return nil, false
+	}
+	return o.PortfolioPercent, true
+}
+
+// HasPortfolioPercent returns a boolean if a field has been set.
+func (o *FundOwnershipInfo) HasPortfolioPercent() bool {
+	if o != nil && o.PortfolioPercent != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPortfolioPercent gets a reference to the given float32 and assigns it to the PortfolioPercent field.
+func (o *FundOwnershipInfo) SetPortfolioPercent(v float32) {
+	o.PortfolioPercent = &v
+}
+
+func (o FundOwnershipInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -185,41 +219,44 @@ func (o Investor) MarshalJSON() ([]byte, error) {
 	if o.FilingDate != nil {
 		toSerialize["filingDate"] = o.FilingDate
 	}
+	if o.PortfolioPercent != nil {
+		toSerialize["portfolioPercent"] = o.PortfolioPercent
+	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableInvestor struct {
-	value *Investor
+type NullableFundOwnershipInfo struct {
+	value *FundOwnershipInfo
 	isSet bool
 }
 
-func (v NullableInvestor) Get() *Investor {
+func (v NullableFundOwnershipInfo) Get() *FundOwnershipInfo {
 	return v.value
 }
 
-func (v *NullableInvestor) Set(val *Investor) {
+func (v *NullableFundOwnershipInfo) Set(val *FundOwnershipInfo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInvestor) IsSet() bool {
+func (v NullableFundOwnershipInfo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInvestor) Unset() {
+func (v *NullableFundOwnershipInfo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInvestor(val *Investor) *NullableInvestor {
-	return &NullableInvestor{value: val, isSet: true}
+func NewNullableFundOwnershipInfo(val *FundOwnershipInfo) *NullableFundOwnershipInfo {
+	return &NullableFundOwnershipInfo{value: val, isSet: true}
 }
 
-func (v NullableInvestor) MarshalJSON() ([]byte, error) {
+func (v NullableFundOwnershipInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInvestor) UnmarshalJSON(src []byte) error {
+func (v *NullableFundOwnershipInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

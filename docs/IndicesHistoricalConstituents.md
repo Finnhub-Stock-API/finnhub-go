@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Index&#39;s symbol. | [optional] 
-**HistoricalConstituents** | Pointer to **[]map[string]interface{}** | Array of historical constituents. | [optional] 
+**HistoricalConstituents** | Pointer to [**[]IndexHistoricalConstituent**](IndexHistoricalConstituent.md) | Array of historical constituents. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetHistoricalConstituents
 
-`func (o *IndicesHistoricalConstituents) GetHistoricalConstituents() []map[string]interface{}`
+`func (o *IndicesHistoricalConstituents) GetHistoricalConstituents() []IndexHistoricalConstituent`
 
 GetHistoricalConstituents returns the HistoricalConstituents field if non-nil, zero value otherwise.
 
 ### GetHistoricalConstituentsOk
 
-`func (o *IndicesHistoricalConstituents) GetHistoricalConstituentsOk() (*[]map[string]interface{}, bool)`
+`func (o *IndicesHistoricalConstituents) GetHistoricalConstituentsOk() (*[]IndexHistoricalConstituent, bool)`
 
 GetHistoricalConstituentsOk returns a tuple with the HistoricalConstituents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHistoricalConstituents
 
-`func (o *IndicesHistoricalConstituents) SetHistoricalConstituents(v []map[string]interface{})`
+`func (o *IndicesHistoricalConstituents) SetHistoricalConstituents(v []IndexHistoricalConstituent)`
 
 SetHistoricalConstituents sets HistoricalConstituents field to given value.
 

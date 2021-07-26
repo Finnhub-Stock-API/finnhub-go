@@ -19,7 +19,7 @@ type IndicesHistoricalConstituents struct {
 	// Index's symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of historical constituents.
-	HistoricalConstituents *[]map[string]interface{} `json:"historicalConstituents,omitempty"`
+	HistoricalConstituents *[]IndexHistoricalConstituent `json:"historicalConstituents,omitempty"`
 }
 
 // NewIndicesHistoricalConstituents instantiates a new IndicesHistoricalConstituents object
@@ -72,9 +72,9 @@ func (o *IndicesHistoricalConstituents) SetSymbol(v string) {
 }
 
 // GetHistoricalConstituents returns the HistoricalConstituents field value if set, zero value otherwise.
-func (o *IndicesHistoricalConstituents) GetHistoricalConstituents() []map[string]interface{} {
+func (o *IndicesHistoricalConstituents) GetHistoricalConstituents() []IndexHistoricalConstituent {
 	if o == nil || o.HistoricalConstituents == nil {
-		var ret []map[string]interface{}
+		var ret []IndexHistoricalConstituent
 		return ret
 	}
 	return *o.HistoricalConstituents
@@ -82,7 +82,7 @@ func (o *IndicesHistoricalConstituents) GetHistoricalConstituents() []map[string
 
 // GetHistoricalConstituentsOk returns a tuple with the HistoricalConstituents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndicesHistoricalConstituents) GetHistoricalConstituentsOk() (*[]map[string]interface{}, bool) {
+func (o *IndicesHistoricalConstituents) GetHistoricalConstituentsOk() (*[]IndexHistoricalConstituent, bool) {
 	if o == nil || o.HistoricalConstituents == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *IndicesHistoricalConstituents) HasHistoricalConstituents() bool {
 	return false
 }
 
-// SetHistoricalConstituents gets a reference to the given []map[string]interface{} and assigns it to the HistoricalConstituents field.
-func (o *IndicesHistoricalConstituents) SetHistoricalConstituents(v []map[string]interface{}) {
+// SetHistoricalConstituents gets a reference to the given []IndexHistoricalConstituent and assigns it to the HistoricalConstituents field.
+func (o *IndicesHistoricalConstituents) SetHistoricalConstituents(v []IndexHistoricalConstituent) {
 	o.HistoricalConstituents = &v
 }
 

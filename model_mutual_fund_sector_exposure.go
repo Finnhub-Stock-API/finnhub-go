@@ -19,7 +19,7 @@ type MutualFundSectorExposure struct {
 	// Mutual symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of sector and exposure levels.
-	SectorExposure *[]map[string]interface{} `json:"sectorExposure,omitempty"`
+	SectorExposure *[]MutualFundSectorExposureData `json:"sectorExposure,omitempty"`
 }
 
 // NewMutualFundSectorExposure instantiates a new MutualFundSectorExposure object
@@ -72,9 +72,9 @@ func (o *MutualFundSectorExposure) SetSymbol(v string) {
 }
 
 // GetSectorExposure returns the SectorExposure field value if set, zero value otherwise.
-func (o *MutualFundSectorExposure) GetSectorExposure() []map[string]interface{} {
+func (o *MutualFundSectorExposure) GetSectorExposure() []MutualFundSectorExposureData {
 	if o == nil || o.SectorExposure == nil {
-		var ret []map[string]interface{}
+		var ret []MutualFundSectorExposureData
 		return ret
 	}
 	return *o.SectorExposure
@@ -82,7 +82,7 @@ func (o *MutualFundSectorExposure) GetSectorExposure() []map[string]interface{} 
 
 // GetSectorExposureOk returns a tuple with the SectorExposure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundSectorExposure) GetSectorExposureOk() (*[]map[string]interface{}, bool) {
+func (o *MutualFundSectorExposure) GetSectorExposureOk() (*[]MutualFundSectorExposureData, bool) {
 	if o == nil || o.SectorExposure == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *MutualFundSectorExposure) HasSectorExposure() bool {
 	return false
 }
 
-// SetSectorExposure gets a reference to the given []map[string]interface{} and assigns it to the SectorExposure field.
-func (o *MutualFundSectorExposure) SetSectorExposure(v []map[string]interface{}) {
+// SetSectorExposure gets a reference to the given []MutualFundSectorExposureData and assigns it to the SectorExposure field.
+func (o *MutualFundSectorExposure) SetSectorExposure(v []MutualFundSectorExposureData) {
 	o.SectorExposure = &v
 }
 

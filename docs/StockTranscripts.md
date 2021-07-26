@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | Transcript&#39;s ID used to get the &lt;a href&#x3D;\&quot;#transcripts\&quot;&gt;full transcript&lt;/a&gt;. | [optional] 
 **Title** | Pointer to **string** | Title. | [optional] 
-**Time** | Pointer to **time.Time** | Time of the event. | [optional] 
+**Time** | Pointer to **string** | Time of the event. | [optional] 
 **Year** | Pointer to **int64** | Year of earnings result in the case of earnings call transcript. | [optional] 
 **Quarter** | Pointer to **int64** | Quarter of earnings result in the case of earnings call transcript. | [optional] 
 
@@ -81,20 +81,20 @@ HasTitle returns a boolean if a field has been set.
 
 ### GetTime
 
-`func (o *StockTranscripts) GetTime() time.Time`
+`func (o *StockTranscripts) GetTime() string`
 
 GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *StockTranscripts) GetTimeOk() (*time.Time, bool)`
+`func (o *StockTranscripts) GetTimeOk() (*string, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTime
 
-`func (o *StockTranscripts) SetTime(v time.Time)`
+`func (o *StockTranscripts) SetTime(v string)`
 
 SetTime sets Time field to given value.
 

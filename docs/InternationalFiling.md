@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol. | [optional] 
 **CompanyName** | Pointer to **string** | Company name. | [optional] 
-**FiledDate** | Pointer to **time.Time** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
+**FiledDate** | Pointer to **string** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] 
 **Category** | Pointer to **string** | Category. | [optional] 
 **Title** | Pointer to **string** | Document&#39;s title. | [optional] 
 **Description** | Pointer to **string** | Document&#39;s description. | [optional] 
@@ -85,20 +85,20 @@ HasCompanyName returns a boolean if a field has been set.
 
 ### GetFiledDate
 
-`func (o *InternationalFiling) GetFiledDate() time.Time`
+`func (o *InternationalFiling) GetFiledDate() string`
 
 GetFiledDate returns the FiledDate field if non-nil, zero value otherwise.
 
 ### GetFiledDateOk
 
-`func (o *InternationalFiling) GetFiledDateOk() (*time.Time, bool)`
+`func (o *InternationalFiling) GetFiledDateOk() (*string, bool)`
 
 GetFiledDateOk returns a tuple with the FiledDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiledDate
 
-`func (o *InternationalFiling) SetFiledDate(v time.Time)`
+`func (o *InternationalFiling) SetFiledDate(v string)`
 
 SetFiledDate sets FiledDate field to given value.
 

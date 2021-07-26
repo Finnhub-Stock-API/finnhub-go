@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // PriceTarget struct for PriceTarget
@@ -28,7 +27,7 @@ type PriceTarget struct {
 	// Median of all analysts' targets.
 	TargetMedian *float32 `json:"targetMedian,omitempty"`
 	// Updated time of the data
-	LastUpdated *time.Time `json:"lastUpdated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 }
 
 // NewPriceTarget instantiates a new PriceTarget object
@@ -209,9 +208,9 @@ func (o *PriceTarget) SetTargetMedian(v float32) {
 }
 
 // GetLastUpdated returns the LastUpdated field value if set, zero value otherwise.
-func (o *PriceTarget) GetLastUpdated() time.Time {
+func (o *PriceTarget) GetLastUpdated() string {
 	if o == nil || o.LastUpdated == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.LastUpdated
@@ -219,7 +218,7 @@ func (o *PriceTarget) GetLastUpdated() time.Time {
 
 // GetLastUpdatedOk returns a tuple with the LastUpdated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PriceTarget) GetLastUpdatedOk() (*time.Time, bool) {
+func (o *PriceTarget) GetLastUpdatedOk() (*string, bool) {
 	if o == nil || o.LastUpdated == nil {
 		return nil, false
 	}
@@ -235,8 +234,8 @@ func (o *PriceTarget) HasLastUpdated() bool {
 	return false
 }
 
-// SetLastUpdated gets a reference to the given time.Time and assigns it to the LastUpdated field.
-func (o *PriceTarget) SetLastUpdated(v time.Time) {
+// SetLastUpdated gets a reference to the given string and assigns it to the LastUpdated field.
+func (o *PriceTarget) SetLastUpdated(v string) {
 	o.LastUpdated = &v
 }
 

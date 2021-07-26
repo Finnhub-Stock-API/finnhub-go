@@ -19,7 +19,7 @@ type CompanyExecutive struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of company's executives and members of the Board.
-	Executive *[]map[string]interface{} `json:"executive,omitempty"`
+	Executive *[]Company `json:"executive,omitempty"`
 }
 
 // NewCompanyExecutive instantiates a new CompanyExecutive object
@@ -72,9 +72,9 @@ func (o *CompanyExecutive) SetSymbol(v string) {
 }
 
 // GetExecutive returns the Executive field value if set, zero value otherwise.
-func (o *CompanyExecutive) GetExecutive() []map[string]interface{} {
+func (o *CompanyExecutive) GetExecutive() []Company {
 	if o == nil || o.Executive == nil {
-		var ret []map[string]interface{}
+		var ret []Company
 		return ret
 	}
 	return *o.Executive
@@ -82,7 +82,7 @@ func (o *CompanyExecutive) GetExecutive() []map[string]interface{} {
 
 // GetExecutiveOk returns a tuple with the Executive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CompanyExecutive) GetExecutiveOk() (*[]map[string]interface{}, bool) {
+func (o *CompanyExecutive) GetExecutiveOk() (*[]Company, bool) {
 	if o == nil || o.Executive == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *CompanyExecutive) HasExecutive() bool {
 	return false
 }
 
-// SetExecutive gets a reference to the given []map[string]interface{} and assigns it to the Executive field.
-func (o *CompanyExecutive) SetExecutive(v []map[string]interface{}) {
+// SetExecutive gets a reference to the given []Company and assigns it to the Executive field.
+func (o *CompanyExecutive) SetExecutive(v []Company) {
 	o.Executive = &v
 }
 

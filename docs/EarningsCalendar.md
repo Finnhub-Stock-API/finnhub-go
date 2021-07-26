@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EarningsCalendar** | Pointer to **[]map[string]interface{}** | Array of earnings release. | [optional] 
+**EarningsCalendar** | Pointer to [**[]EarningRelease**](EarningRelease.md) | Array of earnings release. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEarningsCalendar
 
-`func (o *EarningsCalendar) GetEarningsCalendar() []map[string]interface{}`
+`func (o *EarningsCalendar) GetEarningsCalendar() []EarningRelease`
 
 GetEarningsCalendar returns the EarningsCalendar field if non-nil, zero value otherwise.
 
 ### GetEarningsCalendarOk
 
-`func (o *EarningsCalendar) GetEarningsCalendarOk() (*[]map[string]interface{}, bool)`
+`func (o *EarningsCalendar) GetEarningsCalendarOk() (*[]EarningRelease, bool)`
 
 GetEarningsCalendarOk returns a tuple with the EarningsCalendar field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEarningsCalendar
 
-`func (o *EarningsCalendar) SetEarningsCalendar(v []map[string]interface{})`
+`func (o *EarningsCalendar) SetEarningsCalendar(v []EarningRelease)`
 
 SetEarningsCalendar sets EarningsCalendar field to given value.
 

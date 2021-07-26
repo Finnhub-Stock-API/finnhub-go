@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Transcript** | Pointer to **[]map[string]interface{}** | Transcript content. | [optional] 
-**Participant** | Pointer to **[]map[string]interface{}** | Participant list | [optional] 
+**Transcript** | Pointer to [**[]TranscriptContent**](TranscriptContent.md) | Transcript content. | [optional] 
+**Participant** | Pointer to [**[]TranscriptParticipant**](TranscriptParticipant.md) | Participant list | [optional] 
 **Audio** | Pointer to **string** | Audio link. | [optional] 
 **Id** | Pointer to **string** | Transcript&#39;s ID. | [optional] 
 **Title** | Pointer to **string** | Title. | [optional] 
-**Time** | Pointer to **time.Time** | Time of the event. | [optional] 
+**Time** | Pointer to **string** | Time of the event. | [optional] 
 **Year** | Pointer to **int64** | Year of earnings result in the case of earnings call transcript. | [optional] 
 **Quarter** | Pointer to **int64** | Quarter of earnings result in the case of earnings call transcript. | [optional] 
 
@@ -60,20 +60,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetTranscript
 
-`func (o *EarningsCallTranscripts) GetTranscript() []map[string]interface{}`
+`func (o *EarningsCallTranscripts) GetTranscript() []TranscriptContent`
 
 GetTranscript returns the Transcript field if non-nil, zero value otherwise.
 
 ### GetTranscriptOk
 
-`func (o *EarningsCallTranscripts) GetTranscriptOk() (*[]map[string]interface{}, bool)`
+`func (o *EarningsCallTranscripts) GetTranscriptOk() (*[]TranscriptContent, bool)`
 
 GetTranscriptOk returns a tuple with the Transcript field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTranscript
 
-`func (o *EarningsCallTranscripts) SetTranscript(v []map[string]interface{})`
+`func (o *EarningsCallTranscripts) SetTranscript(v []TranscriptContent)`
 
 SetTranscript sets Transcript field to given value.
 
@@ -85,20 +85,20 @@ HasTranscript returns a boolean if a field has been set.
 
 ### GetParticipant
 
-`func (o *EarningsCallTranscripts) GetParticipant() []map[string]interface{}`
+`func (o *EarningsCallTranscripts) GetParticipant() []TranscriptParticipant`
 
 GetParticipant returns the Participant field if non-nil, zero value otherwise.
 
 ### GetParticipantOk
 
-`func (o *EarningsCallTranscripts) GetParticipantOk() (*[]map[string]interface{}, bool)`
+`func (o *EarningsCallTranscripts) GetParticipantOk() (*[]TranscriptParticipant, bool)`
 
 GetParticipantOk returns a tuple with the Participant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParticipant
 
-`func (o *EarningsCallTranscripts) SetParticipant(v []map[string]interface{})`
+`func (o *EarningsCallTranscripts) SetParticipant(v []TranscriptParticipant)`
 
 SetParticipant sets Participant field to given value.
 
@@ -185,20 +185,20 @@ HasTitle returns a boolean if a field has been set.
 
 ### GetTime
 
-`func (o *EarningsCallTranscripts) GetTime() time.Time`
+`func (o *EarningsCallTranscripts) GetTime() string`
 
 GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *EarningsCallTranscripts) GetTimeOk() (*time.Time, bool)`
+`func (o *EarningsCallTranscripts) GetTimeOk() (*string, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTime
 
-`func (o *EarningsCallTranscripts) SetTime(v time.Time)`
+`func (o *EarningsCallTranscripts) SetTime(v string)`
 
 SetTime sets Time field to given value.
 

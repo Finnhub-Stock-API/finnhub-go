@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EconomicCalendar** | Pointer to **[]map[string]interface{}** | Array of economic events. | [optional] 
+**EconomicCalendar** | Pointer to [**[]EconomicEvent**](EconomicEvent.md) | Array of economic events. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEconomicCalendar
 
-`func (o *EconomicCalendar) GetEconomicCalendar() []map[string]interface{}`
+`func (o *EconomicCalendar) GetEconomicCalendar() []EconomicEvent`
 
 GetEconomicCalendar returns the EconomicCalendar field if non-nil, zero value otherwise.
 
 ### GetEconomicCalendarOk
 
-`func (o *EconomicCalendar) GetEconomicCalendarOk() (*[]map[string]interface{}, bool)`
+`func (o *EconomicCalendar) GetEconomicCalendarOk() (*[]EconomicEvent, bool)`
 
 GetEconomicCalendarOk returns a tuple with the EconomicCalendar field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEconomicCalendar
 
-`func (o *EconomicCalendar) SetEconomicCalendar(v []map[string]interface{})`
+`func (o *EconomicCalendar) SetEconomicCalendar(v []EconomicEvent)`
 
 SetEconomicCalendar sets EconomicCalendar field to given value.
 

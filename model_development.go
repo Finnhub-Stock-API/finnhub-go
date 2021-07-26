@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // Development struct for Development
@@ -20,7 +19,7 @@ type Development struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Published time in <code>YYYY-MM-DD HH:MM:SS</code> format.
-	Datetime *time.Time `json:"datetime,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 	// Development headline.
 	Headline *string `json:"headline,omitempty"`
 	// Development description.
@@ -79,9 +78,9 @@ func (o *Development) SetSymbol(v string) {
 }
 
 // GetDatetime returns the Datetime field value if set, zero value otherwise.
-func (o *Development) GetDatetime() time.Time {
+func (o *Development) GetDatetime() string {
 	if o == nil || o.Datetime == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Datetime
@@ -89,7 +88,7 @@ func (o *Development) GetDatetime() time.Time {
 
 // GetDatetimeOk returns a tuple with the Datetime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Development) GetDatetimeOk() (*time.Time, bool) {
+func (o *Development) GetDatetimeOk() (*string, bool) {
 	if o == nil || o.Datetime == nil {
 		return nil, false
 	}
@@ -105,8 +104,8 @@ func (o *Development) HasDatetime() bool {
 	return false
 }
 
-// SetDatetime gets a reference to the given time.Time and assigns it to the Datetime field.
-func (o *Development) SetDatetime(v time.Time) {
+// SetDatetime gets a reference to the given string and assigns it to the Datetime field.
+func (o *Development) SetDatetime(v string) {
 	o.Datetime = &v
 }
 

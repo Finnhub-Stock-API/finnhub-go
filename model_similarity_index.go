@@ -21,7 +21,7 @@ type SimilarityIndex struct {
 	// CIK.
 	Cik *string `json:"cik,omitempty"`
 	// Array of filings with its cosine similarity compared to the same report of the previous year.
-	Similarity *[]map[string]interface{} `json:"similarity,omitempty"`
+	Similarity *[]Filing `json:"similarity,omitempty"`
 }
 
 // NewSimilarityIndex instantiates a new SimilarityIndex object
@@ -106,9 +106,9 @@ func (o *SimilarityIndex) SetCik(v string) {
 }
 
 // GetSimilarity returns the Similarity field value if set, zero value otherwise.
-func (o *SimilarityIndex) GetSimilarity() []map[string]interface{} {
+func (o *SimilarityIndex) GetSimilarity() []Filing {
 	if o == nil || o.Similarity == nil {
-		var ret []map[string]interface{}
+		var ret []Filing
 		return ret
 	}
 	return *o.Similarity
@@ -116,7 +116,7 @@ func (o *SimilarityIndex) GetSimilarity() []map[string]interface{} {
 
 // GetSimilarityOk returns a tuple with the Similarity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SimilarityIndex) GetSimilarityOk() (*[]map[string]interface{}, bool) {
+func (o *SimilarityIndex) GetSimilarityOk() (*[]Filing, bool) {
 	if o == nil || o.Similarity == nil {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *SimilarityIndex) HasSimilarity() bool {
 	return false
 }
 
-// SetSimilarity gets a reference to the given []map[string]interface{} and assigns it to the Similarity field.
-func (o *SimilarityIndex) SetSimilarity(v []map[string]interface{}) {
+// SetSimilarity gets a reference to the given []Filing and assigns it to the Similarity field.
+func (o *SimilarityIndex) SetSimilarity(v []Filing) {
 	o.Similarity = &v
 }
 

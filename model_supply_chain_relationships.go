@@ -19,7 +19,7 @@ type SupplyChainRelationships struct {
 	// symbol
 	Symbol *string `json:"symbol,omitempty"`
 	// Key customers and suppliers.
-	Data *[]map[string]interface{} `json:"data,omitempty"`
+	Data *[]KeyCustomersSuppliers `json:"data,omitempty"`
 }
 
 // NewSupplyChainRelationships instantiates a new SupplyChainRelationships object
@@ -72,9 +72,9 @@ func (o *SupplyChainRelationships) SetSymbol(v string) {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *SupplyChainRelationships) GetData() []map[string]interface{} {
+func (o *SupplyChainRelationships) GetData() []KeyCustomersSuppliers {
 	if o == nil || o.Data == nil {
-		var ret []map[string]interface{}
+		var ret []KeyCustomersSuppliers
 		return ret
 	}
 	return *o.Data
@@ -82,7 +82,7 @@ func (o *SupplyChainRelationships) GetData() []map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SupplyChainRelationships) GetDataOk() (*[]map[string]interface{}, bool) {
+func (o *SupplyChainRelationships) GetDataOk() (*[]KeyCustomersSuppliers, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *SupplyChainRelationships) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *SupplyChainRelationships) SetData(v []map[string]interface{}) {
+// SetData gets a reference to the given []KeyCustomersSuppliers and assigns it to the Data field.
+func (o *SupplyChainRelationships) SetData(v []KeyCustomersSuppliers) {
 	o.Data = &v
 }
 

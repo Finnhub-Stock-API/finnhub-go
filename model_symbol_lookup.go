@@ -17,7 +17,7 @@ import (
 // SymbolLookup struct for SymbolLookup
 type SymbolLookup struct {
 	// Array of search results.
-	Result *[]map[string]interface{} `json:"result,omitempty"`
+	Result *[]SymbolLookupInfo `json:"result,omitempty"`
 	// Number of results.
 	Count *int64 `json:"count,omitempty"`
 }
@@ -40,9 +40,9 @@ func NewSymbolLookupWithDefaults() *SymbolLookup {
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *SymbolLookup) GetResult() []map[string]interface{} {
+func (o *SymbolLookup) GetResult() []SymbolLookupInfo {
 	if o == nil || o.Result == nil {
-		var ret []map[string]interface{}
+		var ret []SymbolLookupInfo
 		return ret
 	}
 	return *o.Result
@@ -50,7 +50,7 @@ func (o *SymbolLookup) GetResult() []map[string]interface{} {
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SymbolLookup) GetResultOk() (*[]map[string]interface{}, bool) {
+func (o *SymbolLookup) GetResultOk() (*[]SymbolLookupInfo, bool) {
 	if o == nil || o.Result == nil {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *SymbolLookup) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given []map[string]interface{} and assigns it to the Result field.
-func (o *SymbolLookup) SetResult(v []map[string]interface{}) {
+// SetResult gets a reference to the given []SymbolLookupInfo and assigns it to the Result field.
+func (o *SymbolLookup) SetResult(v []SymbolLookupInfo) {
 	o.Result = &v
 }
 

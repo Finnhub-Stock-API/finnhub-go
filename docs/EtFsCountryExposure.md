@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | ETF symbol. | [optional] 
-**CountryExposure** | Pointer to **[]map[string]interface{}** | Array of countries and and exposure levels. | [optional] 
+**CountryExposure** | Pointer to [**[]ETFCountryExposureData**](ETFCountryExposureData.md) | Array of countries and and exposure levels. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetCountryExposure
 
-`func (o *ETFsCountryExposure) GetCountryExposure() []map[string]interface{}`
+`func (o *ETFsCountryExposure) GetCountryExposure() []ETFCountryExposureData`
 
 GetCountryExposure returns the CountryExposure field if non-nil, zero value otherwise.
 
 ### GetCountryExposureOk
 
-`func (o *ETFsCountryExposure) GetCountryExposureOk() (*[]map[string]interface{}, bool)`
+`func (o *ETFsCountryExposure) GetCountryExposureOk() (*[]ETFCountryExposureData, bool)`
 
 GetCountryExposureOk returns a tuple with the CountryExposure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCountryExposure
 
-`func (o *ETFsCountryExposure) SetCountryExposure(v []map[string]interface{})`
+`func (o *ETFsCountryExposure) SetCountryExposure(v []ETFCountryExposureData)`
 
 SetCountryExposure sets CountryExposure field to given value.
 

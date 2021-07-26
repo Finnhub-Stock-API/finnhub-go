@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // CovidInfo struct for CovidInfo
@@ -24,7 +23,7 @@ type CovidInfo struct {
 	// Number of confirmed deaths.
 	Death *float32 `json:"death,omitempty"`
 	// Updated time.
-	Updated *time.Time `json:"updated,omitempty"`
+	Updated *string `json:"updated,omitempty"`
 }
 
 // NewCovidInfo instantiates a new CovidInfo object
@@ -141,9 +140,9 @@ func (o *CovidInfo) SetDeath(v float32) {
 }
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
-func (o *CovidInfo) GetUpdated() time.Time {
+func (o *CovidInfo) GetUpdated() string {
 	if o == nil || o.Updated == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Updated
@@ -151,7 +150,7 @@ func (o *CovidInfo) GetUpdated() time.Time {
 
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CovidInfo) GetUpdatedOk() (*time.Time, bool) {
+func (o *CovidInfo) GetUpdatedOk() (*string, bool) {
 	if o == nil || o.Updated == nil {
 		return nil, false
 	}
@@ -167,8 +166,8 @@ func (o *CovidInfo) HasUpdated() bool {
 	return false
 }
 
-// SetUpdated gets a reference to the given time.Time and assigns it to the Updated field.
-func (o *CovidInfo) SetUpdated(v time.Time) {
+// SetUpdated gets a reference to the given string and assigns it to the Updated field.
+func (o *CovidInfo) SetUpdated(v string) {
 	o.Updated = &v
 }
 

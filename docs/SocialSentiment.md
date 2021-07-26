@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Reddit** | Pointer to **[]map[string]interface{}** | Reddit sentiment. | [optional] 
-**Twitter** | Pointer to **[]map[string]interface{}** | Twitter sentiment. | [optional] 
+**Reddit** | Pointer to [**[]RedditSentimentContent**](RedditSentimentContent.md) | Reddit sentiment. | [optional] 
+**Twitter** | Pointer to [**[]TwitterSentimentContent**](TwitterSentimentContent.md) | Twitter sentiment. | [optional] 
 
 ## Methods
 
@@ -54,20 +54,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetReddit
 
-`func (o *SocialSentiment) GetReddit() []map[string]interface{}`
+`func (o *SocialSentiment) GetReddit() []RedditSentimentContent`
 
 GetReddit returns the Reddit field if non-nil, zero value otherwise.
 
 ### GetRedditOk
 
-`func (o *SocialSentiment) GetRedditOk() (*[]map[string]interface{}, bool)`
+`func (o *SocialSentiment) GetRedditOk() (*[]RedditSentimentContent, bool)`
 
 GetRedditOk returns a tuple with the Reddit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReddit
 
-`func (o *SocialSentiment) SetReddit(v []map[string]interface{})`
+`func (o *SocialSentiment) SetReddit(v []RedditSentimentContent)`
 
 SetReddit sets Reddit field to given value.
 
@@ -79,20 +79,20 @@ HasReddit returns a boolean if a field has been set.
 
 ### GetTwitter
 
-`func (o *SocialSentiment) GetTwitter() []map[string]interface{}`
+`func (o *SocialSentiment) GetTwitter() []TwitterSentimentContent`
 
 GetTwitter returns the Twitter field if non-nil, zero value otherwise.
 
 ### GetTwitterOk
 
-`func (o *SocialSentiment) GetTwitterOk() (*[]map[string]interface{}, bool)`
+`func (o *SocialSentiment) GetTwitterOk() (*[]TwitterSentimentContent, bool)`
 
 GetTwitterOk returns a tuple with the Twitter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTwitter
 
-`func (o *SocialSentiment) SetTwitter(v []map[string]interface{})`
+`func (o *SocialSentiment) SetTwitter(v []TwitterSentimentContent)`
 
 SetTwitter sets Twitter field to given value.
 

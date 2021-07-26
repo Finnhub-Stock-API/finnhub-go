@@ -12,7 +12,6 @@ package finnhub
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // EarningsCallTranscripts struct for EarningsCallTranscripts
@@ -20,9 +19,9 @@ type EarningsCallTranscripts struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Transcript content.
-	Transcript *[]map[string]interface{} `json:"transcript,omitempty"`
+	Transcript *[]TranscriptContent `json:"transcript,omitempty"`
 	// Participant list
-	Participant *[]map[string]interface{} `json:"participant,omitempty"`
+	Participant *[]TranscriptParticipant `json:"participant,omitempty"`
 	// Audio link.
 	Audio *string `json:"audio,omitempty"`
 	// Transcript's ID.
@@ -30,7 +29,7 @@ type EarningsCallTranscripts struct {
 	// Title.
 	Title *string `json:"title,omitempty"`
 	// Time of the event.
-	Time *time.Time `json:"time,omitempty"`
+	Time *string `json:"time,omitempty"`
 	// Year of earnings result in the case of earnings call transcript.
 	Year *int64 `json:"year,omitempty"`
 	// Quarter of earnings result in the case of earnings call transcript.
@@ -87,9 +86,9 @@ func (o *EarningsCallTranscripts) SetSymbol(v string) {
 }
 
 // GetTranscript returns the Transcript field value if set, zero value otherwise.
-func (o *EarningsCallTranscripts) GetTranscript() []map[string]interface{} {
+func (o *EarningsCallTranscripts) GetTranscript() []TranscriptContent {
 	if o == nil || o.Transcript == nil {
-		var ret []map[string]interface{}
+		var ret []TranscriptContent
 		return ret
 	}
 	return *o.Transcript
@@ -97,7 +96,7 @@ func (o *EarningsCallTranscripts) GetTranscript() []map[string]interface{} {
 
 // GetTranscriptOk returns a tuple with the Transcript field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsCallTranscripts) GetTranscriptOk() (*[]map[string]interface{}, bool) {
+func (o *EarningsCallTranscripts) GetTranscriptOk() (*[]TranscriptContent, bool) {
 	if o == nil || o.Transcript == nil {
 		return nil, false
 	}
@@ -113,15 +112,15 @@ func (o *EarningsCallTranscripts) HasTranscript() bool {
 	return false
 }
 
-// SetTranscript gets a reference to the given []map[string]interface{} and assigns it to the Transcript field.
-func (o *EarningsCallTranscripts) SetTranscript(v []map[string]interface{}) {
+// SetTranscript gets a reference to the given []TranscriptContent and assigns it to the Transcript field.
+func (o *EarningsCallTranscripts) SetTranscript(v []TranscriptContent) {
 	o.Transcript = &v
 }
 
 // GetParticipant returns the Participant field value if set, zero value otherwise.
-func (o *EarningsCallTranscripts) GetParticipant() []map[string]interface{} {
+func (o *EarningsCallTranscripts) GetParticipant() []TranscriptParticipant {
 	if o == nil || o.Participant == nil {
-		var ret []map[string]interface{}
+		var ret []TranscriptParticipant
 		return ret
 	}
 	return *o.Participant
@@ -129,7 +128,7 @@ func (o *EarningsCallTranscripts) GetParticipant() []map[string]interface{} {
 
 // GetParticipantOk returns a tuple with the Participant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsCallTranscripts) GetParticipantOk() (*[]map[string]interface{}, bool) {
+func (o *EarningsCallTranscripts) GetParticipantOk() (*[]TranscriptParticipant, bool) {
 	if o == nil || o.Participant == nil {
 		return nil, false
 	}
@@ -145,8 +144,8 @@ func (o *EarningsCallTranscripts) HasParticipant() bool {
 	return false
 }
 
-// SetParticipant gets a reference to the given []map[string]interface{} and assigns it to the Participant field.
-func (o *EarningsCallTranscripts) SetParticipant(v []map[string]interface{}) {
+// SetParticipant gets a reference to the given []TranscriptParticipant and assigns it to the Participant field.
+func (o *EarningsCallTranscripts) SetParticipant(v []TranscriptParticipant) {
 	o.Participant = &v
 }
 
@@ -247,9 +246,9 @@ func (o *EarningsCallTranscripts) SetTitle(v string) {
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
-func (o *EarningsCallTranscripts) GetTime() time.Time {
+func (o *EarningsCallTranscripts) GetTime() string {
 	if o == nil || o.Time == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Time
@@ -257,7 +256,7 @@ func (o *EarningsCallTranscripts) GetTime() time.Time {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsCallTranscripts) GetTimeOk() (*time.Time, bool) {
+func (o *EarningsCallTranscripts) GetTimeOk() (*string, bool) {
 	if o == nil || o.Time == nil {
 		return nil, false
 	}
@@ -273,8 +272,8 @@ func (o *EarningsCallTranscripts) HasTime() bool {
 	return false
 }
 
-// SetTime gets a reference to the given time.Time and assigns it to the Time field.
-func (o *EarningsCallTranscripts) SetTime(v time.Time) {
+// SetTime gets a reference to the given string and assigns it to the Time field.
+func (o *EarningsCallTranscripts) SetTime(v string) {
 	o.Time = &v
 }
 

@@ -33,7 +33,7 @@ type TickData struct {
 	// List of venues/exchanges. A list of exchange codes can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1Tj53M1svmr-hfEtbk6_NpVR1yAyGLMaH6ByYU6CG0ZY/edit?usp=sharing\",>here</a>
 	X *[]string `json:"x,omitempty"`
 	// List of trade conditions. A comprehensive list of trade conditions code can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1PUxiSWPHSODbaTaoL2Vef6DgU-yFtlRGZf19oBb9Hp0/edit?usp=sharing\">here</a>
-	C *[][]interface{} `json:"c,omitempty"`
+	C *[][]string `json:"c,omitempty"`
 }
 
 // NewTickData instantiates a new TickData object
@@ -310,9 +310,9 @@ func (o *TickData) SetX(v []string) {
 }
 
 // GetC returns the C field value if set, zero value otherwise.
-func (o *TickData) GetC() [][]interface{} {
+func (o *TickData) GetC() [][]string {
 	if o == nil || o.C == nil {
-		var ret [][]interface{}
+		var ret [][]string
 		return ret
 	}
 	return *o.C
@@ -320,7 +320,7 @@ func (o *TickData) GetC() [][]interface{} {
 
 // GetCOk returns a tuple with the C field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickData) GetCOk() (*[][]interface{}, bool) {
+func (o *TickData) GetCOk() (*[][]string, bool) {
 	if o == nil || o.C == nil {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *TickData) HasC() bool {
 	return false
 }
 
-// SetC gets a reference to the given [][]interface{} and assigns it to the C field.
-func (o *TickData) SetC(v [][]interface{}) {
+// SetC gets a reference to the given [][]string and assigns it to the C field.
+func (o *TickData) SetC(v [][]string) {
 	o.C = &v
 }
 

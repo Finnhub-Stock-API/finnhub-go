@@ -19,7 +19,7 @@ type ETFsSectorExposure struct {
 	// ETF symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of industries and exposure levels.
-	SectorExposure *[]map[string]interface{} `json:"sectorExposure,omitempty"`
+	SectorExposure *[]ETFSectorExposureData `json:"sectorExposure,omitempty"`
 }
 
 // NewETFsSectorExposure instantiates a new ETFsSectorExposure object
@@ -72,9 +72,9 @@ func (o *ETFsSectorExposure) SetSymbol(v string) {
 }
 
 // GetSectorExposure returns the SectorExposure field value if set, zero value otherwise.
-func (o *ETFsSectorExposure) GetSectorExposure() []map[string]interface{} {
+func (o *ETFsSectorExposure) GetSectorExposure() []ETFSectorExposureData {
 	if o == nil || o.SectorExposure == nil {
-		var ret []map[string]interface{}
+		var ret []ETFSectorExposureData
 		return ret
 	}
 	return *o.SectorExposure
@@ -82,7 +82,7 @@ func (o *ETFsSectorExposure) GetSectorExposure() []map[string]interface{} {
 
 // GetSectorExposureOk returns a tuple with the SectorExposure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ETFsSectorExposure) GetSectorExposureOk() (*[]map[string]interface{}, bool) {
+func (o *ETFsSectorExposure) GetSectorExposureOk() (*[]ETFSectorExposureData, bool) {
 	if o == nil || o.SectorExposure == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *ETFsSectorExposure) HasSectorExposure() bool {
 	return false
 }
 
-// SetSectorExposure gets a reference to the given []map[string]interface{} and assigns it to the SectorExposure field.
-func (o *ETFsSectorExposure) SetSectorExposure(v []map[string]interface{}) {
+// SetSectorExposure gets a reference to the given []ETFSectorExposureData and assigns it to the SectorExposure field.
+func (o *ETFsSectorExposure) SetSectorExposure(v []ETFSectorExposureData) {
 	o.SectorExposure = &v
 }
 

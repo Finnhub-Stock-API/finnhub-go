@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// MutualFundsCountryExposure struct for MutualFundsCountryExposure
-type MutualFundsCountryExposure struct {
+// MutualFundCountryExposure struct for MutualFundCountryExposure
+type MutualFundCountryExposure struct {
 	// Symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of countries and and exposure levels.
-	CountryExposure *[]map[string]interface{} `json:"countryExposure,omitempty"`
+	CountryExposure *[]MutualFundCountryExposureData `json:"countryExposure,omitempty"`
 }
 
-// NewMutualFundsCountryExposure instantiates a new MutualFundsCountryExposure object
+// NewMutualFundCountryExposure instantiates a new MutualFundCountryExposure object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMutualFundsCountryExposure() *MutualFundsCountryExposure {
-	this := MutualFundsCountryExposure{}
+func NewMutualFundCountryExposure() *MutualFundCountryExposure {
+	this := MutualFundCountryExposure{}
 	return &this
 }
 
-// NewMutualFundsCountryExposureWithDefaults instantiates a new MutualFundsCountryExposure object
+// NewMutualFundCountryExposureWithDefaults instantiates a new MutualFundCountryExposure object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMutualFundsCountryExposureWithDefaults() *MutualFundsCountryExposure {
-	this := MutualFundsCountryExposure{}
+func NewMutualFundCountryExposureWithDefaults() *MutualFundCountryExposure {
+	this := MutualFundCountryExposure{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *MutualFundsCountryExposure) GetSymbol() string {
+func (o *MutualFundCountryExposure) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *MutualFundsCountryExposure) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsCountryExposure) GetSymbolOk() (*string, bool) {
+func (o *MutualFundCountryExposure) GetSymbolOk() (*string, bool) {
 	if o == nil || o.Symbol == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *MutualFundsCountryExposure) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *MutualFundsCountryExposure) HasSymbol() bool {
+func (o *MutualFundCountryExposure) HasSymbol() bool {
 	if o != nil && o.Symbol != nil {
 		return true
 	}
@@ -67,14 +67,14 @@ func (o *MutualFundsCountryExposure) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *MutualFundsCountryExposure) SetSymbol(v string) {
+func (o *MutualFundCountryExposure) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetCountryExposure returns the CountryExposure field value if set, zero value otherwise.
-func (o *MutualFundsCountryExposure) GetCountryExposure() []map[string]interface{} {
+func (o *MutualFundCountryExposure) GetCountryExposure() []MutualFundCountryExposureData {
 	if o == nil || o.CountryExposure == nil {
-		var ret []map[string]interface{}
+		var ret []MutualFundCountryExposureData
 		return ret
 	}
 	return *o.CountryExposure
@@ -82,7 +82,7 @@ func (o *MutualFundsCountryExposure) GetCountryExposure() []map[string]interface
 
 // GetCountryExposureOk returns a tuple with the CountryExposure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MutualFundsCountryExposure) GetCountryExposureOk() (*[]map[string]interface{}, bool) {
+func (o *MutualFundCountryExposure) GetCountryExposureOk() (*[]MutualFundCountryExposureData, bool) {
 	if o == nil || o.CountryExposure == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *MutualFundsCountryExposure) GetCountryExposureOk() (*[]map[string]inter
 }
 
 // HasCountryExposure returns a boolean if a field has been set.
-func (o *MutualFundsCountryExposure) HasCountryExposure() bool {
+func (o *MutualFundCountryExposure) HasCountryExposure() bool {
 	if o != nil && o.CountryExposure != nil {
 		return true
 	}
@@ -98,12 +98,12 @@ func (o *MutualFundsCountryExposure) HasCountryExposure() bool {
 	return false
 }
 
-// SetCountryExposure gets a reference to the given []map[string]interface{} and assigns it to the CountryExposure field.
-func (o *MutualFundsCountryExposure) SetCountryExposure(v []map[string]interface{}) {
+// SetCountryExposure gets a reference to the given []MutualFundCountryExposureData and assigns it to the CountryExposure field.
+func (o *MutualFundCountryExposure) SetCountryExposure(v []MutualFundCountryExposureData) {
 	o.CountryExposure = &v
 }
 
-func (o MutualFundsCountryExposure) MarshalJSON() ([]byte, error) {
+func (o MutualFundCountryExposure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
@@ -114,38 +114,38 @@ func (o MutualFundsCountryExposure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMutualFundsCountryExposure struct {
-	value *MutualFundsCountryExposure
+type NullableMutualFundCountryExposure struct {
+	value *MutualFundCountryExposure
 	isSet bool
 }
 
-func (v NullableMutualFundsCountryExposure) Get() *MutualFundsCountryExposure {
+func (v NullableMutualFundCountryExposure) Get() *MutualFundCountryExposure {
 	return v.value
 }
 
-func (v *NullableMutualFundsCountryExposure) Set(val *MutualFundsCountryExposure) {
+func (v *NullableMutualFundCountryExposure) Set(val *MutualFundCountryExposure) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMutualFundsCountryExposure) IsSet() bool {
+func (v NullableMutualFundCountryExposure) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMutualFundsCountryExposure) Unset() {
+func (v *NullableMutualFundCountryExposure) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMutualFundsCountryExposure(val *MutualFundsCountryExposure) *NullableMutualFundsCountryExposure {
-	return &NullableMutualFundsCountryExposure{value: val, isSet: true}
+func NewNullableMutualFundCountryExposure(val *MutualFundCountryExposure) *NullableMutualFundCountryExposure {
+	return &NullableMutualFundCountryExposure{value: val, isSet: true}
 }
 
-func (v NullableMutualFundsCountryExposure) MarshalJSON() ([]byte, error) {
+func (v NullableMutualFundCountryExposure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMutualFundsCountryExposure) UnmarshalJSON(src []byte) error {
+func (v *NullableMutualFundCountryExposure) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

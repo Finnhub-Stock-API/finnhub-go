@@ -17,7 +17,7 @@ import (
 // EconomicCalendar struct for EconomicCalendar
 type EconomicCalendar struct {
 	// Array of economic events.
-	EconomicCalendar *[]map[string]interface{} `json:"economicCalendar,omitempty"`
+	EconomicCalendar *[]EconomicEvent `json:"economicCalendar,omitempty"`
 }
 
 // NewEconomicCalendar instantiates a new EconomicCalendar object
@@ -38,9 +38,9 @@ func NewEconomicCalendarWithDefaults() *EconomicCalendar {
 }
 
 // GetEconomicCalendar returns the EconomicCalendar field value if set, zero value otherwise.
-func (o *EconomicCalendar) GetEconomicCalendar() []map[string]interface{} {
+func (o *EconomicCalendar) GetEconomicCalendar() []EconomicEvent {
 	if o == nil || o.EconomicCalendar == nil {
-		var ret []map[string]interface{}
+		var ret []EconomicEvent
 		return ret
 	}
 	return *o.EconomicCalendar
@@ -48,7 +48,7 @@ func (o *EconomicCalendar) GetEconomicCalendar() []map[string]interface{} {
 
 // GetEconomicCalendarOk returns a tuple with the EconomicCalendar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EconomicCalendar) GetEconomicCalendarOk() (*[]map[string]interface{}, bool) {
+func (o *EconomicCalendar) GetEconomicCalendarOk() (*[]EconomicEvent, bool) {
 	if o == nil || o.EconomicCalendar == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *EconomicCalendar) HasEconomicCalendar() bool {
 	return false
 }
 
-// SetEconomicCalendar gets a reference to the given []map[string]interface{} and assigns it to the EconomicCalendar field.
-func (o *EconomicCalendar) SetEconomicCalendar(v []map[string]interface{}) {
+// SetEconomicCalendar gets a reference to the given []EconomicEvent and assigns it to the EconomicCalendar field.
+func (o *EconomicCalendar) SetEconomicCalendar(v []EconomicEvent) {
 	o.EconomicCalendar = &v
 }
 

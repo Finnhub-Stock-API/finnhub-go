@@ -19,7 +19,7 @@ type EarningsCallTranscriptsList struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of transcripts' metadata
-	Transcripts *[]map[string]interface{} `json:"transcripts,omitempty"`
+	Transcripts *[]StockTranscripts `json:"transcripts,omitempty"`
 }
 
 // NewEarningsCallTranscriptsList instantiates a new EarningsCallTranscriptsList object
@@ -72,9 +72,9 @@ func (o *EarningsCallTranscriptsList) SetSymbol(v string) {
 }
 
 // GetTranscripts returns the Transcripts field value if set, zero value otherwise.
-func (o *EarningsCallTranscriptsList) GetTranscripts() []map[string]interface{} {
+func (o *EarningsCallTranscriptsList) GetTranscripts() []StockTranscripts {
 	if o == nil || o.Transcripts == nil {
-		var ret []map[string]interface{}
+		var ret []StockTranscripts
 		return ret
 	}
 	return *o.Transcripts
@@ -82,7 +82,7 @@ func (o *EarningsCallTranscriptsList) GetTranscripts() []map[string]interface{} 
 
 // GetTranscriptsOk returns a tuple with the Transcripts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsCallTranscriptsList) GetTranscriptsOk() (*[]map[string]interface{}, bool) {
+func (o *EarningsCallTranscriptsList) GetTranscriptsOk() (*[]StockTranscripts, bool) {
 	if o == nil || o.Transcripts == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *EarningsCallTranscriptsList) HasTranscripts() bool {
 	return false
 }
 
-// SetTranscripts gets a reference to the given []map[string]interface{} and assigns it to the Transcripts field.
-func (o *EarningsCallTranscriptsList) SetTranscripts(v []map[string]interface{}) {
+// SetTranscripts gets a reference to the given []StockTranscripts and assigns it to the Transcripts field.
+func (o *EarningsCallTranscriptsList) SetTranscripts(v []StockTranscripts) {
 	o.Transcripts = &v
 }
 

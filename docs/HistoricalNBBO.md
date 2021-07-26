@@ -313,20 +313,20 @@ HasT returns a boolean if a field has been set.
 
 ### GetC
 
-`func (o *HistoricalNBBO) GetC() [][]interface{}`
+`func (o *HistoricalNBBO) GetC() [][]string`
 
 GetC returns the C field if non-nil, zero value otherwise.
 
 ### GetCOk
 
-`func (o *HistoricalNBBO) GetCOk() (*[][]interface{}, bool)`
+`func (o *HistoricalNBBO) GetCOk() (*[][]string, bool)`
 
 GetCOk returns a tuple with the C field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetC
 
-`func (o *HistoricalNBBO) SetC(v [][]interface{})`
+`func (o *HistoricalNBBO) SetC(v [][]string)`
 
 SetC sets C field to given value.
 
