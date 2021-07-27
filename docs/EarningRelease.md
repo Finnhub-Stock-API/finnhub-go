@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **Quarter** | Pointer to **int64** | Earnings quarter. | [optional] 
 **EpsEstimate** | Pointer to **float32** | EPS estimate. | [optional] 
 **EpsActual** | Pointer to **float32** | EPS actual. | [optional] 
-**RevenueEstimate** | Pointer to **int64** | Revenue estimate including Finnhub&#39;s proprietary estimates. | [optional] 
-**RevenueActual** | Pointer to **int64** | Revenue actual. | [optional] 
+**RevenueEstimate** | Pointer to **float32** | Revenue estimate including Finnhub&#39;s proprietary estimates. | [optional] 
+**RevenueActual** | Pointer to **float32** | Revenue actual. | [optional] 
 
 ## Methods
 
@@ -210,20 +210,20 @@ HasEpsActual returns a boolean if a field has been set.
 
 ### GetRevenueEstimate
 
-`func (o *EarningRelease) GetRevenueEstimate() int64`
+`func (o *EarningRelease) GetRevenueEstimate() float32`
 
 GetRevenueEstimate returns the RevenueEstimate field if non-nil, zero value otherwise.
 
 ### GetRevenueEstimateOk
 
-`func (o *EarningRelease) GetRevenueEstimateOk() (*int64, bool)`
+`func (o *EarningRelease) GetRevenueEstimateOk() (*float32, bool)`
 
 GetRevenueEstimateOk returns a tuple with the RevenueEstimate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevenueEstimate
 
-`func (o *EarningRelease) SetRevenueEstimate(v int64)`
+`func (o *EarningRelease) SetRevenueEstimate(v float32)`
 
 SetRevenueEstimate sets RevenueEstimate field to given value.
 
@@ -235,20 +235,20 @@ HasRevenueEstimate returns a boolean if a field has been set.
 
 ### GetRevenueActual
 
-`func (o *EarningRelease) GetRevenueActual() int64`
+`func (o *EarningRelease) GetRevenueActual() float32`
 
 GetRevenueActual returns the RevenueActual field if non-nil, zero value otherwise.
 
 ### GetRevenueActualOk
 
-`func (o *EarningRelease) GetRevenueActualOk() (*int64, bool)`
+`func (o *EarningRelease) GetRevenueActualOk() (*float32, bool)`
 
 GetRevenueActualOk returns a tuple with the RevenueActual field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevenueActual
 
-`func (o *EarningRelease) SetRevenueActual(v int64)`
+`func (o *EarningRelease) SetRevenueActual(v float32)`
 
 SetRevenueActual sets RevenueActual field to given value.
 

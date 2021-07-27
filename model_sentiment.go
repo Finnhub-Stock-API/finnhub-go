@@ -17,9 +17,9 @@ import (
 // Sentiment struct for Sentiment
 type Sentiment struct {
 	// 
-	BearishPercent *int64 `json:"bearishPercent,omitempty"`
+	BearishPercent *float32 `json:"bearishPercent,omitempty"`
 	// 
-	BullishPercent *int64 `json:"bullishPercent,omitempty"`
+	BullishPercent *float32 `json:"bullishPercent,omitempty"`
 }
 
 // NewSentiment instantiates a new Sentiment object
@@ -40,9 +40,9 @@ func NewSentimentWithDefaults() *Sentiment {
 }
 
 // GetBearishPercent returns the BearishPercent field value if set, zero value otherwise.
-func (o *Sentiment) GetBearishPercent() int64 {
+func (o *Sentiment) GetBearishPercent() float32 {
 	if o == nil || o.BearishPercent == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.BearishPercent
@@ -50,7 +50,7 @@ func (o *Sentiment) GetBearishPercent() int64 {
 
 // GetBearishPercentOk returns a tuple with the BearishPercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Sentiment) GetBearishPercentOk() (*int64, bool) {
+func (o *Sentiment) GetBearishPercentOk() (*float32, bool) {
 	if o == nil || o.BearishPercent == nil {
 		return nil, false
 	}
@@ -66,15 +66,15 @@ func (o *Sentiment) HasBearishPercent() bool {
 	return false
 }
 
-// SetBearishPercent gets a reference to the given int64 and assigns it to the BearishPercent field.
-func (o *Sentiment) SetBearishPercent(v int64) {
+// SetBearishPercent gets a reference to the given float32 and assigns it to the BearishPercent field.
+func (o *Sentiment) SetBearishPercent(v float32) {
 	o.BearishPercent = &v
 }
 
 // GetBullishPercent returns the BullishPercent field value if set, zero value otherwise.
-func (o *Sentiment) GetBullishPercent() int64 {
+func (o *Sentiment) GetBullishPercent() float32 {
 	if o == nil || o.BullishPercent == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.BullishPercent
@@ -82,7 +82,7 @@ func (o *Sentiment) GetBullishPercent() int64 {
 
 // GetBullishPercentOk returns a tuple with the BullishPercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Sentiment) GetBullishPercentOk() (*int64, bool) {
+func (o *Sentiment) GetBullishPercentOk() (*float32, bool) {
 	if o == nil || o.BullishPercent == nil {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *Sentiment) HasBullishPercent() bool {
 	return false
 }
 
-// SetBullishPercent gets a reference to the given int64 and assigns it to the BullishPercent field.
-func (o *Sentiment) SetBullishPercent(v int64) {
+// SetBullishPercent gets a reference to the given float32 and assigns it to the BullishPercent field.
+func (o *Sentiment) SetBullishPercent(v float32) {
 	o.BullishPercent = &v
 }
 

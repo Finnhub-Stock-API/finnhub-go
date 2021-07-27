@@ -29,9 +29,9 @@ type IPOEvent struct {
 	// Projected price or price range.
 	Price *string `json:"price,omitempty"`
 	// Number of shares offered during the IPO.
-	NumberOfShares *int64 `json:"numberOfShares,omitempty"`
+	NumberOfShares *float32 `json:"numberOfShares,omitempty"`
 	// Total shares value.
-	TotalSharesValue *int64 `json:"totalSharesValue,omitempty"`
+	TotalSharesValue *float32 `json:"totalSharesValue,omitempty"`
 }
 
 // NewIPOEvent instantiates a new IPOEvent object
@@ -244,9 +244,9 @@ func (o *IPOEvent) SetPrice(v string) {
 }
 
 // GetNumberOfShares returns the NumberOfShares field value if set, zero value otherwise.
-func (o *IPOEvent) GetNumberOfShares() int64 {
+func (o *IPOEvent) GetNumberOfShares() float32 {
 	if o == nil || o.NumberOfShares == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.NumberOfShares
@@ -254,7 +254,7 @@ func (o *IPOEvent) GetNumberOfShares() int64 {
 
 // GetNumberOfSharesOk returns a tuple with the NumberOfShares field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPOEvent) GetNumberOfSharesOk() (*int64, bool) {
+func (o *IPOEvent) GetNumberOfSharesOk() (*float32, bool) {
 	if o == nil || o.NumberOfShares == nil {
 		return nil, false
 	}
@@ -270,15 +270,15 @@ func (o *IPOEvent) HasNumberOfShares() bool {
 	return false
 }
 
-// SetNumberOfShares gets a reference to the given int64 and assigns it to the NumberOfShares field.
-func (o *IPOEvent) SetNumberOfShares(v int64) {
+// SetNumberOfShares gets a reference to the given float32 and assigns it to the NumberOfShares field.
+func (o *IPOEvent) SetNumberOfShares(v float32) {
 	o.NumberOfShares = &v
 }
 
 // GetTotalSharesValue returns the TotalSharesValue field value if set, zero value otherwise.
-func (o *IPOEvent) GetTotalSharesValue() int64 {
+func (o *IPOEvent) GetTotalSharesValue() float32 {
 	if o == nil || o.TotalSharesValue == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.TotalSharesValue
@@ -286,7 +286,7 @@ func (o *IPOEvent) GetTotalSharesValue() int64 {
 
 // GetTotalSharesValueOk returns a tuple with the TotalSharesValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPOEvent) GetTotalSharesValueOk() (*int64, bool) {
+func (o *IPOEvent) GetTotalSharesValueOk() (*float32, bool) {
 	if o == nil || o.TotalSharesValue == nil {
 		return nil, false
 	}
@@ -302,8 +302,8 @@ func (o *IPOEvent) HasTotalSharesValue() bool {
 	return false
 }
 
-// SetTotalSharesValue gets a reference to the given int64 and assigns it to the TotalSharesValue field.
-func (o *IPOEvent) SetTotalSharesValue(v int64) {
+// SetTotalSharesValue gets a reference to the given float32 and assigns it to the TotalSharesValue field.
+func (o *IPOEvent) SetTotalSharesValue(v float32) {
 	o.TotalSharesValue = &v
 }
 

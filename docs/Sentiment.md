@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BearishPercent** | Pointer to **int64** |  | [optional] 
-**BullishPercent** | Pointer to **int64** |  | [optional] 
+**BearishPercent** | Pointer to **float32** |  | [optional] 
+**BullishPercent** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBearishPercent
 
-`func (o *Sentiment) GetBearishPercent() int64`
+`func (o *Sentiment) GetBearishPercent() float32`
 
 GetBearishPercent returns the BearishPercent field if non-nil, zero value otherwise.
 
 ### GetBearishPercentOk
 
-`func (o *Sentiment) GetBearishPercentOk() (*int64, bool)`
+`func (o *Sentiment) GetBearishPercentOk() (*float32, bool)`
 
 GetBearishPercentOk returns a tuple with the BearishPercent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBearishPercent
 
-`func (o *Sentiment) SetBearishPercent(v int64)`
+`func (o *Sentiment) SetBearishPercent(v float32)`
 
 SetBearishPercent sets BearishPercent field to given value.
 
@@ -53,20 +53,20 @@ HasBearishPercent returns a boolean if a field has been set.
 
 ### GetBullishPercent
 
-`func (o *Sentiment) GetBullishPercent() int64`
+`func (o *Sentiment) GetBullishPercent() float32`
 
 GetBullishPercent returns the BullishPercent field if non-nil, zero value otherwise.
 
 ### GetBullishPercentOk
 
-`func (o *Sentiment) GetBullishPercentOk() (*int64, bool)`
+`func (o *Sentiment) GetBullishPercentOk() (*float32, bool)`
 
 GetBullishPercentOk returns a tuple with the BullishPercent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBullishPercent
 
-`func (o *Sentiment) SetBullishPercent(v int64)`
+`func (o *Sentiment) SetBullishPercent(v float32)`
 
 SetBullishPercent sets BullishPercent field to given value.
 

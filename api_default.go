@@ -5150,14 +5150,14 @@ type ApiMarketNewsRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	category *string
-	minId *string
+	minId *int64
 }
 
 func (r ApiMarketNewsRequest) Category(category string) ApiMarketNewsRequest {
 	r.category = &category
 	return r
 }
-func (r ApiMarketNewsRequest) MinId(minId string) ApiMarketNewsRequest {
+func (r ApiMarketNewsRequest) MinId(minId int64) ApiMarketNewsRequest {
 	r.minId = &minId
 	return r
 }
@@ -7379,7 +7379,6 @@ type ApiStockCandlesRequest struct {
 	resolution *string
 	from *int64
 	to *int64
-	adjusted *string
 }
 
 func (r ApiStockCandlesRequest) Symbol(symbol string) ApiStockCandlesRequest {
@@ -7398,10 +7397,6 @@ func (r ApiStockCandlesRequest) To(to int64) ApiStockCandlesRequest {
 	r.to = &to
 	return r
 }
-func (r ApiStockCandlesRequest) Adjusted(adjusted string) ApiStockCandlesRequest {
-	r.adjusted = &adjusted
-	return r
-}
 
 func (r ApiStockCandlesRequest) Execute() (StockCandles, *_nethttp.Response, error) {
 	return r.ApiService.StockCandlesExecute(r)
@@ -7409,7 +7404,7 @@ func (r ApiStockCandlesRequest) Execute() (StockCandles, *_nethttp.Response, err
 
 /*
  * StockCandles Stock Candles
- * <p>Get candlestick data (OHLCV) for stocks
+ * <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted.</p>
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiStockCandlesRequest
  */
@@ -7461,9 +7456,6 @@ func (a *DefaultApiService) StockCandlesExecute(r ApiStockCandlesRequest) (Stock
 	localVarQueryParams.Add("resolution", parameterToString(*r.resolution, ""))
 	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
 	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
-	if r.adjusted != nil {
-		localVarQueryParams.Add("adjusted", parameterToString(*r.adjusted, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

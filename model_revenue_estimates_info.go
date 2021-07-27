@@ -14,41 +14,41 @@ import (
 	"encoding/json"
 )
 
-// Estimate struct for Estimate
-type Estimate struct {
+// RevenueEstimatesInfo struct for RevenueEstimatesInfo
+type RevenueEstimatesInfo struct {
 	// Average revenue estimates including Finnhub's proprietary estimates.
-	RevenueAvg *int64 `json:"revenueAvg,omitempty"`
+	RevenueAvg *float32 `json:"revenueAvg,omitempty"`
 	// Highest estimate.
-	RevenueHigh *int64 `json:"revenueHigh,omitempty"`
+	RevenueHigh *float32 `json:"revenueHigh,omitempty"`
 	// Lowest estimate.
-	RevenueLow *int64 `json:"revenueLow,omitempty"`
+	RevenueLow *float32 `json:"revenueLow,omitempty"`
 	// Number of Analysts.
 	NumberAnalysts *int64 `json:"numberAnalysts,omitempty"`
 	// Period.
 	Period *string `json:"period,omitempty"`
 }
 
-// NewEstimate instantiates a new Estimate object
+// NewRevenueEstimatesInfo instantiates a new RevenueEstimatesInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEstimate() *Estimate {
-	this := Estimate{}
+func NewRevenueEstimatesInfo() *RevenueEstimatesInfo {
+	this := RevenueEstimatesInfo{}
 	return &this
 }
 
-// NewEstimateWithDefaults instantiates a new Estimate object
+// NewRevenueEstimatesInfoWithDefaults instantiates a new RevenueEstimatesInfo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEstimateWithDefaults() *Estimate {
-	this := Estimate{}
+func NewRevenueEstimatesInfoWithDefaults() *RevenueEstimatesInfo {
+	this := RevenueEstimatesInfo{}
 	return &this
 }
 
 // GetRevenueAvg returns the RevenueAvg field value if set, zero value otherwise.
-func (o *Estimate) GetRevenueAvg() int64 {
+func (o *RevenueEstimatesInfo) GetRevenueAvg() float32 {
 	if o == nil || o.RevenueAvg == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.RevenueAvg
@@ -56,7 +56,7 @@ func (o *Estimate) GetRevenueAvg() int64 {
 
 // GetRevenueAvgOk returns a tuple with the RevenueAvg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Estimate) GetRevenueAvgOk() (*int64, bool) {
+func (o *RevenueEstimatesInfo) GetRevenueAvgOk() (*float32, bool) {
 	if o == nil || o.RevenueAvg == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *Estimate) GetRevenueAvgOk() (*int64, bool) {
 }
 
 // HasRevenueAvg returns a boolean if a field has been set.
-func (o *Estimate) HasRevenueAvg() bool {
+func (o *RevenueEstimatesInfo) HasRevenueAvg() bool {
 	if o != nil && o.RevenueAvg != nil {
 		return true
 	}
@@ -72,15 +72,15 @@ func (o *Estimate) HasRevenueAvg() bool {
 	return false
 }
 
-// SetRevenueAvg gets a reference to the given int64 and assigns it to the RevenueAvg field.
-func (o *Estimate) SetRevenueAvg(v int64) {
+// SetRevenueAvg gets a reference to the given float32 and assigns it to the RevenueAvg field.
+func (o *RevenueEstimatesInfo) SetRevenueAvg(v float32) {
 	o.RevenueAvg = &v
 }
 
 // GetRevenueHigh returns the RevenueHigh field value if set, zero value otherwise.
-func (o *Estimate) GetRevenueHigh() int64 {
+func (o *RevenueEstimatesInfo) GetRevenueHigh() float32 {
 	if o == nil || o.RevenueHigh == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.RevenueHigh
@@ -88,7 +88,7 @@ func (o *Estimate) GetRevenueHigh() int64 {
 
 // GetRevenueHighOk returns a tuple with the RevenueHigh field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Estimate) GetRevenueHighOk() (*int64, bool) {
+func (o *RevenueEstimatesInfo) GetRevenueHighOk() (*float32, bool) {
 	if o == nil || o.RevenueHigh == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *Estimate) GetRevenueHighOk() (*int64, bool) {
 }
 
 // HasRevenueHigh returns a boolean if a field has been set.
-func (o *Estimate) HasRevenueHigh() bool {
+func (o *RevenueEstimatesInfo) HasRevenueHigh() bool {
 	if o != nil && o.RevenueHigh != nil {
 		return true
 	}
@@ -104,15 +104,15 @@ func (o *Estimate) HasRevenueHigh() bool {
 	return false
 }
 
-// SetRevenueHigh gets a reference to the given int64 and assigns it to the RevenueHigh field.
-func (o *Estimate) SetRevenueHigh(v int64) {
+// SetRevenueHigh gets a reference to the given float32 and assigns it to the RevenueHigh field.
+func (o *RevenueEstimatesInfo) SetRevenueHigh(v float32) {
 	o.RevenueHigh = &v
 }
 
 // GetRevenueLow returns the RevenueLow field value if set, zero value otherwise.
-func (o *Estimate) GetRevenueLow() int64 {
+func (o *RevenueEstimatesInfo) GetRevenueLow() float32 {
 	if o == nil || o.RevenueLow == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.RevenueLow
@@ -120,7 +120,7 @@ func (o *Estimate) GetRevenueLow() int64 {
 
 // GetRevenueLowOk returns a tuple with the RevenueLow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Estimate) GetRevenueLowOk() (*int64, bool) {
+func (o *RevenueEstimatesInfo) GetRevenueLowOk() (*float32, bool) {
 	if o == nil || o.RevenueLow == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *Estimate) GetRevenueLowOk() (*int64, bool) {
 }
 
 // HasRevenueLow returns a boolean if a field has been set.
-func (o *Estimate) HasRevenueLow() bool {
+func (o *RevenueEstimatesInfo) HasRevenueLow() bool {
 	if o != nil && o.RevenueLow != nil {
 		return true
 	}
@@ -136,13 +136,13 @@ func (o *Estimate) HasRevenueLow() bool {
 	return false
 }
 
-// SetRevenueLow gets a reference to the given int64 and assigns it to the RevenueLow field.
-func (o *Estimate) SetRevenueLow(v int64) {
+// SetRevenueLow gets a reference to the given float32 and assigns it to the RevenueLow field.
+func (o *RevenueEstimatesInfo) SetRevenueLow(v float32) {
 	o.RevenueLow = &v
 }
 
 // GetNumberAnalysts returns the NumberAnalysts field value if set, zero value otherwise.
-func (o *Estimate) GetNumberAnalysts() int64 {
+func (o *RevenueEstimatesInfo) GetNumberAnalysts() int64 {
 	if o == nil || o.NumberAnalysts == nil {
 		var ret int64
 		return ret
@@ -152,7 +152,7 @@ func (o *Estimate) GetNumberAnalysts() int64 {
 
 // GetNumberAnalystsOk returns a tuple with the NumberAnalysts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Estimate) GetNumberAnalystsOk() (*int64, bool) {
+func (o *RevenueEstimatesInfo) GetNumberAnalystsOk() (*int64, bool) {
 	if o == nil || o.NumberAnalysts == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *Estimate) GetNumberAnalystsOk() (*int64, bool) {
 }
 
 // HasNumberAnalysts returns a boolean if a field has been set.
-func (o *Estimate) HasNumberAnalysts() bool {
+func (o *RevenueEstimatesInfo) HasNumberAnalysts() bool {
 	if o != nil && o.NumberAnalysts != nil {
 		return true
 	}
@@ -169,12 +169,12 @@ func (o *Estimate) HasNumberAnalysts() bool {
 }
 
 // SetNumberAnalysts gets a reference to the given int64 and assigns it to the NumberAnalysts field.
-func (o *Estimate) SetNumberAnalysts(v int64) {
+func (o *RevenueEstimatesInfo) SetNumberAnalysts(v int64) {
 	o.NumberAnalysts = &v
 }
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
-func (o *Estimate) GetPeriod() string {
+func (o *RevenueEstimatesInfo) GetPeriod() string {
 	if o == nil || o.Period == nil {
 		var ret string
 		return ret
@@ -184,7 +184,7 @@ func (o *Estimate) GetPeriod() string {
 
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Estimate) GetPeriodOk() (*string, bool) {
+func (o *RevenueEstimatesInfo) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
 		return nil, false
 	}
@@ -192,7 +192,7 @@ func (o *Estimate) GetPeriodOk() (*string, bool) {
 }
 
 // HasPeriod returns a boolean if a field has been set.
-func (o *Estimate) HasPeriod() bool {
+func (o *RevenueEstimatesInfo) HasPeriod() bool {
 	if o != nil && o.Period != nil {
 		return true
 	}
@@ -201,11 +201,11 @@ func (o *Estimate) HasPeriod() bool {
 }
 
 // SetPeriod gets a reference to the given string and assigns it to the Period field.
-func (o *Estimate) SetPeriod(v string) {
+func (o *RevenueEstimatesInfo) SetPeriod(v string) {
 	o.Period = &v
 }
 
-func (o Estimate) MarshalJSON() ([]byte, error) {
+func (o RevenueEstimatesInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RevenueAvg != nil {
 		toSerialize["revenueAvg"] = o.RevenueAvg
@@ -225,38 +225,38 @@ func (o Estimate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableEstimate struct {
-	value *Estimate
+type NullableRevenueEstimatesInfo struct {
+	value *RevenueEstimatesInfo
 	isSet bool
 }
 
-func (v NullableEstimate) Get() *Estimate {
+func (v NullableRevenueEstimatesInfo) Get() *RevenueEstimatesInfo {
 	return v.value
 }
 
-func (v *NullableEstimate) Set(val *Estimate) {
+func (v *NullableRevenueEstimatesInfo) Set(val *RevenueEstimatesInfo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEstimate) IsSet() bool {
+func (v NullableRevenueEstimatesInfo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEstimate) Unset() {
+func (v *NullableRevenueEstimatesInfo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEstimate(val *Estimate) *NullableEstimate {
-	return &NullableEstimate{value: val, isSet: true}
+func NewNullableRevenueEstimatesInfo(val *RevenueEstimatesInfo) *NullableRevenueEstimatesInfo {
+	return &NullableRevenueEstimatesInfo{value: val, isSet: true}
 }
 
-func (v NullableEstimate) MarshalJSON() ([]byte, error) {
+func (v NullableRevenueEstimatesInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEstimate) UnmarshalJSON(src []byte) error {
+func (v *NullableRevenueEstimatesInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

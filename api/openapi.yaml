@@ -185,7 +185,8 @@ paths:
         in: query
         name: minId
         schema:
-          type: string
+          format: int64
+          type: integer
       responses:
         "200":
           content:
@@ -1047,7 +1048,8 @@ paths:
       - Default
   /stock/candle:
     get:
-      description: <p>Get candlestick data (OHLCV) for stocks
+      description: <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will
+        be adjusted for Splits. Intraday data will remain unadjusted.</p>
       operationId: stock-candles
       parameters:
       - description: Symbol.
@@ -1077,12 +1079,6 @@ paths:
         schema:
           format: int64
           type: integer
-      - description: 'DEPRECATED: this option has been deprecated. All Daily data
-          will be adjusted for Splits and intraday data will remain unadjusted.'
-        in: query
-        name: adjusted
-        schema:
-          type: string
       responses:
         "200":
           content:
@@ -2290,7 +2286,7 @@ components:
         city: city
         naicsSector: naicsSector
         description: description
-        employeeTotal: 1
+        employeeTotal: 1.4658129
         gsector: gsector
         weburl: weburl
         logo: logo
@@ -2394,8 +2390,8 @@ components:
           type: number
         employeeTotal:
           description: Number of employee.
-          format: int64
-          type: integer
+          format: float
+          type: number
         logo:
           description: Logo image.
           type: string
@@ -2675,23 +2671,23 @@ components:
       type: object
     Sentiment:
       example:
-        bearishPercent: 7
-        bullishPercent: 9
+        bearishPercent: 7.0614014
+        bullishPercent: 9.301444
       properties:
         bearishPercent:
           description: ""
-          format: int64
-          type: integer
+          format: float
+          type: number
         bullishPercent:
           description: ""
-          format: int64
-          type: integer
+          format: float
+          type: number
       type: object
     NewsSentiment:
       example:
         sentiment:
-          bearishPercent: 7
-          bullishPercent: 9
+          bearishPercent: 7.0614014
+          bullishPercent: 9.301444
         symbol: symbol
         sectorAverageBullishPercent: 5.637377
         sectorAverageNewsScore: 2.302136
@@ -2848,7 +2844,7 @@ components:
         name: name
         transactionPrice: 1.4658129
         share: 0
-        transactionCode: 2000-01-23
+        transactionCode: transactionCode
         transactionDate: 2000-01-23
       properties:
         name:
@@ -2880,7 +2876,6 @@ components:
           description: Transaction code. A list of codes and their meanings can be
             found <a href="https://www.sec.gov/about/forms/form4data.pdf" target="_blank"
             rel="noopener">here</a>.
-          format: date
           type: string
       type: object
     InsiderTransactions:
@@ -2892,14 +2887,14 @@ components:
           name: name
           transactionPrice: 1.4658129
           share: 0
-          transactionCode: 2000-01-23
+          transactionCode: transactionCode
           transactionDate: 2000-01-23
         - filingDate: 2000-01-23
           change: 6
           name: name
           transactionPrice: 1.4658129
           share: 0
-          transactionCode: 2000-01-23
+          transactionCode: transactionCode
           transactionDate: 2000-01-23
       properties:
         symbol:
@@ -3249,8 +3244,8 @@ components:
         date: 2000-01-23
         symbol: symbol
         price: price
-        numberOfShares: 0
-        totalSharesValue: 6
+        numberOfShares: 0.8008282
+        totalSharesValue: 6.0274563
         name: name
         exchange: exchange
         status: status
@@ -3276,12 +3271,12 @@ components:
           type: string
         numberOfShares:
           description: Number of shares offered during the IPO.
-          format: int64
-          type: integer
+          format: float
+          type: number
         totalSharesValue:
           description: Total shares value.
-          format: int64
-          type: integer
+          format: float
+          type: number
       type: object
     IPOCalendar:
       example:
@@ -3289,16 +3284,16 @@ components:
         - date: 2000-01-23
           symbol: symbol
           price: price
-          numberOfShares: 0
-          totalSharesValue: 6
+          numberOfShares: 0.8008282
+          totalSharesValue: 6.0274563
           name: name
           exchange: exchange
           status: status
         - date: 2000-01-23
           symbol: symbol
           price: price
-          numberOfShares: 0
-          totalSharesValue: 6
+          numberOfShares: 0.8008282
+          totalSharesValue: 6.0274563
           name: name
           exchange: exchange
           status: status
@@ -3464,26 +3459,26 @@ components:
             down(downgrade), main(maintains), init(initiate), reit(reiterate)</code>.'
           type: string
       type: object
-    Estimate:
+    RevenueEstimatesInfo:
       example:
-        revenueLow: 1
+        revenueLow: 1.4658129
         period: 2000-01-23
         numberAnalysts: 5
-        revenueHigh: 6
-        revenueAvg: 0
+        revenueHigh: 6.0274563
+        revenueAvg: 0.8008282
       properties:
         revenueAvg:
           description: Average revenue estimates including Finnhub's proprietary estimates.
-          format: int64
-          type: integer
+          format: float
+          type: number
         revenueHigh:
           description: Highest estimate.
-          format: int64
-          type: integer
+          format: float
+          type: number
         revenueLow:
           description: Lowest estimate.
-          format: int64
-          type: integer
+          format: float
+          type: number
         numberAnalysts:
           description: Number of Analysts.
           format: int64
@@ -3497,22 +3492,22 @@ components:
       example:
         symbol: symbol
         data:
-        - revenueLow: 1
+        - revenueLow: 1.4658129
           period: 2000-01-23
           numberAnalysts: 5
-          revenueHigh: 6
-          revenueAvg: 0
-        - revenueLow: 1
+          revenueHigh: 6.0274563
+          revenueAvg: 0.8008282
+        - revenueLow: 1.4658129
           period: 2000-01-23
           numberAnalysts: 5
-          revenueHigh: 6
-          revenueAvg: 0
+          revenueHigh: 6.0274563
+          revenueAvg: 0.8008282
         freq: freq
       properties:
         data:
           description: List of estimates
           items:
-            $ref: '#/components/schemas/Estimate'
+            $ref: '#/components/schemas/RevenueEstimatesInfo'
           type: array
         freq:
           description: 'Frequency: annual or quarterly.'
@@ -3521,7 +3516,7 @@ components:
           description: Company symbol.
           type: string
       type: object
-    EarningEstimate:
+    EarningsEstimatesInfo:
       example:
         epsHigh: 6.0274563
         period: 2000-01-23
@@ -3569,7 +3564,7 @@ components:
         data:
           description: List of estimates
           items:
-            $ref: '#/components/schemas/EarningEstimate'
+            $ref: '#/components/schemas/EarningsEstimatesInfo'
           type: array
         freq:
           description: 'Frequency: annual or quarterly.'
@@ -3618,8 +3613,8 @@ components:
         epsActual: 5.962134
         hour: hour
         epsEstimate: 1.4658129
-        revenueEstimate: 5
-        revenueActual: 2
+        revenueEstimate: 5.637377
+        revenueActual: 2.302136
         year: 0
         quarter: 6
       properties:
@@ -3652,12 +3647,12 @@ components:
           type: number
         revenueEstimate:
           description: Revenue estimate including Finnhub's proprietary estimates.
-          format: int64
-          type: integer
+          format: float
+          type: number
         revenueActual:
           description: Revenue actual.
-          format: int64
-          type: integer
+          format: float
+          type: number
       type: object
     EarningsCalendar:
       example:
@@ -3667,8 +3662,8 @@ components:
           epsActual: 5.962134
           hour: hour
           epsEstimate: 1.4658129
-          revenueEstimate: 5
-          revenueActual: 2
+          revenueEstimate: 5.637377
+          revenueActual: 2.302136
           year: 0
           quarter: 6
         - date: 2000-01-23
@@ -3676,8 +3671,8 @@ components:
           epsActual: 5.962134
           hour: hour
           epsEstimate: 1.4658129
-          revenueEstimate: 5
-          revenueActual: 2
+          revenueEstimate: 5.637377
+          revenueActual: 2.302136
           year: 0
           quarter: 6
       properties:

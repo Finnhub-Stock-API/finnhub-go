@@ -2718,7 +2718,7 @@ import (
 
 func main() {
     category := "category_example" // string | This parameter can be 1 of the following values <code>general, forex, crypto, merger</code>.
-    minId := "minId_example" // string | Use this field to get only news after this ID. Default to 0 (optional)
+    minId := int64(789) // int64 | Use this field to get only news after this ID. Default to 0 (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -2744,7 +2744,7 @@ Other parameters are passed through a pointer to a apiMarketNewsRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **category** | **string** | This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;. | 
- **minId** | **string** | Use this field to get only news after this ID. Default to 0 | 
+ **minId** | **int64** | Use this field to get only news after this ID. Default to 0 | 
 
 ### Return type
 
@@ -3848,7 +3848,7 @@ Name | Type | Description  | Notes
 
 ## StockCandles
 
-> StockCandles StockCandles(ctx).Symbol(symbol).Resolution(resolution).From(from).To(to).Adjusted(adjusted).Execute()
+> StockCandles StockCandles(ctx).Symbol(symbol).Resolution(resolution).From(from).To(to).Execute()
 
 Stock Candles
 
@@ -3871,11 +3871,10 @@ func main() {
     resolution := "resolution_example" // string | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
     from := int64(789) // int64 | UNIX timestamp. Interval initial value.
     to := int64(789) // int64 | UNIX timestamp. Interval end value.
-    adjusted := "adjusted_example" // string | DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.StockCandles(context.Background()).Symbol(symbol).Resolution(resolution).From(from).To(to).Adjusted(adjusted).Execute()
+    resp, r, err := api_client.DefaultApi.StockCandles(context.Background()).Symbol(symbol).Resolution(resolution).From(from).To(to).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockCandles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3900,7 +3899,6 @@ Name | Type | Description  | Notes
  **resolution** | **string** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. | 
  **from** | **int64** | UNIX timestamp. Interval initial value. | 
  **to** | **int64** | UNIX timestamp. Interval end value. | 
- **adjusted** | **string** | DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted. | 
 
 ### Return type
 

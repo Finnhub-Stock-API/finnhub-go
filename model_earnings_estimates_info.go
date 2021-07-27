@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// EarningEstimate struct for EarningEstimate
-type EarningEstimate struct {
+// EarningsEstimatesInfo struct for EarningsEstimatesInfo
+type EarningsEstimatesInfo struct {
 	// Average EPS estimates including Finnhub's proprietary estimates.
 	EpsAvg *float32 `json:"epsAvg,omitempty"`
 	// Highest estimate.
@@ -28,25 +28,25 @@ type EarningEstimate struct {
 	Period *string `json:"period,omitempty"`
 }
 
-// NewEarningEstimate instantiates a new EarningEstimate object
+// NewEarningsEstimatesInfo instantiates a new EarningsEstimatesInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEarningEstimate() *EarningEstimate {
-	this := EarningEstimate{}
+func NewEarningsEstimatesInfo() *EarningsEstimatesInfo {
+	this := EarningsEstimatesInfo{}
 	return &this
 }
 
-// NewEarningEstimateWithDefaults instantiates a new EarningEstimate object
+// NewEarningsEstimatesInfoWithDefaults instantiates a new EarningsEstimatesInfo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEarningEstimateWithDefaults() *EarningEstimate {
-	this := EarningEstimate{}
+func NewEarningsEstimatesInfoWithDefaults() *EarningsEstimatesInfo {
+	this := EarningsEstimatesInfo{}
 	return &this
 }
 
 // GetEpsAvg returns the EpsAvg field value if set, zero value otherwise.
-func (o *EarningEstimate) GetEpsAvg() float32 {
+func (o *EarningsEstimatesInfo) GetEpsAvg() float32 {
 	if o == nil || o.EpsAvg == nil {
 		var ret float32
 		return ret
@@ -56,7 +56,7 @@ func (o *EarningEstimate) GetEpsAvg() float32 {
 
 // GetEpsAvgOk returns a tuple with the EpsAvg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningEstimate) GetEpsAvgOk() (*float32, bool) {
+func (o *EarningsEstimatesInfo) GetEpsAvgOk() (*float32, bool) {
 	if o == nil || o.EpsAvg == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *EarningEstimate) GetEpsAvgOk() (*float32, bool) {
 }
 
 // HasEpsAvg returns a boolean if a field has been set.
-func (o *EarningEstimate) HasEpsAvg() bool {
+func (o *EarningsEstimatesInfo) HasEpsAvg() bool {
 	if o != nil && o.EpsAvg != nil {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *EarningEstimate) HasEpsAvg() bool {
 }
 
 // SetEpsAvg gets a reference to the given float32 and assigns it to the EpsAvg field.
-func (o *EarningEstimate) SetEpsAvg(v float32) {
+func (o *EarningsEstimatesInfo) SetEpsAvg(v float32) {
 	o.EpsAvg = &v
 }
 
 // GetEpsHigh returns the EpsHigh field value if set, zero value otherwise.
-func (o *EarningEstimate) GetEpsHigh() float32 {
+func (o *EarningsEstimatesInfo) GetEpsHigh() float32 {
 	if o == nil || o.EpsHigh == nil {
 		var ret float32
 		return ret
@@ -88,7 +88,7 @@ func (o *EarningEstimate) GetEpsHigh() float32 {
 
 // GetEpsHighOk returns a tuple with the EpsHigh field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningEstimate) GetEpsHighOk() (*float32, bool) {
+func (o *EarningsEstimatesInfo) GetEpsHighOk() (*float32, bool) {
 	if o == nil || o.EpsHigh == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *EarningEstimate) GetEpsHighOk() (*float32, bool) {
 }
 
 // HasEpsHigh returns a boolean if a field has been set.
-func (o *EarningEstimate) HasEpsHigh() bool {
+func (o *EarningsEstimatesInfo) HasEpsHigh() bool {
 	if o != nil && o.EpsHigh != nil {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *EarningEstimate) HasEpsHigh() bool {
 }
 
 // SetEpsHigh gets a reference to the given float32 and assigns it to the EpsHigh field.
-func (o *EarningEstimate) SetEpsHigh(v float32) {
+func (o *EarningsEstimatesInfo) SetEpsHigh(v float32) {
 	o.EpsHigh = &v
 }
 
 // GetEpsLow returns the EpsLow field value if set, zero value otherwise.
-func (o *EarningEstimate) GetEpsLow() float32 {
+func (o *EarningsEstimatesInfo) GetEpsLow() float32 {
 	if o == nil || o.EpsLow == nil {
 		var ret float32
 		return ret
@@ -120,7 +120,7 @@ func (o *EarningEstimate) GetEpsLow() float32 {
 
 // GetEpsLowOk returns a tuple with the EpsLow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningEstimate) GetEpsLowOk() (*float32, bool) {
+func (o *EarningsEstimatesInfo) GetEpsLowOk() (*float32, bool) {
 	if o == nil || o.EpsLow == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *EarningEstimate) GetEpsLowOk() (*float32, bool) {
 }
 
 // HasEpsLow returns a boolean if a field has been set.
-func (o *EarningEstimate) HasEpsLow() bool {
+func (o *EarningsEstimatesInfo) HasEpsLow() bool {
 	if o != nil && o.EpsLow != nil {
 		return true
 	}
@@ -137,12 +137,12 @@ func (o *EarningEstimate) HasEpsLow() bool {
 }
 
 // SetEpsLow gets a reference to the given float32 and assigns it to the EpsLow field.
-func (o *EarningEstimate) SetEpsLow(v float32) {
+func (o *EarningsEstimatesInfo) SetEpsLow(v float32) {
 	o.EpsLow = &v
 }
 
 // GetNumberAnalysts returns the NumberAnalysts field value if set, zero value otherwise.
-func (o *EarningEstimate) GetNumberAnalysts() int64 {
+func (o *EarningsEstimatesInfo) GetNumberAnalysts() int64 {
 	if o == nil || o.NumberAnalysts == nil {
 		var ret int64
 		return ret
@@ -152,7 +152,7 @@ func (o *EarningEstimate) GetNumberAnalysts() int64 {
 
 // GetNumberAnalystsOk returns a tuple with the NumberAnalysts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningEstimate) GetNumberAnalystsOk() (*int64, bool) {
+func (o *EarningsEstimatesInfo) GetNumberAnalystsOk() (*int64, bool) {
 	if o == nil || o.NumberAnalysts == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *EarningEstimate) GetNumberAnalystsOk() (*int64, bool) {
 }
 
 // HasNumberAnalysts returns a boolean if a field has been set.
-func (o *EarningEstimate) HasNumberAnalysts() bool {
+func (o *EarningsEstimatesInfo) HasNumberAnalysts() bool {
 	if o != nil && o.NumberAnalysts != nil {
 		return true
 	}
@@ -169,12 +169,12 @@ func (o *EarningEstimate) HasNumberAnalysts() bool {
 }
 
 // SetNumberAnalysts gets a reference to the given int64 and assigns it to the NumberAnalysts field.
-func (o *EarningEstimate) SetNumberAnalysts(v int64) {
+func (o *EarningsEstimatesInfo) SetNumberAnalysts(v int64) {
 	o.NumberAnalysts = &v
 }
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
-func (o *EarningEstimate) GetPeriod() string {
+func (o *EarningsEstimatesInfo) GetPeriod() string {
 	if o == nil || o.Period == nil {
 		var ret string
 		return ret
@@ -184,7 +184,7 @@ func (o *EarningEstimate) GetPeriod() string {
 
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningEstimate) GetPeriodOk() (*string, bool) {
+func (o *EarningsEstimatesInfo) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
 		return nil, false
 	}
@@ -192,7 +192,7 @@ func (o *EarningEstimate) GetPeriodOk() (*string, bool) {
 }
 
 // HasPeriod returns a boolean if a field has been set.
-func (o *EarningEstimate) HasPeriod() bool {
+func (o *EarningsEstimatesInfo) HasPeriod() bool {
 	if o != nil && o.Period != nil {
 		return true
 	}
@@ -201,11 +201,11 @@ func (o *EarningEstimate) HasPeriod() bool {
 }
 
 // SetPeriod gets a reference to the given string and assigns it to the Period field.
-func (o *EarningEstimate) SetPeriod(v string) {
+func (o *EarningsEstimatesInfo) SetPeriod(v string) {
 	o.Period = &v
 }
 
-func (o EarningEstimate) MarshalJSON() ([]byte, error) {
+func (o EarningsEstimatesInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.EpsAvg != nil {
 		toSerialize["epsAvg"] = o.EpsAvg
@@ -225,38 +225,38 @@ func (o EarningEstimate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableEarningEstimate struct {
-	value *EarningEstimate
+type NullableEarningsEstimatesInfo struct {
+	value *EarningsEstimatesInfo
 	isSet bool
 }
 
-func (v NullableEarningEstimate) Get() *EarningEstimate {
+func (v NullableEarningsEstimatesInfo) Get() *EarningsEstimatesInfo {
 	return v.value
 }
 
-func (v *NullableEarningEstimate) Set(val *EarningEstimate) {
+func (v *NullableEarningsEstimatesInfo) Set(val *EarningsEstimatesInfo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEarningEstimate) IsSet() bool {
+func (v NullableEarningsEstimatesInfo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEarningEstimate) Unset() {
+func (v *NullableEarningsEstimatesInfo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEarningEstimate(val *EarningEstimate) *NullableEarningEstimate {
-	return &NullableEarningEstimate{value: val, isSet: true}
+func NewNullableEarningsEstimatesInfo(val *EarningsEstimatesInfo) *NullableEarningsEstimatesInfo {
+	return &NullableEarningsEstimatesInfo{value: val, isSet: true}
 }
 
-func (v NullableEarningEstimate) MarshalJSON() ([]byte, error) {
+func (v NullableEarningsEstimatesInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEarningEstimate) UnmarshalJSON(src []byte) error {
+func (v *NullableEarningsEstimatesInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

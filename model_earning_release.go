@@ -31,9 +31,9 @@ type EarningRelease struct {
 	// EPS actual.
 	EpsActual *float32 `json:"epsActual,omitempty"`
 	// Revenue estimate including Finnhub's proprietary estimates.
-	RevenueEstimate *int64 `json:"revenueEstimate,omitempty"`
+	RevenueEstimate *float32 `json:"revenueEstimate,omitempty"`
 	// Revenue actual.
-	RevenueActual *int64 `json:"revenueActual,omitempty"`
+	RevenueActual *float32 `json:"revenueActual,omitempty"`
 }
 
 // NewEarningRelease instantiates a new EarningRelease object
@@ -278,9 +278,9 @@ func (o *EarningRelease) SetEpsActual(v float32) {
 }
 
 // GetRevenueEstimate returns the RevenueEstimate field value if set, zero value otherwise.
-func (o *EarningRelease) GetRevenueEstimate() int64 {
+func (o *EarningRelease) GetRevenueEstimate() float32 {
 	if o == nil || o.RevenueEstimate == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.RevenueEstimate
@@ -288,7 +288,7 @@ func (o *EarningRelease) GetRevenueEstimate() int64 {
 
 // GetRevenueEstimateOk returns a tuple with the RevenueEstimate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningRelease) GetRevenueEstimateOk() (*int64, bool) {
+func (o *EarningRelease) GetRevenueEstimateOk() (*float32, bool) {
 	if o == nil || o.RevenueEstimate == nil {
 		return nil, false
 	}
@@ -304,15 +304,15 @@ func (o *EarningRelease) HasRevenueEstimate() bool {
 	return false
 }
 
-// SetRevenueEstimate gets a reference to the given int64 and assigns it to the RevenueEstimate field.
-func (o *EarningRelease) SetRevenueEstimate(v int64) {
+// SetRevenueEstimate gets a reference to the given float32 and assigns it to the RevenueEstimate field.
+func (o *EarningRelease) SetRevenueEstimate(v float32) {
 	o.RevenueEstimate = &v
 }
 
 // GetRevenueActual returns the RevenueActual field value if set, zero value otherwise.
-func (o *EarningRelease) GetRevenueActual() int64 {
+func (o *EarningRelease) GetRevenueActual() float32 {
 	if o == nil || o.RevenueActual == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.RevenueActual
@@ -320,7 +320,7 @@ func (o *EarningRelease) GetRevenueActual() int64 {
 
 // GetRevenueActualOk returns a tuple with the RevenueActual field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningRelease) GetRevenueActualOk() (*int64, bool) {
+func (o *EarningRelease) GetRevenueActualOk() (*float32, bool) {
 	if o == nil || o.RevenueActual == nil {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *EarningRelease) HasRevenueActual() bool {
 	return false
 }
 
-// SetRevenueActual gets a reference to the given int64 and assigns it to the RevenueActual field.
-func (o *EarningRelease) SetRevenueActual(v int64) {
+// SetRevenueActual gets a reference to the given float32 and assigns it to the RevenueActual field.
+func (o *EarningRelease) SetRevenueActual(v float32) {
 	o.RevenueActual = &v
 }
 

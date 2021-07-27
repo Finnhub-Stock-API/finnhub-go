@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Company&#39;s name. | [optional] 
 **Status** | Pointer to **string** | IPO status. Can take 1 of the following values: &lt;code&gt;expected&lt;/code&gt;,&lt;code&gt;priced&lt;/code&gt;,&lt;code&gt;withdrawn&lt;/code&gt;,&lt;code&gt;filed&lt;/code&gt; | [optional] 
 **Price** | Pointer to **string** | Projected price or price range. | [optional] 
-**NumberOfShares** | Pointer to **int64** | Number of shares offered during the IPO. | [optional] 
-**TotalSharesValue** | Pointer to **int64** | Total shares value. | [optional] 
+**NumberOfShares** | Pointer to **float32** | Number of shares offered during the IPO. | [optional] 
+**TotalSharesValue** | Pointer to **float32** | Total shares value. | [optional] 
 
 ## Methods
 
@@ -184,20 +184,20 @@ HasPrice returns a boolean if a field has been set.
 
 ### GetNumberOfShares
 
-`func (o *IPOEvent) GetNumberOfShares() int64`
+`func (o *IPOEvent) GetNumberOfShares() float32`
 
 GetNumberOfShares returns the NumberOfShares field if non-nil, zero value otherwise.
 
 ### GetNumberOfSharesOk
 
-`func (o *IPOEvent) GetNumberOfSharesOk() (*int64, bool)`
+`func (o *IPOEvent) GetNumberOfSharesOk() (*float32, bool)`
 
 GetNumberOfSharesOk returns a tuple with the NumberOfShares field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNumberOfShares
 
-`func (o *IPOEvent) SetNumberOfShares(v int64)`
+`func (o *IPOEvent) SetNumberOfShares(v float32)`
 
 SetNumberOfShares sets NumberOfShares field to given value.
 
@@ -209,20 +209,20 @@ HasNumberOfShares returns a boolean if a field has been set.
 
 ### GetTotalSharesValue
 
-`func (o *IPOEvent) GetTotalSharesValue() int64`
+`func (o *IPOEvent) GetTotalSharesValue() float32`
 
 GetTotalSharesValue returns the TotalSharesValue field if non-nil, zero value otherwise.
 
 ### GetTotalSharesValueOk
 
-`func (o *IPOEvent) GetTotalSharesValueOk() (*int64, bool)`
+`func (o *IPOEvent) GetTotalSharesValueOk() (*float32, bool)`
 
 GetTotalSharesValueOk returns a tuple with the TotalSharesValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalSharesValue
 
-`func (o *IPOEvent) SetTotalSharesValue(v int64)`
+`func (o *IPOEvent) SetTotalSharesValue(v float32)`
 
 SetTotalSharesValue sets TotalSharesValue field to given value.
 

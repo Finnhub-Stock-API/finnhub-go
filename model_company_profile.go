@@ -67,7 +67,7 @@ type CompanyProfile struct {
 	// Number of oustanding shares.
 	ShareOutstanding *float32 `json:"shareOutstanding,omitempty"`
 	// Number of employee.
-	EmployeeTotal *int64 `json:"employeeTotal,omitempty"`
+	EmployeeTotal *float32 `json:"employeeTotal,omitempty"`
 	// Logo image.
 	Logo *string `json:"logo,omitempty"`
 	// Finnhub industry classification.
@@ -892,9 +892,9 @@ func (o *CompanyProfile) SetShareOutstanding(v float32) {
 }
 
 // GetEmployeeTotal returns the EmployeeTotal field value if set, zero value otherwise.
-func (o *CompanyProfile) GetEmployeeTotal() int64 {
+func (o *CompanyProfile) GetEmployeeTotal() float32 {
 	if o == nil || o.EmployeeTotal == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.EmployeeTotal
@@ -902,7 +902,7 @@ func (o *CompanyProfile) GetEmployeeTotal() int64 {
 
 // GetEmployeeTotalOk returns a tuple with the EmployeeTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CompanyProfile) GetEmployeeTotalOk() (*int64, bool) {
+func (o *CompanyProfile) GetEmployeeTotalOk() (*float32, bool) {
 	if o == nil || o.EmployeeTotal == nil {
 		return nil, false
 	}
@@ -918,8 +918,8 @@ func (o *CompanyProfile) HasEmployeeTotal() bool {
 	return false
 }
 
-// SetEmployeeTotal gets a reference to the given int64 and assigns it to the EmployeeTotal field.
-func (o *CompanyProfile) SetEmployeeTotal(v int64) {
+// SetEmployeeTotal gets a reference to the given float32 and assigns it to the EmployeeTotal field.
+func (o *CompanyProfile) SetEmployeeTotal(v float32) {
 	o.EmployeeTotal = &v
 }
 

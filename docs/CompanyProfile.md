@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **Ipo** | Pointer to **string** | IPO date. | [optional] 
 **MarketCapitalization** | Pointer to **float32** | Market Capitalization. | [optional] 
 **ShareOutstanding** | Pointer to **float32** | Number of oustanding shares. | [optional] 
-**EmployeeTotal** | Pointer to **int64** | Number of employee. | [optional] 
+**EmployeeTotal** | Pointer to **float32** | Number of employee. | [optional] 
 **Logo** | Pointer to **string** | Logo image. | [optional] 
 **FinnhubIndustry** | Pointer to **string** | Finnhub industry classification. | [optional] 
 
@@ -679,20 +679,20 @@ HasShareOutstanding returns a boolean if a field has been set.
 
 ### GetEmployeeTotal
 
-`func (o *CompanyProfile) GetEmployeeTotal() int64`
+`func (o *CompanyProfile) GetEmployeeTotal() float32`
 
 GetEmployeeTotal returns the EmployeeTotal field if non-nil, zero value otherwise.
 
 ### GetEmployeeTotalOk
 
-`func (o *CompanyProfile) GetEmployeeTotalOk() (*int64, bool)`
+`func (o *CompanyProfile) GetEmployeeTotalOk() (*float32, bool)`
 
 GetEmployeeTotalOk returns a tuple with the EmployeeTotal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmployeeTotal
 
-`func (o *CompanyProfile) SetEmployeeTotal(v int64)`
+`func (o *CompanyProfile) SetEmployeeTotal(v float32)`
 
 SetEmployeeTotal sets EmployeeTotal field to given value.
 

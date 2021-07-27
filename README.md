@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.1
+- Package version: 2.0.2
 
 ## Installation
 
@@ -28,14 +28,31 @@ func main() {
     cfg := finnhub.NewConfiguration()
     cfg.AddDefaultHeader("X-Finnhub-Token", "<API_key>")
     finnhubClient := finnhub.NewAPIClient(cfg).DefaultApi
-	//Stock candles
+	
+    //Earnings calendar
+    earningsCalendar, _, err := finnhubClient.EarningsCalendar(context.Background()).From("2021-07-01").To("2021-07-25").Execute()
+    fmt.Printf(objectString(earningsCalendar))
+
+    // NBBO
+    bboData, _, err := finnhubClient.StockNbbo(context.Background()).Symbol("AAPL").Date("2021-07-23").Limit(50).Skip(0).Execute()
+    fmt.Printf("%+v\n", bboData)
+
+    // Bid ask
+    lastBidAsk, _, err := finnhubClient.StockBidask(context.Background()).Symbol("AAPL").Execute()
+    fmt.Printf("%+v\n", lastBidAsk)
+
+    // Stock dividends 2
+    dividends2, _, err := finnhubClient.StockBasicDividends(context.Background()).Symbol("KO").Execute()
+    fmt.Printf("%+v\n", dividends2)
+
+    //Stock candles
     stockCandles, _, err := finnhubClient.StockCandles(context.Background()).Symbol("AAPL").Resolution("D").From(1590988249).To(1591852249).Execute()
     fmt.Printf("%+v\n", stockCandles)
 
     // Example with required parameters
     news, _, err := finnhubClient.CompanyNews(context.Background()).Symbol("AAPL").From("2020-05-01").To("2020-05-01").Execute()
     if err != nil {
-        panic(err)
+        fmt.Println(err)
     }
     fmt.Printf("%+v\n", news)
 
@@ -48,7 +65,7 @@ func main() {
     fmt.Printf("%+v\n", aggregateIndicator)
 
     // Basic financials
-    basicFinancials, _, err := finnhubClient.CompanyBasicFinancials(context.Background()).Symbol("MSFT").Metric("margin").Execute()
+    basicFinancials, _, err := finnhubClient.CompanyBasicFinancials(context.Background()).Symbol("MSFT").Metric("all").Execute()
     fmt.Printf("%+v\n", basicFinancials)
 
     // Company earnings
@@ -67,13 +84,22 @@ func main() {
     peers, _, err := finnhubClient.CompanyPeers(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", peers)
 
-    // Company profile
-    profile, _, err := finnhubClient.CompanyProfile(context.Background()).Symbol("AAPL").Execute()
-    fmt.Printf("%+v\n", profile)
-    profileISIN, _, err := finnhubClient.CompanyProfile(context.Background()).Isin("US0378331005").Execute()
-    fmt.Printf("%+v\n", profileISIN)
-    profileCusip, _, err := finnhubClient.CompanyProfile(context.Background()).Cusip("037833100").Execute()
-    fmt.Printf("%+v\n", profileCusip)
+    //// Company profile
+    //profile, _, err := finnhubClient.CompanyProfile(context.Background()).Symbol("AAPL").Execute()
+    //if err != nil {
+    //	panic(err)
+    //}
+    //fmt.Printf("%+v\n", profile)
+    //profileISIN, _, err := finnhubClient.CompanyProfile(context.Background()).Isin("US0378331005").Execute()
+    //if err != nil {
+    //	panic(err)
+    //}
+    //fmt.Printf("%+v\n", profileISIN)
+    //profileCusip, _, err := finnhubClient.CompanyProfile(context.Background()).Cusip("037833100").Execute()
+    //if err != nil {
+    //	panic(err)
+    //}
+    //fmt.Printf("%+v\n", profileCusip)
 
     // Company profile2
     profile2, _, err := finnhubClient.CompanyProfile2(context.Background()).Symbol("AAPL").Execute()
@@ -91,6 +117,10 @@ func main() {
     covid19, _, err := finnhubClient.Covid19(context.Background()).Execute()
     fmt.Printf("%+v\n", covid19)
 
+    // FDA Calendar
+    fdaCalendar, _, err := finnhubClient.FdaCommitteeMeetingCalendar(context.Background()).Execute()
+    fmt.Printf("%+v\n", fdaCalendar)
+
     // Crypto candles
     cryptoCandles, _, err := finnhubClient.CryptoCandles(context.Background()).Symbol("BINANCE:BTCUSDT").Resolution("D").From(1590988249).To(1591852249).Execute()
     fmt.Printf("%+v\n", cryptoCandles)
@@ -103,9 +133,9 @@ func main() {
     cryptoSymbol, _, err := finnhubClient.CryptoSymbols(context.Background()).Exchange("BINANCE").Execute()
     fmt.Printf("%+v\n", cryptoSymbol[0:5])
 
-    // Earnings calendar
-    earningsCalendar, _, err := finnhubClient.EarningsCalendar(context.Background()).From("2021-07-01").To("2021-07-30").Execute()
-    fmt.Printf("%+v\n", earningsCalendar)
+    // Economic Calendar
+    economicCalendar, _, err := finnhubClient.EconomicCalendar(context.Background()).Execute()
+    fmt.Printf("%+v\n", economicCalendar)
 
     // Economic code
     economicCode, _, err := finnhubClient.EconomicCode(context.Background()).Execute()
@@ -118,6 +148,18 @@ func main() {
     // Filings
     filings, _, err := finnhubClient.Filings(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", filings)
+
+    // International filings
+    internationalFilings, _, err := finnhubClient.InternationalFilings(context.Background()).Symbol("RY.TO").Execute()
+    fmt.Printf("%+v\n", internationalFilings)
+
+    // Filings Sentiment
+    filingsSentiment, _, err := finnhubClient.FilingsSentiment(context.Background()).AccessNumber("0000320193-20-000052").Execute()
+    fmt.Printf("%+v\n", filingsSentiment)
+
+    // Similarity Index
+    similarityIndex, _, err := finnhubClient.SimilarityIndex(context.Background()).Symbol("AAPL").Execute()
+    fmt.Printf("%+v\n", similarityIndex)
 
     // Financials
     financials, _, err := finnhubClient.Financials(context.Background()).Symbol("AAPL").Statement("bs").Freq("annual").Execute()
@@ -134,8 +176,9 @@ func main() {
     // Forex exchanges
     forexExchanges, _, err := finnhubClient.ForexExchanges(context.Background()).Execute()
     fmt.Printf("%+v\n", forexExchanges)
+
     // Forex rates
-    forexRates, _, err := finnhubClient.ForexRates(context.Background()).Execute()
+    forexRates, _, err := finnhubClient.ForexRates(context.Background()).Base("USD").Execute()
     fmt.Printf("%+v\n", forexRates)
 
     // Forex symbols
@@ -154,7 +197,7 @@ func main() {
     ipoCalendar, _, err := finnhubClient.IpoCalendar(context.Background()).From("2021-01-01").To("2021-06-30").Execute()
     fmt.Printf("%+v\n", ipoCalendar)
 
-    // Major development
+    // Press Releases
     majorDevelopment, _, err := finnhubClient.PressReleases(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", majorDevelopment)
 
@@ -178,7 +221,7 @@ func main() {
     recommendationTrend, _, err := finnhubClient.RecommendationTrends(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", recommendationTrend)
 
-    // Stock dividens
+    // Stock dividends
     dividends, _, err := finnhubClient.StockDividends(context.Background()).Symbol("KO").From("2019-01-01").To("2021-01-01").Execute()
     fmt.Printf("%+v\n", dividends)
 
@@ -273,6 +316,10 @@ func main() {
     // Supply chain
     supplyChain, _, err := finnhubClient.SupplyChainRelationships(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", supplyChain)
+
+    //Symbol lookup
+    searchResult, _, err := finnhubClient.SymbolSearch(context.Background()).Q("AAPL").Execute()
+    fmt.Printf("%+v\n", searchResult)
 }
 
 

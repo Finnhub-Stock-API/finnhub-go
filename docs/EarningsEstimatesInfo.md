@@ -1,4 +1,4 @@
-# EarningEstimate
+# EarningsEstimatesInfo
 
 ## Properties
 
@@ -12,145 +12,145 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewEarningEstimate
+### NewEarningsEstimatesInfo
 
-`func NewEarningEstimate() *EarningEstimate`
+`func NewEarningsEstimatesInfo() *EarningsEstimatesInfo`
 
-NewEarningEstimate instantiates a new EarningEstimate object
+NewEarningsEstimatesInfo instantiates a new EarningsEstimatesInfo object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewEarningEstimateWithDefaults
+### NewEarningsEstimatesInfoWithDefaults
 
-`func NewEarningEstimateWithDefaults() *EarningEstimate`
+`func NewEarningsEstimatesInfoWithDefaults() *EarningsEstimatesInfo`
 
-NewEarningEstimateWithDefaults instantiates a new EarningEstimate object
+NewEarningsEstimatesInfoWithDefaults instantiates a new EarningsEstimatesInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetEpsAvg
 
-`func (o *EarningEstimate) GetEpsAvg() float32`
+`func (o *EarningsEstimatesInfo) GetEpsAvg() float32`
 
 GetEpsAvg returns the EpsAvg field if non-nil, zero value otherwise.
 
 ### GetEpsAvgOk
 
-`func (o *EarningEstimate) GetEpsAvgOk() (*float32, bool)`
+`func (o *EarningsEstimatesInfo) GetEpsAvgOk() (*float32, bool)`
 
 GetEpsAvgOk returns a tuple with the EpsAvg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEpsAvg
 
-`func (o *EarningEstimate) SetEpsAvg(v float32)`
+`func (o *EarningsEstimatesInfo) SetEpsAvg(v float32)`
 
 SetEpsAvg sets EpsAvg field to given value.
 
 ### HasEpsAvg
 
-`func (o *EarningEstimate) HasEpsAvg() bool`
+`func (o *EarningsEstimatesInfo) HasEpsAvg() bool`
 
 HasEpsAvg returns a boolean if a field has been set.
 
 ### GetEpsHigh
 
-`func (o *EarningEstimate) GetEpsHigh() float32`
+`func (o *EarningsEstimatesInfo) GetEpsHigh() float32`
 
 GetEpsHigh returns the EpsHigh field if non-nil, zero value otherwise.
 
 ### GetEpsHighOk
 
-`func (o *EarningEstimate) GetEpsHighOk() (*float32, bool)`
+`func (o *EarningsEstimatesInfo) GetEpsHighOk() (*float32, bool)`
 
 GetEpsHighOk returns a tuple with the EpsHigh field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEpsHigh
 
-`func (o *EarningEstimate) SetEpsHigh(v float32)`
+`func (o *EarningsEstimatesInfo) SetEpsHigh(v float32)`
 
 SetEpsHigh sets EpsHigh field to given value.
 
 ### HasEpsHigh
 
-`func (o *EarningEstimate) HasEpsHigh() bool`
+`func (o *EarningsEstimatesInfo) HasEpsHigh() bool`
 
 HasEpsHigh returns a boolean if a field has been set.
 
 ### GetEpsLow
 
-`func (o *EarningEstimate) GetEpsLow() float32`
+`func (o *EarningsEstimatesInfo) GetEpsLow() float32`
 
 GetEpsLow returns the EpsLow field if non-nil, zero value otherwise.
 
 ### GetEpsLowOk
 
-`func (o *EarningEstimate) GetEpsLowOk() (*float32, bool)`
+`func (o *EarningsEstimatesInfo) GetEpsLowOk() (*float32, bool)`
 
 GetEpsLowOk returns a tuple with the EpsLow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEpsLow
 
-`func (o *EarningEstimate) SetEpsLow(v float32)`
+`func (o *EarningsEstimatesInfo) SetEpsLow(v float32)`
 
 SetEpsLow sets EpsLow field to given value.
 
 ### HasEpsLow
 
-`func (o *EarningEstimate) HasEpsLow() bool`
+`func (o *EarningsEstimatesInfo) HasEpsLow() bool`
 
 HasEpsLow returns a boolean if a field has been set.
 
 ### GetNumberAnalysts
 
-`func (o *EarningEstimate) GetNumberAnalysts() int64`
+`func (o *EarningsEstimatesInfo) GetNumberAnalysts() int64`
 
 GetNumberAnalysts returns the NumberAnalysts field if non-nil, zero value otherwise.
 
 ### GetNumberAnalystsOk
 
-`func (o *EarningEstimate) GetNumberAnalystsOk() (*int64, bool)`
+`func (o *EarningsEstimatesInfo) GetNumberAnalystsOk() (*int64, bool)`
 
 GetNumberAnalystsOk returns a tuple with the NumberAnalysts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNumberAnalysts
 
-`func (o *EarningEstimate) SetNumberAnalysts(v int64)`
+`func (o *EarningsEstimatesInfo) SetNumberAnalysts(v int64)`
 
 SetNumberAnalysts sets NumberAnalysts field to given value.
 
 ### HasNumberAnalysts
 
-`func (o *EarningEstimate) HasNumberAnalysts() bool`
+`func (o *EarningsEstimatesInfo) HasNumberAnalysts() bool`
 
 HasNumberAnalysts returns a boolean if a field has been set.
 
 ### GetPeriod
 
-`func (o *EarningEstimate) GetPeriod() string`
+`func (o *EarningsEstimatesInfo) GetPeriod() string`
 
 GetPeriod returns the Period field if non-nil, zero value otherwise.
 
 ### GetPeriodOk
 
-`func (o *EarningEstimate) GetPeriodOk() (*string, bool)`
+`func (o *EarningsEstimatesInfo) GetPeriodOk() (*string, bool)`
 
 GetPeriodOk returns a tuple with the Period field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPeriod
 
-`func (o *EarningEstimate) SetPeriod(v string)`
+`func (o *EarningsEstimatesInfo) SetPeriod(v string)`
 
 SetPeriod sets Period field to given value.
 
 ### HasPeriod
 
-`func (o *EarningEstimate) HasPeriod() bool`
+`func (o *EarningsEstimatesInfo) HasPeriod() bool`
 
 HasPeriod returns a boolean if a field has been set.
 

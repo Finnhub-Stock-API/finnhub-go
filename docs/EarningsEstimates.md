@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]EarningEstimate**](EarningEstimate.md) | List of estimates | [optional] 
+**Data** | Pointer to [**[]EarningsEstimatesInfo**](EarningsEstimatesInfo.md) | List of estimates | [optional] 
 **Freq** | Pointer to **string** | Frequency: annual or quarterly. | [optional] 
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *EarningsEstimates) GetData() []EarningEstimate`
+`func (o *EarningsEstimates) GetData() []EarningsEstimatesInfo`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *EarningsEstimates) GetDataOk() (*[]EarningEstimate, bool)`
+`func (o *EarningsEstimates) GetDataOk() (*[]EarningsEstimatesInfo, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *EarningsEstimates) SetData(v []EarningEstimate)`
+`func (o *EarningsEstimates) SetData(v []EarningsEstimatesInfo)`
 
 SetData sets Data field to given value.
 
