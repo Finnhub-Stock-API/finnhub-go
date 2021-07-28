@@ -3204,24 +3204,97 @@ components:
         sentiment:
           $ref: '#/components/schemas/FilingSentiment'
       type: object
+    SimilarityIndexInfo:
+      example:
+        item2: 1.4658129
+        item7a: 5.637377
+        item1: 0.8008282
+        cik: cik
+        form: form
+        accessNumber: accessNumber
+        item7: 5.962134
+        reportUrl: reportUrl
+        item1a: 6.0274563
+        filedDate: filedDate
+        acceptedDate: acceptedDate
+        filingUrl: filingUrl
+      properties:
+        cik:
+          description: CIK.
+          type: string
+        item1:
+          description: Cosine similarity of Item 1 (Business). This number is only
+            available for Annual reports.
+          format: float
+          type: number
+        item1a:
+          description: Cosine similarity of Item 1A (Risk Factors). This number is
+            available for both Annual and Quarterly reports.
+          format: float
+          type: number
+        item2:
+          description: Cosine similarity of Item 2 (Management’s Discussion and Analysis
+            of Financial Condition and Results of Operations). This number is only
+            available for Quarterly reports.
+          format: float
+          type: number
+        item7:
+          description: Cosine similarity of Item 7 (Management’s Discussion and Analysis
+            of Financial Condition and Results of Operations). This number is only
+            available for Annual reports.
+          format: float
+          type: number
+        item7a:
+          description: Cosine similarity of Item 7A (Quantitative and Qualitative
+            Disclosures About Market Risk). This number is only available for Annual
+            reports.
+          format: float
+          type: number
+        accessNumber:
+          description: Access number.
+          type: string
+        form:
+          description: Form type.
+          type: string
+        filedDate:
+          description: Filed date <code>%Y-%m-%d %H:%M:%S</code>.
+          type: string
+        acceptedDate:
+          description: Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
+          type: string
+        reportUrl:
+          description: Report's URL.
+          type: string
+        filingUrl:
+          description: Filing's URL.
+          type: string
+      type: object
     SimilarityIndex:
       example:
         symbol: symbol
         cik: cik
         similarity:
-        - symbol: symbol
+        - item2: 1.4658129
+          item7a: 5.637377
+          item1: 0.8008282
           cik: cik
           form: form
           accessNumber: accessNumber
+          item7: 5.962134
           reportUrl: reportUrl
+          item1a: 6.0274563
           filedDate: filedDate
           acceptedDate: acceptedDate
           filingUrl: filingUrl
-        - symbol: symbol
+        - item2: 1.4658129
+          item7a: 5.637377
+          item1: 0.8008282
           cik: cik
           form: form
           accessNumber: accessNumber
+          item7: 5.962134
           reportUrl: reportUrl
+          item1a: 6.0274563
           filedDate: filedDate
           acceptedDate: acceptedDate
           filingUrl: filingUrl
@@ -3236,7 +3309,7 @@ components:
           description: Array of filings with its cosine similarity compared to the
             same report of the previous year.
           items:
-            $ref: '#/components/schemas/Filing'
+            $ref: '#/components/schemas/SimilarityIndexInfo'
           type: array
       type: object
     IPOEvent:

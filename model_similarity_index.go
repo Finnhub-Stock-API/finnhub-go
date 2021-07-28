@@ -21,7 +21,7 @@ type SimilarityIndex struct {
 	// CIK.
 	Cik *string `json:"cik,omitempty"`
 	// Array of filings with its cosine similarity compared to the same report of the previous year.
-	Similarity *[]Filing `json:"similarity,omitempty"`
+	Similarity *[]SimilarityIndexInfo `json:"similarity,omitempty"`
 }
 
 // NewSimilarityIndex instantiates a new SimilarityIndex object
@@ -106,9 +106,9 @@ func (o *SimilarityIndex) SetCik(v string) {
 }
 
 // GetSimilarity returns the Similarity field value if set, zero value otherwise.
-func (o *SimilarityIndex) GetSimilarity() []Filing {
+func (o *SimilarityIndex) GetSimilarity() []SimilarityIndexInfo {
 	if o == nil || o.Similarity == nil {
-		var ret []Filing
+		var ret []SimilarityIndexInfo
 		return ret
 	}
 	return *o.Similarity
@@ -116,7 +116,7 @@ func (o *SimilarityIndex) GetSimilarity() []Filing {
 
 // GetSimilarityOk returns a tuple with the Similarity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SimilarityIndex) GetSimilarityOk() (*[]Filing, bool) {
+func (o *SimilarityIndex) GetSimilarityOk() (*[]SimilarityIndexInfo, bool) {
 	if o == nil || o.Similarity == nil {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *SimilarityIndex) HasSimilarity() bool {
 	return false
 }
 
-// SetSimilarity gets a reference to the given []Filing and assigns it to the Similarity field.
-func (o *SimilarityIndex) SetSimilarity(v []Filing) {
+// SetSimilarity gets a reference to the given []SimilarityIndexInfo and assigns it to the Similarity field.
+func (o *SimilarityIndex) SetSimilarity(v []SimilarityIndexInfo) {
 	o.Similarity = &v
 }
 

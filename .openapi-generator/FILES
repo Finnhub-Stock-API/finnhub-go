@@ -90,6 +90,7 @@ docs/RevenueEstimatesInfo.md
 docs/SECSentimentAnalysis.md
 docs/Sentiment.md
 docs/SimilarityIndex.md
+docs/SimilarityIndexInfo.md
 docs/SocialSentiment.md
 docs/Split.md
 docs/StockCandles.md
@@ -195,6 +196,7 @@ model_revenue_estimates_info.go
 model_sec_sentiment_analysis.go
 model_sentiment.go
 model_similarity_index.go
+model_similarity_index_info.go
 model_social_sentiment.go
 model_split.go
 model_stock_candles.go
