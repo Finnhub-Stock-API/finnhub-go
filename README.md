@@ -3,14 +3,14 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.3
+- Package version: 2.0.4
 
 ## Installation
 
 Install package:
 
 ```shell
-$ go get -u github.com/Finnhub-Stock-API/finnhub-go
+$ go get -u github.com/Finnhub-Stock-API/finnhub-go/v2
 ```
 
 Example (check out other methods documentation [here](https://pkg.go.dev/github.com/Finnhub-Stock-API/finnhub-go?tab=doc#DefaultApiService)):
@@ -21,7 +21,7 @@ package main
 import (
 	"context"
 	"fmt"
-	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
+	finnhub "github.com/Finnhub-Stock-API/finnhub-go/v2"
 )
 
 func main() {
@@ -84,22 +84,15 @@ func main() {
     peers, _, err := finnhubClient.CompanyPeers(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", peers)
 
-    //// Company profile
-    //profile, _, err := finnhubClient.CompanyProfile(context.Background()).Symbol("AAPL").Execute()
-    //if err != nil {
-    //	panic(err)
-    //}
-    //fmt.Printf("%+v\n", profile)
-    //profileISIN, _, err := finnhubClient.CompanyProfile(context.Background()).Isin("US0378331005").Execute()
-    //if err != nil {
-    //	panic(err)
-    //}
-    //fmt.Printf("%+v\n", profileISIN)
-    //profileCusip, _, err := finnhubClient.CompanyProfile(context.Background()).Cusip("037833100").Execute()
-    //if err != nil {
-    //	panic(err)
-    //}
-    //fmt.Printf("%+v\n", profileCusip)
+    // Company profile
+    profile, _, err := finnhubClient.CompanyProfile(context.Background()).Symbol("AAPL").Execute()
+    fmt.Printf("%+v\n", profile)
+
+    profileISIN, _, err := finnhubClient.CompanyProfile(context.Background()).Isin("US0378331005").Execute()
+    fmt.Printf("%+v\n", profileISIN)
+
+    profileCusip, _, err := finnhubClient.CompanyProfile(context.Background()).Cusip("037833100").Execute()
+    fmt.Printf("%+v\n", profileCusip)
 
     // Company profile2
     profile2, _, err := finnhubClient.CompanyProfile2(context.Background()).Symbol("AAPL").Execute()
