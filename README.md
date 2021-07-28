@@ -45,9 +45,8 @@ import (
 ```
 
 
-
 ## Examples
-Example (check out other methods documentation [here](https://pkg.go.dev/github.com/Finnhub-Stock-API/finnhub-go?tab=doc#DefaultApiService)):
+Example (check out other methods documentation [here](https://pkg.go.dev/github.com/Finnhub-Stock-API/finnhub-go/v2)):
 
 ```golang
 package main
