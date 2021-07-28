@@ -31,7 +31,7 @@ func main() {
 	
     //Earnings calendar
     earningsCalendar, _, err := finnhubClient.EarningsCalendar(context.Background()).From("2021-07-01").To("2021-07-25").Execute()
-    fmt.Printf(objectString(earningsCalendar))
+    fmt.Printf("%+v\n", earningsCalendar)
 
     // NBBO
     bboData, _, err := finnhubClient.StockNbbo(context.Background()).Symbol("AAPL").Date("2021-07-23").Limit(50).Skip(0).Execute()
@@ -321,7 +321,6 @@ func main() {
     searchResult, _, err := finnhubClient.SymbolSearch(context.Background()).Q("AAPL").Execute()
     fmt.Printf("%+v\n", searchResult)
 }
-
 
 ```
 
