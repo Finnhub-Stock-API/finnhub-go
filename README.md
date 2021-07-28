@@ -7,12 +7,46 @@
 
 ## Installation
 
-Install package:
+### Using Go Modules
+Make sure your project is using Go Modules (it will have a `go.mod` file in its
+root if it already is):
+
+``` sh
+go mod init
+```
+
+Then, reference finnhub-go in a Go program with `import`:
+
+``` go
+import (
+    finnhub "github.com/Finnhub-Stock-API/finnhub-go/v2"
+)
+```
+
+Run any of the normal `go` commands (`build`/`install`/`test`). The Go
+toolchain will resolve and fetch the finnhub-go module automatically.
+
+Alternatively, you can also explicitly `go get` the package into a project:
 
 ```shell
 $ go get -u github.com/Finnhub-Stock-API/finnhub-go/v2
 ```
 
+### Using `go get`
+If you don't want to use Go Modules, you can choose to get the library directly:
+```shell
+$ go get -u github.com/Finnhub-Stock-API/finnhub-go
+```
+Then, reference finnhub-go in a Go program with `import` (Note that no /v2 at the end):
+``` go
+import (
+    finnhub "github.com/Finnhub-Stock-API/finnhub-go"
+)
+```
+
+
+
+## Examples
 Example (check out other methods documentation [here](https://pkg.go.dev/github.com/Finnhub-Stock-API/finnhub-go?tab=doc#DefaultApiService)):
 
 ```golang
