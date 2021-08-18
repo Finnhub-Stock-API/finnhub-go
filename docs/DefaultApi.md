@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
 [**CompanyEpsEstimates**](DefaultApi.md#CompanyEpsEstimates) | **Get** /stock/eps-estimate | Earnings Estimates
+[**CompanyEsgScore**](DefaultApi.md#CompanyEsgScore) | **Get** /stock/esg | Company ESG Scores
 [**CompanyExecutive**](DefaultApi.md#CompanyExecutive) | **Get** /stock/executive | Company Executive
 [**CompanyNews**](DefaultApi.md#CompanyNews) | **Get** /company-news | Company News
 [**CompanyPeers**](DefaultApi.md#CompanyPeers) | **Get** /stock/peers | Peers
@@ -333,6 +334,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EarningsEstimates**](EarningsEstimates.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompanyEsgScore
+
+> CompanyESG CompanyEsgScore(ctx).Symbol(symbol).Execute()
+
+Company ESG Scores
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyEsgScore(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyEsgScore``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyEsgScore`: CompanyESG
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyEsgScore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyEsgScoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**CompanyESG**](CompanyESG.md)
 
 ### Authorization
 

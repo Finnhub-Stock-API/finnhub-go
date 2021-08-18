@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.4
+- Package version: 2.0.5
 
 ## Installation
 
@@ -346,6 +346,10 @@ func main() {
     //Symbol lookup
     searchResult, _, err := finnhubClient.SymbolSearch(context.Background()).Q("AAPL").Execute()
     fmt.Printf("%+v\n", searchResult)
+    
+    // Company ESG
+	companyESGScore, _, err := finnhubClient.CompanyEsgScore(context.Background()).Symbol("AAPL").Execute()
+	fmt.Printf("%+v\n", companyESGScore)
 }
 
 ```

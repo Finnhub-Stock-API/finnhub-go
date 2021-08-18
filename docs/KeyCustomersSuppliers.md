@@ -8,6 +8,12 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name | [optional] 
 **Customer** | Pointer to **bool** | Whether the company is a customer. | [optional] 
 **Supplier** | Pointer to **bool** | Whether the company is a supplier | [optional] 
+**OneMonthCorrelation** | Pointer to **float32** | 1-month price correlation | [optional] 
+**OneYearCorrelation** | Pointer to **float32** | 1-year price correlation | [optional] 
+**SixMonthCorrelation** | Pointer to **float32** | 6-month price correlation | [optional] 
+**ThreeMonthCorrelation** | Pointer to **float32** | 3-month price correlation | [optional] 
+**TwoWeekCorrelation** | Pointer to **float32** | 2-week price correlation | [optional] 
+**TwoYearCorrelation** | Pointer to **float32** | 2-year price correlation | [optional] 
 
 ## Methods
 
@@ -127,6 +133,156 @@ SetSupplier sets Supplier field to given value.
 `func (o *KeyCustomersSuppliers) HasSupplier() bool`
 
 HasSupplier returns a boolean if a field has been set.
+
+### GetOneMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) GetOneMonthCorrelation() float32`
+
+GetOneMonthCorrelation returns the OneMonthCorrelation field if non-nil, zero value otherwise.
+
+### GetOneMonthCorrelationOk
+
+`func (o *KeyCustomersSuppliers) GetOneMonthCorrelationOk() (*float32, bool)`
+
+GetOneMonthCorrelationOk returns a tuple with the OneMonthCorrelation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOneMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) SetOneMonthCorrelation(v float32)`
+
+SetOneMonthCorrelation sets OneMonthCorrelation field to given value.
+
+### HasOneMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) HasOneMonthCorrelation() bool`
+
+HasOneMonthCorrelation returns a boolean if a field has been set.
+
+### GetOneYearCorrelation
+
+`func (o *KeyCustomersSuppliers) GetOneYearCorrelation() float32`
+
+GetOneYearCorrelation returns the OneYearCorrelation field if non-nil, zero value otherwise.
+
+### GetOneYearCorrelationOk
+
+`func (o *KeyCustomersSuppliers) GetOneYearCorrelationOk() (*float32, bool)`
+
+GetOneYearCorrelationOk returns a tuple with the OneYearCorrelation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOneYearCorrelation
+
+`func (o *KeyCustomersSuppliers) SetOneYearCorrelation(v float32)`
+
+SetOneYearCorrelation sets OneYearCorrelation field to given value.
+
+### HasOneYearCorrelation
+
+`func (o *KeyCustomersSuppliers) HasOneYearCorrelation() bool`
+
+HasOneYearCorrelation returns a boolean if a field has been set.
+
+### GetSixMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) GetSixMonthCorrelation() float32`
+
+GetSixMonthCorrelation returns the SixMonthCorrelation field if non-nil, zero value otherwise.
+
+### GetSixMonthCorrelationOk
+
+`func (o *KeyCustomersSuppliers) GetSixMonthCorrelationOk() (*float32, bool)`
+
+GetSixMonthCorrelationOk returns a tuple with the SixMonthCorrelation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSixMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) SetSixMonthCorrelation(v float32)`
+
+SetSixMonthCorrelation sets SixMonthCorrelation field to given value.
+
+### HasSixMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) HasSixMonthCorrelation() bool`
+
+HasSixMonthCorrelation returns a boolean if a field has been set.
+
+### GetThreeMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) GetThreeMonthCorrelation() float32`
+
+GetThreeMonthCorrelation returns the ThreeMonthCorrelation field if non-nil, zero value otherwise.
+
+### GetThreeMonthCorrelationOk
+
+`func (o *KeyCustomersSuppliers) GetThreeMonthCorrelationOk() (*float32, bool)`
+
+GetThreeMonthCorrelationOk returns a tuple with the ThreeMonthCorrelation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThreeMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) SetThreeMonthCorrelation(v float32)`
+
+SetThreeMonthCorrelation sets ThreeMonthCorrelation field to given value.
+
+### HasThreeMonthCorrelation
+
+`func (o *KeyCustomersSuppliers) HasThreeMonthCorrelation() bool`
+
+HasThreeMonthCorrelation returns a boolean if a field has been set.
+
+### GetTwoWeekCorrelation
+
+`func (o *KeyCustomersSuppliers) GetTwoWeekCorrelation() float32`
+
+GetTwoWeekCorrelation returns the TwoWeekCorrelation field if non-nil, zero value otherwise.
+
+### GetTwoWeekCorrelationOk
+
+`func (o *KeyCustomersSuppliers) GetTwoWeekCorrelationOk() (*float32, bool)`
+
+GetTwoWeekCorrelationOk returns a tuple with the TwoWeekCorrelation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwoWeekCorrelation
+
+`func (o *KeyCustomersSuppliers) SetTwoWeekCorrelation(v float32)`
+
+SetTwoWeekCorrelation sets TwoWeekCorrelation field to given value.
+
+### HasTwoWeekCorrelation
+
+`func (o *KeyCustomersSuppliers) HasTwoWeekCorrelation() bool`
+
+HasTwoWeekCorrelation returns a boolean if a field has been set.
+
+### GetTwoYearCorrelation
+
+`func (o *KeyCustomersSuppliers) GetTwoYearCorrelation() float32`
+
+GetTwoYearCorrelation returns the TwoYearCorrelation field if non-nil, zero value otherwise.
+
+### GetTwoYearCorrelationOk
+
+`func (o *KeyCustomersSuppliers) GetTwoYearCorrelationOk() (*float32, bool)`
+
+GetTwoYearCorrelationOk returns a tuple with the TwoYearCorrelation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTwoYearCorrelation
+
+`func (o *KeyCustomersSuppliers) SetTwoYearCorrelation(v float32)`
+
+SetTwoYearCorrelation sets TwoYearCorrelation field to given value.
+
+### HasTwoYearCorrelation
+
+`func (o *KeyCustomersSuppliers) HasTwoYearCorrelation() bool`
+
+HasTwoYearCorrelation returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

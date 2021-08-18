@@ -2079,6 +2079,36 @@ paths:
       summary: Supply Chain Relationships
       tags:
       - Default
+  /stock/esg:
+    get:
+      description: <p>This endpoint provides ESG scores and important indicators for
+        1000+ global companies. The data is collected through company's public ESG
+        disclosure and public sources.</p><p>Our ESG scoring models takes into account
+        more than 150 different inputs to calculate the level of ESG risks and how
+        well a company is managing them. A higher score means lower ESG risk or better
+        ESG management. ESG scores are in the the range of 0-100. Some key indicators
+        might contain letter-grade score from C- to A+ with C- is the lowest score
+        and A+ is the highest score.</p>
+      operationId: company-esg-score
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyESG'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company ESG Scores
+      tags:
+      - Default
   /covid19/us:
     get:
       description: Get real-time updates on the number of COVID-19 (Corona virus)
@@ -5231,9 +5261,15 @@ components:
       type: object
     KeyCustomersSuppliers:
       example:
+        twoYearCorrelation: 2.302136
         symbol: symbol
+        twoWeekCorrelation: 5.637377
+        oneMonthCorrelation: 0.8008282
         supplier: true
         name: name
+        threeMonthCorrelation: 5.962134
+        oneYearCorrelation: 6.0274563
+        sixMonthCorrelation: 1.4658129
         customer: true
       properties:
         symbol:
@@ -5248,18 +5284,54 @@ components:
         supplier:
           description: Whether the company is a supplier
           type: boolean
+        oneMonthCorrelation:
+          description: 1-month price correlation
+          format: float
+          type: number
+        oneYearCorrelation:
+          description: 1-year price correlation
+          format: float
+          type: number
+        sixMonthCorrelation:
+          description: 6-month price correlation
+          format: float
+          type: number
+        threeMonthCorrelation:
+          description: 3-month price correlation
+          format: float
+          type: number
+        twoWeekCorrelation:
+          description: 2-week price correlation
+          format: float
+          type: number
+        twoYearCorrelation:
+          description: 2-year price correlation
+          format: float
+          type: number
       type: object
     SupplyChainRelationships:
       example:
         symbol: symbol
         data:
-        - symbol: symbol
+        - twoYearCorrelation: 2.302136
+          symbol: symbol
+          twoWeekCorrelation: 5.637377
+          oneMonthCorrelation: 0.8008282
           supplier: true
           name: name
+          threeMonthCorrelation: 5.962134
+          oneYearCorrelation: 6.0274563
+          sixMonthCorrelation: 1.4658129
           customer: true
-        - symbol: symbol
+        - twoYearCorrelation: 2.302136
+          symbol: symbol
+          twoWeekCorrelation: 5.637377
+          oneMonthCorrelation: 0.8008282
           supplier: true
           name: name
+          threeMonthCorrelation: 5.962134
+          oneYearCorrelation: 6.0274563
+          sixMonthCorrelation: 1.4658129
           customer: true
       properties:
         symbol:
@@ -5270,6 +5342,39 @@ components:
           items:
             $ref: '#/components/schemas/KeyCustomersSuppliers'
           type: array
+      type: object
+    CompanyESG:
+      example:
+        symbol: symbol
+        data: '{}'
+        totalESGScore: 0.8008282
+        environmentScore: 6.0274563
+        governanceScore: 1.4658129
+        socialScore: 5.962134
+      properties:
+        symbol:
+          description: symbol
+          type: string
+        totalESGScore:
+          description: Total ESG Score
+          format: float
+          type: number
+        environmentScore:
+          description: symbol
+          format: float
+          type: number
+        governanceScore:
+          description: symbol
+          format: float
+          type: number
+        socialScore:
+          description: symbol
+          format: float
+          type: number
+        data:
+          type: object
+      type: object
+    CompanyESGMap:
       type: object
     CovidInfo:
       example:
