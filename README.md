@@ -348,8 +348,15 @@ func main() {
     fmt.Printf("%+v\n", searchResult)
     
     // Company ESG
-	companyESGScore, _, err := finnhubClient.CompanyEsgScore(context.Background()).Symbol("AAPL").Execute()
+    companyESGScore, _, err := finnhubClient.CompanyEsgScore(context.Background()).Symbol("AAPL").Execute()
 	fmt.Printf("%+v\n", companyESGScore)
+    
+    // Company Earnings Quality Score
+    earningsQualityScore, _, err := finnhubClient.CompanyEarningsQualityScore(context.Background()).Symbol("AAPL").Freq("quarterly").Execute()
+    if err != nil {
+		panic(err)
+	}
+    fmt.Printf("%+v\n", earningsQualityScore)
 }
 
 ```
