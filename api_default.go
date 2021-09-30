@@ -433,6 +433,142 @@ func (a *DefaultApiService) CompanyEarningsExecute(r ApiCompanyEarningsRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiCompanyEarningsQualityScoreRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	freq *string
+}
+
+// Symbol.
+func (r ApiCompanyEarningsQualityScoreRequest) Symbol(symbol string) ApiCompanyEarningsQualityScoreRequest {
+	r.symbol = &symbol
+	return r
+}
+// Frequency. Currently only support &lt;code&gt;quarterly&lt;/code&gt;
+func (r ApiCompanyEarningsQualityScoreRequest) Freq(freq string) ApiCompanyEarningsQualityScoreRequest {
+	r.freq = &freq
+	return r
+}
+
+func (r ApiCompanyEarningsQualityScoreRequest) Execute() (CompanyEarningsQualityScore, *_nethttp.Response, error) {
+	return r.ApiService.CompanyEarningsQualityScoreExecute(r)
+}
+
+/*
+CompanyEarningsQualityScore Company Earnings Quality Score
+
+<p>This endpoint provides Earnings Quality Score for global companies.</p><p> Earnings quality refers to the extent to which current earnings predict future earnings. "High-quality" earnings are expected to persist, while "low-quality" earnings do not. A higher score means a higher earnings quality</p><p>Finnhub uses a proprietary model which takes into consideration 4 criteria:</p> <ul style="list-style-type: unset; margin-left: 30px;"><li>Profitability</li><li>Growth</li><li>Cash Generation & Capital Allocation</li><li>Leverage</li></ul><br/><p>We then compare the metrics of each company in each category against its peers in the same industry to gauge how quality its earnings is.</p>
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCompanyEarningsQualityScoreRequest
+*/
+func (a *DefaultApiService) CompanyEarningsQualityScore(ctx _context.Context) ApiCompanyEarningsQualityScoreRequest {
+	return ApiCompanyEarningsQualityScoreRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CompanyEarningsQualityScore
+func (a *DefaultApiService) CompanyEarningsQualityScoreExecute(r ApiCompanyEarningsQualityScoreRequest) (CompanyEarningsQualityScore, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  CompanyEarningsQualityScore
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompanyEarningsQualityScore")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/earnings-quality-score"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+	if r.freq == nil {
+		return localVarReturnValue, nil, reportError("freq is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	localVarQueryParams.Add("freq", parameterToString(*r.freq, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiCompanyEpsEstimatesRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -985,7 +1121,7 @@ func (r ApiCompanyPeersRequest) Execute() ([]string, *_nethttp.Response, error) 
 /*
 CompanyPeers Peers
 
-Get company peers. Return a list of peers in the same country and GICS sub-industry
+Get company peers. Return a list of peers in the same country and sub-industry
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCompanyPeersRequest
@@ -8392,7 +8528,7 @@ func (r ApiStockTickRequest) Execute() (TickData, *_nethttp.Response, error) {
 /*
 StockTick Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><p>Note that for Nasdaq Nordic and Baltic, you need to use ISIN instead of symbol to query tick data. </p><table class="table table-hover">
+<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
   <thead>
     <tr>
       <th>Exchange</th>

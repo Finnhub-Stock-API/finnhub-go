@@ -20,11 +20,11 @@ type CompanyESG struct {
 	Symbol *string `json:"symbol,omitempty"`
 	// Total ESG Score
 	TotalESGScore *float32 `json:"totalESGScore,omitempty"`
-	// symbol
+	// Environment Score
 	EnvironmentScore *float32 `json:"environmentScore,omitempty"`
-	// symbol
+	// Governance Score
 	GovernanceScore *float32 `json:"governanceScore,omitempty"`
-	// symbol
+	// Social Score
 	SocialScore *float32 `json:"socialScore,omitempty"`
 	Data *map[string]interface{} `json:"data,omitempty"`
 }

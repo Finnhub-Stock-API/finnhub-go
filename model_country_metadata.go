@@ -28,6 +28,10 @@ type CountryMetadata struct {
 	Currency *string `json:"currency,omitempty"`
 	// Currency code
 	CurrencyCode *string `json:"currencyCode,omitempty"`
+	// Region
+	Region *string `json:"region,omitempty"`
+	// Sub-Region
+	SubRegion *string `json:"subRegion,omitempty"`
 }
 
 // NewCountryMetadata instantiates a new CountryMetadata object
@@ -239,6 +243,70 @@ func (o *CountryMetadata) SetCurrencyCode(v string) {
 	o.CurrencyCode = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *CountryMetadata) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CountryMetadata) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *CountryMetadata) HasRegion() bool {
+	if o != nil && o.Region != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *CountryMetadata) SetRegion(v string) {
+	o.Region = &v
+}
+
+// GetSubRegion returns the SubRegion field value if set, zero value otherwise.
+func (o *CountryMetadata) GetSubRegion() string {
+	if o == nil || o.SubRegion == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubRegion
+}
+
+// GetSubRegionOk returns a tuple with the SubRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CountryMetadata) GetSubRegionOk() (*string, bool) {
+	if o == nil || o.SubRegion == nil {
+		return nil, false
+	}
+	return o.SubRegion, true
+}
+
+// HasSubRegion returns a boolean if a field has been set.
+func (o *CountryMetadata) HasSubRegion() bool {
+	if o != nil && o.SubRegion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubRegion gets a reference to the given string and assigns it to the SubRegion field.
+func (o *CountryMetadata) SetSubRegion(v string) {
+	o.SubRegion = &v
+}
+
 func (o CountryMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Country != nil {
@@ -258,6 +326,12 @@ func (o CountryMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.CurrencyCode != nil {
 		toSerialize["currencyCode"] = o.CurrencyCode
+	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
+	if o.SubRegion != nil {
+		toSerialize["subRegion"] = o.SubRegion
 	}
 	return json.Marshal(toSerialize)
 }

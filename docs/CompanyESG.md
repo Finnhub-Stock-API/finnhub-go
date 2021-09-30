@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | symbol | [optional] 
 **TotalESGScore** | Pointer to **float32** | Total ESG Score | [optional] 
-**EnvironmentScore** | Pointer to **float32** | symbol | [optional] 
-**GovernanceScore** | Pointer to **float32** | symbol | [optional] 
-**SocialScore** | Pointer to **float32** | symbol | [optional] 
+**EnvironmentScore** | Pointer to **float32** | Environment Score | [optional] 
+**GovernanceScore** | Pointer to **float32** | Governance Score | [optional] 
+**SocialScore** | Pointer to **float32** | Social Score | [optional] 
 **Data** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods

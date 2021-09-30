@@ -9,6 +9,8 @@ docs/BasicFinancials.md
 docs/BreakdownItem.md
 docs/Company.md
 docs/CompanyESG.md
+docs/CompanyEarningsQualityScore.md
+docs/CompanyEarningsQualityScoreData.md
 docs/CompanyExecutive.md
 docs/CompanyNews.md
 docs/CompanyNewsStatistics.md
@@ -116,6 +118,8 @@ model_aggregate_indicators.go
 model_basic_financials.go
 model_breakdown_item.go
 model_company.go
+model_company_earnings_quality_score.go
+model_company_earnings_quality_score_data.go
 model_company_esg.go
 model_company_executive.go
 model_company_news.go

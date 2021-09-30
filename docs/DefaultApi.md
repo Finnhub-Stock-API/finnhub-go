@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
 [**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
+[**CompanyEarningsQualityScore**](DefaultApi.md#CompanyEarningsQualityScore) | **Get** /stock/earnings-quality-score | Company Earnings Quality Score
 [**CompanyEpsEstimates**](DefaultApi.md#CompanyEpsEstimates) | **Get** /stock/eps-estimate | Earnings Estimates
 [**CompanyEsgScore**](DefaultApi.md#CompanyEsgScore) | **Get** /stock/esg | Company ESG Scores
 [**CompanyExecutive**](DefaultApi.md#CompanyExecutive) | **Get** /stock/executive | Company Executive
@@ -266,6 +267,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]EarningResult**](EarningResult.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompanyEarningsQualityScore
+
+> CompanyEarningsQualityScore CompanyEarningsQualityScore(ctx).Symbol(symbol).Freq(freq).Execute()
+
+Company Earnings Quality Score
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    freq := "freq_example" // string | Frequency. Currently only support <code>quarterly</code>
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyEarningsQualityScore(context.Background()).Symbol(symbol).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyEarningsQualityScore``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyEarningsQualityScore`: CompanyEarningsQualityScore
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyEarningsQualityScore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyEarningsQualityScoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+ **freq** | **string** | Frequency. Currently only support &lt;code&gt;quarterly&lt;/code&gt; | 
+
+### Return type
+
+[**CompanyEarningsQualityScore**](CompanyEarningsQualityScore.md)
 
 ### Authorization
 

@@ -32,13 +32,13 @@ type CompanyProfile struct {
 	Description *string `json:"description,omitempty"`
 	// Listed exchange.
 	Exchange *string `json:"exchange,omitempty"`
-	// GICS industry group.
+	// Industry group.
 	Ggroup *string `json:"ggroup,omitempty"`
-	// GICS industry.
+	// Industry.
 	Gind *string `json:"gind,omitempty"`
-	// GICS sector.
+	// Sector.
 	Gsector *string `json:"gsector,omitempty"`
-	// GICS sub-industry.
+	// Sub-industry.
 	Gsubind *string `json:"gsubind,omitempty"`
 	// ISIN number.
 	Isin *string `json:"isin,omitempty"`

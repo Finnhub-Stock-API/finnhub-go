@@ -306,7 +306,7 @@ paths:
   /stock/peers:
     get:
       description: Get company peers. Return a list of peers in the same country and
-        GICS sub-industry
+        sub-industry
       operationId: company-peers
       parameters:
       - description: 'Symbol of the company: AAPL.'
@@ -1094,7 +1094,7 @@ paths:
   /stock/tick:
     get:
       description: |-
-        <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><p>Note that for Nasdaq Nordic and Baltic, you need to use ISIN instead of symbol to query tick data. </p><table class="table table-hover">
+        <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
           <thead>
             <tr>
               <th>Exchange</th>
@@ -2109,6 +2109,43 @@ paths:
       summary: Company ESG Scores
       tags:
       - Default
+  /stock/earnings-quality-score:
+    get:
+      description: '<p>This endpoint provides Earnings Quality Score for global companies.</p><p>
+        Earnings quality refers to the extent to which current earnings predict future
+        earnings. "High-quality" earnings are expected to persist, while "low-quality"
+        earnings do not. A higher score means a higher earnings quality</p><p>Finnhub
+        uses a proprietary model which takes into consideration 4 criteria:</p> <ul
+        style="list-style-type: unset; margin-left: 30px;"><li>Profitability</li><li>Growth</li><li>Cash
+        Generation & Capital Allocation</li><li>Leverage</li></ul><br/><p>We then
+        compare the metrics of each company in each category against its peers in
+        the same industry to gauge how quality its earnings is.</p>'
+      operationId: company-earnings-quality-score
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Frequency. Currently only support <code>quarterly</code>
+        in: query
+        name: freq
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyEarningsQualityScore'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company Earnings Quality Score
+      tags:
+      - Default
   /covid19/us:
     get:
       description: Get real-time updates on the number of COVID-19 (Corona virus)
@@ -2365,16 +2402,16 @@ components:
           description: Listed exchange.
           type: string
         ggroup:
-          description: GICS industry group.
+          description: Industry group.
           type: string
         gind:
-          description: GICS industry.
+          description: Industry.
           type: string
         gsector:
-          description: GICS sector.
+          description: Sector.
           type: string
         gsubind:
-          description: GICS sub-industry.
+          description: Sub-industry.
           type: string
         isin:
           description: ISIN number.
@@ -5360,21 +5397,90 @@ components:
           format: float
           type: number
         environmentScore:
-          description: symbol
+          description: Environment Score
           format: float
           type: number
         governanceScore:
-          description: symbol
+          description: Governance Score
           format: float
           type: number
         socialScore:
-          description: symbol
+          description: Social Score
           format: float
           type: number
         data:
           type: object
       type: object
     CompanyESGMap:
+      type: object
+    CompanyEarningsQualityScore:
+      example:
+        symbol: symbol
+        data:
+        - profitability: 6.0274563
+          leverage: 5.962134
+          score: 5.637377
+          letterScore: letterScore
+          period: period
+          cashGenerationCapitalAllocation: 1.4658129
+          growth: 0.8008282
+        - profitability: 6.0274563
+          leverage: 5.962134
+          score: 5.637377
+          letterScore: letterScore
+          period: period
+          cashGenerationCapitalAllocation: 1.4658129
+          growth: 0.8008282
+        freq: freq
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        freq:
+          description: Frequency
+          type: string
+        data:
+          description: Array of earnings quality score.
+          items:
+            $ref: '#/components/schemas/CompanyEarningsQualityScoreData'
+          type: array
+      type: object
+    CompanyEarningsQualityScoreData:
+      example:
+        profitability: 6.0274563
+        leverage: 5.962134
+        score: 5.637377
+        letterScore: letterScore
+        period: period
+        cashGenerationCapitalAllocation: 1.4658129
+        growth: 0.8008282
+      properties:
+        period:
+          description: Period
+          type: string
+        growth:
+          description: Growth Score
+          format: float
+          type: number
+        profitability:
+          description: Profitability Score
+          format: float
+          type: number
+        cashGenerationCapitalAllocation:
+          description: Cash Generation and Capital Allocation
+          format: float
+          type: number
+        leverage:
+          description: Leverage Score
+          format: float
+          type: number
+        score:
+          description: Total Score
+          format: float
+          type: number
+        letterScore:
+          description: Letter Score
+          type: string
       type: object
     CovidInfo:
       example:
@@ -5423,8 +5529,10 @@ components:
         country: country
         code3: code3
         code2: code2
+        subRegion: subRegion
         codeNo: codeNo
         currency: currency
+        region: region
         currencyCode: currencyCode
       properties:
         country:
@@ -5444,6 +5552,12 @@ components:
           type: string
         currencyCode:
           description: Currency code
+          type: string
+        region:
+          description: Region
+          type: string
+        subRegion:
+          description: Sub-Region
           type: string
       type: object
     Economic event:

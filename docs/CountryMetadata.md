@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **CodeNo** | Pointer to **string** | UN code | [optional] 
 **Currency** | Pointer to **string** | Currency name | [optional] 
 **CurrencyCode** | Pointer to **string** | Currency code | [optional] 
+**Region** | Pointer to **string** | Region | [optional] 
+**SubRegion** | Pointer to **string** | Sub-Region | [optional] 
 
 ## Methods
 
@@ -179,6 +181,56 @@ SetCurrencyCode sets CurrencyCode field to given value.
 `func (o *CountryMetadata) HasCurrencyCode() bool`
 
 HasCurrencyCode returns a boolean if a field has been set.
+
+### GetRegion
+
+`func (o *CountryMetadata) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *CountryMetadata) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *CountryMetadata) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *CountryMetadata) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
+
+### GetSubRegion
+
+`func (o *CountryMetadata) GetSubRegion() string`
+
+GetSubRegion returns the SubRegion field if non-nil, zero value otherwise.
+
+### GetSubRegionOk
+
+`func (o *CountryMetadata) GetSubRegionOk() (*string, bool)`
+
+GetSubRegionOk returns a tuple with the SubRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubRegion
+
+`func (o *CountryMetadata) SetSubRegion(v string)`
+
+SetSubRegion sets SubRegion field to given value.
+
+### HasSubRegion
+
+`func (o *CountryMetadata) HasSubRegion() bool`
+
+HasSubRegion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
