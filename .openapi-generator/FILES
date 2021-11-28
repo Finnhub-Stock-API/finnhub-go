@@ -19,6 +19,7 @@ docs/CompanyProfile2.md
 docs/CountryMetadata.md
 docs/CovidInfo.md
 docs/CryptoCandles.md
+docs/CryptoProfile.md
 docs/CryptoSymbol.md
 docs/DefaultApi.md
 docs/Development.md
@@ -129,6 +130,7 @@ model_company_profile2.go
 model_country_metadata.go
 model_covid_info.go
 model_crypto_candles.go
+model_crypto_profile.go
 model_crypto_symbol.go
 model_development.go
 model_dividends.go

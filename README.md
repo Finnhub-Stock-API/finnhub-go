@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.6
+- Package version: 2.0.7
 
 ## Installation
 
@@ -356,7 +356,14 @@ func main() {
     if err != nil {
 		panic(err)
 	}
-    fmt.Printf("%+v\n", earningsQualityScore)
+    fmt.Printf("%+v\n", earningsQualityScore)   
+    
+    // Crypto Profile
+    cryptoProfile, _, err := finnhubClient.CryptoProfile(context.Background()).Symbol("BTC").Execute()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(objectString(cryptoProfile))
 }
 
 ```

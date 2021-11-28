@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**Covid19**](DefaultApi.md#Covid19) | **Get** /covid19/us | COVID-19
 [**CryptoCandles**](DefaultApi.md#CryptoCandles) | **Get** /crypto/candle | Crypto Candles
 [**CryptoExchanges**](DefaultApi.md#CryptoExchanges) | **Get** /crypto/exchange | Crypto Exchanges
+[**CryptoProfile**](DefaultApi.md#CryptoProfile) | **Get** /crypto/profile | Crypto Profile
 [**CryptoSymbols**](DefaultApi.md#CryptoSymbols) | **Get** /crypto/symbol | Crypto Symbol
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
 [**EconomicCalendar**](DefaultApi.md#EconomicCalendar) | **Get** /calendar/economic | Economic Calendar
@@ -304,7 +305,7 @@ import (
 
 func main() {
     symbol := "symbol_example" // string | Symbol.
-    freq := "freq_example" // string | Frequency. Currently only support <code>quarterly</code>
+    freq := "freq_example" // string | Frequency. Currently support <code>annual</code> and <code>quarterly</code>
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -330,7 +331,7 @@ Other parameters are passed through a pointer to a apiCompanyEarningsQualityScor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol. | 
- **freq** | **string** | Frequency. Currently only support &lt;code&gt;quarterly&lt;/code&gt; | 
+ **freq** | **string** | Frequency. Currently support &lt;code&gt;annual&lt;/code&gt; and &lt;code&gt;quarterly&lt;/code&gt; | 
 
 ### Return type
 
@@ -1150,6 +1151,72 @@ Other parameters are passed through a pointer to a apiCryptoExchangesRequest str
 [[Back to README]](../README.md)
 
 
+## CryptoProfile
+
+> CryptoProfile CryptoProfile(ctx).Symbol(symbol).Execute()
+
+Crypto Profile
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Crypto symbol such as BTC or ETH.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CryptoProfile(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CryptoProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CryptoProfile`: CryptoProfile
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CryptoProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCryptoProfileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Crypto symbol such as BTC or ETH. | 
+
+### Return type
+
+[**CryptoProfile**](CryptoProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CryptoSymbols
 
 > []CryptoSymbol CryptoSymbols(ctx).Exchange(exchange).Execute()
@@ -1291,7 +1358,7 @@ Name | Type | Description  | Notes
 
 ## EconomicCalendar
 
-> EconomicCalendar EconomicCalendar(ctx).Execute()
+> EconomicCalendar EconomicCalendar(ctx).From(from).To(to).Execute()
 
 Economic Calendar
 
@@ -1306,14 +1373,17 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
 func main() {
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>. (optional)
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.EconomicCalendar(context.Background()).Execute()
+    resp, r, err := api_client.DefaultApi.EconomicCalendar(context.Background()).From(from).To(to).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EconomicCalendar``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1325,12 +1395,17 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiEconomicCalendarRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
 
 ### Return type
 
@@ -2580,7 +2655,7 @@ import (
 )
 
 func main() {
-    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    symbol := "symbol_example" // string | Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     from := time.Now() // string | From date: 2020-03-15. (optional)
     to := time.Now() // string | To date: 2020-03-16. (optional)
 
@@ -2607,7 +2682,7 @@ Other parameters are passed through a pointer to a apiInsiderTransactionsRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol of the company: AAPL. | 
+ **symbol** | **string** | Symbol of the company: AAPL. Leave this param blank to get the latest transactions. | 
  **from** | **string** | From date: 2020-03-15. | 
  **to** | **string** | To date: 2020-03-16. | 
 

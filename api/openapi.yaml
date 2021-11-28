@@ -432,7 +432,8 @@ paths:
         per API call.
       operationId: insider-transactions
       parameters:
-      - description: 'Symbol of the company: AAPL.'
+      - description: 'Symbol of the company: AAPL. Leave this param blank to get the
+          latest transactions.'
         in: query
         name: symbol
         required: true
@@ -1731,6 +1732,29 @@ paths:
       summary: Crypto Symbol
       tags:
       - Default
+  /crypto/profile:
+    get:
+      description: Get crypto's profile.
+      operationId: crypto-profile
+      parameters:
+      - description: Crypto symbol such as BTC or ETH.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CryptoProfile'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Crypto Profile
+      tags:
+      - Default
   /crypto/candle:
     get:
       description: Get candlestick data for crypto symbols.
@@ -2128,7 +2152,7 @@ paths:
         required: true
         schema:
           type: string
-      - description: Frequency. Currently only support <code>quarterly</code>
+      - description: Frequency. Currently support <code>annual</code> and <code>quarterly</code>
         in: query
         name: freq
         required: true
@@ -2213,6 +2237,19 @@ paths:
       description: <p>Get recent and upcoming economic releases.</p><p>Historical
         events and surprises are available for Enterprise clients.</p>
       operationId: economic-calendar
+      parameters:
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
       responses:
         "200":
           content:
@@ -4839,6 +4876,58 @@ components:
         symbol:
           description: Unique symbol used to identify this symbol used in <code>/crypto/candle</code>
             endpoint.
+          type: string
+      type: object
+    CryptoProfile:
+      example:
+        marketCap: 0.8008282
+        website: website
+        totalSupply: 6.0274563
+        proofType: proofType
+        name: name
+        description: description
+        logo: logo
+        maxSupply: 1.4658129
+        launchDate: launchDate
+        circulatingSupply: 5.962134
+        longName: longName
+      properties:
+        longName:
+          description: Long name.
+          type: string
+        name:
+          description: Name.
+          type: string
+        description:
+          description: Description.
+          type: string
+        website:
+          description: Project's website.
+          type: string
+        marketCap:
+          description: Market capitalization.
+          format: float
+          type: number
+        totalSupply:
+          description: Total supply.
+          format: float
+          type: number
+        maxSupply:
+          description: Max supply.
+          format: float
+          type: number
+        circulatingSupply:
+          description: Circulating supply.
+          format: float
+          type: number
+        logo:
+          description: Logo image.
+          type: string
+        launchDate:
+          description: Launch date.
+          type: string
+        proofType:
+          description: Proof type.
           type: string
       type: object
     CryptoCandles:
