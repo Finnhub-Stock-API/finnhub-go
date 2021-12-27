@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.7
+- Package version: 2.0.8
 
 ## Installation
 
@@ -364,6 +364,20 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(objectString(cryptoProfile))
+
+    // EBITDA Estimates
+    ebitdaEstimates, _, err := finnhubClient.CompanyEbitdaEstimates(context.Background()).Symbol("AAPL").Freq("annual").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", ebitdaEstimates)
+    
+    // EBIT Estimates
+    ebitEstimates, _, err := finnhubClient.CompanyEbitEstimates(context.Background()).Symbol("AAPL").Freq("annual").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", ebitEstimates)
 }
 
 ```

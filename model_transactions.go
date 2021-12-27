@@ -16,6 +16,8 @@ import (
 
 // Transactions struct for Transactions
 type Transactions struct {
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
 	// Insider's name.
 	Name *string `json:"name,omitempty"`
 	// Number of shares held after the transaction.
@@ -47,6 +49,38 @@ func NewTransactions() *Transactions {
 func NewTransactionsWithDefaults() *Transactions {
 	this := Transactions{}
 	return &this
+}
+
+// GetSymbol returns the Symbol field value if set, zero value otherwise.
+func (o *Transactions) GetSymbol() string {
+	if o == nil || o.Symbol == nil {
+		var ret string
+		return ret
+	}
+	return *o.Symbol
+}
+
+// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Transactions) GetSymbolOk() (*string, bool) {
+	if o == nil || o.Symbol == nil {
+		return nil, false
+	}
+	return o.Symbol, true
+}
+
+// HasSymbol returns a boolean if a field has been set.
+func (o *Transactions) HasSymbol() bool {
+	if o != nil && o.Symbol != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
+func (o *Transactions) SetSymbol(v string) {
+	o.Symbol = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -275,6 +309,9 @@ func (o *Transactions) SetTransactionCode(v string) {
 
 func (o Transactions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Symbol != nil {
+		toSerialize["symbol"] = o.Symbol
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}

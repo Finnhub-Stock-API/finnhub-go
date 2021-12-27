@@ -41,6 +41,10 @@ docs/EarningsCallTranscripts.md
 docs/EarningsCallTranscriptsList.md
 docs/EarningsEstimates.md
 docs/EarningsEstimatesInfo.md
+docs/EbitEstimates.md
+docs/EbitEstimatesInfo.md
+docs/EbitdaEstimates.md
+docs/EbitdaEstimatesInfo.md
 docs/EconomicCalendar.md
 docs/EconomicCode.md
 docs/EconomicData.md
@@ -143,6 +147,10 @@ model_earnings_call_transcripts.go
 model_earnings_call_transcripts_list.go
 model_earnings_estimates.go
 model_earnings_estimates_info.go
+model_ebit_estimates.go
+model_ebit_estimates_info.go
+model_ebitda_estimates.go
+model_ebitda_estimates_info.go
 model_economic_calendar.go
 model_economic_code.go
 model_economic_data.go

@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
 [**CompanyEarningsQualityScore**](DefaultApi.md#CompanyEarningsQualityScore) | **Get** /stock/earnings-quality-score | Company Earnings Quality Score
+[**CompanyEbitEstimates**](DefaultApi.md#CompanyEbitEstimates) | **Get** /stock/ebit-estimate | EBIT Estimates
+[**CompanyEbitdaEstimates**](DefaultApi.md#CompanyEbitdaEstimates) | **Get** /stock/ebitda-estimate | EBITDA Estimates
 [**CompanyEpsEstimates**](DefaultApi.md#CompanyEpsEstimates) | **Get** /stock/eps-estimate | Earnings Estimates
 [**CompanyEsgScore**](DefaultApi.md#CompanyEsgScore) | **Get** /stock/esg | Company ESG Scores
 [**CompanyExecutive**](DefaultApi.md#CompanyExecutive) | **Get** /stock/executive | Company Executive
@@ -336,6 +338,142 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompanyEarningsQualityScore**](CompanyEarningsQualityScore.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompanyEbitEstimates
+
+> EbitEstimates CompanyEbitEstimates(ctx).Symbol(symbol).Freq(freq).Execute()
+
+EBIT Estimates
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    freq := "freq_example" // string | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code> (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyEbitEstimates(context.Background()).Symbol(symbol).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyEbitEstimates``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyEbitEstimates`: EbitEstimates
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyEbitEstimates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyEbitEstimatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **freq** | **string** | Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt; | 
+
+### Return type
+
+[**EbitEstimates**](EbitEstimates.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompanyEbitdaEstimates
+
+> EbitdaEstimates CompanyEbitdaEstimates(ctx).Symbol(symbol).Freq(freq).Execute()
+
+EBITDA Estimates
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    freq := "freq_example" // string | Can take 1 of the following values: <code>annual, quarterly</code>. Default to <code>quarterly</code> (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyEbitdaEstimates(context.Background()).Symbol(symbol).Freq(freq).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyEbitdaEstimates``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyEbitdaEstimates`: EbitdaEstimates
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyEbitdaEstimates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyEbitdaEstimatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **freq** | **string** | Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt; | 
+
+### Return type
+
+[**EbitdaEstimates**](EbitdaEstimates.md)
 
 ### Authorization
 

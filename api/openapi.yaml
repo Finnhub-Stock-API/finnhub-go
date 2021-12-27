@@ -914,6 +914,64 @@ paths:
       summary: Revenue Estimates
       tags:
       - Default
+  /stock/ebitda-estimate:
+    get:
+      description: Get company's ebitda estimates.
+      operationId: company-ebitda-estimates
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'Can take 1 of the following values: <code>annual, quarterly</code>.
+          Default to <code>quarterly</code>'
+        in: query
+        name: freq
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EbitdaEstimates'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: EBITDA Estimates
+      tags:
+      - Default
+  /stock/ebit-estimate:
+    get:
+      description: Get company's ebit estimates.
+      operationId: company-ebit-estimates
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'Can take 1 of the following values: <code>annual, quarterly</code>.
+          Default to <code>quarterly</code>'
+        in: query
+        name: freq
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EbitEstimates'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: EBIT Estimates
+      tags:
+      - Default
   /stock/eps-estimate:
     get:
       description: Get company's EPS estimates.
@@ -2943,6 +3001,7 @@ components:
       type: object
     Transactions:
       example:
+        symbol: symbol
         filingDate: 2000-01-23
         change: 6
         name: name
@@ -2951,6 +3010,9 @@ components:
         transactionCode: transactionCode
         transactionDate: 2000-01-23
       properties:
+        symbol:
+          description: Symbol.
+          type: string
         name:
           description: Insider's name.
           type: string
@@ -2986,14 +3048,16 @@ components:
       example:
         symbol: symbol
         data:
-        - filingDate: 2000-01-23
+        - symbol: symbol
+          filingDate: 2000-01-23
           change: 6
           name: name
           transactionPrice: 1.4658129
           share: 0
           transactionCode: transactionCode
           transactionDate: 2000-01-23
-        - filingDate: 2000-01-23
+        - symbol: symbol
+          filingDate: 2000-01-23
           change: 6
           name: name
           transactionPrice: 1.4658129
@@ -3685,6 +3749,120 @@ components:
           description: List of estimates
           items:
             $ref: '#/components/schemas/RevenueEstimatesInfo'
+          type: array
+        freq:
+          description: 'Frequency: annual or quarterly.'
+          type: string
+        symbol:
+          description: Company symbol.
+          type: string
+      type: object
+    EbitdaEstimatesInfo:
+      example:
+        period: 2000-01-23
+        numberAnalysts: 5
+        ebitdaAvg: 0.8008282
+        ebitdaLow: 1.4658129
+        ebitdaHigh: 6.0274563
+      properties:
+        ebitdaAvg:
+          description: Average EBITDA estimates including Finnhub's proprietary estimates.
+          format: float
+          type: number
+        ebitdaHigh:
+          description: Highest estimate.
+          format: float
+          type: number
+        ebitdaLow:
+          description: Lowest estimate.
+          format: float
+          type: number
+        numberAnalysts:
+          description: Number of Analysts.
+          format: int64
+          type: integer
+        period:
+          description: Period.
+          format: date
+          type: string
+      type: object
+    EbitdaEstimates:
+      example:
+        symbol: symbol
+        data:
+        - period: 2000-01-23
+          numberAnalysts: 5
+          ebitdaAvg: 0.8008282
+          ebitdaLow: 1.4658129
+          ebitdaHigh: 6.0274563
+        - period: 2000-01-23
+          numberAnalysts: 5
+          ebitdaAvg: 0.8008282
+          ebitdaLow: 1.4658129
+          ebitdaHigh: 6.0274563
+        freq: freq
+      properties:
+        data:
+          description: List of estimates
+          items:
+            $ref: '#/components/schemas/EbitdaEstimatesInfo'
+          type: array
+        freq:
+          description: 'Frequency: annual or quarterly.'
+          type: string
+        symbol:
+          description: Company symbol.
+          type: string
+      type: object
+    EbitEstimatesInfo:
+      example:
+        ebitHigh: 6.0274563
+        ebitLow: 1.4658129
+        period: 2000-01-23
+        numberAnalysts: 5
+        ebitAvg: 0.8008282
+      properties:
+        ebitAvg:
+          description: Average EBIT estimates including Finnhub's proprietary estimates.
+          format: float
+          type: number
+        ebitHigh:
+          description: Highest estimate.
+          format: float
+          type: number
+        ebitLow:
+          description: Lowest estimate.
+          format: float
+          type: number
+        numberAnalysts:
+          description: Number of Analysts.
+          format: int64
+          type: integer
+        period:
+          description: Period.
+          format: date
+          type: string
+      type: object
+    EbitEstimates:
+      example:
+        symbol: symbol
+        data:
+        - ebitHigh: 6.0274563
+          ebitLow: 1.4658129
+          period: 2000-01-23
+          numberAnalysts: 5
+          ebitAvg: 0.8008282
+        - ebitHigh: 6.0274563
+          ebitLow: 1.4658129
+          period: 2000-01-23
+          numberAnalysts: 5
+          ebitAvg: 0.8008282
+        freq: freq
+      properties:
+        data:
+          description: List of estimates
+          items:
+            $ref: '#/components/schemas/EbitEstimatesInfo'
           type: array
         freq:
           description: 'Frequency: annual or quarterly.'
@@ -4506,26 +4684,30 @@ components:
     MutualFundProfileData:
       example:
         cusip: cusip
-        manager: manager
-        iraMinInvestment: 7.0614014
-        totalNav: 0.8008282
         deferredLoad: 5.962134
         description: description
+        className: className
         fee12b1: 5.637377
-        benchmark: benchmark
+        seriesId: seriesId
         standardMinInvestment: 3.6160767
+        classId: classId
         inceptionDate: 2000-01-23
+        turnover: 2.027123
+        investmentSegment: investmentSegment
+        beta: 1.4658129
+        maxRedemptionFee: 9.301444
+        manager: manager
+        iraMinInvestment: 7.0614014
+        seriesName: seriesName
+        totalNav: 0.8008282
+        benchmark: benchmark
         frontLoad: 2.302136
         expenseRatio: 6.0274563
         name: name
         category: category
-        turnover: 2.027123
-        investmentSegment: investmentSegment
         fundFamily: fundFamily
-        beta: 1.4658129
         isin: isin
         status: status
-        maxRedemptionFee: 9.301444
       properties:
         name:
           description: Name
@@ -4601,32 +4783,49 @@ components:
           description: Turnover.
           format: float
           type: number
+        seriesId:
+          description: Fund's series ID. This field can be used to group multiple
+            share classes into 1 unique fund.
+          type: string
+        seriesName:
+          description: Fund's series name.
+          type: string
+        classId:
+          description: Class ID.
+          type: string
+        className:
+          description: Class name.
+          type: string
       type: object
     MutualFundProfile:
       example:
         symbol: symbol
         profile:
           cusip: cusip
-          manager: manager
-          iraMinInvestment: 7.0614014
-          totalNav: 0.8008282
           deferredLoad: 5.962134
           description: description
+          className: className
           fee12b1: 5.637377
-          benchmark: benchmark
+          seriesId: seriesId
           standardMinInvestment: 3.6160767
+          classId: classId
           inceptionDate: 2000-01-23
+          turnover: 2.027123
+          investmentSegment: investmentSegment
+          beta: 1.4658129
+          maxRedemptionFee: 9.301444
+          manager: manager
+          iraMinInvestment: 7.0614014
+          seriesName: seriesName
+          totalNav: 0.8008282
+          benchmark: benchmark
           frontLoad: 2.302136
           expenseRatio: 6.0274563
           name: name
           category: category
-          turnover: 2.027123
-          investmentSegment: investmentSegment
           fundFamily: fundFamily
-          beta: 1.4658129
           isin: isin
           status: status
-          maxRedemptionFee: 9.301444
       properties:
         symbol:
           description: Symbol.

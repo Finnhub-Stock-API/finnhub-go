@@ -25,6 +25,10 @@ Name | Type | Description | Notes
 **MaxRedemptionFee** | Pointer to **float32** | Max redemption fee. | [optional] 
 **StandardMinInvestment** | Pointer to **float32** | Minimum investment for standard accounts. | [optional] 
 **Turnover** | Pointer to **float32** | Turnover. | [optional] 
+**SeriesId** | Pointer to **string** | Fund&#39;s series ID. This field can be used to group multiple share classes into 1 unique fund. | [optional] 
+**SeriesName** | Pointer to **string** | Fund&#39;s series name. | [optional] 
+**ClassId** | Pointer to **string** | Class ID. | [optional] 
+**ClassName** | Pointer to **string** | Class name. | [optional] 
 
 ## Methods
 
@@ -569,6 +573,106 @@ SetTurnover sets Turnover field to given value.
 `func (o *MutualFundProfileData) HasTurnover() bool`
 
 HasTurnover returns a boolean if a field has been set.
+
+### GetSeriesId
+
+`func (o *MutualFundProfileData) GetSeriesId() string`
+
+GetSeriesId returns the SeriesId field if non-nil, zero value otherwise.
+
+### GetSeriesIdOk
+
+`func (o *MutualFundProfileData) GetSeriesIdOk() (*string, bool)`
+
+GetSeriesIdOk returns a tuple with the SeriesId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeriesId
+
+`func (o *MutualFundProfileData) SetSeriesId(v string)`
+
+SetSeriesId sets SeriesId field to given value.
+
+### HasSeriesId
+
+`func (o *MutualFundProfileData) HasSeriesId() bool`
+
+HasSeriesId returns a boolean if a field has been set.
+
+### GetSeriesName
+
+`func (o *MutualFundProfileData) GetSeriesName() string`
+
+GetSeriesName returns the SeriesName field if non-nil, zero value otherwise.
+
+### GetSeriesNameOk
+
+`func (o *MutualFundProfileData) GetSeriesNameOk() (*string, bool)`
+
+GetSeriesNameOk returns a tuple with the SeriesName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeriesName
+
+`func (o *MutualFundProfileData) SetSeriesName(v string)`
+
+SetSeriesName sets SeriesName field to given value.
+
+### HasSeriesName
+
+`func (o *MutualFundProfileData) HasSeriesName() bool`
+
+HasSeriesName returns a boolean if a field has been set.
+
+### GetClassId
+
+`func (o *MutualFundProfileData) GetClassId() string`
+
+GetClassId returns the ClassId field if non-nil, zero value otherwise.
+
+### GetClassIdOk
+
+`func (o *MutualFundProfileData) GetClassIdOk() (*string, bool)`
+
+GetClassIdOk returns a tuple with the ClassId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClassId
+
+`func (o *MutualFundProfileData) SetClassId(v string)`
+
+SetClassId sets ClassId field to given value.
+
+### HasClassId
+
+`func (o *MutualFundProfileData) HasClassId() bool`
+
+HasClassId returns a boolean if a field has been set.
+
+### GetClassName
+
+`func (o *MutualFundProfileData) GetClassName() string`
+
+GetClassName returns the ClassName field if non-nil, zero value otherwise.
+
+### GetClassNameOk
+
+`func (o *MutualFundProfileData) GetClassNameOk() (*string, bool)`
+
+GetClassNameOk returns a tuple with the ClassName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClassName
+
+`func (o *MutualFundProfileData) SetClassName(v string)`
+
+SetClassName sets ClassName field to given value.
+
+### HasClassName
+
+`func (o *MutualFundProfileData) HasClassName() bool`
+
+HasClassName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

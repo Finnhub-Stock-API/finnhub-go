@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
 **Name** | Pointer to **string** | Insider&#39;s name. | [optional] 
 **Share** | Pointer to **int64** | Number of shares held after the transaction. | [optional] 
 **Change** | Pointer to **int64** | Number of share changed from the last period. A positive value suggests a &lt;code&gt;BUY&lt;/code&gt; transaction. A negative value suggests a &lt;code&gt;SELL&lt;/code&gt; transaction. | [optional] 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed
 NewTransactionsWithDefaults instantiates a new Transactions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetSymbol
+
+`func (o *Transactions) GetSymbol() string`
+
+GetSymbol returns the Symbol field if non-nil, zero value otherwise.
+
+### GetSymbolOk
+
+`func (o *Transactions) GetSymbolOk() (*string, bool)`
+
+GetSymbolOk returns a tuple with the Symbol field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSymbol
+
+`func (o *Transactions) SetSymbol(v string)`
+
+SetSymbol sets Symbol field to given value.
+
+### HasSymbol
+
+`func (o *Transactions) HasSymbol() bool`
+
+HasSymbol returns a boolean if a field has been set.
 
 ### GetName
 

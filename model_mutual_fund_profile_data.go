@@ -58,6 +58,14 @@ type MutualFundProfileData struct {
 	StandardMinInvestment *float32 `json:"standardMinInvestment,omitempty"`
 	// Turnover.
 	Turnover *float32 `json:"turnover,omitempty"`
+	// Fund's series ID. This field can be used to group multiple share classes into 1 unique fund.
+	SeriesId *string `json:"seriesId,omitempty"`
+	// Fund's series name.
+	SeriesName *string `json:"seriesName,omitempty"`
+	// Class ID.
+	ClassId *string `json:"classId,omitempty"`
+	// Class name.
+	ClassName *string `json:"className,omitempty"`
 }
 
 // NewMutualFundProfileData instantiates a new MutualFundProfileData object
@@ -749,6 +757,134 @@ func (o *MutualFundProfileData) SetTurnover(v float32) {
 	o.Turnover = &v
 }
 
+// GetSeriesId returns the SeriesId field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetSeriesId() string {
+	if o == nil || o.SeriesId == nil {
+		var ret string
+		return ret
+	}
+	return *o.SeriesId
+}
+
+// GetSeriesIdOk returns a tuple with the SeriesId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetSeriesIdOk() (*string, bool) {
+	if o == nil || o.SeriesId == nil {
+		return nil, false
+	}
+	return o.SeriesId, true
+}
+
+// HasSeriesId returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasSeriesId() bool {
+	if o != nil && o.SeriesId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSeriesId gets a reference to the given string and assigns it to the SeriesId field.
+func (o *MutualFundProfileData) SetSeriesId(v string) {
+	o.SeriesId = &v
+}
+
+// GetSeriesName returns the SeriesName field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetSeriesName() string {
+	if o == nil || o.SeriesName == nil {
+		var ret string
+		return ret
+	}
+	return *o.SeriesName
+}
+
+// GetSeriesNameOk returns a tuple with the SeriesName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetSeriesNameOk() (*string, bool) {
+	if o == nil || o.SeriesName == nil {
+		return nil, false
+	}
+	return o.SeriesName, true
+}
+
+// HasSeriesName returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasSeriesName() bool {
+	if o != nil && o.SeriesName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSeriesName gets a reference to the given string and assigns it to the SeriesName field.
+func (o *MutualFundProfileData) SetSeriesName(v string) {
+	o.SeriesName = &v
+}
+
+// GetClassId returns the ClassId field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetClassId() string {
+	if o == nil || o.ClassId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ClassId
+}
+
+// GetClassIdOk returns a tuple with the ClassId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetClassIdOk() (*string, bool) {
+	if o == nil || o.ClassId == nil {
+		return nil, false
+	}
+	return o.ClassId, true
+}
+
+// HasClassId returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasClassId() bool {
+	if o != nil && o.ClassId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClassId gets a reference to the given string and assigns it to the ClassId field.
+func (o *MutualFundProfileData) SetClassId(v string) {
+	o.ClassId = &v
+}
+
+// GetClassName returns the ClassName field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetClassName() string {
+	if o == nil || o.ClassName == nil {
+		var ret string
+		return ret
+	}
+	return *o.ClassName
+}
+
+// GetClassNameOk returns a tuple with the ClassName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetClassNameOk() (*string, bool) {
+	if o == nil || o.ClassName == nil {
+		return nil, false
+	}
+	return o.ClassName, true
+}
+
+// HasClassName returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasClassName() bool {
+	if o != nil && o.ClassName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClassName gets a reference to the given string and assigns it to the ClassName field.
+func (o *MutualFundProfileData) SetClassName(v string) {
+	o.ClassName = &v
+}
+
 func (o MutualFundProfileData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -813,6 +949,18 @@ func (o MutualFundProfileData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Turnover != nil {
 		toSerialize["turnover"] = o.Turnover
+	}
+	if o.SeriesId != nil {
+		toSerialize["seriesId"] = o.SeriesId
+	}
+	if o.SeriesName != nil {
+		toSerialize["seriesName"] = o.SeriesName
+	}
+	if o.ClassId != nil {
+		toSerialize["classId"] = o.ClassId
+	}
+	if o.ClassName != nil {
+		toSerialize["className"] = o.ClassName
 	}
 	return json.Marshal(toSerialize)
 }
