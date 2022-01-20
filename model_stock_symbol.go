@@ -28,8 +28,14 @@ type StockSymbol struct {
 	Mic *string `json:"mic,omitempty"`
 	// FIGI identifier.
 	Figi *string `json:"figi,omitempty"`
+	// Global Share Class FIGI.
+	ShareClassFIGI *string `json:"shareClassFIGI,omitempty"`
 	// Price's currency. This might be different from the reporting currency of fundamental data.
 	Currency *string `json:"currency,omitempty"`
+	// Alternative ticker for exchanges with multiple tickers for 1 stock such as BSE.
+	Symbol2 *string `json:"symbol2,omitempty"`
+	// ISIN. This field is only available for EU stocks and selected Asian markets. Entitlement from Finnhub is required to access this field.
+	Isin *string `json:"isin,omitempty"`
 }
 
 // NewStockSymbol instantiates a new StockSymbol object
@@ -241,6 +247,38 @@ func (o *StockSymbol) SetFigi(v string) {
 	o.Figi = &v
 }
 
+// GetShareClassFIGI returns the ShareClassFIGI field value if set, zero value otherwise.
+func (o *StockSymbol) GetShareClassFIGI() string {
+	if o == nil || o.ShareClassFIGI == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShareClassFIGI
+}
+
+// GetShareClassFIGIOk returns a tuple with the ShareClassFIGI field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StockSymbol) GetShareClassFIGIOk() (*string, bool) {
+	if o == nil || o.ShareClassFIGI == nil {
+		return nil, false
+	}
+	return o.ShareClassFIGI, true
+}
+
+// HasShareClassFIGI returns a boolean if a field has been set.
+func (o *StockSymbol) HasShareClassFIGI() bool {
+	if o != nil && o.ShareClassFIGI != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShareClassFIGI gets a reference to the given string and assigns it to the ShareClassFIGI field.
+func (o *StockSymbol) SetShareClassFIGI(v string) {
+	o.ShareClassFIGI = &v
+}
+
 // GetCurrency returns the Currency field value if set, zero value otherwise.
 func (o *StockSymbol) GetCurrency() string {
 	if o == nil || o.Currency == nil {
@@ -273,6 +311,70 @@ func (o *StockSymbol) SetCurrency(v string) {
 	o.Currency = &v
 }
 
+// GetSymbol2 returns the Symbol2 field value if set, zero value otherwise.
+func (o *StockSymbol) GetSymbol2() string {
+	if o == nil || o.Symbol2 == nil {
+		var ret string
+		return ret
+	}
+	return *o.Symbol2
+}
+
+// GetSymbol2Ok returns a tuple with the Symbol2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StockSymbol) GetSymbol2Ok() (*string, bool) {
+	if o == nil || o.Symbol2 == nil {
+		return nil, false
+	}
+	return o.Symbol2, true
+}
+
+// HasSymbol2 returns a boolean if a field has been set.
+func (o *StockSymbol) HasSymbol2() bool {
+	if o != nil && o.Symbol2 != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbol2 gets a reference to the given string and assigns it to the Symbol2 field.
+func (o *StockSymbol) SetSymbol2(v string) {
+	o.Symbol2 = &v
+}
+
+// GetIsin returns the Isin field value if set, zero value otherwise.
+func (o *StockSymbol) GetIsin() string {
+	if o == nil || o.Isin == nil {
+		var ret string
+		return ret
+	}
+	return *o.Isin
+}
+
+// GetIsinOk returns a tuple with the Isin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StockSymbol) GetIsinOk() (*string, bool) {
+	if o == nil || o.Isin == nil {
+		return nil, false
+	}
+	return o.Isin, true
+}
+
+// HasIsin returns a boolean if a field has been set.
+func (o *StockSymbol) HasIsin() bool {
+	if o != nil && o.Isin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsin gets a reference to the given string and assigns it to the Isin field.
+func (o *StockSymbol) SetIsin(v string) {
+	o.Isin = &v
+}
+
 func (o StockSymbol) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description != nil {
@@ -293,8 +395,17 @@ func (o StockSymbol) MarshalJSON() ([]byte, error) {
 	if o.Figi != nil {
 		toSerialize["figi"] = o.Figi
 	}
+	if o.ShareClassFIGI != nil {
+		toSerialize["shareClassFIGI"] = o.ShareClassFIGI
+	}
 	if o.Currency != nil {
 		toSerialize["currency"] = o.Currency
+	}
+	if o.Symbol2 != nil {
+		toSerialize["symbol2"] = o.Symbol2
+	}
+	if o.Isin != nil {
+		toSerialize["isin"] = o.Isin
 	}
 	return json.Marshal(toSerialize)
 }

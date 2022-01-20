@@ -635,9 +635,8 @@ paths:
       - Default
   /stock/international-filings:
     get:
-      description: List filings for international companies which covers 95%+ of global
-        market cap. Limit to 250 documents at a time. These are the documents we use
-        to source our fundamental data.
+      description: List filings for international companies. Limit to 250 documents
+        at a time. These are the documents we use to source our fundamental data.
       operationId: international-filings
       parameters:
       - description: Symbol. Leave empty to list latest filings.
@@ -2272,6 +2271,44 @@ paths:
       summary: FDA Committee Meeting Calendar
       tags:
       - Default
+  /stock/uspto-patent:
+    get:
+      description: List USPTO patents for companies. Limit to 250 records per API
+        call.
+      operationId: stock-uspto-patent
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsptoPatentResult'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: USPTO Patents
+      tags:
+      - Default
   /country:
     get:
       description: List all countries and metadata.
@@ -2370,8 +2407,11 @@ components:
         mic: mic
         description: description
         figi: figi
+        shareClassFIGI: shareClassFIGI
         currency: currency
         type: type
+        isin: isin
+        symbol2: symbol2
       properties:
         description:
           description: Symbol description
@@ -2392,9 +2432,20 @@ components:
         figi:
           description: FIGI identifier.
           type: string
+        shareClassFIGI:
+          description: Global Share Class FIGI.
+          type: string
         currency:
           description: Price's currency. This might be different from the reporting
             currency of fundamental data.
+          type: string
+        symbol2:
+          description: Alternative ticker for exchanges with multiple tickers for
+            1 stock such as BSE.
+          type: string
+        isin:
+          description: ISIN. This field is only available for EU stocks and selected
+            Asian markets. Entitlement from Finnhub is required to access this field.
           type: string
       type: object
     SymbolLookup:
@@ -5962,6 +6013,86 @@ components:
           type: array
         code:
           description: Finnhub economic code
+          type: string
+      type: object
+    UsptoPatentResult:
+      example:
+        symbol: symbol
+        data:
+        - companyFilingName:
+          - companyFilingName
+          - companyFilingName
+          filingStatus: filingStatus
+          applicationNumber: applicationNumber
+          filingDate: filingDate
+          patentNumber: patentNumber
+          description: description
+          publicationDate: publicationDate
+          url: url
+          patentType: patentType
+        - companyFilingName:
+          - companyFilingName
+          - companyFilingName
+          filingStatus: filingStatus
+          applicationNumber: applicationNumber
+          filingDate: filingDate
+          patentNumber: patentNumber
+          description: description
+          publicationDate: publicationDate
+          url: url
+          patentType: patentType
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        data:
+          description: Array of patents.
+          items:
+            $ref: '#/components/schemas/UsptoPatent'
+          type: array
+      type: object
+    UsptoPatent:
+      example:
+        companyFilingName:
+        - companyFilingName
+        - companyFilingName
+        filingStatus: filingStatus
+        applicationNumber: applicationNumber
+        filingDate: filingDate
+        patentNumber: patentNumber
+        description: description
+        publicationDate: publicationDate
+        url: url
+        patentType: patentType
+      properties:
+        applicationNumber:
+          description: Application Number.
+          type: string
+        companyFilingName:
+          description: Array of companies' name on the patent.
+          items:
+            type: string
+          type: array
+        filingDate:
+          description: Filing date.
+          type: string
+        description:
+          description: Description.
+          type: string
+        filingStatus:
+          description: Filing status.
+          type: string
+        patentNumber:
+          description: Patent number.
+          type: string
+        publicationDate:
+          description: Filing date.
+          type: string
+        patentType:
+          description: Patent's type.
+          type: string
+        url:
+          description: URL of the original article.
           type: string
       type: object
   securitySchemes:

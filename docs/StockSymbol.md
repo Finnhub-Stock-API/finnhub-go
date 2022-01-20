@@ -10,7 +10,10 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | Security type. | [optional] 
 **Mic** | Pointer to **string** | Primary exchange&#39;s MIC. | [optional] 
 **Figi** | Pointer to **string** | FIGI identifier. | [optional] 
+**ShareClassFIGI** | Pointer to **string** | Global Share Class FIGI. | [optional] 
 **Currency** | Pointer to **string** | Price&#39;s currency. This might be different from the reporting currency of fundamental data. | [optional] 
+**Symbol2** | Pointer to **string** | Alternative ticker for exchanges with multiple tickers for 1 stock such as BSE. | [optional] 
+**Isin** | Pointer to **string** | ISIN. This field is only available for EU stocks and selected Asian markets. Entitlement from Finnhub is required to access this field. | [optional] 
 
 ## Methods
 
@@ -181,6 +184,31 @@ SetFigi sets Figi field to given value.
 
 HasFigi returns a boolean if a field has been set.
 
+### GetShareClassFIGI
+
+`func (o *StockSymbol) GetShareClassFIGI() string`
+
+GetShareClassFIGI returns the ShareClassFIGI field if non-nil, zero value otherwise.
+
+### GetShareClassFIGIOk
+
+`func (o *StockSymbol) GetShareClassFIGIOk() (*string, bool)`
+
+GetShareClassFIGIOk returns a tuple with the ShareClassFIGI field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShareClassFIGI
+
+`func (o *StockSymbol) SetShareClassFIGI(v string)`
+
+SetShareClassFIGI sets ShareClassFIGI field to given value.
+
+### HasShareClassFIGI
+
+`func (o *StockSymbol) HasShareClassFIGI() bool`
+
+HasShareClassFIGI returns a boolean if a field has been set.
+
 ### GetCurrency
 
 `func (o *StockSymbol) GetCurrency() string`
@@ -205,6 +233,56 @@ SetCurrency sets Currency field to given value.
 `func (o *StockSymbol) HasCurrency() bool`
 
 HasCurrency returns a boolean if a field has been set.
+
+### GetSymbol2
+
+`func (o *StockSymbol) GetSymbol2() string`
+
+GetSymbol2 returns the Symbol2 field if non-nil, zero value otherwise.
+
+### GetSymbol2Ok
+
+`func (o *StockSymbol) GetSymbol2Ok() (*string, bool)`
+
+GetSymbol2Ok returns a tuple with the Symbol2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSymbol2
+
+`func (o *StockSymbol) SetSymbol2(v string)`
+
+SetSymbol2 sets Symbol2 field to given value.
+
+### HasSymbol2
+
+`func (o *StockSymbol) HasSymbol2() bool`
+
+HasSymbol2 returns a boolean if a field has been set.
+
+### GetIsin
+
+`func (o *StockSymbol) GetIsin() string`
+
+GetIsin returns the Isin field if non-nil, zero value otherwise.
+
+### GetIsinOk
+
+`func (o *StockSymbol) GetIsinOk() (*string, bool)`
+
+GetIsinOk returns a tuple with the Isin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsin
+
+`func (o *StockSymbol) SetIsin(v string)`
+
+SetIsin sets Isin field to given value.
+
+### HasIsin
+
+`func (o *StockSymbol) HasIsin() bool`
+
+HasIsin returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

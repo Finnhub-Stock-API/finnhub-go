@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.8
+- Package version: 2.0.9
 
 ## Installation
 
@@ -378,6 +378,13 @@ func main() {
         panic(err)
     }
     fmt.Printf("%+v\n", ebitEstimates)
+
+    // USPTO Patent
+    uspto, _, err := finnhubClient.StockUsptoPatent(context.Background()).Symbol("NVDA").From("2021-01-01").To("2021-12-31").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", uspto)
 }
 
 ```
