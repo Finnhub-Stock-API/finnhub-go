@@ -28,7 +28,7 @@ type UsptoPatent struct {
 	FilingStatus *string `json:"filingStatus,omitempty"`
 	// Patent number.
 	PatentNumber *string `json:"patentNumber,omitempty"`
-	// Filing date.
+	// Publication date.
 	PublicationDate *string `json:"publicationDate,omitempty"`
 	// Patent's type.
 	PatentType *string `json:"patentType,omitempty"`

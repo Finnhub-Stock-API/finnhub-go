@@ -72,6 +72,7 @@ Method | HTTP request | Description
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
 [**StockTick**](DefaultApi.md#StockTick) | **Get** /stock/tick | Tick Data
 [**StockUsptoPatent**](DefaultApi.md#StockUsptoPatent) | **Get** /stock/uspto-patent | USPTO Patents
+[**StockVisaApplication**](DefaultApi.md#StockVisaApplication) | **Get** /stock/visa-application | H1-B Visa Application
 [**SupplyChainRelationships**](DefaultApi.md#SupplyChainRelationships) | **Get** /stock/supply-chain | Supply Chain Relationships
 [**SupportResistance**](DefaultApi.md#SupportResistance) | **Get** /scan/support-resistance | Support/Resistance
 [**SymbolSearch**](DefaultApi.md#SymbolSearch) | **Get** /search | Symbol Lookup
@@ -2442,7 +2443,7 @@ Other parameters are passed through a pointer to a apiForexExchangesRequest stru
 
 ## ForexRates
 
-> Forexrates ForexRates(ctx).Base(base).Execute()
+> Forexrates ForexRates(ctx).Base(base).Date(date).Execute()
 
 Forex rates
 
@@ -2462,10 +2463,11 @@ import (
 
 func main() {
     base := "base_example" // string | Base currency. Default to EUR. (optional)
+    date := "date_example" // string | Date. Leave blank to get the latest data. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ForexRates(context.Background()).Base(base).Execute()
+    resp, r, err := api_client.DefaultApi.ForexRates(context.Background()).Base(base).Date(date).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ForexRates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2487,6 +2489,7 @@ Other parameters are passed through a pointer to a apiForexRatesRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **base** | **string** | Base currency. Default to EUR. | 
+ **date** | **string** | Date. Leave blank to get the latest data. | 
 
 ### Return type
 
@@ -4684,6 +4687,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UsptoPatentResult**](UsptoPatentResult.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockVisaApplication
+
+> VisaApplicationResult StockVisaApplication(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+H1-B Visa Application
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockVisaApplication(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockVisaApplication``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockVisaApplication`: VisaApplicationResult
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockVisaApplication`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockVisaApplicationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column. | 
+
+### Return type
+
+[**VisaApplicationResult**](VisaApplicationResult.md)
 
 ### Authorization
 

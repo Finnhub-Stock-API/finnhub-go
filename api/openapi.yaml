@@ -1734,6 +1734,11 @@ paths:
         name: base
         schema:
           type: string
+      - description: Date. Leave blank to get the latest data.
+        in: query
+        name: date
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2307,6 +2312,46 @@ paths:
       security:
       - api_key: []
       summary: USPTO Patents
+      tags:
+      - Default
+  /stock/visa-application:
+    get:
+      description: Get a list of H1-B and Permanent visa applications for companies
+        from the DOL. The data is updated quarterly.
+      operationId: stock-visa-application
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code>
+          column.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code>
+          column.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisaApplicationResult'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: H1-B Visa Application
       tags:
       - Default
   /country:
@@ -6086,13 +6131,174 @@ components:
           description: Patent number.
           type: string
         publicationDate:
-          description: Filing date.
+          description: Publication date.
           type: string
         patentType:
           description: Patent's type.
           type: string
         url:
           description: URL of the original article.
+          type: string
+      type: object
+    VisaApplicationResult:
+      example:
+        symbol: symbol
+        data:
+        - worksiteCity: worksiteCity
+          symbol: symbol
+          fullTimePosition: fullTimePosition
+          year: 0
+          endDate: endDate
+          h1bDependent: h1bDependent
+          caseStatus: caseStatus
+          jobTitle: jobTitle
+          wageLevel: wageLevel
+          employerName: employerName
+          wageRangeFrom: 1.4658129
+          waveUnitOfPay: waveUnitOfPay
+          visaClass: visaClass
+          worksiteCounty: worksiteCounty
+          beginDate: beginDate
+          wageRangeTo: 5.962134
+          caseNumber: caseNumber
+          worksiteAddress: worksiteAddress
+          worksitePostalCode: worksitePostalCode
+          receivedDate: receivedDate
+          socCode: socCode
+          quarter: 6
+          worksiteState: worksiteState
+        - worksiteCity: worksiteCity
+          symbol: symbol
+          fullTimePosition: fullTimePosition
+          year: 0
+          endDate: endDate
+          h1bDependent: h1bDependent
+          caseStatus: caseStatus
+          jobTitle: jobTitle
+          wageLevel: wageLevel
+          employerName: employerName
+          wageRangeFrom: 1.4658129
+          waveUnitOfPay: waveUnitOfPay
+          visaClass: visaClass
+          worksiteCounty: worksiteCounty
+          beginDate: beginDate
+          wageRangeTo: 5.962134
+          caseNumber: caseNumber
+          worksiteAddress: worksiteAddress
+          worksitePostalCode: worksitePostalCode
+          receivedDate: receivedDate
+          socCode: socCode
+          quarter: 6
+          worksiteState: worksiteState
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        data:
+          description: Array of H1b and Permanent visa applications.
+          items:
+            $ref: '#/components/schemas/VisaApplication'
+          type: array
+      type: object
+    VisaApplication:
+      example:
+        worksiteCity: worksiteCity
+        symbol: symbol
+        fullTimePosition: fullTimePosition
+        year: 0
+        endDate: endDate
+        h1bDependent: h1bDependent
+        caseStatus: caseStatus
+        jobTitle: jobTitle
+        wageLevel: wageLevel
+        employerName: employerName
+        wageRangeFrom: 1.4658129
+        waveUnitOfPay: waveUnitOfPay
+        visaClass: visaClass
+        worksiteCounty: worksiteCounty
+        beginDate: beginDate
+        wageRangeTo: 5.962134
+        caseNumber: caseNumber
+        worksiteAddress: worksiteAddress
+        worksitePostalCode: worksitePostalCode
+        receivedDate: receivedDate
+        socCode: socCode
+        quarter: 6
+        worksiteState: worksiteState
+      properties:
+        year:
+          description: Year.
+          format: int64
+          type: integer
+        quarter:
+          description: Quarter.
+          format: int64
+          type: integer
+        symbol:
+          description: Symbol.
+          type: string
+        caseNumber:
+          description: Case number.
+          type: string
+        caseStatus:
+          description: Case status.
+          type: string
+        receivedDate:
+          description: Received date.
+          type: string
+        visaClass:
+          description: Visa class.
+          type: string
+        jobTitle:
+          description: Job Title.
+          type: string
+        socCode:
+          description: SOC Code. A list of SOC code can be found <a href="https://www.bls.gov/oes/current/oes_stru.htm"
+            target="_blank">here</a>.
+          type: string
+        fullTimePosition:
+          description: Full-time position flag.
+          type: string
+        beginDate:
+          description: Job's start date.
+          type: string
+        endDate:
+          description: Job's end date.
+          type: string
+        employerName:
+          description: Company's name.
+          type: string
+        worksiteAddress:
+          description: Worksite address.
+          type: string
+        worksiteCity:
+          description: Worksite city.
+          type: string
+        worksiteCounty:
+          description: Worksite county.
+          type: string
+        worksiteState:
+          description: Worksite state.
+          type: string
+        worksitePostalCode:
+          description: Worksite postal code.
+          type: string
+        wageRangeFrom:
+          description: Wage range from.
+          format: float
+          type: number
+        wageRangeTo:
+          description: Wage range to.
+          format: float
+          type: number
+        waveUnitOfPay:
+          description: Wage unit of pay.
+          type: string
+        wageLevel:
+          description: Wage level.
+          type: string
+        h1bDependent:
+          description: H1B dependent flag.
           type: string
       type: object
   securitySchemes:

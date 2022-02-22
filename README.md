@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.9
+- Package version: 2.0.10
 
 ## Installation
 
@@ -385,6 +385,13 @@ func main() {
         panic(err)
     }
     fmt.Printf("%+v\n", uspto)
+
+    // Visa Application
+    visa, _, err := finnhubClient.StockVisaApplication(context.Background()).Symbol("AAPL").From("2021-01-01").To("2021-12-31").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", visa)
 }
 
 ```

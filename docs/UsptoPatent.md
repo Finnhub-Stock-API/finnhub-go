@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description. | [optional] 
 **FilingStatus** | Pointer to **string** | Filing status. | [optional] 
 **PatentNumber** | Pointer to **string** | Patent number. | [optional] 
-**PublicationDate** | Pointer to **string** | Filing date. | [optional] 
+**PublicationDate** | Pointer to **string** | Publication date. | [optional] 
 **PatentType** | Pointer to **string** | Patent&#39;s type. | [optional] 
 **Url** | Pointer to **string** | URL of the original article. | [optional] 
 

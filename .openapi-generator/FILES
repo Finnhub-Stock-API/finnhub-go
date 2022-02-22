@@ -118,6 +118,8 @@ docs/TwitterSentimentContent.md
 docs/UpgradeDowngrade.md
 docs/UsptoPatent.md
 docs/UsptoPatentResult.md
+docs/VisaApplication.md
+docs/VisaApplicationResult.md
 git_push.sh
 go.mod
 go.sum
@@ -234,5 +236,7 @@ model_twitter_sentiment_content.go
 model_upgrade_downgrade.go
 model_uspto_patent.go
 model_uspto_patent_result.go
+model_visa_application.go
+model_visa_application_result.go
 response.go
 utils.go
