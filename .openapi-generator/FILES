@@ -67,6 +67,8 @@ docs/IndexHistoricalConstituent.md
 docs/Indicator.md
 docs/IndicesConstituents.md
 docs/IndicesHistoricalConstituents.md
+docs/InsiderSentiments.md
+docs/InsiderSentimentsData.md
 docs/InsiderTransactions.md
 docs/InternationalFiling.md
 docs/InvestmentThemePortfolio.md
@@ -183,6 +185,8 @@ model_index_historical_constituent.go
 model_indicator.go
 model_indices_constituents.go
 model_indices_historical_constituents.go
+model_insider_sentiments.go
+model_insider_sentiments_data.go
 model_insider_transactions.go
 model_international_filing.go
 model_investment_theme_portfolio.go

@@ -57,7 +57,7 @@ type VisaApplication struct {
 	// Wage range to.
 	WageRangeTo *float32 `json:"wageRangeTo,omitempty"`
 	// Wage unit of pay.
-	WaveUnitOfPay *string `json:"waveUnitOfPay,omitempty"`
+	WageUnitOfPay *string `json:"wageUnitOfPay,omitempty"`
 	// Wage level.
 	WageLevel *string `json:"wageLevel,omitempty"`
 	// H1B dependent flag.
@@ -721,36 +721,36 @@ func (o *VisaApplication) SetWageRangeTo(v float32) {
 	o.WageRangeTo = &v
 }
 
-// GetWaveUnitOfPay returns the WaveUnitOfPay field value if set, zero value otherwise.
-func (o *VisaApplication) GetWaveUnitOfPay() string {
-	if o == nil || o.WaveUnitOfPay == nil {
+// GetWageUnitOfPay returns the WageUnitOfPay field value if set, zero value otherwise.
+func (o *VisaApplication) GetWageUnitOfPay() string {
+	if o == nil || o.WageUnitOfPay == nil {
 		var ret string
 		return ret
 	}
-	return *o.WaveUnitOfPay
+	return *o.WageUnitOfPay
 }
 
-// GetWaveUnitOfPayOk returns a tuple with the WaveUnitOfPay field value if set, nil otherwise
+// GetWageUnitOfPayOk returns a tuple with the WageUnitOfPay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VisaApplication) GetWaveUnitOfPayOk() (*string, bool) {
-	if o == nil || o.WaveUnitOfPay == nil {
+func (o *VisaApplication) GetWageUnitOfPayOk() (*string, bool) {
+	if o == nil || o.WageUnitOfPay == nil {
 		return nil, false
 	}
-	return o.WaveUnitOfPay, true
+	return o.WageUnitOfPay, true
 }
 
-// HasWaveUnitOfPay returns a boolean if a field has been set.
-func (o *VisaApplication) HasWaveUnitOfPay() bool {
-	if o != nil && o.WaveUnitOfPay != nil {
+// HasWageUnitOfPay returns a boolean if a field has been set.
+func (o *VisaApplication) HasWageUnitOfPay() bool {
+	if o != nil && o.WageUnitOfPay != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetWaveUnitOfPay gets a reference to the given string and assigns it to the WaveUnitOfPay field.
-func (o *VisaApplication) SetWaveUnitOfPay(v string) {
-	o.WaveUnitOfPay = &v
+// SetWageUnitOfPay gets a reference to the given string and assigns it to the WageUnitOfPay field.
+func (o *VisaApplication) SetWageUnitOfPay(v string) {
+	o.WageUnitOfPay = &v
 }
 
 // GetWageLevel returns the WageLevel field value if set, zero value otherwise.
@@ -879,8 +879,8 @@ func (o VisaApplication) MarshalJSON() ([]byte, error) {
 	if o.WageRangeTo != nil {
 		toSerialize["wageRangeTo"] = o.WageRangeTo
 	}
-	if o.WaveUnitOfPay != nil {
-		toSerialize["waveUnitOfPay"] = o.WaveUnitOfPay
+	if o.WageUnitOfPay != nil {
+		toSerialize["wageUnitOfPay"] = o.WageUnitOfPay
 	}
 	if o.WageLevel != nil {
 		toSerialize["wageLevel"] = o.WageLevel

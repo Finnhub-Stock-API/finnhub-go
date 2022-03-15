@@ -44,6 +44,7 @@ Method | HTTP request | Description
 [**FundOwnership**](DefaultApi.md#FundOwnership) | **Get** /stock/fund-ownership | Fund Ownership
 [**IndicesConstituents**](DefaultApi.md#IndicesConstituents) | **Get** /index/constituents | Indices Constituents
 [**IndicesHistoricalConstituents**](DefaultApi.md#IndicesHistoricalConstituents) | **Get** /index/historical-constituents | Indices Historical Constituents
+[**InsiderSentiment**](DefaultApi.md#InsiderSentiment) | **Get** /stock/insider-sentiment | Insider Sentiment
 [**InsiderTransactions**](DefaultApi.md#InsiderTransactions) | **Get** /stock/insider-transactions | Insider Transactions
 [**InternationalFilings**](DefaultApi.md#InternationalFilings) | **Get** /stock/international-filings | International Filings
 [**InvestmentThemes**](DefaultApi.md#InvestmentThemes) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
@@ -1760,7 +1761,7 @@ Name | Type | Description  | Notes
 
 ## EtfsHoldings
 
-> ETFsHoldings EtfsHoldings(ctx).Symbol(symbol).Isin(isin).Skip(skip).Execute()
+> ETFsHoldings EtfsHoldings(ctx).Symbol(symbol).Isin(isin).Skip(skip).Date(date).Execute()
 
 ETFs Holdings
 
@@ -1782,10 +1783,11 @@ func main() {
     symbol := "symbol_example" // string | ETF symbol. (optional)
     isin := "isin_example" // string | ETF isin. (optional)
     skip := int64(789) // int64 | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set. (optional)
+    date := "date_example" // string | Query holdings by date. You can use either this param or <code>skip</code> param, not both. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.EtfsHoldings(context.Background()).Symbol(symbol).Isin(isin).Skip(skip).Execute()
+    resp, r, err := api_client.DefaultApi.EtfsHoldings(context.Background()).Symbol(symbol).Isin(isin).Skip(skip).Date(date).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsHoldings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1809,6 +1811,7 @@ Name | Type | Description  | Notes
  **symbol** | **string** | ETF symbol. | 
  **isin** | **string** | ETF isin. | 
  **skip** | **int64** | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set. | 
+ **date** | **string** | Query holdings by date. You can use either this param or &lt;code&gt;skip&lt;/code&gt; param, not both. | 
 
 ### Return type
 
@@ -2760,6 +2763,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IndicesHistoricalConstituents**](IndicesHistoricalConstituents.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InsiderSentiment
+
+> InsiderSentiments InsiderSentiment(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Insider Sentiment
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    from := time.Now() // string | From date: 2020-03-15.
+    to := time.Now() // string | To date: 2020-03-16.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InsiderSentiment(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InsiderSentiment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InsiderSentiment`: InsiderSentiments
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InsiderSentiment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInsiderSentimentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **from** | **string** | From date: 2020-03-15. | 
+ **to** | **string** | To date: 2020-03-16. | 
+
+### Return type
+
+[**InsiderSentiments**](InsiderSentiments.md)
 
 ### Authorization
 

@@ -3335,6 +3335,7 @@ type ApiEtfsHoldingsRequest struct {
 	symbol *string
 	isin *string
 	skip *int64
+	date *string
 }
 
 // ETF symbol.
@@ -3350,6 +3351,11 @@ func (r ApiEtfsHoldingsRequest) Isin(isin string) ApiEtfsHoldingsRequest {
 // Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set.
 func (r ApiEtfsHoldingsRequest) Skip(skip int64) ApiEtfsHoldingsRequest {
 	r.skip = &skip
+	return r
+}
+// Query holdings by date. You can use either this param or &lt;code&gt;skip&lt;/code&gt; param, not both.
+func (r ApiEtfsHoldingsRequest) Date(date string) ApiEtfsHoldingsRequest {
+	r.date = &date
 	return r
 }
 
@@ -3403,6 +3409,9 @@ func (a *DefaultApiService) EtfsHoldingsExecute(r ApiEtfsHoldingsRequest) (ETFsH
 	}
 	if r.skip != nil {
 		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	if r.date != nil {
+		localVarQueryParams.Add("date", parameterToString(*r.date, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5254,7 +5263,7 @@ func (r ApiIndicesHistoricalConstituentsRequest) Execute() (IndicesHistoricalCon
 /*
 IndicesHistoricalConstituents Indices Historical Constituents
 
-Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC</code>, <code>^NDX</code>, <code>^DJI</code>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiIndicesHistoricalConstituentsRequest
@@ -5293,6 +5302,152 @@ func (a *DefaultApiService) IndicesHistoricalConstituentsExecute(r ApiIndicesHis
 	}
 
 	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiInsiderSentimentRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	from *string
+	to *string
+}
+
+// Symbol of the company: AAPL.
+func (r ApiInsiderSentimentRequest) Symbol(symbol string) ApiInsiderSentimentRequest {
+	r.symbol = &symbol
+	return r
+}
+// From date: 2020-03-15.
+func (r ApiInsiderSentimentRequest) From(from string) ApiInsiderSentimentRequest {
+	r.from = &from
+	return r
+}
+// To date: 2020-03-16.
+func (r ApiInsiderSentimentRequest) To(to string) ApiInsiderSentimentRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiInsiderSentimentRequest) Execute() (InsiderSentiments, *_nethttp.Response, error) {
+	return r.ApiService.InsiderSentimentExecute(r)
+}
+
+/*
+InsiderSentiment Insider Sentiment
+
+Get insider sentiment data for US companies calculated using method discussed <a href="https://medium.com/@stock-api/finnhub-insiders-sentiment-analysis-cc43f9f64b3a" target="_blank">here</a>. The MSPR ranges from -100 for the most negative to 100 for the most positive which can signal price changes in the coming 30-90 days.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiInsiderSentimentRequest
+*/
+func (a *DefaultApiService) InsiderSentiment(ctx _context.Context) ApiInsiderSentimentRequest {
+	return ApiInsiderSentimentRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return InsiderSentiments
+func (a *DefaultApiService) InsiderSentimentExecute(r ApiInsiderSentimentRequest) (InsiderSentiments, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InsiderSentiments
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InsiderSentiment")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/insider-sentiment"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -8798,7 +8953,7 @@ func (r ApiStockSymbolsRequest) Execute() ([]StockSymbol, *_nethttp.Response, er
 /*
 StockSymbols Stock Symbol
 
-List supported stocks. We use the following symbology to identify stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing" target="_blank">here</a>. A list of supported CFD Indices can be found <a href="https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing" target="_blank">here</a>.
+List supported stocks. We use the following symbology to identify stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing" target="_blank">here</a>.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiStockSymbolsRequest
@@ -8983,11 +9138,6 @@ StockTick Tick Data
     <tr>
       <td class="text-blue">Deutsche Börse</th>
       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>
-      <td>End-of-day</td>
-    </tr>
-    <tr>
-      <td class="text-blue">Nasdaq Nordic & Baltic</th>
-      <td> <ul> <li>Copenhagen (CO)</li> <li>Stockholm (ST)</li> <li>Helsinki (HE)</li> <li>Iceland (IC)</li> <li>Riga (RG)</li> <li>Tallinn (TL)</li> <li>Vilnius(VS)</li> <li>Fixed Income</li> <li>Derivatives</li> <li>Commodities</li></ul></td>
       <td>End-of-day</td>
     </tr>
   </tbody>
@@ -9421,7 +9571,7 @@ func (r ApiSupplyChainRelationshipsRequest) Execute() (SupplyChainRelationships,
 /*
 SupplyChainRelationships Supply Chain Relationships
 
-<p>This endpoint provides an overall map of public companies' key customers and suppliers. The data offers a deeper look into a company's supply chain and how products are created. The data will help investors manage risk, limit exposure or generate alpha-generating ideas and trading insights.</p><p>We currently cover data for S&P500 and Nasdaq 100 companies.</p>
+<p>This endpoint provides an overall map of public companies' key customers and suppliers. The data offers a deeper look into a company's supply chain and how products are created. The data will help investors manage risk, limit exposure or generate alpha-generating ideas and trading insights.</p>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSupplyChainRelationshipsRequest
@@ -10109,7 +10259,7 @@ func (r ApiTranscriptsListRequest) Execute() (EarningsCallTranscriptsList, *_net
 /*
 TranscriptsList Earnings Call Transcripts List
 
-List earnings call transcripts' metadata. This endpoint is available for US, UK and Canadian companies.
+List earnings call transcripts' metadata. This endpoint is available for US, UK, European, Australian and Canadian companies.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTranscriptsListRequest

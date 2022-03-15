@@ -37,8 +37,6 @@ paths:
       description: List supported stocks. We use the following symbology to identify
         stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported
         exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing"
-        target="_blank">here</a>. A list of supported CFD Indices can be found <a
-        href="https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing"
         target="_blank">here</a>.
       operationId: stock-symbols
       parameters:
@@ -461,6 +459,47 @@ paths:
       security:
       - api_key: []
       summary: Insider Transactions
+      tags:
+      - Default
+  /stock/insider-sentiment:
+    get:
+      description: Get insider sentiment data for US companies calculated using method
+        discussed <a href="https://medium.com/@stock-api/finnhub-insiders-sentiment-analysis-cc43f9f64b3a"
+        target="_blank">here</a>. The MSPR ranges from -100 for the most negative
+        to 100 for the most positive which can signal price changes in the coming
+        30-90 days.
+      operationId: insider-sentiment
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'From date: 2020-03-15.'
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2020-03-16.'
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsiderSentiments'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Insider Sentiment
       tags:
       - Default
   /stock/financials:
@@ -1186,11 +1225,6 @@ paths:
               <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>
               <td>End-of-day</td>
             </tr>
-            <tr>
-              <td class="text-blue">Nasdaq Nordic & Baltic</th>
-              <td> <ul> <li>Copenhagen (CO)</li> <li>Stockholm (ST)</li> <li>Helsinki (HE)</li> <li>Iceland (IC)</li> <li>Riga (RG)</li> <li>Tallinn (TL)</li> <li>Vilnius(VS)</li> <li>Fixed Income</li> <li>Derivatives</li> <li>Commodities</li></ul></td>
-              <td>End-of-day</td>
-            </tr>
           </tbody>
         </table>
       operationId: stock-tick
@@ -1396,8 +1430,8 @@ paths:
   /index/historical-constituents:
     get:
       description: Get full history of index's constituents including symbols and
-        dates of joining and leaving the Index. Currently support <code>^GSPC (S&P
-        500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+        dates of joining and leaving the Index. Currently support <code>^GSPC</code>,
+        <code>^NDX</code>, <code>^DJI</code>
       operationId: indices-historical-constituents
       parameters:
       - description: symbol
@@ -1469,6 +1503,12 @@ paths:
         schema:
           format: int64
           type: integer
+      - description: Query holdings by date. You can use either this param or <code>skip</code>
+          param, not both.
+        in: query
+        name: date
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2020,7 +2060,7 @@ paths:
   /stock/transcripts/list:
     get:
       description: List earnings call transcripts' metadata. This endpoint is available
-        for US, UK and Canadian companies.
+        for US, UK, European, Australian and Canadian companies.
       operationId: transcripts-list
       parameters:
       - description: 'Company symbol: AAPL. Leave empty to list the latest transcripts'
@@ -2143,8 +2183,7 @@ paths:
       description: <p>This endpoint provides an overall map of public companies' key
         customers and suppliers. The data offers a deeper look into a company's supply
         chain and how products are created. The data will help investors manage risk,
-        limit exposure or generate alpha-generating ideas and trading insights.</p><p>We
-        currently cover data for S&P500 and Nasdaq 100 companies.</p>
+        limit exposure or generate alpha-generating ideas and trading insights.</p>
       operationId: supply-chain-relationships
       parameters:
       - description: Symbol.
@@ -3168,6 +3207,58 @@ components:
           description: Array of insider transactions.
           items:
             $ref: '#/components/schemas/Transactions'
+          type: array
+      type: object
+    InsiderSentimentsData:
+      example:
+        symbol: symbol
+        month: 6
+        year: 0
+        change: 1
+        mspr: 5.962134
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        year:
+          description: Year.
+          format: int64
+          type: integer
+        month:
+          description: Month.
+          format: int64
+          type: integer
+        change:
+          description: Net buying/selling from all insiders' transactions.
+          format: int64
+          type: integer
+        mspr:
+          description: Monthly share purchase ratio.
+          format: float
+          type: number
+      type: object
+    InsiderSentiments:
+      example:
+        symbol: symbol
+        data:
+        - symbol: symbol
+          month: 6
+          year: 0
+          change: 1
+          mspr: 5.962134
+        - symbol: symbol
+          month: 6
+          year: 0
+          change: 1
+          mspr: 5.962134
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        data:
+          description: Array of sentiment data.
+          items:
+            $ref: '#/components/schemas/InsiderSentimentsData'
           type: array
       type: object
     FinancialMap:
@@ -6155,7 +6246,6 @@ components:
           wageLevel: wageLevel
           employerName: employerName
           wageRangeFrom: 1.4658129
-          waveUnitOfPay: waveUnitOfPay
           visaClass: visaClass
           worksiteCounty: worksiteCounty
           beginDate: beginDate
@@ -6165,6 +6255,7 @@ components:
           worksitePostalCode: worksitePostalCode
           receivedDate: receivedDate
           socCode: socCode
+          wageUnitOfPay: wageUnitOfPay
           quarter: 6
           worksiteState: worksiteState
         - worksiteCity: worksiteCity
@@ -6178,7 +6269,6 @@ components:
           wageLevel: wageLevel
           employerName: employerName
           wageRangeFrom: 1.4658129
-          waveUnitOfPay: waveUnitOfPay
           visaClass: visaClass
           worksiteCounty: worksiteCounty
           beginDate: beginDate
@@ -6188,6 +6278,7 @@ components:
           worksitePostalCode: worksitePostalCode
           receivedDate: receivedDate
           socCode: socCode
+          wageUnitOfPay: wageUnitOfPay
           quarter: 6
           worksiteState: worksiteState
       properties:
@@ -6213,7 +6304,6 @@ components:
         wageLevel: wageLevel
         employerName: employerName
         wageRangeFrom: 1.4658129
-        waveUnitOfPay: waveUnitOfPay
         visaClass: visaClass
         worksiteCounty: worksiteCounty
         beginDate: beginDate
@@ -6223,6 +6313,7 @@ components:
         worksitePostalCode: worksitePostalCode
         receivedDate: receivedDate
         socCode: socCode
+        wageUnitOfPay: wageUnitOfPay
         quarter: 6
         worksiteState: worksiteState
       properties:
@@ -6291,7 +6382,7 @@ components:
           description: Wage range to.
           format: float
           type: number
-        waveUnitOfPay:
+        wageUnitOfPay:
           description: Wage unit of pay.
           type: string
         wageLevel:

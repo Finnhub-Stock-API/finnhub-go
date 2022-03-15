@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **WorksitePostalCode** | Pointer to **string** | Worksite postal code. | [optional] 
 **WageRangeFrom** | Pointer to **float32** | Wage range from. | [optional] 
 **WageRangeTo** | Pointer to **float32** | Wage range to. | [optional] 
-**WaveUnitOfPay** | Pointer to **string** | Wage unit of pay. | [optional] 
+**WageUnitOfPay** | Pointer to **string** | Wage unit of pay. | [optional] 
 **WageLevel** | Pointer to **string** | Wage level. | [optional] 
 **H1bDependent** | Pointer to **string** | H1B dependent flag. | [optional] 
 
@@ -547,30 +547,30 @@ SetWageRangeTo sets WageRangeTo field to given value.
 
 HasWageRangeTo returns a boolean if a field has been set.
 
-### GetWaveUnitOfPay
+### GetWageUnitOfPay
 
-`func (o *VisaApplication) GetWaveUnitOfPay() string`
+`func (o *VisaApplication) GetWageUnitOfPay() string`
 
-GetWaveUnitOfPay returns the WaveUnitOfPay field if non-nil, zero value otherwise.
+GetWageUnitOfPay returns the WageUnitOfPay field if non-nil, zero value otherwise.
 
-### GetWaveUnitOfPayOk
+### GetWageUnitOfPayOk
 
-`func (o *VisaApplication) GetWaveUnitOfPayOk() (*string, bool)`
+`func (o *VisaApplication) GetWageUnitOfPayOk() (*string, bool)`
 
-GetWaveUnitOfPayOk returns a tuple with the WaveUnitOfPay field if it's non-nil, zero value otherwise
+GetWageUnitOfPayOk returns a tuple with the WageUnitOfPay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWaveUnitOfPay
+### SetWageUnitOfPay
 
-`func (o *VisaApplication) SetWaveUnitOfPay(v string)`
+`func (o *VisaApplication) SetWageUnitOfPay(v string)`
 
-SetWaveUnitOfPay sets WaveUnitOfPay field to given value.
+SetWageUnitOfPay sets WageUnitOfPay field to given value.
 
-### HasWaveUnitOfPay
+### HasWageUnitOfPay
 
-`func (o *VisaApplication) HasWaveUnitOfPay() bool`
+`func (o *VisaApplication) HasWageUnitOfPay() bool`
 
-HasWaveUnitOfPay returns a boolean if a field has been set.
+HasWageUnitOfPay returns a boolean if a field has been set.
 
 ### GetWageLevel
 
