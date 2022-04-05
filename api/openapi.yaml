@@ -2393,6 +2393,114 @@ paths:
       summary: H1-B Visa Application
       tags:
       - Default
+  /stock/lobbying:
+    get:
+      description: Get a list of reported lobbying activities in the Senate and the
+        House.
+      operationId: stock-lobbying
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyingResult'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Senate Lobbying
+      tags:
+      - Default
+  /bond/profile:
+    get:
+      description: Get general information of a bond. You can query by FIGI, ISIN
+        or CUSIP
+      operationId: bond-profile
+      parameters:
+      - description: ISIN
+        in: query
+        name: isin
+        schema:
+          type: string
+      - description: CUSIP
+        in: query
+        name: cusip
+        schema:
+          type: string
+      - description: FIGI
+        in: query
+        name: figi
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BondProfile'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Bond Profile
+      tags:
+      - Default
+  /bond/price:
+    get:
+      description: Get end-of-day bond's price data.
+      operationId: bond-price
+      parameters:
+      - description: ISIN.
+        in: query
+        name: isin
+        required: true
+        schema:
+          type: string
+      - description: UNIX timestamp. Interval initial value.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: UNIX timestamp. Interval end value.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BondCandles'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Bond price data
+      tags:
+      - Default
   /country:
     get:
       description: List all countries and metadata.
@@ -6290,6 +6398,235 @@ components:
           items:
             $ref: '#/components/schemas/VisaApplication'
           type: array
+      type: object
+    LobbyingResult:
+      example:
+        symbol: symbol
+        data:
+        - income: 6.0274563
+          date: date
+          symbol: symbol
+          country: country
+          period: period
+          clientId: clientId
+          year: 0
+          documentUrl: documentUrl
+          registrantId: registrantId
+          description: description
+          postedName: postedName
+          senateId: senateId
+          name: name
+          houseregistrantId: houseregistrantId
+          expenses: 1.4658129
+        - income: 6.0274563
+          date: date
+          symbol: symbol
+          country: country
+          period: period
+          clientId: clientId
+          year: 0
+          documentUrl: documentUrl
+          registrantId: registrantId
+          description: description
+          postedName: postedName
+          senateId: senateId
+          name: name
+          houseregistrantId: houseregistrantId
+          expenses: 1.4658129
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        data:
+          description: Array of lobbying activities.
+          items:
+            $ref: '#/components/schemas/LobbyingData'
+          type: array
+      type: object
+    LobbyingData:
+      example:
+        income: 6.0274563
+        date: date
+        symbol: symbol
+        country: country
+        period: period
+        clientId: clientId
+        year: 0
+        documentUrl: documentUrl
+        registrantId: registrantId
+        description: description
+        postedName: postedName
+        senateId: senateId
+        name: name
+        houseregistrantId: houseregistrantId
+        expenses: 1.4658129
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        name:
+          description: Company's name.
+          type: string
+        description:
+          description: Description.
+          type: string
+        country:
+          description: Country.
+          type: string
+        year:
+          description: Year.
+          format: int64
+          type: integer
+        period:
+          description: Period.
+          type: string
+        income:
+          description: Income reported by lobbying firms.
+          format: float
+          type: number
+        expenses:
+          description: Expenses reported by the company.
+          format: float
+          type: number
+        documentUrl:
+          description: Document's URL.
+          type: string
+        postedName:
+          description: Posted name.
+          type: string
+        date:
+          description: Date.
+          type: string
+        clientId:
+          description: Client ID.
+          type: string
+        registrantId:
+          description: Registrant ID.
+          type: string
+        senateId:
+          description: Senate ID.
+          type: string
+        houseregistrantId:
+          description: House registrant ID.
+          type: string
+      type: object
+    BondProfile:
+      example:
+        cusip: cusip
+        callable: true
+        coupon: 0.8008282
+        amountOutstanding: 5.962134
+        figi: figi
+        paymentFrequency: paymentFrequency
+        assetType: assetType
+        firstCouponDate: firstCouponDate
+        securityLevel: securityLevel
+        offeringPrice: 6.0274563
+        industrySubGroup: industrySubGroup
+        originalOffering: 1.4658129
+        maturityDate: maturityDate
+        couponType: couponType
+        bondType: bondType
+        issueDate: issueDate
+        asset: asset
+        debtType: debtType
+        isin: isin
+        industryGroup: industryGroup
+        datedDate: datedDate
+      properties:
+        isin:
+          description: ISIN.
+          type: string
+        cusip:
+          description: Cusip.
+          type: string
+        figi:
+          description: FIGI.
+          type: string
+        coupon:
+          description: Coupon.
+          format: float
+          type: number
+        maturityDate:
+          description: Period.
+          type: string
+        offeringPrice:
+          description: Offering price.
+          format: float
+          type: number
+        issueDate:
+          description: Issue date.
+          type: string
+        bondType:
+          description: Bond type.
+          type: string
+        debtType:
+          description: Bond type.
+          type: string
+        industryGroup:
+          description: Industry.
+          type: string
+        industrySubGroup:
+          description: Sub-Industry.
+          type: string
+        asset:
+          description: Asset.
+          type: string
+        assetType:
+          description: Asset.
+          type: string
+        datedDate:
+          description: Dated date.
+          type: string
+        firstCouponDate:
+          description: First coupon date.
+          type: string
+        originalOffering:
+          description: Offering amount.
+          format: float
+          type: number
+        amountOutstanding:
+          description: Outstanding amount.
+          format: float
+          type: number
+        paymentFrequency:
+          description: Payment frequency.
+          type: string
+        securityLevel:
+          description: Security level.
+          type: string
+        callable:
+          description: Callable.
+          type: boolean
+        couponType:
+          description: Coupon type.
+          type: string
+      type: object
+    BondCandles:
+      example:
+        c:
+        - 0.8008282
+        - 0.8008282
+        s: s
+        t:
+        - 6
+        - 6
+      properties:
+        c:
+          description: List of close prices for returned candles.
+          items:
+            format: float
+            type: number
+          type: array
+        t:
+          description: List of timestamp for returned candles.
+          items:
+            format: int64
+            type: integer
+          type: array
+        s:
+          description: Status of the response. This field can either be ok or no_data.
+          type: string
       type: object
     VisaApplication:
       example:

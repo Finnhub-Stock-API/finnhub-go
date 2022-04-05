@@ -5,6 +5,8 @@ All URIs are relative to *https://finnhub.io/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
+[**BondPrice**](DefaultApi.md#BondPrice) | **Get** /bond/price | Bond price data
+[**BondProfile**](DefaultApi.md#BondProfile) | **Get** /bond/profile | Bond Profile
 [**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
 [**CompanyEarningsQualityScore**](DefaultApi.md#CompanyEarningsQualityScore) | **Get** /stock/earnings-quality-score | Company Earnings Quality Score
@@ -68,6 +70,7 @@ Method | HTTP request | Description
 [**StockBidask**](DefaultApi.md#StockBidask) | **Get** /stock/bidask | Last Bid-Ask
 [**StockCandles**](DefaultApi.md#StockCandles) | **Get** /stock/candle | Stock Candles
 [**StockDividends**](DefaultApi.md#StockDividends) | **Get** /stock/dividend | Dividends
+[**StockLobbying**](DefaultApi.md#StockLobbying) | **Get** /stock/lobbying | Senate Lobbying
 [**StockNbbo**](DefaultApi.md#StockNbbo) | **Get** /stock/bbo | Historical NBBO
 [**StockSplits**](DefaultApi.md#StockSplits) | **Get** /stock/split | Splits
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
@@ -137,6 +140,146 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AggregateIndicators**](AggregateIndicators.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BondPrice
+
+> BondCandles BondPrice(ctx).Isin(isin).From(from).To(to).Execute()
+
+Bond price data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    isin := "isin_example" // string | ISIN.
+    from := int64(789) // int64 | UNIX timestamp. Interval initial value.
+    to := int64(789) // int64 | UNIX timestamp. Interval end value.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.BondPrice(context.Background()).Isin(isin).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.BondPrice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BondPrice`: BondCandles
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.BondPrice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBondPriceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **isin** | **string** | ISIN. | 
+ **from** | **int64** | UNIX timestamp. Interval initial value. | 
+ **to** | **int64** | UNIX timestamp. Interval end value. | 
+
+### Return type
+
+[**BondCandles**](BondCandles.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BondProfile
+
+> BondProfile BondProfile(ctx).Isin(isin).Cusip(cusip).Figi(figi).Execute()
+
+Bond Profile
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    isin := "isin_example" // string | ISIN (optional)
+    cusip := "cusip_example" // string | CUSIP (optional)
+    figi := "figi_example" // string | FIGI (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.BondProfile(context.Background()).Isin(isin).Cusip(cusip).Figi(figi).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.BondProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BondProfile`: BondProfile
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.BondProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBondProfileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **isin** | **string** | ISIN | 
+ **cusip** | **string** | CUSIP | 
+ **figi** | **string** | FIGI | 
+
+### Return type
+
+[**BondProfile**](BondProfile.md)
 
 ### Authorization
 
@@ -4401,6 +4544,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Dividends**](Dividends.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockLobbying
+
+> LobbyingResult StockLobbying(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Senate Lobbying
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockLobbying(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockLobbying``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockLobbying`: LobbyingResult
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockLobbying`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockLobbyingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**LobbyingResult**](LobbyingResult.md)
 
 ### Authorization
 

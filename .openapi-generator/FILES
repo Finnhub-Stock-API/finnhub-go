@@ -6,6 +6,8 @@ client.go
 configuration.go
 docs/AggregateIndicators.md
 docs/BasicFinancials.md
+docs/BondCandles.md
+docs/BondProfile.md
 docs/BreakdownItem.md
 docs/Company.md
 docs/CompanyESG.md
@@ -75,6 +77,8 @@ docs/InvestmentThemePortfolio.md
 docs/InvestmentThemes.md
 docs/KeyCustomersSuppliers.md
 docs/LastBidAsk.md
+docs/LobbyingData.md
+docs/LobbyingResult.md
 docs/MarketNews.md
 docs/MutualFundCountryExposure.md
 docs/MutualFundCountryExposureData.md
@@ -127,6 +131,8 @@ go.mod
 go.sum
 model_aggregate_indicators.go
 model_basic_financials.go
+model_bond_candles.go
+model_bond_profile.go
 model_breakdown_item.go
 model_company.go
 model_company_earnings_quality_score.go
@@ -195,6 +201,8 @@ model_ipo_calendar.go
 model_ipo_event.go
 model_key_customers_suppliers.go
 model_last_bid_ask.go
+model_lobbying_data.go
+model_lobbying_result.go
 model_market_news.go
 model_mutual_fund_country_exposure.go
 model_mutual_fund_country_exposure_data.go
