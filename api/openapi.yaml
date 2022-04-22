@@ -1569,8 +1569,9 @@ paths:
       - Default
   /mutual-fund/profile:
     get:
-      description: Get mutual funds profile information. This endpoint covers US mutual
-        funds only.
+      description: Get mutual funds profile information. This endpoint covers both
+        US and global mutual funds. For international funds, you must query the data
+        using ISIN.
       operationId: mutual-fund-profile
       parameters:
       - description: Fund's symbol.
@@ -1597,7 +1598,9 @@ paths:
       - Default
   /mutual-fund/holdings:
     get:
-      description: Get full Mutual Funds holdings/constituents.
+      description: Get full Mutual Funds holdings/constituents. This endpoint covers
+        both US and global mutual funds. For international funds, you must query the
+        data using ISIN.
       operationId: mutual-fund-holdings
       parameters:
       - description: Fund's symbol.
@@ -2429,6 +2432,46 @@ paths:
       security:
       - api_key: []
       summary: Senate Lobbying
+      tags:
+      - Default
+  /stock/usa-spending:
+    get:
+      description: Get a list of government's spending activities from USASpending
+        dataset for public companies. This dataset can help you identify companies
+        that win big government contracts which is extremely important for industries
+        such as Defense, Aerospace, and Education.
+      operationId: stock-usa-spending
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsaSpendingResult'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: USA Spending
       tags:
       - Default
   /bond/profile:
@@ -6442,6 +6485,145 @@ components:
           items:
             $ref: '#/components/schemas/LobbyingData'
           type: array
+      type: object
+    UsaSpendingResult:
+      example:
+        symbol: symbol
+        data:
+        - totalValue: 0.8008282
+          symbol: symbol
+          country: country
+          awardingOfficeName: awardingOfficeName
+          performanceCity: performanceCity
+          recipientParentName: recipientParentName
+          performanceCongressionalDistrict: performanceCongressionalDistrict
+          performanceCounty: performanceCounty
+          performanceStartDate: performanceStartDate
+          awardingAgencyName: awardingAgencyName
+          performanceCountry: performanceCountry
+          performanceZipCode: performanceZipCode
+          awardDescription: awardDescription
+          performanceState: performanceState
+          recipientName: recipientName
+          awardingSubAgencyName: awardingSubAgencyName
+          permalink: permalink
+          actionDate: actionDate
+          performanceEndDate: performanceEndDate
+          naicsCode: naicsCode
+        - totalValue: 0.8008282
+          symbol: symbol
+          country: country
+          awardingOfficeName: awardingOfficeName
+          performanceCity: performanceCity
+          recipientParentName: recipientParentName
+          performanceCongressionalDistrict: performanceCongressionalDistrict
+          performanceCounty: performanceCounty
+          performanceStartDate: performanceStartDate
+          awardingAgencyName: awardingAgencyName
+          performanceCountry: performanceCountry
+          performanceZipCode: performanceZipCode
+          awardDescription: awardDescription
+          performanceState: performanceState
+          recipientName: recipientName
+          awardingSubAgencyName: awardingSubAgencyName
+          permalink: permalink
+          actionDate: actionDate
+          performanceEndDate: performanceEndDate
+          naicsCode: naicsCode
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        data:
+          description: Array of government's spending data points.
+          items:
+            $ref: '#/components/schemas/UsaSpending'
+          type: array
+      type: object
+    UsaSpending:
+      example:
+        totalValue: 0.8008282
+        symbol: symbol
+        country: country
+        awardingOfficeName: awardingOfficeName
+        performanceCity: performanceCity
+        recipientParentName: recipientParentName
+        performanceCongressionalDistrict: performanceCongressionalDistrict
+        performanceCounty: performanceCounty
+        performanceStartDate: performanceStartDate
+        awardingAgencyName: awardingAgencyName
+        performanceCountry: performanceCountry
+        performanceZipCode: performanceZipCode
+        awardDescription: awardDescription
+        performanceState: performanceState
+        recipientName: recipientName
+        awardingSubAgencyName: awardingSubAgencyName
+        permalink: permalink
+        actionDate: actionDate
+        performanceEndDate: performanceEndDate
+        naicsCode: naicsCode
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        recipientName:
+          description: Company's name.
+          type: string
+        recipientParentName:
+          description: Company's name.
+          type: string
+        awardDescription:
+          description: Description.
+          type: string
+        country:
+          description: Recipient's country.
+          type: string
+        actionDate:
+          description: Period.
+          type: string
+        totalValue:
+          description: Income reported by lobbying firms.
+          format: float
+          type: number
+        performanceStartDate:
+          description: Performance start date.
+          type: string
+        performanceEndDate:
+          description: Performance end date.
+          type: string
+        awardingAgencyName:
+          description: Award agency.
+          type: string
+        awardingSubAgencyName:
+          description: Award sub-agency.
+          type: string
+        awardingOfficeName:
+          description: Award office name.
+          type: string
+        performanceCountry:
+          description: Performance country.
+          type: string
+        performanceCity:
+          description: Performance city.
+          type: string
+        performanceCounty:
+          description: Performance county.
+          type: string
+        performanceState:
+          description: Performance state.
+          type: string
+        performanceZipCode:
+          description: Performance zip code.
+          type: string
+        performanceCongressionalDistrict:
+          description: Performance congressional district.
+          type: string
+        naicsCode:
+          description: NAICS code.
+          type: string
+        permalink:
+          description: Permalink.
+          type: string
       type: object
     LobbyingData:
       example:

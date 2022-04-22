@@ -122,6 +122,8 @@ docs/TranscriptParticipant.md
 docs/Trend.md
 docs/TwitterSentimentContent.md
 docs/UpgradeDowngrade.md
+docs/UsaSpending.md
+docs/UsaSpendingResult.md
 docs/UsptoPatent.md
 docs/UsptoPatentResult.md
 docs/VisaApplication.md
@@ -246,6 +248,8 @@ model_transcript_participant.go
 model_trend.go
 model_twitter_sentiment_content.go
 model_upgrade_downgrade.go
+model_usa_spending.go
+model_usa_spending_result.go
 model_uspto_patent.go
 model_uspto_patent_result.go
 model_visa_application.go

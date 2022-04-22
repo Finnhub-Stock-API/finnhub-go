@@ -6637,7 +6637,7 @@ func (r ApiMutualFundHoldingsRequest) Execute() (MutualFundHoldings, *_nethttp.R
 /*
 MutualFundHoldings Mutual Funds Holdings
 
-Get full Mutual Funds holdings/constituents.
+Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiMutualFundHoldingsRequest
@@ -6774,7 +6774,7 @@ func (r ApiMutualFundProfileRequest) Execute() (MutualFundProfile, *_nethttp.Res
 /*
 MutualFundProfile Mutual Funds Profile
 
-Get mutual funds profile information. This endpoint covers US mutual funds only.
+Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiMutualFundProfileRequest
@@ -9627,6 +9627,152 @@ func (a *DefaultApiService) StockTickExecute(r ApiStockTickRequest) (TickData, *
 	localVarQueryParams.Add("date", parameterToString(*r.date, ""))
 	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiStockUsaSpendingRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	from *string
+	to *string
+}
+
+// Symbol.
+func (r ApiStockUsaSpendingRequest) Symbol(symbol string) ApiStockUsaSpendingRequest {
+	r.symbol = &symbol
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
+func (r ApiStockUsaSpendingRequest) From(from string) ApiStockUsaSpendingRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
+func (r ApiStockUsaSpendingRequest) To(to string) ApiStockUsaSpendingRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiStockUsaSpendingRequest) Execute() (UsaSpendingResult, *_nethttp.Response, error) {
+	return r.ApiService.StockUsaSpendingExecute(r)
+}
+
+/*
+StockUsaSpending USA Spending
+
+Get a list of government's spending activities from USASpending dataset for public companies. This dataset can help you identify companies that win big government contracts which is extremely important for industries such as Defense, Aerospace, and Education.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiStockUsaSpendingRequest
+*/
+func (a *DefaultApiService) StockUsaSpending(ctx _context.Context) ApiStockUsaSpendingRequest {
+	return ApiStockUsaSpendingRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return UsaSpendingResult
+func (a *DefaultApiService) StockUsaSpendingExecute(r ApiStockUsaSpendingRequest) (UsaSpendingResult, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  UsaSpendingResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StockUsaSpending")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/usa-spending"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -75,6 +75,7 @@ Method | HTTP request | Description
 [**StockSplits**](DefaultApi.md#StockSplits) | **Get** /stock/split | Splits
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
 [**StockTick**](DefaultApi.md#StockTick) | **Get** /stock/tick | Tick Data
+[**StockUsaSpending**](DefaultApi.md#StockUsaSpending) | **Get** /stock/usa-spending | USA Spending
 [**StockUsptoPatent**](DefaultApi.md#StockUsptoPatent) | **Get** /stock/uspto-patent | USPTO Patents
 [**StockVisaApplication**](DefaultApi.md#StockVisaApplication) | **Get** /stock/visa-application | H1-B Visa Application
 [**SupplyChainRelationships**](DefaultApi.md#SupplyChainRelationships) | **Get** /stock/supply-chain | Supply Chain Relationships
@@ -4904,6 +4905,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TickData**](TickData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockUsaSpending
+
+> UsaSpendingResult StockUsaSpending(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+USA Spending
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockUsaSpending(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockUsaSpending``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockUsaSpending`: UsaSpendingResult
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockUsaSpending`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockUsaSpendingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt; | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt; | 
+
+### Return type
+
+[**UsaSpendingResult**](UsaSpendingResult.md)
 
 ### Authorization
 
