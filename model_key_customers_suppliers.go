@@ -20,6 +20,10 @@ type KeyCustomersSuppliers struct {
 	Symbol *string `json:"symbol,omitempty"`
 	// Name
 	Name *string `json:"name,omitempty"`
+	// Country
+	Country *string `json:"country,omitempty"`
+	// Industry
+	Industry *string `json:"industry,omitempty"`
 	// Whether the company is a customer.
 	Customer *bool `json:"customer,omitempty"`
 	// Whether the company is a supplier
@@ -117,6 +121,70 @@ func (o *KeyCustomersSuppliers) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *KeyCustomersSuppliers) SetName(v string) {
 	o.Name = &v
+}
+
+// GetCountry returns the Country field value if set, zero value otherwise.
+func (o *KeyCustomersSuppliers) GetCountry() string {
+	if o == nil || o.Country == nil {
+		var ret string
+		return ret
+	}
+	return *o.Country
+}
+
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KeyCustomersSuppliers) GetCountryOk() (*string, bool) {
+	if o == nil || o.Country == nil {
+		return nil, false
+	}
+	return o.Country, true
+}
+
+// HasCountry returns a boolean if a field has been set.
+func (o *KeyCustomersSuppliers) HasCountry() bool {
+	if o != nil && o.Country != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given string and assigns it to the Country field.
+func (o *KeyCustomersSuppliers) SetCountry(v string) {
+	o.Country = &v
+}
+
+// GetIndustry returns the Industry field value if set, zero value otherwise.
+func (o *KeyCustomersSuppliers) GetIndustry() string {
+	if o == nil || o.Industry == nil {
+		var ret string
+		return ret
+	}
+	return *o.Industry
+}
+
+// GetIndustryOk returns a tuple with the Industry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KeyCustomersSuppliers) GetIndustryOk() (*string, bool) {
+	if o == nil || o.Industry == nil {
+		return nil, false
+	}
+	return o.Industry, true
+}
+
+// HasIndustry returns a boolean if a field has been set.
+func (o *KeyCustomersSuppliers) HasIndustry() bool {
+	if o != nil && o.Industry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndustry gets a reference to the given string and assigns it to the Industry field.
+func (o *KeyCustomersSuppliers) SetIndustry(v string) {
+	o.Industry = &v
 }
 
 // GetCustomer returns the Customer field value if set, zero value otherwise.
@@ -382,6 +450,12 @@ func (o KeyCustomersSuppliers) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Country != nil {
+		toSerialize["country"] = o.Country
+	}
+	if o.Industry != nil {
+		toSerialize["industry"] = o.Industry
 	}
 	if o.Customer != nil {
 		toSerialize["customer"] = o.Customer

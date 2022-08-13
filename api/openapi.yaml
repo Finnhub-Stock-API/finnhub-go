@@ -241,10 +241,12 @@ paths:
       - Default
   /press-releases:
     get:
-      description: Get latest major press releases of a company. This data can be
-        used to highlight the most significant events comprised of mostly press releases
-        sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile,
-        and PRNewswire.
+      description: <p>Get latest major press releases of a company. This data can
+        be used to highlight the most significant events comprised of mostly press
+        releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire,
+        Newsfile, and PRNewswire.</p><p>Full-text press releases data is available
+        for Enterprise clients. <a href="mailto:support@finnhub.io">Contact Us</a>
+        to learn more.</p>
       operationId: press-releases
       parameters:
       - description: Company symbol.
@@ -676,6 +678,9 @@ paths:
     get:
       description: List filings for international companies. Limit to 250 documents
         at a time. These are the documents we use to source our fundamental data.
+        Only support SEDAR and UK Companies House for normal usage. Enterprise clients
+        who need access to the full filings for global markets should contact us for
+        the access.
       operationId: international-filings
       parameters:
       - description: Symbol. Leave empty to list latest filings.
@@ -797,6 +802,31 @@ paths:
       security:
       - api_key: []
       summary: IPO Calendar
+      tags:
+      - Default
+  /sector/metrics:
+    get:
+      description: Get ratios for different sectors and regions/indices.
+      operationId: sector-metric
+      parameters:
+      - description: Region. A list of supported values for this field can be found
+          <a href="https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing"
+          target="_blank">here</a>.
+        in: query
+        name: region
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectorMetric'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Sector Metrics
       tags:
       - Default
   /stock/dividend:
@@ -2923,7 +2953,7 @@ components:
           description: Title
           type: string
         since:
-          description: Year appointed
+          description: Year first appointed as executive/director of the company
           type: string
         sex:
           description: Sex
@@ -5030,10 +5060,12 @@ components:
         standardMinInvestment: 3.6160767
         classId: classId
         inceptionDate: 2000-01-23
+        currency: currency
         turnover: 2.027123
         investmentSegment: investmentSegment
         beta: 1.4658129
         maxRedemptionFee: 9.301444
+        sfdrClassification: sfdrClassification
         manager: manager
         iraMinInvestment: 7.0614014
         seriesName: seriesName
@@ -5134,6 +5166,23 @@ components:
         className:
           description: Class name.
           type: string
+        sfdrClassification:
+          description: SFDR classification for EU funds. Under the new classifications,
+            a fund's strategy will labeled under either Article 6, 8 or 9. Article
+            6 covers funds which do not integrate any kind of sustainability into
+            the investment process. Article 8, also known as ‘environmental and socially
+            promoting’, applies “… where a financial product promotes, among other
+            characteristics, environmental or social characteristics, or a combination
+            of those characteristics, provided that the companies in which the investments
+            are made follow good governance practices.”. Article 9, also known as
+            ‘products targeting sustainable investments’, covers products targeting
+            bespoke sustainable investments and applies “… where a financial product
+            has sustainable investment as its objective and an index has been designated
+            as a reference benchmark.”
+          type: string
+        currency:
+          description: Fund's currency
+          type: string
       type: object
     MutualFundProfile:
       example:
@@ -5148,10 +5197,12 @@ components:
           standardMinInvestment: 3.6160767
           classId: classId
           inceptionDate: 2000-01-23
+          currency: currency
           turnover: 2.027123
           investmentSegment: investmentSegment
           beta: 1.4658129
           maxRedemptionFee: 9.301444
+          sfdrClassification: sfdrClassification
           manager: manager
           iraMinInvestment: 7.0614014
           seriesName: seriesName
@@ -5922,14 +5973,48 @@ components:
             $ref: '#/components/schemas/InvestmentThemePortfolio'
           type: array
       type: object
+    SectorMetric:
+      example:
+        data:
+        - metrics: '{}'
+          sector: sector
+        - metrics: '{}'
+          sector: sector
+        region: region
+      properties:
+        region:
+          description: Region.
+          type: string
+        data:
+          description: Metrics for each sector.
+          items:
+            $ref: '#/components/schemas/SectorMetricData'
+          type: array
+      type: object
+    SectorMetricData:
+      example:
+        metrics: '{}'
+        sector: sector
+      properties:
+        sector:
+          description: Sector
+          type: string
+        metrics:
+          description: Metrics data in key-value format. <code>a</code> and <code>m</code>
+            fields are for average and median respectively.
+          properties: {}
+          type: object
+      type: object
     KeyCustomersSuppliers:
       example:
         twoYearCorrelation: 2.302136
         symbol: symbol
+        country: country
         twoWeekCorrelation: 5.637377
         oneMonthCorrelation: 0.8008282
         supplier: true
         name: name
+        industry: industry
         threeMonthCorrelation: 5.962134
         oneYearCorrelation: 6.0274563
         sixMonthCorrelation: 1.4658129
@@ -5940,6 +6025,12 @@ components:
           type: string
         name:
           description: Name
+          type: string
+        country:
+          description: Country
+          type: string
+        industry:
+          description: Industry
           type: string
         customer:
           description: Whether the company is a customer.
@@ -5978,20 +6069,24 @@ components:
         data:
         - twoYearCorrelation: 2.302136
           symbol: symbol
+          country: country
           twoWeekCorrelation: 5.637377
           oneMonthCorrelation: 0.8008282
           supplier: true
           name: name
+          industry: industry
           threeMonthCorrelation: 5.962134
           oneYearCorrelation: 6.0274563
           sixMonthCorrelation: 1.4658129
           customer: true
         - twoYearCorrelation: 2.302136
           symbol: symbol
+          country: country
           twoWeekCorrelation: 5.637377
           oneMonthCorrelation: 0.8008282
           supplier: true
           name: name
+          industry: industry
           threeMonthCorrelation: 5.962134
           oneYearCorrelation: 6.0274563
           sixMonthCorrelation: 1.4658129

@@ -29,6 +29,8 @@ Name | Type | Description | Notes
 **SeriesName** | Pointer to **string** | Fund&#39;s series name. | [optional] 
 **ClassId** | Pointer to **string** | Class ID. | [optional] 
 **ClassName** | Pointer to **string** | Class name. | [optional] 
+**SfdrClassification** | Pointer to **string** | SFDR classification for EU funds. Under the new classifications, a fund&#39;s strategy will labeled under either Article 6, 8 or 9. Article 6 covers funds which do not integrate any kind of sustainability into the investment process. Article 8, also known as ‘environmental and socially promoting’, applies “… where a financial product promotes, among other characteristics, environmental or social characteristics, or a combination of those characteristics, provided that the companies in which the investments are made follow good governance practices.”. Article 9, also known as ‘products targeting sustainable investments’, covers products targeting bespoke sustainable investments and applies “… where a financial product has sustainable investment as its objective and an index has been designated as a reference benchmark.” | [optional] 
+**Currency** | Pointer to **string** | Fund&#39;s currency | [optional] 
 
 ## Methods
 
@@ -673,6 +675,56 @@ SetClassName sets ClassName field to given value.
 `func (o *MutualFundProfileData) HasClassName() bool`
 
 HasClassName returns a boolean if a field has been set.
+
+### GetSfdrClassification
+
+`func (o *MutualFundProfileData) GetSfdrClassification() string`
+
+GetSfdrClassification returns the SfdrClassification field if non-nil, zero value otherwise.
+
+### GetSfdrClassificationOk
+
+`func (o *MutualFundProfileData) GetSfdrClassificationOk() (*string, bool)`
+
+GetSfdrClassificationOk returns a tuple with the SfdrClassification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSfdrClassification
+
+`func (o *MutualFundProfileData) SetSfdrClassification(v string)`
+
+SetSfdrClassification sets SfdrClassification field to given value.
+
+### HasSfdrClassification
+
+`func (o *MutualFundProfileData) HasSfdrClassification() bool`
+
+HasSfdrClassification returns a boolean if a field has been set.
+
+### GetCurrency
+
+`func (o *MutualFundProfileData) GetCurrency() string`
+
+GetCurrency returns the Currency field if non-nil, zero value otherwise.
+
+### GetCurrencyOk
+
+`func (o *MutualFundProfileData) GetCurrencyOk() (*string, bool)`
+
+GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrency
+
+`func (o *MutualFundProfileData) SetCurrency(v string)`
+
+SetCurrency sets Currency field to given value.
+
+### HasCurrency
+
+`func (o *MutualFundProfileData) HasCurrency() bool`
+
+HasCurrency returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,7 +22,7 @@ type Company struct {
 	Age *int64 `json:"age,omitempty"`
 	// Title
 	Title *string `json:"title,omitempty"`
-	// Year appointed
+	// Year first appointed as executive/director of the company
 	Since *string `json:"since,omitempty"`
 	// Sex
 	Sex *string `json:"sex,omitempty"`

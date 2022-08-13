@@ -66,6 +66,10 @@ type MutualFundProfileData struct {
 	ClassId *string `json:"classId,omitempty"`
 	// Class name.
 	ClassName *string `json:"className,omitempty"`
+	// SFDR classification for EU funds. Under the new classifications, a fund's strategy will labeled under either Article 6, 8 or 9. Article 6 covers funds which do not integrate any kind of sustainability into the investment process. Article 8, also known as ‘environmental and socially promoting’, applies “… where a financial product promotes, among other characteristics, environmental or social characteristics, or a combination of those characteristics, provided that the companies in which the investments are made follow good governance practices.”. Article 9, also known as ‘products targeting sustainable investments’, covers products targeting bespoke sustainable investments and applies “… where a financial product has sustainable investment as its objective and an index has been designated as a reference benchmark.”
+	SfdrClassification *string `json:"sfdrClassification,omitempty"`
+	// Fund's currency
+	Currency *string `json:"currency,omitempty"`
 }
 
 // NewMutualFundProfileData instantiates a new MutualFundProfileData object
@@ -885,6 +889,70 @@ func (o *MutualFundProfileData) SetClassName(v string) {
 	o.ClassName = &v
 }
 
+// GetSfdrClassification returns the SfdrClassification field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetSfdrClassification() string {
+	if o == nil || o.SfdrClassification == nil {
+		var ret string
+		return ret
+	}
+	return *o.SfdrClassification
+}
+
+// GetSfdrClassificationOk returns a tuple with the SfdrClassification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetSfdrClassificationOk() (*string, bool) {
+	if o == nil || o.SfdrClassification == nil {
+		return nil, false
+	}
+	return o.SfdrClassification, true
+}
+
+// HasSfdrClassification returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasSfdrClassification() bool {
+	if o != nil && o.SfdrClassification != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSfdrClassification gets a reference to the given string and assigns it to the SfdrClassification field.
+func (o *MutualFundProfileData) SetSfdrClassification(v string) {
+	o.SfdrClassification = &v
+}
+
+// GetCurrency returns the Currency field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetCurrency() string {
+	if o == nil || o.Currency == nil {
+		var ret string
+		return ret
+	}
+	return *o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetCurrencyOk() (*string, bool) {
+	if o == nil || o.Currency == nil {
+		return nil, false
+	}
+	return o.Currency, true
+}
+
+// HasCurrency returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasCurrency() bool {
+	if o != nil && o.Currency != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrency gets a reference to the given string and assigns it to the Currency field.
+func (o *MutualFundProfileData) SetCurrency(v string) {
+	o.Currency = &v
+}
+
 func (o MutualFundProfileData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -961,6 +1029,12 @@ func (o MutualFundProfileData) MarshalJSON() ([]byte, error) {
 	}
 	if o.ClassName != nil {
 		toSerialize["className"] = o.ClassName
+	}
+	if o.SfdrClassification != nil {
+		toSerialize["sfdrClassification"] = o.SfdrClassification
+	}
+	if o.Currency != nil {
+		toSerialize["currency"] = o.Currency
 	}
 	return json.Marshal(toSerialize)
 }

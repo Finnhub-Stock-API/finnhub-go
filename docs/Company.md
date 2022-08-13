@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Executive name | [optional] 
 **Age** | Pointer to **int64** | Age | [optional] 
 **Title** | Pointer to **string** | Title | [optional] 
-**Since** | Pointer to **string** | Year appointed | [optional] 
+**Since** | Pointer to **string** | Year first appointed as executive/director of the company | [optional] 
 **Sex** | Pointer to **string** | Sex | [optional] 
 **Compensation** | Pointer to **int64** | Total compensation | [optional] 
 **Currency** | Pointer to **string** | Compensation currency | [optional] 

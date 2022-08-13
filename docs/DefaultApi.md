@@ -64,6 +64,7 @@ Method | HTTP request | Description
 [**Quote**](DefaultApi.md#Quote) | **Get** /quote | Quote
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
 [**RevenueBreakdown**](DefaultApi.md#RevenueBreakdown) | **Get** /stock/revenue-breakdown | Revenue Breakdown
+[**SectorMetric**](DefaultApi.md#SectorMetric) | **Get** /sector/metrics | Sector Metrics
 [**SimilarityIndex**](DefaultApi.md#SimilarityIndex) | **Get** /stock/similarity-index | Similarity Index
 [**SocialSentiment**](DefaultApi.md#SocialSentiment) | **Get** /stock/social-sentiment | Social Sentiment
 [**StockBasicDividends**](DefaultApi.md#StockBasicDividends) | **Get** /stock/dividend2 | Dividends 2 (Basic)
@@ -4129,6 +4130,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RevenueBreakdown**](RevenueBreakdown.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SectorMetric
+
+> SectorMetric SectorMetric(ctx).Region(region).Execute()
+
+Sector Metrics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    region := "region_example" // string | Region. A list of supported values for this field can be found <a href=\"https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing\" target=\"_blank\">here</a>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SectorMetric(context.Background()).Region(region).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SectorMetric``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SectorMetric`: SectorMetric
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SectorMetric`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSectorMetricRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region** | **string** | Region. A list of supported values for this field can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. | 
+
+### Return type
+
+[**SectorMetric**](SectorMetric.md)
 
 ### Authorization
 

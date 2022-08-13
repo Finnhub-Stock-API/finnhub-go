@@ -102,6 +102,8 @@ docs/RevenueBreakdown.md
 docs/RevenueEstimates.md
 docs/RevenueEstimatesInfo.md
 docs/SECSentimentAnalysis.md
+docs/SectorMetric.md
+docs/SectorMetricData.md
 docs/Sentiment.md
 docs/SimilarityIndex.md
 docs/SimilarityIndexInfo.md
@@ -228,6 +230,8 @@ model_revenue_breakdown.go
 model_revenue_estimates.go
 model_revenue_estimates_info.go
 model_sec_sentiment_analysis.go
+model_sector_metric.go
+model_sector_metric_data.go
 model_sentiment.go
 model_similarity_index.go
 model_similarity_index_info.go

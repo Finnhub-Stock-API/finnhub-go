@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol | [optional] 
 **Name** | Pointer to **string** | Name | [optional] 
+**Country** | Pointer to **string** | Country | [optional] 
+**Industry** | Pointer to **string** | Industry | [optional] 
 **Customer** | Pointer to **bool** | Whether the company is a customer. | [optional] 
 **Supplier** | Pointer to **bool** | Whether the company is a supplier | [optional] 
 **OneMonthCorrelation** | Pointer to **float32** | 1-month price correlation | [optional] 
@@ -83,6 +85,56 @@ SetName sets Name field to given value.
 `func (o *KeyCustomersSuppliers) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetCountry
+
+`func (o *KeyCustomersSuppliers) GetCountry() string`
+
+GetCountry returns the Country field if non-nil, zero value otherwise.
+
+### GetCountryOk
+
+`func (o *KeyCustomersSuppliers) GetCountryOk() (*string, bool)`
+
+GetCountryOk returns a tuple with the Country field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCountry
+
+`func (o *KeyCustomersSuppliers) SetCountry(v string)`
+
+SetCountry sets Country field to given value.
+
+### HasCountry
+
+`func (o *KeyCustomersSuppliers) HasCountry() bool`
+
+HasCountry returns a boolean if a field has been set.
+
+### GetIndustry
+
+`func (o *KeyCustomersSuppliers) GetIndustry() string`
+
+GetIndustry returns the Industry field if non-nil, zero value otherwise.
+
+### GetIndustryOk
+
+`func (o *KeyCustomersSuppliers) GetIndustryOk() (*string, bool)`
+
+GetIndustryOk returns a tuple with the Industry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIndustry
+
+`func (o *KeyCustomersSuppliers) SetIndustry(v string)`
+
+SetIndustry sets Industry field to given value.
+
+### HasIndustry
+
+`func (o *KeyCustomersSuppliers) HasIndustry() bool`
+
+HasIndustry returns a boolean if a field has been set.
 
 ### GetCustomer
 

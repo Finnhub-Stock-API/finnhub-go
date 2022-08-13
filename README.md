@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.13
+- Package version: 2.0.14
 
 ## Installation
 
@@ -392,6 +392,13 @@ func main() {
         panic(err)
     }
     fmt.Printf("%+v\n", visa)
+    
+    sectorMetric, _, err := finnhubClient.SectorMetric(context.Background()).Region("NA").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", sectorMetric)
+    
 }
 
 ```
