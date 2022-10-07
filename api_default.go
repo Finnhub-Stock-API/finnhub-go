@@ -193,7 +193,32 @@ func (r ApiBondPriceRequest) Execute() (BondCandles, *_nethttp.Response, error) 
 /*
 BondPrice Bond price data
 
-Get end-of-day bond's price data.
+<p>Get bond's price data. The following datasets are supported:</p><table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Exchange</th>
+      <th>Segment</th>
+      <th>Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td class="text-blue">US Government Bonds</th>
+      <td>Government Bonds</td>
+      <td>End-of-day</td>
+    </tr>
+    <tr>
+      <td class="text-blue">FINRA Trace</th>
+      <td>BTDS: US Corporate Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+    <tr>
+      <td class="text-blue">FINRA Trace</th>
+      <td>144A Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+  </tbody>
+</table>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBondPriceRequest
@@ -383,6 +408,192 @@ func (a *DefaultApiService) BondProfileExecute(r ApiBondProfileRequest) (BondPro
 	if r.figi != nil {
 		localVarQueryParams.Add("figi", parameterToString(*r.figi, ""))
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiBondTickRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	isin *string
+	date *string
+	limit *int64
+	skip *int64
+	exchange *string
+}
+
+// ISIN.
+func (r ApiBondTickRequest) Isin(isin string) ApiBondTickRequest {
+	r.isin = &isin
+	return r
+}
+// Date: 2020-04-02.
+func (r ApiBondTickRequest) Date(date string) ApiBondTickRequest {
+	r.date = &date
+	return r
+}
+// Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
+func (r ApiBondTickRequest) Limit(limit int64) ApiBondTickRequest {
+	r.limit = &limit
+	return r
+}
+// Number of ticks to skip. Use this parameter to loop through the entire data.
+func (r ApiBondTickRequest) Skip(skip int64) ApiBondTickRequest {
+	r.skip = &skip
+	return r
+}
+// Currently support the following values: &lt;code&gt;trace&lt;/code&gt;.
+func (r ApiBondTickRequest) Exchange(exchange string) ApiBondTickRequest {
+	r.exchange = &exchange
+	return r
+}
+
+func (r ApiBondTickRequest) Execute() (BondTickData, *_nethttp.Response, error) {
+	return r.ApiService.BondTickExecute(r)
+}
+
+/*
+BondTick Bond Tick Data
+
+<p>Get trade-level data for bonds. The following datasets are supported:</p><table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Exchange</th>
+      <th>Segment</th>
+      <th>Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="text-blue">FINRA Trace</th>
+      <td>BTDS: US Corporate Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+    <tr>
+      <td class="text-blue">FINRA Trace</th>
+      <td>144A Bonds</td>
+      <td>Delayed 4h</td>
+    </tr>
+  </tbody>
+</table>
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiBondTickRequest
+*/
+func (a *DefaultApiService) BondTick(ctx _context.Context) ApiBondTickRequest {
+	return ApiBondTickRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return BondTickData
+func (a *DefaultApiService) BondTickExecute(r ApiBondTickRequest) (BondTickData, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  BondTickData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.BondTick")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/bond/tick"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.isin == nil {
+		return localVarReturnValue, nil, reportError("isin is required and must be specified")
+	}
+	if r.date == nil {
+		return localVarReturnValue, nil, reportError("date is required and must be specified")
+	}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if r.skip == nil {
+		return localVarReturnValue, nil, reportError("skip is required and must be specified")
+	}
+	if r.exchange == nil {
+		return localVarReturnValue, nil, reportError("exchange is required and must be specified")
+	}
+
+	localVarQueryParams.Add("isin", parameterToString(*r.isin, ""))
+	localVarQueryParams.Add("date", parameterToString(*r.date, ""))
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	localVarQueryParams.Add("exchange", parameterToString(*r.exchange, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1665,11 +1876,17 @@ type ApiCompanyPeersRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	symbol *string
+	grouping *string
 }
 
 // Symbol of the company: AAPL.
 func (r ApiCompanyPeersRequest) Symbol(symbol string) ApiCompanyPeersRequest {
 	r.symbol = &symbol
+	return r
+}
+// Specify the grouping criteria for choosing peers.Supporter values: &lt;code&gt;sector&lt;/code&gt;, &lt;code&gt;industry&lt;/code&gt;, &lt;code&gt;subIndustry&lt;/code&gt;. Default to &lt;code&gt;subIndustry&lt;/code&gt;.
+func (r ApiCompanyPeersRequest) Grouping(grouping string) ApiCompanyPeersRequest {
+	r.grouping = &grouping
 	return r
 }
 
@@ -1680,7 +1897,7 @@ func (r ApiCompanyPeersRequest) Execute() ([]string, *_nethttp.Response, error) 
 /*
 CompanyPeers Peers
 
-Get company peers. Return a list of peers in the same country and sub-industry
+Get company peers. Return a list of peers operating in the same country and sector/industry.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCompanyPeersRequest
@@ -1719,6 +1936,9 @@ func (a *DefaultApiService) CompanyPeersExecute(r ApiCompanyPeersRequest) ([]str
 	}
 
 	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	if r.grouping != nil {
+		localVarQueryParams.Add("grouping", parameterToString(*r.grouping, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4595,6 +4815,8 @@ type ApiFinancialsReportedRequest struct {
 	cik *string
 	accessNumber *string
 	freq *string
+	from *string
+	to *string
 }
 
 // Symbol.
@@ -4615,6 +4837,16 @@ func (r ApiFinancialsReportedRequest) AccessNumber(accessNumber string) ApiFinan
 // Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;.
 func (r ApiFinancialsReportedRequest) Freq(freq string) ApiFinancialsReportedRequest {
 	r.freq = &freq
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
+func (r ApiFinancialsReportedRequest) From(from string) ApiFinancialsReportedRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
+func (r ApiFinancialsReportedRequest) To(to string) ApiFinancialsReportedRequest {
+	r.to = &to
 	return r
 }
 
@@ -4671,6 +4903,12 @@ func (a *DefaultApiService) FinancialsReportedExecute(r ApiFinancialsReportedReq
 	}
 	if r.freq != nil {
 		localVarQueryParams.Add("freq", parameterToString(*r.freq, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5949,6 +6187,433 @@ func (a *DefaultApiService) InsiderTransactionsExecute(r ApiInsiderTransactionsR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiInstitutionalOwnershipRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	cusip *string
+	from *string
+	to *string
+}
+
+// Filter by symbol.
+func (r ApiInstitutionalOwnershipRequest) Symbol(symbol string) ApiInstitutionalOwnershipRequest {
+	r.symbol = &symbol
+	return r
+}
+// Filter by CUSIP.
+func (r ApiInstitutionalOwnershipRequest) Cusip(cusip string) ApiInstitutionalOwnershipRequest {
+	r.cusip = &cusip
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiInstitutionalOwnershipRequest) From(from string) ApiInstitutionalOwnershipRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiInstitutionalOwnershipRequest) To(to string) ApiInstitutionalOwnershipRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiInstitutionalOwnershipRequest) Execute() (InstitutionalOwnership, *_nethttp.Response, error) {
+	return r.ApiService.InstitutionalOwnershipExecute(r)
+}
+
+/*
+InstitutionalOwnership Institutional Ownership
+
+Get a list institutional investors' positions for a particular stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiInstitutionalOwnershipRequest
+*/
+func (a *DefaultApiService) InstitutionalOwnership(ctx _context.Context) ApiInstitutionalOwnershipRequest {
+	return ApiInstitutionalOwnershipRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return InstitutionalOwnership
+func (a *DefaultApiService) InstitutionalOwnershipExecute(r ApiInstitutionalOwnershipRequest) (InstitutionalOwnership, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InstitutionalOwnership
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InstitutionalOwnership")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/institutional/ownership"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+	if r.cusip == nil {
+		return localVarReturnValue, nil, reportError("cusip is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	localVarQueryParams.Add("cusip", parameterToString(*r.cusip, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiInstitutionalPortfolioRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	cik *string
+	from *string
+	to *string
+}
+
+// Fund&#39;s CIK.
+func (r ApiInstitutionalPortfolioRequest) Cik(cik string) ApiInstitutionalPortfolioRequest {
+	r.cik = &cik
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiInstitutionalPortfolioRequest) From(from string) ApiInstitutionalPortfolioRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiInstitutionalPortfolioRequest) To(to string) ApiInstitutionalPortfolioRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiInstitutionalPortfolioRequest) Execute() (InstitutionalPortfolio, *_nethttp.Response, error) {
+	return r.ApiService.InstitutionalPortfolioExecute(r)
+}
+
+/*
+InstitutionalPortfolio Institutional Portfolio
+
+Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiInstitutionalPortfolioRequest
+*/
+func (a *DefaultApiService) InstitutionalPortfolio(ctx _context.Context) ApiInstitutionalPortfolioRequest {
+	return ApiInstitutionalPortfolioRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return InstitutionalPortfolio
+func (a *DefaultApiService) InstitutionalPortfolioExecute(r ApiInstitutionalPortfolioRequest) (InstitutionalPortfolio, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InstitutionalPortfolio
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InstitutionalPortfolio")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/institutional/portfolio"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.cik == nil {
+		return localVarReturnValue, nil, reportError("cik is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("cik", parameterToString(*r.cik, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiInstitutionalProfileRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	cik *string
+}
+
+// Filter by CIK. Leave blank to get the full list.
+func (r ApiInstitutionalProfileRequest) Cik(cik string) ApiInstitutionalProfileRequest {
+	r.cik = &cik
+	return r
+}
+
+func (r ApiInstitutionalProfileRequest) Execute() (InstitutionalProfile, *_nethttp.Response, error) {
+	return r.ApiService.InstitutionalProfileExecute(r)
+}
+
+/*
+InstitutionalProfile Institutional Profile
+
+Get a list of well-known institutional investors. Currently support 60+ profiles.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiInstitutionalProfileRequest
+*/
+func (a *DefaultApiService) InstitutionalProfile(ctx _context.Context) ApiInstitutionalProfileRequest {
+	return ApiInstitutionalProfileRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return InstitutionalProfile
+func (a *DefaultApiService) InstitutionalProfileExecute(r ApiInstitutionalProfileRequest) (InstitutionalProfile, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InstitutionalProfile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InstitutionalProfile")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/institutional/profile"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.cik != nil {
+		localVarQueryParams.Add("cik", parameterToString(*r.cik, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiInternationalFilingsRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -6264,6 +6929,142 @@ func (a *DefaultApiService) IpoCalendarExecute(r ApiIpoCalendarRequest) (IPOCale
 	}
 
 	localVarPath := localBasePath + "/calendar/ipo"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiIsinChangeRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	from *string
+	to *string
+}
+
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiIsinChangeRequest) From(from string) ApiIsinChangeRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiIsinChangeRequest) To(to string) ApiIsinChangeRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiIsinChangeRequest) Execute() (IsinChange, *_nethttp.Response, error) {
+	return r.ApiService.IsinChangeExecute(r)
+}
+
+/*
+IsinChange ISIN Change
+
+Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a time.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiIsinChangeRequest
+*/
+func (a *DefaultApiService) IsinChange(ctx _context.Context) ApiIsinChangeRequest {
+	return ApiIsinChangeRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return IsinChange
+func (a *DefaultApiService) IsinChangeExecute(r ApiIsinChangeRequest) (IsinChange, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  IsinChange
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.IsinChange")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/ca/isin-change"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7482,6 +8283,132 @@ func (a *DefaultApiService) PressReleasesExecute(r ApiPressReleasesRequest) (Pre
 	if r.to != nil {
 		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPriceMetricsRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+}
+
+// Symbol of the company: AAPL.
+func (r ApiPriceMetricsRequest) Symbol(symbol string) ApiPriceMetricsRequest {
+	r.symbol = &symbol
+	return r
+}
+
+func (r ApiPriceMetricsRequest) Execute() (PriceMetrics, *_nethttp.Response, error) {
+	return r.ApiService.PriceMetricsExecute(r)
+}
+
+/*
+PriceMetrics Price Metrics
+
+Get company price performance statistics such as 52-week high/low, YTD return and much more.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPriceMetricsRequest
+*/
+func (a *DefaultApiService) PriceMetrics(ctx _context.Context) ApiPriceMetricsRequest {
+	return ApiPriceMetricsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return PriceMetrics
+func (a *DefaultApiService) PriceMetricsExecute(r ApiPriceMetricsRequest) (PriceMetrics, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  PriceMetrics
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PriceMetrics")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/price-metric"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -10453,6 +11380,142 @@ func (a *DefaultApiService) SupportResistanceExecute(r ApiSupportResistanceReque
 
 	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
 	localVarQueryParams.Add("resolution", parameterToString(*r.resolution, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSymbolChangeRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	from *string
+	to *string
+}
+
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiSymbolChangeRequest) From(from string) ApiSymbolChangeRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiSymbolChangeRequest) To(to string) ApiSymbolChangeRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiSymbolChangeRequest) Execute() (SymbolChange, *_nethttp.Response, error) {
+	return r.ApiService.SymbolChangeExecute(r)
+}
+
+/*
+SymbolChange Symbol Change
+
+Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSymbolChangeRequest
+*/
+func (a *DefaultApiService) SymbolChange(ctx _context.Context) ApiSymbolChangeRequest {
+	return ApiSymbolChangeRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return SymbolChange
+func (a *DefaultApiService) SymbolChangeExecute(r ApiSymbolChangeRequest) (SymbolChange, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  SymbolChange
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SymbolChange")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/ca/symbol-change"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

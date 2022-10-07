@@ -28,7 +28,7 @@ type ETFProfileData struct {
 	Nav *float32 `json:"nav,omitempty"`
 	// NAV currency.
 	NavCurrency *string `json:"navCurrency,omitempty"`
-	// Expense ratio.
+	// Expense ratio. For non-US funds, this is the <a href=\"https://www.esma.europa.eu/sites/default/files/library/2015/11/09_1028_final_kid_ongoing_charges_methodology_for_publication_u_2_.pdf\" target=\"_blank\">KID ongoing charges<a/>.
 	ExpenseRatio *float32 `json:"expenseRatio,omitempty"`
 	// Tracking Index.
 	TrackingIndex *string `json:"trackingIndex,omitempty"`
@@ -52,6 +52,12 @@ type ETFProfileData struct {
 	AvgVolume *float32 `json:"avgVolume,omitempty"`
 	// ETF's description.
 	Description *string `json:"description,omitempty"`
+	// Whether the ETF is inverse
+	IsInverse *bool `json:"isInverse,omitempty"`
+	// Whether the ETF is leveraged
+	IsLeveraged *bool `json:"isLeveraged,omitempty"`
+	// Leverage factor.
+	LeverageFactor *float32 `json:"leverageFactor,omitempty"`
 }
 
 // NewETFProfileData instantiates a new ETFProfileData object
@@ -647,6 +653,102 @@ func (o *ETFProfileData) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetIsInverse returns the IsInverse field value if set, zero value otherwise.
+func (o *ETFProfileData) GetIsInverse() bool {
+	if o == nil || o.IsInverse == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsInverse
+}
+
+// GetIsInverseOk returns a tuple with the IsInverse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ETFProfileData) GetIsInverseOk() (*bool, bool) {
+	if o == nil || o.IsInverse == nil {
+		return nil, false
+	}
+	return o.IsInverse, true
+}
+
+// HasIsInverse returns a boolean if a field has been set.
+func (o *ETFProfileData) HasIsInverse() bool {
+	if o != nil && o.IsInverse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsInverse gets a reference to the given bool and assigns it to the IsInverse field.
+func (o *ETFProfileData) SetIsInverse(v bool) {
+	o.IsInverse = &v
+}
+
+// GetIsLeveraged returns the IsLeveraged field value if set, zero value otherwise.
+func (o *ETFProfileData) GetIsLeveraged() bool {
+	if o == nil || o.IsLeveraged == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsLeveraged
+}
+
+// GetIsLeveragedOk returns a tuple with the IsLeveraged field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ETFProfileData) GetIsLeveragedOk() (*bool, bool) {
+	if o == nil || o.IsLeveraged == nil {
+		return nil, false
+	}
+	return o.IsLeveraged, true
+}
+
+// HasIsLeveraged returns a boolean if a field has been set.
+func (o *ETFProfileData) HasIsLeveraged() bool {
+	if o != nil && o.IsLeveraged != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsLeveraged gets a reference to the given bool and assigns it to the IsLeveraged field.
+func (o *ETFProfileData) SetIsLeveraged(v bool) {
+	o.IsLeveraged = &v
+}
+
+// GetLeverageFactor returns the LeverageFactor field value if set, zero value otherwise.
+func (o *ETFProfileData) GetLeverageFactor() float32 {
+	if o == nil || o.LeverageFactor == nil {
+		var ret float32
+		return ret
+	}
+	return *o.LeverageFactor
+}
+
+// GetLeverageFactorOk returns a tuple with the LeverageFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ETFProfileData) GetLeverageFactorOk() (*float32, bool) {
+	if o == nil || o.LeverageFactor == nil {
+		return nil, false
+	}
+	return o.LeverageFactor, true
+}
+
+// HasLeverageFactor returns a boolean if a field has been set.
+func (o *ETFProfileData) HasLeverageFactor() bool {
+	if o != nil && o.LeverageFactor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLeverageFactor gets a reference to the given float32 and assigns it to the LeverageFactor field.
+func (o *ETFProfileData) SetLeverageFactor(v float32) {
+	o.LeverageFactor = &v
+}
+
 func (o ETFProfileData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -702,6 +804,15 @@ func (o ETFProfileData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
+	}
+	if o.IsInverse != nil {
+		toSerialize["isInverse"] = o.IsInverse
+	}
+	if o.IsLeveraged != nil {
+		toSerialize["isLeveraged"] = o.IsLeveraged
+	}
+	if o.LeverageFactor != nil {
+		toSerialize["leverageFactor"] = o.LeverageFactor
 	}
 	return json.Marshal(toSerialize)
 }

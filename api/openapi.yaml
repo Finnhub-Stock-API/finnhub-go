@@ -305,14 +305,21 @@ paths:
       - Default
   /stock/peers:
     get:
-      description: Get company peers. Return a list of peers in the same country and
-        sub-industry
+      description: Get company peers. Return a list of peers operating in the same
+        country and sector/industry.
       operationId: company-peers
       parameters:
       - description: 'Symbol of the company: AAPL.'
         in: query
         name: symbol
         required: true
+        schema:
+          type: string
+      - description: 'Specify the grouping criteria for choosing peers.Supporter values:
+          <code>sector</code>, <code>industry</code>, <code>subIndustry</code>. Default
+          to <code>subIndustry</code>.'
+        in: query
+        name: grouping
         schema:
           type: string
       responses:
@@ -357,6 +364,191 @@ paths:
       security:
       - api_key: []
       summary: Basic Financials
+      tags:
+      - Default
+  /stock/price-metric:
+    get:
+      description: Get company price performance statistics such as 52-week high/low,
+        YTD return and much more.
+      operationId: price-metrics
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceMetrics'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Price Metrics
+      tags:
+      - Default
+  /ca/symbol-change:
+    get:
+      description: Get a list of symbol changes for US-listed and EU-listed securities.
+        Limit to 2000 events at a time.
+      operationId: symbol-change
+      parameters:
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolChange'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Symbol Change
+      tags:
+      - Default
+  /ca/isin-change:
+    get:
+      description: Get a list of ISIN changes for EU-listed securities. Limit to 2000
+        events at a time.
+      operationId: isin-change
+      parameters:
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsinChange'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: ISIN Change
+      tags:
+      - Default
+  /institutional/profile:
+    get:
+      description: Get a list of well-known institutional investors. Currently support
+        60+ profiles.
+      operationId: institutional-profile
+      parameters:
+      - description: Filter by CIK. Leave blank to get the full list.
+        in: query
+        name: cik
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstitutionalProfile'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Institutional Profile
+      tags:
+      - Default
+  /institutional/portfolio:
+    get:
+      description: Get the holdings/portfolio data of institutional investors from
+        13-F filings. Limit to 1 year of data at a time.
+      operationId: institutional-portfolio
+      parameters:
+      - description: Fund's CIK.
+        in: query
+        name: cik
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstitutionalPortfolio'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Institutional Portfolio
+      tags:
+      - Default
+  /institutional/ownership:
+    get:
+      description: Get a list institutional investors' positions for a particular
+        stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
+      operationId: institutional-ownership
+      parameters:
+      - description: Filter by symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: Filter by CUSIP.
+        in: query
+        name: cusip
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstitutionalOwnership'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Institutional Ownership
       tags:
       - Default
   /stock/ownership:
@@ -576,6 +768,18 @@ paths:
         in: query
         name: freq
         schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>. Filter for endDate.
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>. Filter for endDate.
+        in: query
+        name: to
+        schema:
+          format: date
           type: string
       responses:
         "200":
@@ -2539,7 +2743,33 @@ paths:
       - Default
   /bond/price:
     get:
-      description: Get end-of-day bond's price data.
+      description: |-
+        <p>Get bond's price data. The following datasets are supported:</p><table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Exchange</th>
+              <th>Segment</th>
+              <th>Delay</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td class="text-blue">US Government Bonds</th>
+              <td>Government Bonds</td>
+              <td>End-of-day</td>
+            </tr>
+            <tr>
+              <td class="text-blue">FINRA Trace</th>
+              <td>BTDS: US Corporate Bonds</td>
+              <td>Delayed 4h</td>
+            </tr>
+            <tr>
+              <td class="text-blue">FINRA Trace</th>
+              <td>144A Bonds</td>
+              <td>Delayed 4h</td>
+            </tr>
+          </tbody>
+        </table>
       operationId: bond-price
       parameters:
       - description: ISIN.
@@ -2572,6 +2802,78 @@ paths:
       security:
       - api_key: []
       summary: Bond price data
+      tags:
+      - Default
+  /bond/tick:
+    get:
+      description: |-
+        <p>Get trade-level data for bonds. The following datasets are supported:</p><table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Exchange</th>
+              <th>Segment</th>
+              <th>Delay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-blue">FINRA Trace</th>
+              <td>BTDS: US Corporate Bonds</td>
+              <td>Delayed 4h</td>
+            </tr>
+            <tr>
+              <td class="text-blue">FINRA Trace</th>
+              <td>144A Bonds</td>
+              <td>Delayed 4h</td>
+            </tr>
+          </tbody>
+        </table>
+      operationId: bond-tick
+      parameters:
+      - description: ISIN.
+        in: query
+        name: isin
+        required: true
+        schema:
+          type: string
+      - description: 'Date: 2020-04-02.'
+        in: query
+        name: date
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: 'Limit number of ticks returned. Maximum value: <code>25000</code>'
+        in: query
+        name: limit
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: Number of ticks to skip. Use this parameter to loop through the
+          entire data.
+        in: query
+        name: skip
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - description: 'Currently support the following values: <code>trace</code>.'
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BondTickData'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Bond Tick Data
       tags:
       - Default
   /country:
@@ -3199,6 +3501,8 @@ components:
       type: object
     MetricMap:
       type: object
+    PriceMetricMap:
+      type: object
     BasicFinancials:
       example:
         symbol: symbol
@@ -3216,6 +3520,461 @@ components:
           type: object
         metric:
           type: object
+      type: object
+    PriceMetrics:
+      example:
+        symbol: symbol
+        data: '{}'
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        data:
+          type: object
+      type: object
+    IsinChangeInfo:
+      example:
+        oldIsin: oldIsin
+        atDate: atDate
+        newIsin: newIsin
+      properties:
+        atDate:
+          description: Event's date.
+          type: string
+        oldIsin:
+          description: Old ISIN.
+          type: string
+        newIsin:
+          description: New ISIN.
+          type: string
+      type: object
+    IsinChange:
+      example:
+        fromDate: fromDate
+        data:
+        - oldIsin: oldIsin
+          atDate: atDate
+          newIsin: newIsin
+        - oldIsin: oldIsin
+          atDate: atDate
+          newIsin: newIsin
+        toDate: toDate
+      properties:
+        fromDate:
+          description: From date.
+          type: string
+        toDate:
+          description: To date.
+          type: string
+        data:
+          description: Array of ISIN change events.
+          items:
+            $ref: '#/components/schemas/IsinChangeInfo'
+          type: array
+      type: object
+    SymbolChangeInfo:
+      example:
+        oldSymbol: oldSymbol
+        atDate: atDate
+        newSymbol: newSymbol
+      properties:
+        atDate:
+          description: Event's date.
+          type: string
+        oldSymbol:
+          description: Old symbol.
+          type: string
+        newSymbol:
+          description: New symbol.
+          type: string
+      type: object
+    SymbolChange:
+      example:
+        fromDate: fromDate
+        data:
+        - oldSymbol: oldSymbol
+          atDate: atDate
+          newSymbol: newSymbol
+        - oldSymbol: oldSymbol
+          atDate: atDate
+          newSymbol: newSymbol
+        toDate: toDate
+      properties:
+        fromDate:
+          description: From date.
+          type: string
+        toDate:
+          description: To date.
+          type: string
+        data:
+          description: Array of symbol change events.
+          items:
+            $ref: '#/components/schemas/SymbolChangeInfo'
+          type: array
+      type: object
+    InstitutionalPortfolioInfo:
+      example:
+        noVoting: 6.0274563
+        sharedVoting: 5.637377
+        symbol: symbol
+        cusip: cusip
+        change: 0.8008282
+        percentage: 1.4658129
+        name: name
+        share: 5.962134
+        soleVoting: 2.302136
+        value: 7.0614014
+        putCall: putCall
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        cusip:
+          description: CUSIP.
+          type: string
+        name:
+          description: Position's name.
+          type: string
+        putCall:
+          description: <code>put</code> or <code>call</code> for options.
+          type: string
+        change:
+          description: Number of shares change.
+          format: float
+          type: number
+        noVoting:
+          description: Number of shares with no voting rights.
+          format: float
+          type: number
+        percentage:
+          description: Percentage of portfolio.
+          format: float
+          type: number
+        share:
+          description: Number of shares.
+          format: float
+          type: number
+        sharedVoting:
+          description: Number of shares with shared voting rights.
+          format: float
+          type: number
+        soleVoting:
+          description: Number of shares with sole voting rights.
+          format: float
+          type: number
+        value:
+          description: Position value.
+          format: float
+          type: number
+      type: object
+    InstitutionalPortfolioGroup:
+      example:
+        reportDate: reportDate
+        filingDate: filingDate
+        portfolio:
+        - noVoting: 6.0274563
+          sharedVoting: 5.637377
+          symbol: symbol
+          cusip: cusip
+          change: 0.8008282
+          percentage: 1.4658129
+          name: name
+          share: 5.962134
+          soleVoting: 2.302136
+          value: 7.0614014
+          putCall: putCall
+        - noVoting: 6.0274563
+          sharedVoting: 5.637377
+          symbol: symbol
+          cusip: cusip
+          change: 0.8008282
+          percentage: 1.4658129
+          name: name
+          share: 5.962134
+          soleVoting: 2.302136
+          value: 7.0614014
+          putCall: putCall
+      properties:
+        reportDate:
+          description: Report date.
+          type: string
+        filingDate:
+          description: Filing date.
+          type: string
+        portfolio:
+          description: Array of positions.
+          items:
+            $ref: '#/components/schemas/InstitutionalPortfolioInfo'
+          type: array
+      type: object
+    InstitutionalPortfolio:
+      example:
+        cik: cik
+        data:
+        - reportDate: reportDate
+          filingDate: filingDate
+          portfolio:
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+        - reportDate: reportDate
+          filingDate: filingDate
+          portfolio:
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+        name: name
+      properties:
+        name:
+          description: Investor's name.
+          type: string
+        cik:
+          description: CIK.
+          type: string
+        data:
+          description: Array of positions.
+          items:
+            $ref: '#/components/schemas/InstitutionalPortfolioGroup'
+          type: array
+      type: object
+    InstitutionalOwnershipInfo:
+      example:
+        noVoting: 6.0274563
+        sharedVoting: 5.637377
+        cik: cik
+        change: 0.8008282
+        percentage: 1.4658129
+        name: name
+        share: 5.962134
+        soleVoting: 2.302136
+        value: 7.0614014
+        putCall: putCall
+      properties:
+        cik:
+          description: Investor's company CIK.
+          type: string
+        name:
+          description: Firm's name.
+          type: string
+        putCall:
+          description: <code>put</code> or <code>call</code> for options.
+          type: string
+        change:
+          description: Number of shares change.
+          format: float
+          type: number
+        noVoting:
+          description: Number of shares with no voting rights.
+          format: float
+          type: number
+        percentage:
+          description: Percentage of portfolio.
+          format: float
+          type: number
+        share:
+          description: News score.
+          format: float
+          type: number
+        sharedVoting:
+          description: Number of shares with shared voting rights.
+          format: float
+          type: number
+        soleVoting:
+          description: Number of shares with sole voting rights.
+          format: float
+          type: number
+        value:
+          description: Position value.
+          format: float
+          type: number
+      type: object
+    InstitutionalOwnershipGroup:
+      example:
+        reportDate: reportDate
+        ownership:
+        - noVoting: 6.0274563
+          sharedVoting: 5.637377
+          cik: cik
+          change: 0.8008282
+          percentage: 1.4658129
+          name: name
+          share: 5.962134
+          soleVoting: 2.302136
+          value: 7.0614014
+          putCall: putCall
+        - noVoting: 6.0274563
+          sharedVoting: 5.637377
+          cik: cik
+          change: 0.8008282
+          percentage: 1.4658129
+          name: name
+          share: 5.962134
+          soleVoting: 2.302136
+          value: 7.0614014
+          putCall: putCall
+      properties:
+        reportDate:
+          description: Report date.
+          type: string
+        ownership:
+          description: Array of institutional investors.
+          items:
+            $ref: '#/components/schemas/InstitutionalOwnershipInfo'
+          type: array
+      type: object
+    InstitutionalOwnership:
+      example:
+        symbol: symbol
+        cusip: cusip
+        data:
+        - reportDate: reportDate
+          ownership:
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            cik: cik
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            cik: cik
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+        - reportDate: reportDate
+          ownership:
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            cik: cik
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            cik: cik
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        cusip:
+          description: Cusip.
+          type: string
+        data:
+          description: Array of institutional investors.
+          items:
+            $ref: '#/components/schemas/InstitutionalOwnershipGroup'
+          type: array
+      type: object
+    InstitutionalProfileInfo:
+      example:
+        cik: cik
+        manager: manager
+        profile: profile
+        philosophy: philosophy
+        profileImg: profileImg
+        firmType: firmType
+      properties:
+        cik:
+          description: Investor's company CIK.
+          type: string
+        firmType:
+          description: Firm type.
+          type: string
+        manager:
+          description: Manager.
+          type: string
+        philosophy:
+          description: Investing philosophy.
+          type: string
+        profile:
+          description: Profile info.
+          type: string
+        profileImg:
+          description: Profile image.
+          type: string
+      type: object
+    InstitutionalProfile:
+      example:
+        cik: cik
+        data:
+        - cik: cik
+          manager: manager
+          profile: profile
+          philosophy: philosophy
+          profileImg: profileImg
+          firmType: firmType
+        - cik: cik
+          manager: manager
+          profile: profile
+          philosophy: philosophy
+          profileImg: profileImg
+          firmType: firmType
+      properties:
+        cik:
+          description: CIK.
+          type: string
+        data:
+          description: Array of investors.
+          items:
+            $ref: '#/components/schemas/InstitutionalProfileInfo'
+          type: array
       type: object
     OwnershipInfo:
       example:
@@ -4579,6 +5338,84 @@ components:
             type: array
           type: array
       type: object
+    BondTickData:
+      example:
+        p:
+        - 5.637377
+        - 5.637377
+        total: 1
+        c:
+        - - c
+          - c
+        - - c
+          - c
+        t:
+        - 2
+        - 2
+        v:
+        - 5.962134
+        - 5.962134
+        si:
+        - si
+        - si
+        count: 6
+        skip: 0
+        cp:
+        - cp
+        - cp
+      properties:
+        skip:
+          description: Number of ticks skipped.
+          format: int64
+          type: integer
+        count:
+          description: Number of ticks returned. If <code>count</code> < <code>limit</code>,
+            all data for that date has been returned.
+          format: int64
+          type: integer
+        total:
+          description: Total number of ticks for that date.
+          format: int64
+          type: integer
+        v:
+          description: List of volume data.
+          items:
+            format: float
+            type: number
+          type: array
+        p:
+          description: List of price data.
+          items:
+            format: float
+            type: number
+          type: array
+        t:
+          description: List of timestamp in UNIX ms.
+          items:
+            format: int64
+            type: integer
+          type: array
+        si:
+          description: 'List of values showing the side (Buy/sell) of each trade.
+            List of supported values: <a target="_blank" href="https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing",>here</a>'
+          items:
+            type: string
+          type: array
+        cp:
+          description: 'List of values showing the counterparty of each trade. List
+            of supported values: <a target="_blank" href="https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing",>here</a>'
+          items:
+            type: string
+          type: array
+        c:
+          description: List of trade conditions. A comprehensive list of trade conditions
+            code can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing">here</a>
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+      type: object
     HistoricalNBBO:
       example:
         a:
@@ -4808,15 +5645,18 @@ components:
         website: website
         cusip: cusip
         priceToEarnings: 5.962134
+        isInverse: true
         avgVolume: 2.302136
         description: description
         assetClass: assetClass
+        leverageFactor: 7.0614014
         etfCompany: etfCompany
         inceptionDate: 2000-01-23
         expenseRatio: 1.4658129
         name: name
         aum: 0.8008282
         domicile: domicile
+        isLeveraged: true
         trackingIndex: trackingIndex
         priceToBook: 5.637377
         investmentSegment: investmentSegment
@@ -4844,7 +5684,8 @@ components:
           description: NAV currency.
           type: string
         expenseRatio:
-          description: Expense ratio.
+          description: Expense ratio. For non-US funds, this is the <a href="https://www.esma.europa.eu/sites/default/files/library/2015/11/09_1028_final_kid_ongoing_charges_methodology_for_publication_u_2_.pdf"
+            target="_blank">KID ongoing charges<a/>.
           format: float
           type: number
         trackingIndex:
@@ -4884,6 +5725,16 @@ components:
         description:
           description: ETF's description.
           type: string
+        isInverse:
+          description: Whether the ETF is inverse
+          type: boolean
+        isLeveraged:
+          description: Whether the ETF is leveraged
+          type: boolean
+        leverageFactor:
+          description: Leverage factor.
+          format: float
+          type: number
       type: object
     ETFsProfile:
       example:
@@ -4893,15 +5744,18 @@ components:
           website: website
           cusip: cusip
           priceToEarnings: 5.962134
+          isInverse: true
           avgVolume: 2.302136
           description: description
           assetClass: assetClass
+          leverageFactor: 7.0614014
           etfCompany: etfCompany
           inceptionDate: 2000-01-23
           expenseRatio: 1.4658129
           name: name
           aum: 0.8008282
           domicile: domicile
+          isLeveraged: true
           trackingIndex: trackingIndex
           priceToBook: 5.637377
           investmentSegment: investmentSegment

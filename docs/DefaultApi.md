@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
 [**BondPrice**](DefaultApi.md#BondPrice) | **Get** /bond/price | Bond price data
 [**BondProfile**](DefaultApi.md#BondProfile) | **Get** /bond/profile | Bond Profile
+[**BondTick**](DefaultApi.md#BondTick) | **Get** /bond/tick | Bond Tick Data
 [**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
 [**CompanyEarningsQualityScore**](DefaultApi.md#CompanyEarningsQualityScore) | **Get** /stock/earnings-quality-score | Company Earnings Quality Score
@@ -48,9 +49,13 @@ Method | HTTP request | Description
 [**IndicesHistoricalConstituents**](DefaultApi.md#IndicesHistoricalConstituents) | **Get** /index/historical-constituents | Indices Historical Constituents
 [**InsiderSentiment**](DefaultApi.md#InsiderSentiment) | **Get** /stock/insider-sentiment | Insider Sentiment
 [**InsiderTransactions**](DefaultApi.md#InsiderTransactions) | **Get** /stock/insider-transactions | Insider Transactions
+[**InstitutionalOwnership**](DefaultApi.md#InstitutionalOwnership) | **Get** /institutional/ownership | Institutional Ownership
+[**InstitutionalPortfolio**](DefaultApi.md#InstitutionalPortfolio) | **Get** /institutional/portfolio | Institutional Portfolio
+[**InstitutionalProfile**](DefaultApi.md#InstitutionalProfile) | **Get** /institutional/profile | Institutional Profile
 [**InternationalFilings**](DefaultApi.md#InternationalFilings) | **Get** /stock/international-filings | International Filings
 [**InvestmentThemes**](DefaultApi.md#InvestmentThemes) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
+[**IsinChange**](DefaultApi.md#IsinChange) | **Get** /ca/isin-change | ISIN Change
 [**MarketNews**](DefaultApi.md#MarketNews) | **Get** /news | Market News
 [**MutualFundCountryExposure**](DefaultApi.md#MutualFundCountryExposure) | **Get** /mutual-fund/country | Mutual Funds Country Exposure
 [**MutualFundHoldings**](DefaultApi.md#MutualFundHoldings) | **Get** /mutual-fund/holdings | Mutual Funds Holdings
@@ -60,6 +65,7 @@ Method | HTTP request | Description
 [**Ownership**](DefaultApi.md#Ownership) | **Get** /stock/ownership | Ownership
 [**PatternRecognition**](DefaultApi.md#PatternRecognition) | **Get** /scan/pattern | Pattern Recognition
 [**PressReleases**](DefaultApi.md#PressReleases) | **Get** /press-releases | Major Press Releases
+[**PriceMetrics**](DefaultApi.md#PriceMetrics) | **Get** /stock/price-metric | Price Metrics
 [**PriceTarget**](DefaultApi.md#PriceTarget) | **Get** /stock/price-target | Price Target
 [**Quote**](DefaultApi.md#Quote) | **Get** /quote | Quote
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
@@ -81,6 +87,7 @@ Method | HTTP request | Description
 [**StockVisaApplication**](DefaultApi.md#StockVisaApplication) | **Get** /stock/visa-application | H1-B Visa Application
 [**SupplyChainRelationships**](DefaultApi.md#SupplyChainRelationships) | **Get** /stock/supply-chain | Supply Chain Relationships
 [**SupportResistance**](DefaultApi.md#SupportResistance) | **Get** /scan/support-resistance | Support/Resistance
+[**SymbolChange**](DefaultApi.md#SymbolChange) | **Get** /ca/symbol-change | Symbol Change
 [**SymbolSearch**](DefaultApi.md#SymbolSearch) | **Get** /search | Symbol Lookup
 [**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Post** /indicator | Technical Indicators
 [**Transcripts**](DefaultApi.md#Transcripts) | **Get** /stock/transcripts | Earnings Call Transcripts
@@ -282,6 +289,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BondProfile**](BondProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BondTick
+
+> BondTickData BondTick(ctx).Isin(isin).Date(date).Limit(limit).Skip(skip).Exchange(exchange).Execute()
+
+Bond Tick Data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    isin := "isin_example" // string | ISIN.
+    date := time.Now() // string | Date: 2020-04-02.
+    limit := int64(789) // int64 | Limit number of ticks returned. Maximum value: <code>25000</code>
+    skip := int64(789) // int64 | Number of ticks to skip. Use this parameter to loop through the entire data.
+    exchange := "exchange_example" // string | Currently support the following values: <code>trace</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.BondTick(context.Background()).Isin(isin).Date(date).Limit(limit).Skip(skip).Exchange(exchange).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.BondTick``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BondTick`: BondTickData
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.BondTick`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBondTickRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **isin** | **string** | ISIN. | 
+ **date** | **string** | Date: 2020-04-02. | 
+ **limit** | **int64** | Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt; | 
+ **skip** | **int64** | Number of ticks to skip. Use this parameter to loop through the entire data. | 
+ **exchange** | **string** | Currently support the following values: &lt;code&gt;trace&lt;/code&gt;. | 
+
+### Return type
+
+[**BondTickData**](BondTickData.md)
 
 ### Authorization
 
@@ -910,7 +992,7 @@ Name | Type | Description  | Notes
 
 ## CompanyPeers
 
-> []string CompanyPeers(ctx).Symbol(symbol).Execute()
+> []string CompanyPeers(ctx).Symbol(symbol).Grouping(grouping).Execute()
 
 Peers
 
@@ -930,10 +1012,11 @@ import (
 
 func main() {
     symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    grouping := "grouping_example" // string | Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>, <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.CompanyPeers(context.Background()).Symbol(symbol).Execute()
+    resp, r, err := api_client.DefaultApi.CompanyPeers(context.Background()).Symbol(symbol).Grouping(grouping).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyPeers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -955,6 +1038,7 @@ Other parameters are passed through a pointer to a apiCompanyPeersRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol of the company: AAPL. | 
+ **grouping** | **string** | Specify the grouping criteria for choosing peers.Supporter values: &lt;code&gt;sector&lt;/code&gt;, &lt;code&gt;industry&lt;/code&gt;, &lt;code&gt;subIndustry&lt;/code&gt;. Default to &lt;code&gt;subIndustry&lt;/code&gt;. | 
 
 ### Return type
 
@@ -2386,7 +2470,7 @@ Name | Type | Description  | Notes
 
 ## FinancialsReported
 
-> FinancialsAsReported FinancialsReported(ctx).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Freq(freq).Execute()
+> FinancialsAsReported FinancialsReported(ctx).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Freq(freq).From(from).To(to).Execute()
 
 Financials As Reported
 
@@ -2401,6 +2485,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
@@ -2409,10 +2494,12 @@ func main() {
     cik := "cik_example" // string | CIK. (optional)
     accessNumber := "accessNumber_example" // string | Access number of a specific report you want to retrieve financials from. (optional)
     freq := "freq_example" // string | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>. (optional)
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>. Filter for endDate. (optional)
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>. Filter for endDate. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.FinancialsReported(context.Background()).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Freq(freq).Execute()
+    resp, r, err := api_client.DefaultApi.FinancialsReported(context.Background()).Symbol(symbol).Cik(cik).AccessNumber(accessNumber).Freq(freq).From(from).To(to).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FinancialsReported``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2437,6 +2524,8 @@ Name | Type | Description  | Notes
  **cik** | **string** | CIK. | 
  **accessNumber** | **string** | Access number of a specific report you want to retrieve financials from. | 
  **freq** | **string** | Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate. | 
 
 ### Return type
 
@@ -3065,6 +3154,214 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## InstitutionalOwnership
+
+> InstitutionalOwnership InstitutionalOwnership(ctx).Symbol(symbol).Cusip(cusip).From(from).To(to).Execute()
+
+Institutional Ownership
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Filter by symbol.
+    cusip := "cusip_example" // string | Filter by CUSIP.
+    from := "from_example" // string | From date <code>YYYY-MM-DD</code>.
+    to := "to_example" // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InstitutionalOwnership(context.Background()).Symbol(symbol).Cusip(cusip).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InstitutionalOwnership``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InstitutionalOwnership`: InstitutionalOwnership
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InstitutionalOwnership`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInstitutionalOwnershipRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Filter by symbol. | 
+ **cusip** | **string** | Filter by CUSIP. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**InstitutionalOwnership**](InstitutionalOwnership.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InstitutionalPortfolio
+
+> InstitutionalPortfolio InstitutionalPortfolio(ctx).Cik(cik).From(from).To(to).Execute()
+
+Institutional Portfolio
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    cik := "cik_example" // string | Fund's CIK.
+    from := "from_example" // string | From date <code>YYYY-MM-DD</code>.
+    to := "to_example" // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InstitutionalPortfolio(context.Background()).Cik(cik).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InstitutionalPortfolio``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InstitutionalPortfolio`: InstitutionalPortfolio
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InstitutionalPortfolio`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInstitutionalPortfolioRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cik** | **string** | Fund&#39;s CIK. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**InstitutionalPortfolio**](InstitutionalPortfolio.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InstitutionalProfile
+
+> InstitutionalProfile InstitutionalProfile(ctx).Cik(cik).Execute()
+
+Institutional Profile
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    cik := "cik_example" // string | Filter by CIK. Leave blank to get the full list. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InstitutionalProfile(context.Background()).Cik(cik).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InstitutionalProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InstitutionalProfile`: InstitutionalProfile
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InstitutionalProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInstitutionalProfileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cik** | **string** | Filter by CIK. Leave blank to get the full list. | 
+
+### Return type
+
+[**InstitutionalProfile**](InstitutionalProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## InternationalFilings
 
 > []InternationalFiling InternationalFilings(ctx).Symbol(symbol).Country(country).Execute()
@@ -3253,6 +3550,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IPOCalendar**](IPOCalendar.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## IsinChange
+
+> IsinChange IsinChange(ctx).From(from).To(to).Execute()
+
+ISIN Change
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    from := "from_example" // string | From date <code>YYYY-MM-DD</code>.
+    to := "to_example" // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.IsinChange(context.Background()).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.IsinChange``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `IsinChange`: IsinChange
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.IsinChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiIsinChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**IsinChange**](IsinChange.md)
 
 ### Authorization
 
@@ -3864,6 +4229,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PressRelease**](PressRelease.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PriceMetrics
+
+> PriceMetrics PriceMetrics(ctx).Symbol(symbol).Execute()
+
+Price Metrics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.PriceMetrics(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PriceMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PriceMetrics`: PriceMetrics
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.PriceMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPriceMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+
+### Return type
+
+[**PriceMetrics**](PriceMetrics.md)
 
 ### Authorization
 
@@ -5319,6 +5750,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SupportResistance**](SupportResistance.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SymbolChange
+
+> SymbolChange SymbolChange(ctx).From(from).To(to).Execute()
+
+Symbol Change
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    from := "from_example" // string | From date <code>YYYY-MM-DD</code>.
+    to := "to_example" // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.SymbolChange(context.Background()).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SymbolChange``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SymbolChange`: SymbolChange
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SymbolChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSymbolChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**SymbolChange**](SymbolChange.md)
 
 ### Authorization
 

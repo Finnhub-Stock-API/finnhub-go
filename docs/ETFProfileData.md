@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Aum** | Pointer to **float32** | AUM. | [optional] 
 **Nav** | Pointer to **float32** | NAV. | [optional] 
 **NavCurrency** | Pointer to **string** | NAV currency. | [optional] 
-**ExpenseRatio** | Pointer to **float32** | Expense ratio. | [optional] 
+**ExpenseRatio** | Pointer to **float32** | Expense ratio. For non-US funds, this is the &lt;a href&#x3D;\&quot;https://www.esma.europa.eu/sites/default/files/library/2015/11/09_1028_final_kid_ongoing_charges_methodology_for_publication_u_2_.pdf\&quot; target&#x3D;\&quot;_blank\&quot;&gt;KID ongoing charges&lt;a/&gt;. | [optional] 
 **TrackingIndex** | Pointer to **string** | Tracking Index. | [optional] 
 **EtfCompany** | Pointer to **string** | ETF issuer. | [optional] 
 **Domicile** | Pointer to **string** | ETF domicile. | [optional] 
@@ -22,6 +22,9 @@ Name | Type | Description | Notes
 **PriceToBook** | Pointer to **float32** | P/B. | [optional] 
 **AvgVolume** | Pointer to **float32** | 30-day average volume. | [optional] 
 **Description** | Pointer to **string** | ETF&#39;s description. | [optional] 
+**IsInverse** | Pointer to **bool** | Whether the ETF is inverse | [optional] 
+**IsLeveraged** | Pointer to **bool** | Whether the ETF is leveraged | [optional] 
+**LeverageFactor** | Pointer to **float32** | Leverage factor. | [optional] 
 
 ## Methods
 
@@ -491,6 +494,81 @@ SetDescription sets Description field to given value.
 `func (o *ETFProfileData) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetIsInverse
+
+`func (o *ETFProfileData) GetIsInverse() bool`
+
+GetIsInverse returns the IsInverse field if non-nil, zero value otherwise.
+
+### GetIsInverseOk
+
+`func (o *ETFProfileData) GetIsInverseOk() (*bool, bool)`
+
+GetIsInverseOk returns a tuple with the IsInverse field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsInverse
+
+`func (o *ETFProfileData) SetIsInverse(v bool)`
+
+SetIsInverse sets IsInverse field to given value.
+
+### HasIsInverse
+
+`func (o *ETFProfileData) HasIsInverse() bool`
+
+HasIsInverse returns a boolean if a field has been set.
+
+### GetIsLeveraged
+
+`func (o *ETFProfileData) GetIsLeveraged() bool`
+
+GetIsLeveraged returns the IsLeveraged field if non-nil, zero value otherwise.
+
+### GetIsLeveragedOk
+
+`func (o *ETFProfileData) GetIsLeveragedOk() (*bool, bool)`
+
+GetIsLeveragedOk returns a tuple with the IsLeveraged field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsLeveraged
+
+`func (o *ETFProfileData) SetIsLeveraged(v bool)`
+
+SetIsLeveraged sets IsLeveraged field to given value.
+
+### HasIsLeveraged
+
+`func (o *ETFProfileData) HasIsLeveraged() bool`
+
+HasIsLeveraged returns a boolean if a field has been set.
+
+### GetLeverageFactor
+
+`func (o *ETFProfileData) GetLeverageFactor() float32`
+
+GetLeverageFactor returns the LeverageFactor field if non-nil, zero value otherwise.
+
+### GetLeverageFactorOk
+
+`func (o *ETFProfileData) GetLeverageFactorOk() (*float32, bool)`
+
+GetLeverageFactorOk returns a tuple with the LeverageFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLeverageFactor
+
+`func (o *ETFProfileData) SetLeverageFactor(v float32)`
+
+SetLeverageFactor sets LeverageFactor field to given value.
+
+### HasLeverageFactor
+
+`func (o *ETFProfileData) HasLeverageFactor() bool`
+
+HasLeverageFactor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
