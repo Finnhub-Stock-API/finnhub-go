@@ -9,6 +9,8 @@ docs/BasicFinancials.md
 docs/BondCandles.md
 docs/BondProfile.md
 docs/BondTickData.md
+docs/BondYieldCurve.md
+docs/BondYieldCurveInfo.md
 docs/BreakdownItem.md
 docs/Company.md
 docs/CompanyESG.md
@@ -19,6 +21,8 @@ docs/CompanyNews.md
 docs/CompanyNewsStatistics.md
 docs/CompanyProfile.md
 docs/CompanyProfile2.md
+docs/CongressionalTrading.md
+docs/CongressionalTransaction.md
 docs/CountryMetadata.md
 docs/CovidInfo.md
 docs/CryptoCandles.md
@@ -29,6 +33,7 @@ docs/Development.md
 docs/Dividends.md
 docs/Dividends2.md
 docs/Dividends2Info.md
+docs/DocumentResponse.md
 docs/ETFCountryExposureData.md
 docs/ETFHoldingsData.md
 docs/ETFProfileData.md
@@ -53,8 +58,10 @@ docs/EconomicCode.md
 docs/EconomicData.md
 docs/EconomicDataInfo.md
 docs/EconomicEvent.md
+docs/ExcerptResponse.md
 docs/FDAComitteeMeeting.md
 docs/Filing.md
+docs/FilingResponse.md
 docs/FilingSentiment.md
 docs/FinancialStatements.md
 docs/FinancialsAsReported.md
@@ -66,6 +73,8 @@ docs/FundOwnershipInfo.md
 docs/HistoricalNBBO.md
 docs/IPOCalendar.md
 docs/IPOEvent.md
+docs/InFilingResponse.md
+docs/InFilingSearchBody.md
 docs/IndexHistoricalConstituent.md
 docs/Indicator.md
 docs/IndicesConstituents.md
@@ -93,6 +102,8 @@ docs/LobbyingResult.md
 docs/MarketNews.md
 docs/MutualFundCountryExposure.md
 docs/MutualFundCountryExposureData.md
+docs/MutualFundEet.md
+docs/MutualFundEetPai.md
 docs/MutualFundHoldings.md
 docs/MutualFundHoldingsData.md
 docs/MutualFundProfile.md
@@ -114,6 +125,9 @@ docs/RevenueBreakdown.md
 docs/RevenueEstimates.md
 docs/RevenueEstimatesInfo.md
 docs/SECSentimentAnalysis.md
+docs/SearchBody.md
+docs/SearchFilter.md
+docs/SearchResponse.md
 docs/SectorMetric.md
 docs/SectorMetricData.md
 docs/Sentiment.md
@@ -152,6 +166,8 @@ model_basic_financials.go
 model_bond_candles.go
 model_bond_profile.go
 model_bond_tick_data.go
+model_bond_yield_curve.go
+model_bond_yield_curve_info.go
 model_breakdown_item.go
 model_company.go
 model_company_earnings_quality_score.go
@@ -162,6 +178,8 @@ model_company_news.go
 model_company_news_statistics.go
 model_company_profile.go
 model_company_profile2.go
+model_congressional_trading.go
+model_congressional_transaction.go
 model_country_metadata.go
 model_covid_info.go
 model_crypto_candles.go
@@ -171,6 +189,7 @@ model_development.go
 model_dividends.go
 model_dividends2.go
 model_dividends2_info.go
+model_document_response.go
 model_earning_release.go
 model_earning_result.go
 model_earnings_calendar.go
@@ -195,8 +214,10 @@ model_etfs_country_exposure.go
 model_etfs_holdings.go
 model_etfs_profile.go
 model_etfs_sector_exposure.go
+model_excerpt_response.go
 model_fda_comittee_meeting.go
 model_filing.go
+model_filing_response.go
 model_filing_sentiment.go
 model_financial_statements.go
 model_financials_as_reported.go
@@ -206,6 +227,8 @@ model_forexrates.go
 model_fund_ownership.go
 model_fund_ownership_info.go
 model_historical_nbbo.go
+model_in_filing_response.go
+model_in_filing_search_body.go
 model_index_historical_constituent.go
 model_indicator.go
 model_indices_constituents.go
@@ -235,6 +258,8 @@ model_lobbying_result.go
 model_market_news.go
 model_mutual_fund_country_exposure.go
 model_mutual_fund_country_exposure_data.go
+model_mutual_fund_eet.go
+model_mutual_fund_eet_pai.go
 model_mutual_fund_holdings.go
 model_mutual_fund_holdings_data.go
 model_mutual_fund_profile.go
@@ -255,6 +280,9 @@ model_report.go
 model_revenue_breakdown.go
 model_revenue_estimates.go
 model_revenue_estimates_info.go
+model_search_body.go
+model_search_filter.go
+model_search_response.go
 model_sec_sentiment_analysis.go
 model_sector_metric.go
 model_sector_metric_data.go

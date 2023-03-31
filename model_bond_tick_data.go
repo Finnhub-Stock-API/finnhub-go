@@ -26,12 +26,18 @@ type BondTickData struct {
 	V *[]float32 `json:"v,omitempty"`
 	// List of price data.
 	P *[]float32 `json:"p,omitempty"`
+	// List of yield data.
+	Y *[]float32 `json:"y,omitempty"`
 	// List of timestamp in UNIX ms.
 	T *[]int64 `json:"t,omitempty"`
 	// List of values showing the side (Buy/sell) of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
 	Si *[]string `json:"si,omitempty"`
 	// List of values showing the counterparty of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
 	Cp *[]string `json:"cp,omitempty"`
+	// List of values showing the reporting party of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
+	Rp *[]string `json:"rp,omitempty"`
+	// ATS flag. Y or empty
+	Ats *[]string `json:"ats,omitempty"`
 	// List of trade conditions. A comprehensive list of trade conditions code can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\">here</a>
 	C *[][]string `json:"c,omitempty"`
 }
@@ -213,6 +219,38 @@ func (o *BondTickData) SetP(v []float32) {
 	o.P = &v
 }
 
+// GetY returns the Y field value if set, zero value otherwise.
+func (o *BondTickData) GetY() []float32 {
+	if o == nil || o.Y == nil {
+		var ret []float32
+		return ret
+	}
+	return *o.Y
+}
+
+// GetYOk returns a tuple with the Y field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BondTickData) GetYOk() (*[]float32, bool) {
+	if o == nil || o.Y == nil {
+		return nil, false
+	}
+	return o.Y, true
+}
+
+// HasY returns a boolean if a field has been set.
+func (o *BondTickData) HasY() bool {
+	if o != nil && o.Y != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetY gets a reference to the given []float32 and assigns it to the Y field.
+func (o *BondTickData) SetY(v []float32) {
+	o.Y = &v
+}
+
 // GetT returns the T field value if set, zero value otherwise.
 func (o *BondTickData) GetT() []int64 {
 	if o == nil || o.T == nil {
@@ -309,6 +347,70 @@ func (o *BondTickData) SetCp(v []string) {
 	o.Cp = &v
 }
 
+// GetRp returns the Rp field value if set, zero value otherwise.
+func (o *BondTickData) GetRp() []string {
+	if o == nil || o.Rp == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Rp
+}
+
+// GetRpOk returns a tuple with the Rp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BondTickData) GetRpOk() (*[]string, bool) {
+	if o == nil || o.Rp == nil {
+		return nil, false
+	}
+	return o.Rp, true
+}
+
+// HasRp returns a boolean if a field has been set.
+func (o *BondTickData) HasRp() bool {
+	if o != nil && o.Rp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRp gets a reference to the given []string and assigns it to the Rp field.
+func (o *BondTickData) SetRp(v []string) {
+	o.Rp = &v
+}
+
+// GetAts returns the Ats field value if set, zero value otherwise.
+func (o *BondTickData) GetAts() []string {
+	if o == nil || o.Ats == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Ats
+}
+
+// GetAtsOk returns a tuple with the Ats field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BondTickData) GetAtsOk() (*[]string, bool) {
+	if o == nil || o.Ats == nil {
+		return nil, false
+	}
+	return o.Ats, true
+}
+
+// HasAts returns a boolean if a field has been set.
+func (o *BondTickData) HasAts() bool {
+	if o != nil && o.Ats != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAts gets a reference to the given []string and assigns it to the Ats field.
+func (o *BondTickData) SetAts(v []string) {
+	o.Ats = &v
+}
+
 // GetC returns the C field value if set, zero value otherwise.
 func (o *BondTickData) GetC() [][]string {
 	if o == nil || o.C == nil {
@@ -358,6 +460,9 @@ func (o BondTickData) MarshalJSON() ([]byte, error) {
 	if o.P != nil {
 		toSerialize["p"] = o.P
 	}
+	if o.Y != nil {
+		toSerialize["y"] = o.Y
+	}
 	if o.T != nil {
 		toSerialize["t"] = o.T
 	}
@@ -366,6 +471,12 @@ func (o BondTickData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Cp != nil {
 		toSerialize["cp"] = o.Cp
+	}
+	if o.Rp != nil {
+		toSerialize["rp"] = o.Rp
+	}
+	if o.Ats != nil {
+		toSerialize["ats"] = o.Ats
 	}
 	if o.C != nil {
 		toSerialize["c"] = o.C

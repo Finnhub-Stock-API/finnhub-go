@@ -22,8 +22,12 @@ type CompanyProfile struct {
 	City *string `json:"city,omitempty"`
 	// Country of company's headquarter.
 	Country *string `json:"country,omitempty"`
-	// Currency used in company filings.
+	// Currency used in company filings and financials.
 	Currency *string `json:"currency,omitempty"`
+	// Currency used in Estimates data.
+	EstimateCurrency *string `json:"estimateCurrency,omitempty"`
+	// Currency used in market capitalization.
+	MarketCapCurrency *string `json:"marketCapCurrency,omitempty"`
 	// CUSIP number.
 	Cusip *string `json:"cusip,omitempty"`
 	// Sedol number.
@@ -217,6 +221,70 @@ func (o *CompanyProfile) HasCurrency() bool {
 // SetCurrency gets a reference to the given string and assigns it to the Currency field.
 func (o *CompanyProfile) SetCurrency(v string) {
 	o.Currency = &v
+}
+
+// GetEstimateCurrency returns the EstimateCurrency field value if set, zero value otherwise.
+func (o *CompanyProfile) GetEstimateCurrency() string {
+	if o == nil || o.EstimateCurrency == nil {
+		var ret string
+		return ret
+	}
+	return *o.EstimateCurrency
+}
+
+// GetEstimateCurrencyOk returns a tuple with the EstimateCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyProfile) GetEstimateCurrencyOk() (*string, bool) {
+	if o == nil || o.EstimateCurrency == nil {
+		return nil, false
+	}
+	return o.EstimateCurrency, true
+}
+
+// HasEstimateCurrency returns a boolean if a field has been set.
+func (o *CompanyProfile) HasEstimateCurrency() bool {
+	if o != nil && o.EstimateCurrency != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimateCurrency gets a reference to the given string and assigns it to the EstimateCurrency field.
+func (o *CompanyProfile) SetEstimateCurrency(v string) {
+	o.EstimateCurrency = &v
+}
+
+// GetMarketCapCurrency returns the MarketCapCurrency field value if set, zero value otherwise.
+func (o *CompanyProfile) GetMarketCapCurrency() string {
+	if o == nil || o.MarketCapCurrency == nil {
+		var ret string
+		return ret
+	}
+	return *o.MarketCapCurrency
+}
+
+// GetMarketCapCurrencyOk returns a tuple with the MarketCapCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyProfile) GetMarketCapCurrencyOk() (*string, bool) {
+	if o == nil || o.MarketCapCurrency == nil {
+		return nil, false
+	}
+	return o.MarketCapCurrency, true
+}
+
+// HasMarketCapCurrency returns a boolean if a field has been set.
+func (o *CompanyProfile) HasMarketCapCurrency() bool {
+	if o != nil && o.MarketCapCurrency != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMarketCapCurrency gets a reference to the given string and assigns it to the MarketCapCurrency field.
+func (o *CompanyProfile) SetMarketCapCurrency(v string) {
+	o.MarketCapCurrency = &v
 }
 
 // GetCusip returns the Cusip field value if set, zero value otherwise.
@@ -1000,6 +1068,12 @@ func (o CompanyProfile) MarshalJSON() ([]byte, error) {
 	}
 	if o.Currency != nil {
 		toSerialize["currency"] = o.Currency
+	}
+	if o.EstimateCurrency != nil {
+		toSerialize["estimateCurrency"] = o.EstimateCurrency
+	}
+	if o.MarketCapCurrency != nil {
+		toSerialize["marketCapCurrency"] = o.MarketCapCurrency
 	}
 	if o.Cusip != nil {
 		toSerialize["cusip"] = o.Cusip

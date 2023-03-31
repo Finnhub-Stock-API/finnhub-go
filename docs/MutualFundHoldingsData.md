@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Share** | Pointer to **float32** | Number of shares. | [optional] 
 **Percent** | Pointer to **float32** | Portfolio&#39;s percent | [optional] 
 **Value** | Pointer to **float32** | Market value | [optional] 
+**AssetType** | Pointer to **string** | Asset type. Can be 1 of the following values: &lt;code&gt;Equity&lt;/code&gt;, &lt;code&gt;ETP&lt;/code&gt;, &lt;code&gt;Fund&lt;/code&gt;, &lt;code&gt;Bond&lt;/code&gt;, &lt;code&gt;Other&lt;/code&gt; or empty. | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetValue sets Value field to given value.
 `func (o *MutualFundHoldingsData) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
+
+### GetAssetType
+
+`func (o *MutualFundHoldingsData) GetAssetType() string`
+
+GetAssetType returns the AssetType field if non-nil, zero value otherwise.
+
+### GetAssetTypeOk
+
+`func (o *MutualFundHoldingsData) GetAssetTypeOk() (*string, bool)`
+
+GetAssetTypeOk returns a tuple with the AssetType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssetType
+
+`func (o *MutualFundHoldingsData) SetAssetType(v string)`
+
+SetAssetType sets AssetType field to given value.
+
+### HasAssetType
+
+`func (o *MutualFundHoldingsData) HasAssetType() bool`
+
+HasAssetType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,104 +1,78 @@
-# PriceMetrics
+# CongressionalTrading
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Symbol of the company. | [optional] 
-**AtDate** | Pointer to **string** | Data date. | [optional] 
-**Data** | Pointer to **map[string]interface{}** |  | [optional] 
+**Data** | Pointer to [**[]CongressionalTransaction**](CongressionalTransaction.md) | Array of stock trades. | [optional] 
 
 ## Methods
 
-### NewPriceMetrics
+### NewCongressionalTrading
 
-`func NewPriceMetrics() *PriceMetrics`
+`func NewCongressionalTrading() *CongressionalTrading`
 
-NewPriceMetrics instantiates a new PriceMetrics object
+NewCongressionalTrading instantiates a new CongressionalTrading object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPriceMetricsWithDefaults
+### NewCongressionalTradingWithDefaults
 
-`func NewPriceMetricsWithDefaults() *PriceMetrics`
+`func NewCongressionalTradingWithDefaults() *CongressionalTrading`
 
-NewPriceMetricsWithDefaults instantiates a new PriceMetrics object
+NewCongressionalTradingWithDefaults instantiates a new CongressionalTrading object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSymbol
 
-`func (o *PriceMetrics) GetSymbol() string`
+`func (o *CongressionalTrading) GetSymbol() string`
 
 GetSymbol returns the Symbol field if non-nil, zero value otherwise.
 
 ### GetSymbolOk
 
-`func (o *PriceMetrics) GetSymbolOk() (*string, bool)`
+`func (o *CongressionalTrading) GetSymbolOk() (*string, bool)`
 
 GetSymbolOk returns a tuple with the Symbol field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSymbol
 
-`func (o *PriceMetrics) SetSymbol(v string)`
+`func (o *CongressionalTrading) SetSymbol(v string)`
 
 SetSymbol sets Symbol field to given value.
 
 ### HasSymbol
 
-`func (o *PriceMetrics) HasSymbol() bool`
+`func (o *CongressionalTrading) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
 
-### GetAtDate
-
-`func (o *PriceMetrics) GetAtDate() string`
-
-GetAtDate returns the AtDate field if non-nil, zero value otherwise.
-
-### GetAtDateOk
-
-`func (o *PriceMetrics) GetAtDateOk() (*string, bool)`
-
-GetAtDateOk returns a tuple with the AtDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAtDate
-
-`func (o *PriceMetrics) SetAtDate(v string)`
-
-SetAtDate sets AtDate field to given value.
-
-### HasAtDate
-
-`func (o *PriceMetrics) HasAtDate() bool`
-
-HasAtDate returns a boolean if a field has been set.
-
 ### GetData
 
-`func (o *PriceMetrics) GetData() map[string]interface{}`
+`func (o *CongressionalTrading) GetData() []CongressionalTransaction`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PriceMetrics) GetDataOk() (*map[string]interface{}, bool)`
+`func (o *CongressionalTrading) GetDataOk() (*[]CongressionalTransaction, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PriceMetrics) SetData(v map[string]interface{})`
+`func (o *CongressionalTrading) SetData(v []CongressionalTransaction)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *PriceMetrics) HasData() bool`
+`func (o *CongressionalTrading) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 

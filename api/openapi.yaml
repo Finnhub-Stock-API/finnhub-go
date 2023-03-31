@@ -378,6 +378,13 @@ paths:
         required: true
         schema:
           type: string
+      - description: Get data on a specific date in the past. The data is available
+          weekly so your date will be automatically adjusted to the last day of that
+          week.
+        in: query
+        name: date
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -392,8 +399,8 @@ paths:
       - Default
   /ca/symbol-change:
     get:
-      description: Get a list of symbol changes for US-listed and EU-listed securities.
-        Limit to 2000 events at a time.
+      description: Get a list of symbol changes for US-listed, EU-listed, NSE and
+        ASX securities. Limit to 2000 events at a time.
       operationId: symbol-change
       parameters:
       - description: From date <code>YYYY-MM-DD</code>.
@@ -476,7 +483,8 @@ paths:
   /institutional/portfolio:
     get:
       description: Get the holdings/portfolio data of institutional investors from
-        13-F filings. Limit to 1 year of data at a time.
+        13-F filings. Limit to 1 year of data at a time. You can get a list of supported
+        CIK <a href="/api/v1/institutional/list?token=" target="_blank">here</a>.
       operationId: institutional-portfolio
       parameters:
       - description: Fund's CIK.
@@ -619,9 +627,9 @@ paths:
       - Default
   /stock/insider-transactions:
     get:
-      description: Company insider transactions data sourced from <code>Form 3,4,5</code>.
-        This endpoint only covers US companies at the moment. Limit to 100 transactions
-        per API call.
+      description: Company insider transactions data sourced from <code>Form 3,4,5</code>,
+        SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia,
+        and selected EU companies. Limit to 100 transactions per API call.
       operationId: insider-transactions
       parameters:
       - description: 'Symbol of the company: AAPL. Leave this param blank to get the
@@ -876,39 +884,6 @@ paths:
       security:
       - api_key: []
       summary: SEC Filings
-      tags:
-      - Default
-  /stock/international-filings:
-    get:
-      description: List filings for international companies. Limit to 250 documents
-        at a time. These are the documents we use to source our fundamental data.
-        Only support SEDAR and UK Companies House for normal usage. Enterprise clients
-        who need access to the full filings for global markets should contact us for
-        the access.
-      operationId: international-filings
-      parameters:
-      - description: Symbol. Leave empty to list latest filings.
-        in: query
-        name: symbol
-        schema:
-          type: string
-      - description: Filter by country using country's 2-letter code.
-        in: query
-        name: country
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/InternationalFiling'
-                type: array
-          description: successful operation
-      security:
-      - api_key: []
-      summary: International Filings
       tags:
       - Default
   /stock/filings-sentiment:
@@ -1437,7 +1412,7 @@ paths:
             <tr>
               <td class="text-blue">US CTA/UTP</th>
               <td>Full SIP</td>
-              <td>15 minute</td>
+              <td>End-of-day</td>
             </tr>
             <tr>
               <td class="text-blue">TSX</th>
@@ -1689,6 +1664,7 @@ paths:
   /etf/profile:
     get:
       description: Get ETF profile information. This endpoint has global coverage.
+        A list of supported ETFs can be found <a href="/api/v1/etf/list?token=" target="_blank">here</a>.
       operationId: etfs-profile
       parameters:
       - description: ETF symbol.
@@ -1716,7 +1692,8 @@ paths:
   /etf/holdings:
     get:
       description: Get full ETF holdings/constituents. This endpoint has global coverage.
-        Widget only shows top 10 holdings.
+        Widget only shows top 10 holdings. A list of supported ETFs can be found <a
+        href="/api/v1/etf/list?token=" target="_blank">here</a>.
       operationId: etfs-holdings
       parameters:
       - description: ETF symbol.
@@ -1805,7 +1782,8 @@ paths:
     get:
       description: Get mutual funds profile information. This endpoint covers both
         US and global mutual funds. For international funds, you must query the data
-        using ISIN.
+        using ISIN. A list of supported funds can be found <a href="/api/v1/mutual-fund/list?token="
+        target="_blank">here</a>.
       operationId: mutual-fund-profile
       parameters:
       - description: Fund's symbol.
@@ -1834,7 +1812,8 @@ paths:
     get:
       description: Get full Mutual Funds holdings/constituents. This endpoint covers
         both US and global mutual funds. For international funds, you must query the
-        data using ISIN.
+        data using ISIN. A list of supported funds can be found <a href="/api/v1/mutual-fund/list?token="
+        target="_blank">here</a>.
       operationId: mutual-fund-holdings
       parameters:
       - description: Fund's symbol.
@@ -1911,6 +1890,53 @@ paths:
       security:
       - api_key: []
       summary: Mutual Funds Country Exposure
+      tags:
+      - Default
+  /mutual-fund/eet:
+    get:
+      description: Get EET data for EU funds. For PAIs data, please see the EET PAI
+        endpoint.
+      operationId: mutual-fund-eet
+      parameters:
+      - description: ISIN.
+        in: query
+        name: isin
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutualFundEet'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Mutual Funds EET
+      tags:
+      - Default
+  /mutual-fund/eet-pai:
+    get:
+      description: Get EET PAI data for EU funds.
+      operationId: mutual-fund-eet-pai
+      parameters:
+      - description: ISIN.
+        in: query
+        name: isin
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutualFundEetPai'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Mutual Funds EET PAI
       tags:
       - Default
   /forex/exchange:
@@ -2204,7 +2230,8 @@ paths:
   /scan/technical-indicator:
     get:
       description: Get aggregate signal of multiple technical indicators such as MACD,
-        RSI, Moving Average v.v.
+        RSI, Moving Average v.v. A full list of indicators can be found <a href="https://docs.google.com/spreadsheets/d/1MWuy0WuT2yVlxr1KbPdggVygMZtJfunDnhe-C0GEXYM/edit?usp=sharing"
+        target="_blank">here</a>.
       operationId: aggregate-indicator
       parameters:
       - description: symbol
@@ -2233,7 +2260,7 @@ paths:
       tags:
       - Default
   /indicator:
-    post:
+    get:
       description: Return technical indicator with price data. List of supported indicators
         can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing"
         target="_blank">here</a>.
@@ -2321,7 +2348,7 @@ paths:
   /stock/transcripts:
     get:
       description: <p>Get earnings call transcripts, audio and participants' list.
-        This endpoint is only available for US, UK, and Candian companies. <p>15+
+        Data is available for US, UK, European, Australian and Canadian companies.<p>15+
         years of data is available with 220,000+ audio which add up to 7TB in size.</p>
       operationId: transcripts
       parameters:
@@ -2708,10 +2735,48 @@ paths:
       summary: USA Spending
       tags:
       - Default
+  /stock/congressional-trading:
+    get:
+      description: Get stock trades data disclosed by members of congress.
+      operationId: congressional-trading
+      parameters:
+      - description: 'Symbol of the company: AAPL.'
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CongressionalTrading'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Congressional Trading
+      tags:
+      - Default
   /bond/profile:
     get:
       description: Get general information of a bond. You can query by FIGI, ISIN
-        or CUSIP
+        or CUSIP. A list of supported bonds can be found <a href="/api/v1/bond/list?token="
+        target="_blank">here</a>.
       operationId: bond-profile
       parameters:
       - description: ISIN
@@ -2876,6 +2941,30 @@ paths:
       summary: Bond Tick Data
       tags:
       - Default
+  /bond/yield-curve:
+    get:
+      description: Get yield curve data for Treasury bonds.
+      operationId: bond-yield-curve
+      parameters:
+      - description: Bond's code. You can find the list of supported code <a href="https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing"
+          target="_blank" rel="noopener">here</a>.
+        in: query
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BondYieldCurve'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Bond Yield Curve
+      tags:
+      - Default
   /country:
     get:
       description: List all countries and metadata.
@@ -2967,6 +3056,258 @@ paths:
       - Default
 components:
   schemas:
+    SearchBody:
+      properties:
+        query:
+          description: Search query
+          type: string
+        isins:
+          description: 'List of isin to search, comma separated (Max: 50).'
+          type: string
+        cusips:
+          description: 'List of cusip to search, comma separated (Max: 50).'
+          type: string
+        ciks:
+          description: 'List of SEC Center Index Key to search, comma separated (Max:
+            50).'
+          type: string
+        sedarIds:
+          description: 'List of SEDAR issuer number to search, comma separated (Max:
+            50).'
+          type: string
+        chIds:
+          description: 'List of Companies House number to search, comma separated
+            (Max: 50).'
+          type: string
+        symbols:
+          description: 'List of symbols to search, comma separated (Max: 50).'
+          type: string
+        sedols:
+          description: 'List of sedols to search, comma separated (Max: 50).'
+          type: string
+        sources:
+          description: 'List of sources to search, comma separated (Max: 50). Look
+            at <code>/filter</code> endpoint to see all available values.'
+          type: string
+        forms:
+          description: 'List of forms to search, comma separated (Max: 50). Look at
+            <code>/filter</code> endpoint to see all available values.'
+          type: string
+        gics:
+          description: 'List of gics to search, comma separated (Max: 50). Look at
+            <code>/filter</code> endpoint to see all available values.'
+          type: string
+        naics:
+          description: 'List of sources to search, comma separated (Max: 50). Look
+            at <code>/filter</code> endpoint to see all available values.'
+          type: string
+        exhibits:
+          description: 'List of exhibits to search, comma separated (Max: 50). Look
+            at <code>/filter</code> endpoint to see all available values.'
+          type: string
+        exchanges:
+          description: 'List of exchanges to search, comma separated (Max: 50). Look
+            at <code>/filter</code> endpoint to see all available values.'
+          type: string
+        countries:
+          description: 'List of sources to search, comma separated (Max: 50). Look
+            at <code>/filter</code> endpoint to see all available values.'
+          type: string
+        acts:
+          description: List of SEC's exchanges act to search, comma separated. Look
+            at <code>/filter</code> endpoint to see all available values.
+          type: string
+        caps:
+          description: List of market capitalization to search, comma separated. Look
+            at <code>/filter</code> endpoint to see all available values.
+          type: string
+        fromDate:
+          description: 'Search from date in format: YYYY-MM-DD, default from the last
+            2 years'
+          type: string
+        toDate:
+          description: 'Search to date in format: YYYY-MM-DD, default to today'
+          type: string
+        page:
+          description: Use for pagination, default to page 1
+          type: string
+        sort:
+          description: 'Sort result by, default: sortMostRecent. Look at <code>/filter</code>
+            endpoint to see all available values.'
+          type: string
+        highlighted:
+          description: Enable highlight in returned filings. If enabled, only return
+            10 results each time
+          type: boolean
+      required:
+      - query
+      type: object
+    InFilingSearchBody:
+      properties:
+        query:
+          description: Search query
+          type: string
+        filingId:
+          description: Filing Id to search
+          type: string
+      required:
+      - filingId
+      - query
+      type: object
+    SearchResponse:
+      properties:
+        count:
+          description: Total filing matched your search criteria.
+          type: integer
+        took:
+          description: Time took to execute your search query on our server, value
+            in ms.
+          type: integer
+        page:
+          description: Current search page
+          type: integer
+        filings:
+          description: Filing match your search criteria.
+          items:
+            $ref: '#/components/schemas/FilingResponse'
+          type: array
+      type: object
+    FilingResponse:
+      properties:
+        filingId:
+          description: Filing Id in Alpharesearch platform
+          type: string
+        title:
+          description: Filing title
+          type: string
+        filerId:
+          description: Id of the entity submitted the filing
+          type: string
+        symbol:
+          description: List of symbol associate with this filing
+          type: object
+        name:
+          description: Filer name
+          type: string
+        acceptanceDate:
+          description: Date the filing is submitted.
+          type: string
+        filedDate:
+          description: Date the filing is make available to the public
+          type: string
+        reportDate:
+          description: Date as which the filing is reported
+          type: string
+        form:
+          description: Filing Form
+          type: string
+        amend:
+          description: Amendment
+          type: boolean
+        source:
+          description: Filing Source
+          type: string
+        pageCount:
+          description: Estimate number of page when printing
+          type: integer
+        documentCount:
+          description: Number of document in this filing
+          type: integer
+      type: object
+    InFilingResponse:
+      properties:
+        filingId:
+          description: Filing Id in Alpharesearch platform
+          type: string
+        title:
+          description: Filing title
+          type: string
+        filerId:
+          description: Id of the entity submitted the filing
+          type: string
+        symbol:
+          description: List of symbol associate with this filing
+          type: object
+        name:
+          description: Filer name
+          type: string
+        acceptanceDate:
+          description: Date the filing is submitted.
+          type: string
+        filedDate:
+          description: Date the filing is make available to the public
+          type: string
+        reportDate:
+          description: Date as which the filing is reported
+          type: string
+        form:
+          description: Filing Form
+          type: string
+        amend:
+          description: Amendment
+          type: boolean
+        source:
+          description: Filing Source
+          type: string
+        pageCount:
+          description: Estimate number of page when printing
+          type: integer
+        documentCount:
+          description: Number of document in this filing
+          type: integer
+        documents:
+          description: Document for this filing.
+          items:
+            $ref: '#/components/schemas/DocumentResponse'
+          type: array
+      type: object
+    DocumentResponse:
+      properties:
+        documentId:
+          description: AlphaResearch internal document id.
+          type: string
+        title:
+          description: Title for this document.
+          type: string
+        hits:
+          description: Number of hit in this document
+          type: string
+        url:
+          description: Link to render this document
+          type: string
+        format:
+          description: Format of this document (can be html or pdf)
+          type: string
+        excerpts:
+          description: Highlighted excerpts for this document
+          items:
+            $ref: '#/components/schemas/ExcerptResponse'
+          type: array
+      type: object
+    ExcerptResponse:
+      properties:
+        content:
+          description: Highlighted content
+          type: string
+        snippetId:
+          description: Location of the content in the rendered document
+          type: string
+        startOffset:
+          description: Start offset of highlighted content
+          type: string
+        endOffset:
+          description: End offset of highlighted content
+          type: string
+      type: object
+    SearchFilter:
+      properties:
+        id:
+          description: Filter id, use with respective field in search query body.
+          type: string
+        name:
+          description: Display name.
+          type: string
+      type: object
     StockSymbol:
       example:
         displaySymbol: displaySymbol
@@ -3067,6 +3408,8 @@ components:
         naicsSector: naicsSector
         description: description
         employeeTotal: 1.4658129
+        estimateCurrency: estimateCurrency
+        marketCapCurrency: marketCapCurrency
         gsector: gsector
         weburl: weburl
         logo: logo
@@ -3100,7 +3443,13 @@ components:
           description: Country of company's headquarter.
           type: string
         currency:
-          description: Currency used in company filings.
+          description: Currency used in company filings and financials.
+          type: string
+        estimateCurrency:
+          description: Currency used in Estimates data.
+          type: string
+        marketCapCurrency:
+          description: Currency used in market capitalization.
           type: string
         cusip:
           description: CUSIP number.
@@ -3525,12 +3874,96 @@ components:
       example:
         symbol: symbol
         data: '{}'
+        atDate: atDate
+      properties:
+        symbol:
+          description: Symbol of the company.
+          type: string
+        atDate:
+          description: Data date.
+          type: string
+        data:
+          type: object
+      type: object
+    CongressionalTransaction:
+      example:
+        ownerType: ownerType
+        transactionType: transactionType
+        symbol: symbol
+        amountTo: 6.0274563
+        filingDate: filingDate
+        name: name
+        amountFrom: 0.8008282
+        assetName: assetName
+        position: position
+        transactionDate: transactionDate
+      properties:
+        amountFrom:
+          description: Transaction amount from.
+          format: float
+          type: number
+        amountTo:
+          description: Transaction amount to.
+          format: float
+          type: number
+        assetName:
+          description: Asset name.
+          type: string
+        filingDate:
+          description: Filing date.
+          type: string
+        name:
+          description: Name of the representative.
+          type: string
+        ownerType:
+          description: Owner Type.
+          type: string
+        position:
+          description: Position.
+          type: string
+        symbol:
+          description: Symbol.
+          type: string
+        transactionDate:
+          description: Transaction date.
+          type: string
+        transactionType:
+          description: Transaction type <code>Sale</code> or <code>Purchase</code>.
+          type: string
+      type: object
+    CongressionalTrading:
+      example:
+        symbol: symbol
+        data:
+        - ownerType: ownerType
+          transactionType: transactionType
+          symbol: symbol
+          amountTo: 6.0274563
+          filingDate: filingDate
+          name: name
+          amountFrom: 0.8008282
+          assetName: assetName
+          position: position
+          transactionDate: transactionDate
+        - ownerType: ownerType
+          transactionType: transactionType
+          symbol: symbol
+          amountTo: 6.0274563
+          filingDate: filingDate
+          name: name
+          amountFrom: 0.8008282
+          assetName: assetName
+          position: position
+          transactionDate: transactionDate
       properties:
         symbol:
           description: Symbol of the company.
           type: string
         data:
-          type: object
+          description: Array of stock trades.
+          items:
+            $ref: '#/components/schemas/CongressionalTransaction'
+          type: array
       type: object
     IsinChangeInfo:
       example:
@@ -4383,16 +4816,6 @@ components:
           type: string
       type: object
     InternationalFiling:
-      example:
-        symbol: symbol
-        country: country
-        companyName: companyName
-        description: description
-        language: language
-        category: category
-        title: title
-        filedDate: filedDate
-        url: url
       properties:
         symbol:
           description: Symbol.
@@ -4679,6 +5102,7 @@ components:
         amount: 0.8008282
         declarationDate: 2000-01-23
         adjustedAmount: 6.0274563
+        freq: freq
         recordDate: 2000-01-23
         currency: currency
         payDate: 2000-01-23
@@ -4712,6 +5136,19 @@ components:
           type: string
         currency:
           description: Currency.
+          type: string
+        freq:
+          description: |-
+            <p>Dividend frequency. Can be 1 of the following values:</p><ul>
+            <li><code>0: Annually</code></li>
+            <li><code>1: Monthly</code></li>
+            <li><code>2: Quarterly</code></li>
+            <li><code>3: Semi-annually</code></li>
+            <li><code>4: Other/Unknown</code></li>
+            <li><code>5: Bimonthly</code></li>
+            <li><code>6: Trimesterly</code></li>
+            <li><code>7: Weekly</code></li>
+            </ul>
           type: string
       type: object
     Dividends2Info:
@@ -5061,8 +5498,10 @@ components:
         surprise: 1.4658129
         symbol: symbol
         period: 2000-01-23
+        year: 5
         surprisePercent: 5.962134
         estimate: 6.0274563
+        quarter: 2
       properties:
         actual:
           description: Actual earning result.
@@ -5087,6 +5526,14 @@ components:
         symbol:
           description: Company symbol.
           type: string
+        year:
+          description: Earnings year.
+          format: int64
+          type: integer
+        quarter:
+          description: Earnings quarter.
+          format: int64
+          type: integer
       type: object
     EarningRelease:
       example:
@@ -5343,6 +5790,9 @@ components:
         p:
         - 5.637377
         - 5.637377
+        ats:
+        - ats
+        - ats
         total: 1
         c:
         - - c
@@ -5350,8 +5800,8 @@ components:
         - - c
           - c
         t:
-        - 2
-        - 2
+        - 7
+        - 7
         v:
         - 5.962134
         - 5.962134
@@ -5359,10 +5809,16 @@ components:
         - si
         - si
         count: 6
+        y:
+        - 2.302136
+        - 2.302136
         skip: 0
         cp:
         - cp
         - cp
+        rp:
+        - rp
+        - rp
       properties:
         skip:
           description: Number of ticks skipped.
@@ -5389,6 +5845,12 @@ components:
             format: float
             type: number
           type: array
+        y:
+          description: List of yield data.
+          items:
+            format: float
+            type: number
+          type: array
         t:
           description: List of timestamp in UNIX ms.
           items:
@@ -5404,6 +5866,17 @@ components:
         cp:
           description: 'List of values showing the counterparty of each trade. List
             of supported values: <a target="_blank" href="https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing",>here</a>'
+          items:
+            type: string
+          type: array
+        rp:
+          description: 'List of values showing the reporting party of each trade.
+            List of supported values: <a target="_blank" href="https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing",>here</a>'
+          items:
+            type: string
+          type: array
+        ats:
+          description: ATS flag. Y or empty
           items:
             type: string
           type: array
@@ -5777,6 +6250,7 @@ components:
         percent: 1.4658129
         value: 5.962134
         isin: isin
+        assetType: assetType
       properties:
         symbol:
           description: Symbol description
@@ -5802,6 +6276,11 @@ components:
           description: Market value
           format: float
           type: number
+        assetType:
+          description: 'Asset type. Can be 1 of the following values: <code>Equity</code>,
+            <code>ETP</code>, <code>Fund</code>, <code>Bond</code>, <code>Other</code>
+            or empty.'
+          type: string
       type: object
     ETFsHoldings:
       example:
@@ -5815,6 +6294,7 @@ components:
           percent: 1.4658129
           value: 5.962134
           isin: isin
+          assetType: assetType
         - symbol: symbol
           cusip: cusip
           name: name
@@ -5822,6 +6302,7 @@ components:
           percent: 1.4658129
           value: 5.962134
           isin: isin
+          assetType: assetType
         numberOfHoldings: 0
       properties:
         symbol:
@@ -6085,6 +6566,7 @@ components:
         percent: 1.4658129
         value: 5.962134
         isin: isin
+        assetType: assetType
       properties:
         symbol:
           description: Symbol description
@@ -6110,6 +6592,11 @@ components:
           description: Market value
           format: float
           type: number
+        assetType:
+          description: 'Asset type. Can be 1 of the following values: <code>Equity</code>,
+            <code>ETP</code>, <code>Fund</code>, <code>Bond</code>, <code>Other</code>
+            or empty.'
+          type: string
       type: object
     MutualFundHoldings:
       example:
@@ -6123,6 +6610,7 @@ components:
           percent: 1.4658129
           value: 5.962134
           isin: isin
+          assetType: assetType
         - symbol: symbol
           cusip: cusip
           name: name
@@ -6130,6 +6618,7 @@ components:
           percent: 1.4658129
           value: 5.962134
           isin: isin
+          assetType: assetType
         numberOfHoldings: 0
       properties:
         symbol:
@@ -6210,6 +6699,32 @@ components:
           items:
             $ref: '#/components/schemas/MutualFundCountryExposureData'
           type: array
+      type: object
+    MutualFundEetData:
+      type: object
+    MutualFundEet:
+      example:
+        data: '{}'
+        isin: isin
+      properties:
+        isin:
+          description: ISIN.
+          type: string
+        data:
+          type: object
+      type: object
+    MutualFundEetPaiData:
+      type: object
+    MutualFundEetPai:
+      example:
+        data: '{}'
+        isin: isin
+      properties:
+        isin:
+          description: ISIN.
+          type: string
+        data:
+          type: object
       type: object
     ForexSymbol:
       example:
@@ -7249,6 +7764,37 @@ components:
           type: array
         code:
           description: Finnhub economic code
+          type: string
+      type: object
+    BondYieldCurveInfo:
+      example:
+        d: d
+        v: 0.8008282
+      properties:
+        d:
+          description: Date of the reading
+          type: string
+        v:
+          description: Value
+          format: float
+          type: number
+      type: object
+    BondYieldCurve:
+      example:
+        code: code
+        data:
+        - d: d
+          v: 0.8008282
+        - d: d
+          v: 0.8008282
+      properties:
+        data:
+          description: Array of data.
+          items:
+            $ref: '#/components/schemas/BondYieldCurveInfo'
+          type: array
+        code:
+          description: Bond's code
           type: string
       type: object
     UsptoPatentResult:

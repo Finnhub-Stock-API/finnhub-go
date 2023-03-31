@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**BondPrice**](DefaultApi.md#BondPrice) | **Get** /bond/price | Bond price data
 [**BondProfile**](DefaultApi.md#BondProfile) | **Get** /bond/profile | Bond Profile
 [**BondTick**](DefaultApi.md#BondTick) | **Get** /bond/tick | Bond Tick Data
+[**BondYieldCurve**](DefaultApi.md#BondYieldCurve) | **Get** /bond/yield-curve | Bond Yield Curve
 [**CompanyBasicFinancials**](DefaultApi.md#CompanyBasicFinancials) | **Get** /stock/metric | Basic Financials
 [**CompanyEarnings**](DefaultApi.md#CompanyEarnings) | **Get** /stock/earnings | Earnings Surprises
 [**CompanyEarningsQualityScore**](DefaultApi.md#CompanyEarningsQualityScore) | **Get** /stock/earnings-quality-score | Company Earnings Quality Score
@@ -21,6 +22,7 @@ Method | HTTP request | Description
 [**CompanyProfile**](DefaultApi.md#CompanyProfile) | **Get** /stock/profile | Company Profile
 [**CompanyProfile2**](DefaultApi.md#CompanyProfile2) | **Get** /stock/profile2 | Company Profile 2
 [**CompanyRevenueEstimates**](DefaultApi.md#CompanyRevenueEstimates) | **Get** /stock/revenue-estimate | Revenue Estimates
+[**CongressionalTrading**](DefaultApi.md#CongressionalTrading) | **Get** /stock/congressional-trading | Congressional Trading
 [**Country**](DefaultApi.md#Country) | **Get** /country | Country Metadata
 [**Covid19**](DefaultApi.md#Covid19) | **Get** /covid19/us | COVID-19
 [**CryptoCandles**](DefaultApi.md#CryptoCandles) | **Get** /crypto/candle | Crypto Candles
@@ -52,12 +54,13 @@ Method | HTTP request | Description
 [**InstitutionalOwnership**](DefaultApi.md#InstitutionalOwnership) | **Get** /institutional/ownership | Institutional Ownership
 [**InstitutionalPortfolio**](DefaultApi.md#InstitutionalPortfolio) | **Get** /institutional/portfolio | Institutional Portfolio
 [**InstitutionalProfile**](DefaultApi.md#InstitutionalProfile) | **Get** /institutional/profile | Institutional Profile
-[**InternationalFilings**](DefaultApi.md#InternationalFilings) | **Get** /stock/international-filings | International Filings
 [**InvestmentThemes**](DefaultApi.md#InvestmentThemes) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
 [**IsinChange**](DefaultApi.md#IsinChange) | **Get** /ca/isin-change | ISIN Change
 [**MarketNews**](DefaultApi.md#MarketNews) | **Get** /news | Market News
 [**MutualFundCountryExposure**](DefaultApi.md#MutualFundCountryExposure) | **Get** /mutual-fund/country | Mutual Funds Country Exposure
+[**MutualFundEet**](DefaultApi.md#MutualFundEet) | **Get** /mutual-fund/eet | Mutual Funds EET
+[**MutualFundEetPai**](DefaultApi.md#MutualFundEetPai) | **Get** /mutual-fund/eet-pai | Mutual Funds EET PAI
 [**MutualFundHoldings**](DefaultApi.md#MutualFundHoldings) | **Get** /mutual-fund/holdings | Mutual Funds Holdings
 [**MutualFundProfile**](DefaultApi.md#MutualFundProfile) | **Get** /mutual-fund/profile | Mutual Funds Profile
 [**MutualFundSectorExposure**](DefaultApi.md#MutualFundSectorExposure) | **Get** /mutual-fund/sector | Mutual Funds Sector Exposure
@@ -89,7 +92,7 @@ Method | HTTP request | Description
 [**SupportResistance**](DefaultApi.md#SupportResistance) | **Get** /scan/support-resistance | Support/Resistance
 [**SymbolChange**](DefaultApi.md#SymbolChange) | **Get** /ca/symbol-change | Symbol Change
 [**SymbolSearch**](DefaultApi.md#SymbolSearch) | **Get** /search | Symbol Lookup
-[**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Post** /indicator | Technical Indicators
+[**TechnicalIndicator**](DefaultApi.md#TechnicalIndicator) | **Get** /indicator | Technical Indicators
 [**Transcripts**](DefaultApi.md#Transcripts) | **Get** /stock/transcripts | Earnings Call Transcripts
 [**TranscriptsList**](DefaultApi.md#TranscriptsList) | **Get** /stock/transcripts/list | Earnings Call Transcripts List
 [**UpgradeDowngrade**](DefaultApi.md#UpgradeDowngrade) | **Get** /stock/upgrade-downgrade | Stock Upgrade/Downgrade
@@ -364,6 +367,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BondTickData**](BondTickData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BondYieldCurve
+
+> BondYieldCurve BondYieldCurve(ctx).Code(code).Execute()
+
+Bond Yield Curve
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    code := "code_example" // string | Bond's code. You can find the list of supported code <a href=\"https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">here</a>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.BondYieldCurve(context.Background()).Code(code).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.BondYieldCurve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BondYieldCurve`: BondYieldCurve
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.BondYieldCurve`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBondYieldCurveRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **string** | Bond&#39;s code. You can find the list of supported code &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;. | 
+
+### Return type
+
+[**BondYieldCurve**](BondYieldCurve.md)
 
 ### Authorization
 
@@ -1251,6 +1320,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RevenueEstimates**](RevenueEstimates.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CongressionalTrading
+
+> CongressionalTrading CongressionalTrading(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Congressional Trading
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CongressionalTrading(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CongressionalTrading``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CongressionalTrading`: CongressionalTrading
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CongressionalTrading`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCongressionalTradingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol of the company: AAPL. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**CongressionalTrading**](CongressionalTrading.md)
 
 ### Authorization
 
@@ -3362,74 +3502,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InternationalFilings
-
-> []InternationalFiling InternationalFilings(ctx).Symbol(symbol).Country(country).Execute()
-
-International Filings
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    symbol := "symbol_example" // string | Symbol. Leave empty to list latest filings. (optional)
-    country := "country_example" // string | Filter by country using country's 2-letter code. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.InternationalFilings(context.Background()).Symbol(symbol).Country(country).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InternationalFilings``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InternationalFilings`: []InternationalFiling
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InternationalFilings`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiInternationalFilingsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol. Leave empty to list latest filings. | 
- **country** | **string** | Filter by country using country&#39;s 2-letter code. | 
-
-### Return type
-
-[**[]InternationalFiling**](InternationalFiling.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## InvestmentThemes
 
 > InvestmentThemes InvestmentThemes(ctx).Theme(theme).Execute()
@@ -3752,6 +3824,138 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MutualFundCountryExposure**](MutualFundCountryExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MutualFundEet
+
+> MutualFundEet MutualFundEet(ctx).Isin(isin).Execute()
+
+Mutual Funds EET
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    isin := "isin_example" // string | ISIN.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MutualFundEet(context.Background()).Isin(isin).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundEet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MutualFundEet`: MutualFundEet
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundEet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMutualFundEetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **isin** | **string** | ISIN. | 
+
+### Return type
+
+[**MutualFundEet**](MutualFundEet.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MutualFundEetPai
+
+> MutualFundEetPai MutualFundEetPai(ctx).Isin(isin).Execute()
+
+Mutual Funds EET PAI
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    isin := "isin_example" // string | ISIN.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MutualFundEetPai(context.Background()).Isin(isin).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundEetPai``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MutualFundEetPai`: MutualFundEetPai
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MutualFundEetPai`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMutualFundEetPaiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **isin** | **string** | ISIN. | 
+
+### Return type
+
+[**MutualFundEetPai**](MutualFundEetPai.md)
 
 ### Authorization
 
@@ -4246,7 +4450,7 @@ Name | Type | Description  | Notes
 
 ## PriceMetrics
 
-> PriceMetrics PriceMetrics(ctx).Symbol(symbol).Execute()
+> PriceMetrics PriceMetrics(ctx).Symbol(symbol).Date(date).Execute()
 
 Price Metrics
 
@@ -4266,10 +4470,11 @@ import (
 
 func main() {
     symbol := "symbol_example" // string | Symbol of the company: AAPL.
+    date := "date_example" // string | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PriceMetrics(context.Background()).Symbol(symbol).Execute()
+    resp, r, err := api_client.DefaultApi.PriceMetrics(context.Background()).Symbol(symbol).Date(date).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PriceMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4291,6 +4496,7 @@ Other parameters are passed through a pointer to a apiPriceMetricsRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol of the company: AAPL. | 
+ **date** | **string** | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week. | 
 
 ### Return type
 

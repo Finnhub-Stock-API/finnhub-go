@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 **Address** | Pointer to **string** | Address of company&#39;s headquarter. | [optional] 
 **City** | Pointer to **string** | City of company&#39;s headquarter. | [optional] 
 **Country** | Pointer to **string** | Country of company&#39;s headquarter. | [optional] 
-**Currency** | Pointer to **string** | Currency used in company filings. | [optional] 
+**Currency** | Pointer to **string** | Currency used in company filings and financials. | [optional] 
+**EstimateCurrency** | Pointer to **string** | Currency used in Estimates data. | [optional] 
+**MarketCapCurrency** | Pointer to **string** | Currency used in market capitalization. | [optional] 
 **Cusip** | Pointer to **string** | CUSIP number. | [optional] 
 **Sedol** | Pointer to **string** | Sedol number. | [optional] 
 **Description** | Pointer to **string** | Company business summary. | [optional] 
@@ -151,6 +153,56 @@ SetCurrency sets Currency field to given value.
 `func (o *CompanyProfile) HasCurrency() bool`
 
 HasCurrency returns a boolean if a field has been set.
+
+### GetEstimateCurrency
+
+`func (o *CompanyProfile) GetEstimateCurrency() string`
+
+GetEstimateCurrency returns the EstimateCurrency field if non-nil, zero value otherwise.
+
+### GetEstimateCurrencyOk
+
+`func (o *CompanyProfile) GetEstimateCurrencyOk() (*string, bool)`
+
+GetEstimateCurrencyOk returns a tuple with the EstimateCurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimateCurrency
+
+`func (o *CompanyProfile) SetEstimateCurrency(v string)`
+
+SetEstimateCurrency sets EstimateCurrency field to given value.
+
+### HasEstimateCurrency
+
+`func (o *CompanyProfile) HasEstimateCurrency() bool`
+
+HasEstimateCurrency returns a boolean if a field has been set.
+
+### GetMarketCapCurrency
+
+`func (o *CompanyProfile) GetMarketCapCurrency() string`
+
+GetMarketCapCurrency returns the MarketCapCurrency field if non-nil, zero value otherwise.
+
+### GetMarketCapCurrencyOk
+
+`func (o *CompanyProfile) GetMarketCapCurrencyOk() (*string, bool)`
+
+GetMarketCapCurrencyOk returns a tuple with the MarketCapCurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMarketCapCurrency
+
+`func (o *CompanyProfile) SetMarketCapCurrency(v string)`
+
+SetMarketCapCurrency sets MarketCapCurrency field to given value.
+
+### HasMarketCapCurrency
+
+`func (o *CompanyProfile) HasMarketCapCurrency() bool`
+
+HasMarketCapCurrency returns a boolean if a field has been set.
 
 ### GetCusip
 

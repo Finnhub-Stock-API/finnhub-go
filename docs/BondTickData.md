@@ -9,9 +9,12 @@ Name | Type | Description | Notes
 **Total** | Pointer to **int64** | Total number of ticks for that date. | [optional] 
 **V** | Pointer to **[]float32** | List of volume data. | [optional] 
 **P** | Pointer to **[]float32** | List of price data. | [optional] 
+**Y** | Pointer to **[]float32** | List of yield data. | [optional] 
 **T** | Pointer to **[]int64** | List of timestamp in UNIX ms. | [optional] 
 **Si** | Pointer to **[]string** | List of values showing the side (Buy/sell) of each trade. List of supported values: &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp&#x3D;sharing\&quot;,&gt;here&lt;/a&gt; | [optional] 
 **Cp** | Pointer to **[]string** | List of values showing the counterparty of each trade. List of supported values: &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp&#x3D;sharing\&quot;,&gt;here&lt;/a&gt; | [optional] 
+**Rp** | Pointer to **[]string** | List of values showing the reporting party of each trade. List of supported values: &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp&#x3D;sharing\&quot;,&gt;here&lt;/a&gt; | [optional] 
+**Ats** | Pointer to **[]string** | ATS flag. Y or empty | [optional] 
 **C** | Pointer to **[][]string** | List of trade conditions. A comprehensive list of trade conditions code can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt; | [optional] 
 
 ## Methods
@@ -158,6 +161,31 @@ SetP sets P field to given value.
 
 HasP returns a boolean if a field has been set.
 
+### GetY
+
+`func (o *BondTickData) GetY() []float32`
+
+GetY returns the Y field if non-nil, zero value otherwise.
+
+### GetYOk
+
+`func (o *BondTickData) GetYOk() (*[]float32, bool)`
+
+GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetY
+
+`func (o *BondTickData) SetY(v []float32)`
+
+SetY sets Y field to given value.
+
+### HasY
+
+`func (o *BondTickData) HasY() bool`
+
+HasY returns a boolean if a field has been set.
+
 ### GetT
 
 `func (o *BondTickData) GetT() []int64`
@@ -232,6 +260,56 @@ SetCp sets Cp field to given value.
 `func (o *BondTickData) HasCp() bool`
 
 HasCp returns a boolean if a field has been set.
+
+### GetRp
+
+`func (o *BondTickData) GetRp() []string`
+
+GetRp returns the Rp field if non-nil, zero value otherwise.
+
+### GetRpOk
+
+`func (o *BondTickData) GetRpOk() (*[]string, bool)`
+
+GetRpOk returns a tuple with the Rp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRp
+
+`func (o *BondTickData) SetRp(v []string)`
+
+SetRp sets Rp field to given value.
+
+### HasRp
+
+`func (o *BondTickData) HasRp() bool`
+
+HasRp returns a boolean if a field has been set.
+
+### GetAts
+
+`func (o *BondTickData) GetAts() []string`
+
+GetAts returns the Ats field if non-nil, zero value otherwise.
+
+### GetAtsOk
+
+`func (o *BondTickData) GetAtsOk() (*[]string, bool)`
+
+GetAtsOk returns a tuple with the Ats field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAts
+
+`func (o *BondTickData) SetAts(v []string)`
+
+SetAts sets Ats field to given value.
+
+### HasAts
+
+`func (o *BondTickData) HasAts() bool`
+
+HasAts returns a boolean if a field has been set.
 
 ### GetC
 

@@ -30,6 +30,8 @@ type ETFHoldingsData struct {
 	Percent *float32 `json:"percent,omitempty"`
 	// Market value
 	Value *float32 `json:"value,omitempty"`
+	// Asset type. Can be 1 of the following values: <code>Equity</code>, <code>ETP</code>, <code>Fund</code>, <code>Bond</code>, <code>Other</code> or empty.
+	AssetType *string `json:"assetType,omitempty"`
 }
 
 // NewETFHoldingsData instantiates a new ETFHoldingsData object
@@ -273,6 +275,38 @@ func (o *ETFHoldingsData) SetValue(v float32) {
 	o.Value = &v
 }
 
+// GetAssetType returns the AssetType field value if set, zero value otherwise.
+func (o *ETFHoldingsData) GetAssetType() string {
+	if o == nil || o.AssetType == nil {
+		var ret string
+		return ret
+	}
+	return *o.AssetType
+}
+
+// GetAssetTypeOk returns a tuple with the AssetType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ETFHoldingsData) GetAssetTypeOk() (*string, bool) {
+	if o == nil || o.AssetType == nil {
+		return nil, false
+	}
+	return o.AssetType, true
+}
+
+// HasAssetType returns a boolean if a field has been set.
+func (o *ETFHoldingsData) HasAssetType() bool {
+	if o != nil && o.AssetType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAssetType gets a reference to the given string and assigns it to the AssetType field.
+func (o *ETFHoldingsData) SetAssetType(v string) {
+	o.AssetType = &v
+}
+
 func (o ETFHoldingsData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
@@ -295,6 +329,9 @@ func (o ETFHoldingsData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
+	}
+	if o.AssetType != nil {
+		toSerialize["assetType"] = o.AssetType
 	}
 	return json.Marshal(toSerialize)
 }

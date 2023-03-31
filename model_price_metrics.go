@@ -18,6 +18,8 @@ import (
 type PriceMetrics struct {
 	// Symbol of the company.
 	Symbol *string `json:"symbol,omitempty"`
+	// Data date.
+	AtDate *string `json:"atDate,omitempty"`
 	Data *map[string]interface{} `json:"data,omitempty"`
 }
 
@@ -70,6 +72,38 @@ func (o *PriceMetrics) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
+// GetAtDate returns the AtDate field value if set, zero value otherwise.
+func (o *PriceMetrics) GetAtDate() string {
+	if o == nil || o.AtDate == nil {
+		var ret string
+		return ret
+	}
+	return *o.AtDate
+}
+
+// GetAtDateOk returns a tuple with the AtDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PriceMetrics) GetAtDateOk() (*string, bool) {
+	if o == nil || o.AtDate == nil {
+		return nil, false
+	}
+	return o.AtDate, true
+}
+
+// HasAtDate returns a boolean if a field has been set.
+func (o *PriceMetrics) HasAtDate() bool {
+	if o != nil && o.AtDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAtDate gets a reference to the given string and assigns it to the AtDate field.
+func (o *PriceMetrics) SetAtDate(v string) {
+	o.AtDate = &v
+}
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *PriceMetrics) GetData() map[string]interface{} {
 	if o == nil || o.Data == nil {
@@ -106,6 +140,9 @@ func (o PriceMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
+	}
+	if o.AtDate != nil {
+		toSerialize["atDate"] = o.AtDate
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data

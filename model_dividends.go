@@ -32,6 +32,8 @@ type Dividends struct {
 	DeclarationDate *string `json:"declarationDate,omitempty"`
 	// Currency.
 	Currency *string `json:"currency,omitempty"`
+	// <p>Dividend frequency. Can be 1 of the following values:</p><ul> <li><code>0: Annually</code></li> <li><code>1: Monthly</code></li> <li><code>2: Quarterly</code></li> <li><code>3: Semi-annually</code></li> <li><code>4: Other/Unknown</code></li> <li><code>5: Bimonthly</code></li> <li><code>6: Trimesterly</code></li> <li><code>7: Weekly</code></li> </ul>
+	Freq *string `json:"freq,omitempty"`
 }
 
 // NewDividends instantiates a new Dividends object
@@ -307,6 +309,38 @@ func (o *Dividends) SetCurrency(v string) {
 	o.Currency = &v
 }
 
+// GetFreq returns the Freq field value if set, zero value otherwise.
+func (o *Dividends) GetFreq() string {
+	if o == nil || o.Freq == nil {
+		var ret string
+		return ret
+	}
+	return *o.Freq
+}
+
+// GetFreqOk returns a tuple with the Freq field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dividends) GetFreqOk() (*string, bool) {
+	if o == nil || o.Freq == nil {
+		return nil, false
+	}
+	return o.Freq, true
+}
+
+// HasFreq returns a boolean if a field has been set.
+func (o *Dividends) HasFreq() bool {
+	if o != nil && o.Freq != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFreq gets a reference to the given string and assigns it to the Freq field.
+func (o *Dividends) SetFreq(v string) {
+	o.Freq = &v
+}
+
 func (o Dividends) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
@@ -332,6 +366,9 @@ func (o Dividends) MarshalJSON() ([]byte, error) {
 	}
 	if o.Currency != nil {
 		toSerialize["currency"] = o.Currency
+	}
+	if o.Freq != nil {
+		toSerialize["freq"] = o.Freq
 	}
 	return json.Marshal(toSerialize)
 }

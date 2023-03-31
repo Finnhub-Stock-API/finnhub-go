@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **RecordDate** | Pointer to **string** | Record date. | [optional] 
 **DeclarationDate** | Pointer to **string** | Declaration date. | [optional] 
 **Currency** | Pointer to **string** | Currency. | [optional] 
+**Freq** | Pointer to **string** | &lt;p&gt;Dividend frequency. Can be 1 of the following values:&lt;/p&gt;&lt;ul&gt; &lt;li&gt;&lt;code&gt;0: Annually&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;1: Monthly&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;2: Quarterly&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;3: Semi-annually&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;4: Other/Unknown&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;5: Bimonthly&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;6: Trimesterly&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;7: Weekly&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; | [optional] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetCurrency sets Currency field to given value.
 `func (o *Dividends) HasCurrency() bool`
 
 HasCurrency returns a boolean if a field has been set.
+
+### GetFreq
+
+`func (o *Dividends) GetFreq() string`
+
+GetFreq returns the Freq field if non-nil, zero value otherwise.
+
+### GetFreqOk
+
+`func (o *Dividends) GetFreqOk() (*string, bool)`
+
+GetFreqOk returns a tuple with the Freq field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFreq
+
+`func (o *Dividends) SetFreq(v string)`
+
+SetFreq sets Freq field to given value.
+
+### HasFreq
+
+`func (o *Dividends) HasFreq() bool`
+
+HasFreq returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

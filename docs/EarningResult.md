@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **SurprisePercent** | Pointer to **float32** | Surprise percent. | [optional] 
 **Period** | Pointer to **string** | Reported period. | [optional] 
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
+**Year** | Pointer to **int64** | Earnings year. | [optional] 
+**Quarter** | Pointer to **int64** | Earnings quarter. | [optional] 
 
 ## Methods
 
@@ -179,6 +181,56 @@ SetSymbol sets Symbol field to given value.
 `func (o *EarningResult) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
+
+### GetYear
+
+`func (o *EarningResult) GetYear() int64`
+
+GetYear returns the Year field if non-nil, zero value otherwise.
+
+### GetYearOk
+
+`func (o *EarningResult) GetYearOk() (*int64, bool)`
+
+GetYearOk returns a tuple with the Year field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetYear
+
+`func (o *EarningResult) SetYear(v int64)`
+
+SetYear sets Year field to given value.
+
+### HasYear
+
+`func (o *EarningResult) HasYear() bool`
+
+HasYear returns a boolean if a field has been set.
+
+### GetQuarter
+
+`func (o *EarningResult) GetQuarter() int64`
+
+GetQuarter returns the Quarter field if non-nil, zero value otherwise.
+
+### GetQuarterOk
+
+`func (o *EarningResult) GetQuarterOk() (*int64, bool)`
+
+GetQuarterOk returns a tuple with the Quarter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuarter
+
+`func (o *EarningResult) SetQuarter(v int64)`
+
+SetQuarter sets Quarter field to given value.
+
+### HasQuarter
+
+`func (o *EarningResult) HasQuarter() bool`
+
+HasQuarter returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
