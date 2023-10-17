@@ -18,10 +18,8 @@ import (
 type SocialSentiment struct {
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
-	// Reddit sentiment.
-	Reddit *[]RedditSentimentContent `json:"reddit,omitempty"`
-	// Twitter sentiment.
-	Twitter *[]TwitterSentimentContent `json:"twitter,omitempty"`
+	// Sentiment data.
+	Data *[]SentimentContent `json:"data,omitempty"`
 }
 
 // NewSocialSentiment instantiates a new SocialSentiment object
@@ -73,68 +71,36 @@ func (o *SocialSentiment) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
-// GetReddit returns the Reddit field value if set, zero value otherwise.
-func (o *SocialSentiment) GetReddit() []RedditSentimentContent {
-	if o == nil || o.Reddit == nil {
-		var ret []RedditSentimentContent
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *SocialSentiment) GetData() []SentimentContent {
+	if o == nil || o.Data == nil {
+		var ret []SentimentContent
 		return ret
 	}
-	return *o.Reddit
+	return *o.Data
 }
 
-// GetRedditOk returns a tuple with the Reddit field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SocialSentiment) GetRedditOk() (*[]RedditSentimentContent, bool) {
-	if o == nil || o.Reddit == nil {
+func (o *SocialSentiment) GetDataOk() (*[]SentimentContent, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Reddit, true
+	return o.Data, true
 }
 
-// HasReddit returns a boolean if a field has been set.
-func (o *SocialSentiment) HasReddit() bool {
-	if o != nil && o.Reddit != nil {
+// HasData returns a boolean if a field has been set.
+func (o *SocialSentiment) HasData() bool {
+	if o != nil && o.Data != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetReddit gets a reference to the given []RedditSentimentContent and assigns it to the Reddit field.
-func (o *SocialSentiment) SetReddit(v []RedditSentimentContent) {
-	o.Reddit = &v
-}
-
-// GetTwitter returns the Twitter field value if set, zero value otherwise.
-func (o *SocialSentiment) GetTwitter() []TwitterSentimentContent {
-	if o == nil || o.Twitter == nil {
-		var ret []TwitterSentimentContent
-		return ret
-	}
-	return *o.Twitter
-}
-
-// GetTwitterOk returns a tuple with the Twitter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SocialSentiment) GetTwitterOk() (*[]TwitterSentimentContent, bool) {
-	if o == nil || o.Twitter == nil {
-		return nil, false
-	}
-	return o.Twitter, true
-}
-
-// HasTwitter returns a boolean if a field has been set.
-func (o *SocialSentiment) HasTwitter() bool {
-	if o != nil && o.Twitter != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTwitter gets a reference to the given []TwitterSentimentContent and assigns it to the Twitter field.
-func (o *SocialSentiment) SetTwitter(v []TwitterSentimentContent) {
-	o.Twitter = &v
+// SetData gets a reference to the given []SentimentContent and assigns it to the Data field.
+func (o *SocialSentiment) SetData(v []SentimentContent) {
+	o.Data = &v
 }
 
 func (o SocialSentiment) MarshalJSON() ([]byte, error) {
@@ -142,11 +108,8 @@ func (o SocialSentiment) MarshalJSON() ([]byte, error) {
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if o.Reddit != nil {
-		toSerialize["reddit"] = o.Reddit
-	}
-	if o.Twitter != nil {
-		toSerialize["twitter"] = o.Twitter
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
 }

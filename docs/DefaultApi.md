@@ -54,10 +54,13 @@ Method | HTTP request | Description
 [**InstitutionalOwnership**](DefaultApi.md#InstitutionalOwnership) | **Get** /institutional/ownership | Institutional Ownership
 [**InstitutionalPortfolio**](DefaultApi.md#InstitutionalPortfolio) | **Get** /institutional/portfolio | Institutional Portfolio
 [**InstitutionalProfile**](DefaultApi.md#InstitutionalProfile) | **Get** /institutional/profile | Institutional Profile
+[**InternationalFilings**](DefaultApi.md#InternationalFilings) | **Get** /stock/international-filings | International Filings
 [**InvestmentThemes**](DefaultApi.md#InvestmentThemes) | **Get** /stock/investment-theme | Investment Themes (Thematic Investing)
 [**IpoCalendar**](DefaultApi.md#IpoCalendar) | **Get** /calendar/ipo | IPO Calendar
 [**IsinChange**](DefaultApi.md#IsinChange) | **Get** /ca/isin-change | ISIN Change
+[**MarketHoliday**](DefaultApi.md#MarketHoliday) | **Get** /stock/market-holiday | Market Holiday
 [**MarketNews**](DefaultApi.md#MarketNews) | **Get** /news | Market News
+[**MarketStatus**](DefaultApi.md#MarketStatus) | **Get** /stock/market-status | Market Status
 [**MutualFundCountryExposure**](DefaultApi.md#MutualFundCountryExposure) | **Get** /mutual-fund/country | Mutual Funds Country Exposure
 [**MutualFundEet**](DefaultApi.md#MutualFundEet) | **Get** /mutual-fund/eet | Mutual Funds EET
 [**MutualFundEetPai**](DefaultApi.md#MutualFundEetPai) | **Get** /mutual-fund/eet-pai | Mutual Funds EET PAI
@@ -2064,7 +2067,7 @@ Name | Type | Description  | Notes
 
 ## EtfsCountryExposure
 
-> ETFsCountryExposure EtfsCountryExposure(ctx).Symbol(symbol).Execute()
+> ETFsCountryExposure EtfsCountryExposure(ctx).Symbol(symbol).Isin(isin).Execute()
 
 ETFs Country Exposure
 
@@ -2083,11 +2086,12 @@ import (
 )
 
 func main() {
-    symbol := "symbol_example" // string | ETF symbol.
+    symbol := "symbol_example" // string | ETF symbol. (optional)
+    isin := "isin_example" // string | ETF isin. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.EtfsCountryExposure(context.Background()).Symbol(symbol).Execute()
+    resp, r, err := api_client.DefaultApi.EtfsCountryExposure(context.Background()).Symbol(symbol).Isin(isin).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsCountryExposure``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2109,6 +2113,7 @@ Other parameters are passed through a pointer to a apiEtfsCountryExposureRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | ETF symbol. | 
+ **isin** | **string** | ETF isin. | 
 
 ### Return type
 
@@ -2270,7 +2275,7 @@ Name | Type | Description  | Notes
 
 ## EtfsSectorExposure
 
-> ETFsSectorExposure EtfsSectorExposure(ctx).Symbol(symbol).Execute()
+> ETFsSectorExposure EtfsSectorExposure(ctx).Symbol(symbol).Isin(isin).Execute()
 
 ETFs Sector Exposure
 
@@ -2289,11 +2294,12 @@ import (
 )
 
 func main() {
-    symbol := "symbol_example" // string | ETF symbol.
+    symbol := "symbol_example" // string | ETF symbol. (optional)
+    isin := "isin_example" // string | ETF isin. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.EtfsSectorExposure(context.Background()).Symbol(symbol).Execute()
+    resp, r, err := api_client.DefaultApi.EtfsSectorExposure(context.Background()).Symbol(symbol).Isin(isin).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EtfsSectorExposure``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2315,6 +2321,7 @@ Other parameters are passed through a pointer to a apiEtfsSectorExposureRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | ETF symbol. | 
+ **isin** | **string** | ETF isin. | 
 
 ### Return type
 
@@ -3502,6 +3509,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## InternationalFilings
+
+> []InternationalFiling InternationalFilings(ctx).Symbol(symbol).Country(country).Execute()
+
+International Filings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol. Leave empty to list latest filings. (optional)
+    country := "country_example" // string | Filter by country using country's 2-letter code. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.InternationalFilings(context.Background()).Symbol(symbol).Country(country).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InternationalFilings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InternationalFilings`: []InternationalFiling
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.InternationalFilings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInternationalFilingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. Leave empty to list latest filings. | 
+ **country** | **string** | Filter by country using country&#39;s 2-letter code. | 
+
+### Return type
+
+[**[]InternationalFiling**](InternationalFiling.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## InvestmentThemes
 
 > InvestmentThemes InvestmentThemes(ctx).Theme(theme).Execute()
@@ -3705,6 +3780,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## MarketHoliday
+
+> MarketHoliday MarketHoliday(ctx).Exchange(exchange).Execute()
+
+Market Holiday
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    exchange := "exchange_example" // string | Exchange code.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MarketHoliday(context.Background()).Exchange(exchange).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MarketHoliday``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MarketHoliday`: MarketHoliday
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MarketHoliday`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMarketHolidayRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **exchange** | **string** | Exchange code. | 
+
+### Return type
+
+[**MarketHoliday**](MarketHoliday.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## MarketNews
 
 > []MarketNews MarketNews(ctx).Category(category).MinId(minId).Execute()
@@ -3773,9 +3914,75 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## MarketStatus
+
+> MarketStatus MarketStatus(ctx).Exchange(exchange).Execute()
+
+Market Status
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    exchange := "exchange_example" // string | Exchange code.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.MarketStatus(context.Background()).Exchange(exchange).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MarketStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MarketStatus`: MarketStatus
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.MarketStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMarketStatusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **exchange** | **string** | Exchange code. | 
+
+### Return type
+
+[**MarketStatus**](MarketStatus.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## MutualFundCountryExposure
 
-> MutualFundCountryExposure MutualFundCountryExposure(ctx).Symbol(symbol).Execute()
+> MutualFundCountryExposure MutualFundCountryExposure(ctx).Symbol(symbol).Isin(isin).Execute()
 
 Mutual Funds Country Exposure
 
@@ -3794,11 +4001,12 @@ import (
 )
 
 func main() {
-    symbol := "symbol_example" // string | Symbol.
+    symbol := "symbol_example" // string | Symbol. (optional)
+    isin := "isin_example" // string | Fund's isin. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.MutualFundCountryExposure(context.Background()).Symbol(symbol).Execute()
+    resp, r, err := api_client.DefaultApi.MutualFundCountryExposure(context.Background()).Symbol(symbol).Isin(isin).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundCountryExposure``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3820,6 +4028,7 @@ Other parameters are passed through a pointer to a apiMutualFundCountryExposureR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol. | 
+ **isin** | **string** | Fund&#39;s isin. | 
 
 ### Return type
 
@@ -4111,7 +4320,7 @@ Name | Type | Description  | Notes
 
 ## MutualFundSectorExposure
 
-> MutualFundSectorExposure MutualFundSectorExposure(ctx).Symbol(symbol).Execute()
+> MutualFundSectorExposure MutualFundSectorExposure(ctx).Symbol(symbol).Isin(isin).Execute()
 
 Mutual Funds Sector Exposure
 
@@ -4130,11 +4339,12 @@ import (
 )
 
 func main() {
-    symbol := "symbol_example" // string | Mutual Fund symbol.
+    symbol := "symbol_example" // string | Mutual Fund symbol. (optional)
+    isin := "isin_example" // string | Fund's isin. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.MutualFundSectorExposure(context.Background()).Symbol(symbol).Execute()
+    resp, r, err := api_client.DefaultApi.MutualFundSectorExposure(context.Background()).Symbol(symbol).Isin(isin).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.MutualFundSectorExposure``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4156,6 +4366,7 @@ Other parameters are passed through a pointer to a apiMutualFundSectorExposureRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Mutual Fund symbol. | 
+ **isin** | **string** | Fund&#39;s isin. | 
 
 ### Return type
 

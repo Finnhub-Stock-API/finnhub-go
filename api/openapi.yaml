@@ -77,6 +77,53 @@ paths:
       summary: Stock Symbol
       tags:
       - Default
+  /stock/market-status:
+    get:
+      description: Get current market status for global exchanges (whether exchanges
+        are open or close).
+      operationId: market-status
+      parameters:
+      - description: Exchange code.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketStatus'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Market Status
+      tags:
+      - Default
+  /stock/market-holiday:
+    get:
+      description: Get a list of holidays for global exchanges.
+      operationId: market-holiday
+      parameters:
+      - description: Exchange code.
+        in: query
+        name: exchange
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketHoliday'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Market Holiday
+      tags:
+      - Default
   /stock/profile:
     get:
       description: Get general information of a company. You can query by symbol,
@@ -1355,7 +1402,9 @@ paths:
   /stock/candle:
     get:
       description: <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will
-        be adjusted for Splits. Intraday data will remain unadjusted.</p>
+        be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month
+        of intraday will be returned at a time. If you need more historical intraday
+        data, please use the from and to params iteratively to request more data.</p>
       operationId: stock-candles
       parameters:
       - description: Symbol.
@@ -1400,7 +1449,7 @@ paths:
   /stock/tick:
     get:
       description: |-
-        <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
+        <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
           <thead>
             <tr>
               <th>Exchange</th>
@@ -1614,8 +1663,7 @@ paths:
   /index/constituents:
     get:
       description: Get a list of index's constituents. A list of supported indices
-        for this endpoint can be found <a href="https://docs.google.com/spreadsheets/d/1Syr2eLielHWsorxkDEZXyc55d6bNx1M3ZeI4vdn7Qzo/edit?usp=sharing"
-        target="_blank">here</a>.
+        for this endpoint can be found <a href="/api/v1/index/list?token=" target="_blank">here</a>.
       operationId: indices-constituents
       parameters:
       - description: symbol
@@ -1740,7 +1788,11 @@ paths:
       - description: ETF symbol.
         in: query
         name: symbol
-        required: true
+        schema:
+          type: string
+      - description: ETF isin.
+        in: query
+        name: isin
         schema:
           type: string
       responses:
@@ -1763,7 +1815,11 @@ paths:
       - description: ETF symbol.
         in: query
         name: symbol
-        required: true
+        schema:
+          type: string
+      - description: ETF isin.
+        in: query
+        name: isin
         schema:
           type: string
       responses:
@@ -1854,7 +1910,11 @@ paths:
       - description: Mutual Fund symbol.
         in: query
         name: symbol
-        required: true
+        schema:
+          type: string
+      - description: Fund's isin.
+        in: query
+        name: isin
         schema:
           type: string
       responses:
@@ -1877,7 +1937,11 @@ paths:
       - description: Symbol.
         in: query
         name: symbol
-        required: true
+        schema:
+          type: string
+      - description: Fund's isin.
+        in: query
+        name: isin
         schema:
           type: string
       responses:
@@ -2373,8 +2437,7 @@ paths:
       - Default
   /stock/social-sentiment:
     get:
-      description: <p>Get social sentiment for stocks on Reddit and Twitter. This
-        endpoint is currently in Beta.</p>
+      description: <p>Get social sentiment for stocks on Reddit and Twitter.</p>
       operationId: social-sentiment
       parameters:
       - description: Company symbol.
@@ -2471,13 +2534,14 @@ paths:
   /stock/esg:
     get:
       description: <p>This endpoint provides ESG scores and important indicators for
-        1000+ global companies. The data is collected through company's public ESG
+        7000+ global companies. The data is collected through company's public ESG
         disclosure and public sources.</p><p>Our ESG scoring models takes into account
         more than 150 different inputs to calculate the level of ESG risks and how
         well a company is managing them. A higher score means lower ESG risk or better
         ESG management. ESG scores are in the the range of 0-100. Some key indicators
         might contain letter-grade score from C- to A+ with C- is the lowest score
-        and A+ is the highest score.</p>
+        and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise
+        users. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.</p>
       operationId: company-esg-score
       parameters:
       - description: Symbol.
@@ -3054,6 +3118,39 @@ paths:
       summary: Economic Data
       tags:
       - Default
+  /stock/international-filings:
+    get:
+      description: List filings for international companies. Limit to 250 documents
+        at a time. These are the documents we use to source our fundamental data.
+        Only support SEDAR and UK Companies House for normal usage. Enterprise clients
+        who need access to the full filings for global markets should contact us for
+        the access.
+      operationId: international-filings
+      parameters:
+      - description: Symbol. Leave empty to list latest filings.
+        in: query
+        name: symbol
+        schema:
+          type: string
+      - description: Filter by country using country's 2-letter code.
+        in: query
+        name: country
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InternationalFiling'
+                type: array
+          description: successful operation
+      security:
+      - api_key: []
+      summary: International Filings
+      tags:
+      - Default
 components:
   schemas:
     SearchBody:
@@ -3400,6 +3497,144 @@ components:
           description: Security type.
           type: string
       type: object
+    InstitutionalPortfolio:
+      example:
+        cik: cik
+        data:
+        - reportDate: reportDate
+          filingDate: filingDate
+          portfolio:
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+        - reportDate: reportDate
+          filingDate: filingDate
+          portfolio:
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+          - noVoting: 6.0274563
+            sharedVoting: 5.637377
+            symbol: symbol
+            cusip: cusip
+            change: 0.8008282
+            percentage: 1.4658129
+            name: name
+            share: 5.962134
+            soleVoting: 2.302136
+            value: 7.0614014
+            putCall: putCall
+        name: name
+      properties:
+        name:
+          description: Investor's name.
+          type: string
+        cik:
+          description: CIK.
+          type: string
+        data:
+          description: Array of positions.
+          items:
+            $ref: '#/components/schemas/InstitutionalPortfolioGroup'
+          type: array
+      type: object
+    MarketStatus:
+      example:
+        isOpen: true
+        t: 0
+        timezone: timezone
+        session: session
+        exchange: exchange
+        holiday: holiday
+      properties:
+        exchange:
+          description: Exchange.
+          type: string
+        timezone:
+          description: Timezone.
+          type: string
+        session:
+          description: Market session.
+          type: string
+        holiday:
+          description: Holiday event.
+          type: string
+        isOpen:
+          description: Whether the market is open at the moment.
+          type: boolean
+        t:
+          description: Current timestamp.
+          format: int64
+          type: integer
+      type: object
+    MarketHolidayData:
+      example:
+        atDate: atDate
+        eventName: eventName
+        tradingHour: tradingHour
+      properties:
+        eventName:
+          description: Holiday's name.
+          type: string
+        atDate:
+          description: Date.
+          type: string
+        tradingHour:
+          description: Trading hours for this day if the market is partially closed
+            only.
+          type: string
+      type: object
+    MarketHoliday:
+      example:
+        data:
+        - atDate: atDate
+          eventName: eventName
+          tradingHour: tradingHour
+        - atDate: atDate
+          eventName: eventName
+          tradingHour: tradingHour
+        timezone: timezone
+        exchange: exchange
+      properties:
+        timezone:
+          description: Timezone.
+          type: string
+        exchange:
+          description: Exchange.
+          type: string
+        data:
+          description: Array of holidays.
+          items:
+            $ref: '#/components/schemas/MarketHolidayData'
+          type: array
+      type: object
     CompanyProfile:
       example:
         country: country
@@ -3411,7 +3646,11 @@ components:
         estimateCurrency: estimateCurrency
         marketCapCurrency: marketCapCurrency
         gsector: gsector
+        lei: lei
         weburl: weburl
+        alias:
+        - alias
+        - alias
         logo: logo
         currency: currency
         state: state
@@ -3433,6 +3672,11 @@ components:
         isin: isin
         shareOutstanding: 6.0274563
       properties:
+        alias:
+          description: Company name alias.
+          items:
+            type: string
+          type: array
         address:
           description: Address of company's headquarter.
           type: string
@@ -3477,6 +3721,9 @@ components:
           type: string
         isin:
           description: ISIN number.
+          type: string
+        lei:
+          description: LEI number.
           type: string
         naicsNationalIndustry:
           description: NAICS national industry.
@@ -4140,74 +4387,6 @@ components:
             $ref: '#/components/schemas/InstitutionalPortfolioInfo'
           type: array
       type: object
-    InstitutionalPortfolio:
-      example:
-        cik: cik
-        data:
-        - reportDate: reportDate
-          filingDate: filingDate
-          portfolio:
-          - noVoting: 6.0274563
-            sharedVoting: 5.637377
-            symbol: symbol
-            cusip: cusip
-            change: 0.8008282
-            percentage: 1.4658129
-            name: name
-            share: 5.962134
-            soleVoting: 2.302136
-            value: 7.0614014
-            putCall: putCall
-          - noVoting: 6.0274563
-            sharedVoting: 5.637377
-            symbol: symbol
-            cusip: cusip
-            change: 0.8008282
-            percentage: 1.4658129
-            name: name
-            share: 5.962134
-            soleVoting: 2.302136
-            value: 7.0614014
-            putCall: putCall
-        - reportDate: reportDate
-          filingDate: filingDate
-          portfolio:
-          - noVoting: 6.0274563
-            sharedVoting: 5.637377
-            symbol: symbol
-            cusip: cusip
-            change: 0.8008282
-            percentage: 1.4658129
-            name: name
-            share: 5.962134
-            soleVoting: 2.302136
-            value: 7.0614014
-            putCall: putCall
-          - noVoting: 6.0274563
-            sharedVoting: 5.637377
-            symbol: symbol
-            cusip: cusip
-            change: 0.8008282
-            percentage: 1.4658129
-            name: name
-            share: 5.962134
-            soleVoting: 2.302136
-            value: 7.0614014
-            putCall: putCall
-        name: name
-      properties:
-        name:
-          description: Investor's name.
-          type: string
-        cik:
-          description: CIK.
-          type: string
-        data:
-          description: Array of positions.
-          items:
-            $ref: '#/components/schemas/InstitutionalPortfolioGroup'
-          type: array
-      type: object
     InstitutionalOwnershipInfo:
       example:
         noVoting: 6.0274563
@@ -4816,6 +4995,16 @@ components:
           type: string
       type: object
     InternationalFiling:
+      example:
+        symbol: symbol
+        country: country
+        companyName: companyName
+        description: description
+        language: language
+        category: category
+        title: title
+        filedDate: filedDate
+        url: url
       properties:
         symbol:
           description: Symbol.
@@ -5268,9 +5457,11 @@ components:
       example:
         revenueLow: 1.4658129
         period: 2000-01-23
+        year: 5
         numberAnalysts: 5
         revenueHigh: 6.0274563
         revenueAvg: 0.8008282
+        quarter: 2
       properties:
         revenueAvg:
           description: Average revenue estimates including Finnhub's proprietary estimates.
@@ -5292,6 +5483,14 @@ components:
           description: Period.
           format: date
           type: string
+        year:
+          description: Fiscal year.
+          format: int64
+          type: integer
+        quarter:
+          description: Fiscal quarter.
+          format: int64
+          type: integer
       type: object
     RevenueEstimates:
       example:
@@ -5299,14 +5498,18 @@ components:
         data:
         - revenueLow: 1.4658129
           period: 2000-01-23
+          year: 5
           numberAnalysts: 5
           revenueHigh: 6.0274563
           revenueAvg: 0.8008282
+          quarter: 2
         - revenueLow: 1.4658129
           period: 2000-01-23
+          year: 5
           numberAnalysts: 5
           revenueHigh: 6.0274563
           revenueAvg: 0.8008282
+          quarter: 2
         freq: freq
       properties:
         data:
@@ -5324,10 +5527,12 @@ components:
     EbitdaEstimatesInfo:
       example:
         period: 2000-01-23
+        year: 5
         numberAnalysts: 5
         ebitdaAvg: 0.8008282
         ebitdaLow: 1.4658129
         ebitdaHigh: 6.0274563
+        quarter: 2
       properties:
         ebitdaAvg:
           description: Average EBITDA estimates including Finnhub's proprietary estimates.
@@ -5349,21 +5554,33 @@ components:
           description: Period.
           format: date
           type: string
+        year:
+          description: Fiscal year.
+          format: int64
+          type: integer
+        quarter:
+          description: Fiscal quarter.
+          format: int64
+          type: integer
       type: object
     EbitdaEstimates:
       example:
         symbol: symbol
         data:
         - period: 2000-01-23
+          year: 5
           numberAnalysts: 5
           ebitdaAvg: 0.8008282
           ebitdaLow: 1.4658129
           ebitdaHigh: 6.0274563
+          quarter: 2
         - period: 2000-01-23
+          year: 5
           numberAnalysts: 5
           ebitdaAvg: 0.8008282
           ebitdaLow: 1.4658129
           ebitdaHigh: 6.0274563
+          quarter: 2
         freq: freq
       properties:
         data:
@@ -5383,8 +5600,10 @@ components:
         ebitHigh: 6.0274563
         ebitLow: 1.4658129
         period: 2000-01-23
+        year: 5
         numberAnalysts: 5
         ebitAvg: 0.8008282
+        quarter: 2
       properties:
         ebitAvg:
           description: Average EBIT estimates including Finnhub's proprietary estimates.
@@ -5406,6 +5625,14 @@ components:
           description: Period.
           format: date
           type: string
+        year:
+          description: Fiscal year.
+          format: int64
+          type: integer
+        quarter:
+          description: Fiscal quarter.
+          format: int64
+          type: integer
       type: object
     EbitEstimates:
       example:
@@ -5414,13 +5641,17 @@ components:
         - ebitHigh: 6.0274563
           ebitLow: 1.4658129
           period: 2000-01-23
+          year: 5
           numberAnalysts: 5
           ebitAvg: 0.8008282
+          quarter: 2
         - ebitHigh: 6.0274563
           ebitLow: 1.4658129
           period: 2000-01-23
+          year: 5
           numberAnalysts: 5
           ebitAvg: 0.8008282
+          quarter: 2
         freq: freq
       properties:
         data:
@@ -5441,7 +5672,9 @@ components:
         period: 2000-01-23
         epsAvg: 0.8008282
         epsLow: 1.4658129
+        year: 5
         numberAnalysts: 5
+        quarter: 2
       properties:
         epsAvg:
           description: Average EPS estimates including Finnhub's proprietary estimates.
@@ -5463,6 +5696,14 @@ components:
           description: Period.
           format: date
           type: string
+        year:
+          description: Fiscal year.
+          format: int64
+          type: integer
+        quarter:
+          description: Fiscal quarter.
+          format: int64
+          type: integer
       type: object
     EarningsEstimates:
       example:
@@ -5472,12 +5713,16 @@ components:
           period: 2000-01-23
           epsAvg: 0.8008282
           epsLow: 1.4658129
+          year: 5
           numberAnalysts: 5
+          quarter: 2
         - epsHigh: 6.0274563
           period: 2000-01-23
           epsAvg: 0.8008282
           epsLow: 1.4658129
+          year: 5
           numberAnalysts: 5
+          quarter: 2
         freq: freq
       properties:
         data:
@@ -5527,11 +5772,11 @@ components:
           description: Company symbol.
           type: string
         year:
-          description: Earnings year.
+          description: Fiscal year.
           format: int64
           type: integer
         quarter:
-          description: Earnings quarter.
+          description: Fiscal quarter.
           format: int64
           type: integer
       type: object
@@ -6062,6 +6307,19 @@ components:
     IndicesConstituents:
       example:
         symbol: symbol
+        constituentsBreakdown:
+        - symbol: symbol
+          cusip: cusip
+          name: name
+          weight: 0.8008282
+          shareClassFIGI: shareClassFIGI
+          isin: isin
+        - symbol: symbol
+          cusip: cusip
+          name: name
+          weight: 0.8008282
+          shareClassFIGI: shareClassFIGI
+          isin: isin
         constituents:
         - constituents
         - constituents
@@ -6074,6 +6332,40 @@ components:
           items:
             type: string
           type: array
+        constituentsBreakdown:
+          description: Array of constituents' details.
+          items:
+            $ref: '#/components/schemas/IndicesConstituentsBreakdown'
+          type: array
+      type: object
+    IndicesConstituentsBreakdown:
+      example:
+        symbol: symbol
+        cusip: cusip
+        name: name
+        weight: 0.8008282
+        shareClassFIGI: shareClassFIGI
+        isin: isin
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        name:
+          description: Name.
+          type: string
+        isin:
+          description: ISIN.
+          type: string
+        cusip:
+          description: Cusip.
+          type: string
+        shareClassFIGI:
+          description: Global Share Class FIGI.
+          type: string
+        weight:
+          description: Weight.
+          format: float
+          type: number
       type: object
     IndexHistoricalConstituent:
       example:
@@ -6394,6 +6686,7 @@ components:
         seriesId: seriesId
         standardMinInvestment: 3.6160767
         classId: classId
+        fundCompany: fundCompany
         inceptionDate: 2000-01-23
         currency: currency
         turnover: 2.027123
@@ -6443,6 +6736,9 @@ components:
           type: string
         fundFamily:
           description: Fund Family.
+          type: string
+        fundCompany:
+          description: Fund Company.
           type: string
         manager:
           description: Fund's managers.
@@ -6531,6 +6827,7 @@ components:
           seriesId: seriesId
           standardMinInvestment: 3.6160767
           classId: classId
+          fundCompany: fundCompany
           inceptionDate: 2000-01-23
           currency: currency
           turnover: 2.027123
@@ -7192,7 +7489,7 @@ components:
           format: int64
           type: integer
       type: object
-    RedditSentimentContent:
+    SentimentContent:
       example:
         positiveMention: 6
         atTime: atTime
@@ -7231,64 +7528,10 @@ components:
           description: Period.
           type: string
       type: object
-    TwitterSentimentContent:
-      example:
-        positiveMention: 9
-        atTime: atTime
-        score: 7.386282
-        positiveScore: 2.027123
-        negativeMention: 3
-        negativeScore: 4.145608
-        mention: 7
-      properties:
-        mention:
-          description: Number of mentions
-          format: int64
-          type: integer
-        positiveMention:
-          description: Number of positive mentions
-          format: int64
-          type: integer
-        negativeMention:
-          description: Number of negative mentions
-          format: int64
-          type: integer
-        positiveScore:
-          description: Positive score. Range 0-1
-          format: float
-          type: number
-        negativeScore:
-          description: Negative score. Range 0-1
-          format: float
-          type: number
-        score:
-          description: 'Final score. Range: -1 to 1 with 1 is very positive and -1
-            is very negative'
-          format: float
-          type: number
-        atTime:
-          description: Period.
-          type: string
-      type: object
     SocialSentiment:
       example:
         symbol: symbol
-        twitter:
-        - positiveMention: 9
-          atTime: atTime
-          score: 7.386282
-          positiveScore: 2.027123
-          negativeMention: 3
-          negativeScore: 4.145608
-          mention: 7
-        - positiveMention: 9
-          atTime: atTime
-          score: 7.386282
-          positiveScore: 2.027123
-          negativeMention: 3
-          negativeScore: 4.145608
-          mention: 7
-        reddit:
+        data:
         - positiveMention: 6
           atTime: atTime
           score: 2.302136
@@ -7307,15 +7550,10 @@ components:
         symbol:
           description: Company symbol.
           type: string
-        reddit:
-          description: Reddit sentiment.
+        data:
+          description: Sentiment data.
           items:
-            $ref: '#/components/schemas/RedditSentimentContent'
-          type: array
-        twitter:
-          description: Twitter sentiment.
-          items:
-            $ref: '#/components/schemas/TwitterSentimentContent'
+            $ref: '#/components/schemas/SentimentContent'
           type: array
       type: object
     InvestmentThemePortfolio:
@@ -7621,9 +7859,13 @@ components:
         code2: code2
         subRegion: subRegion
         codeNo: codeNo
+        equityRiskPremium: 1.4658129
+        defaultSpread: 0.8008282
+        rating: rating
         currency: currency
         region: region
         currencyCode: currencyCode
+        countryRiskPremium: 6.0274563
       properties:
         country:
           description: Country name
@@ -7649,6 +7891,21 @@ components:
         subRegion:
           description: Sub-Region
           type: string
+        rating:
+          description: Moody's credit risk rating.
+          type: string
+        defaultSpread:
+          description: Default spread
+          format: float
+          type: number
+        countryRiskPremium:
+          description: Country risk premium
+          format: float
+          type: number
+        equityRiskPremium:
+          description: Equity risk premium
+          format: float
+          type: number
       type: object
     Economic event:
       example:

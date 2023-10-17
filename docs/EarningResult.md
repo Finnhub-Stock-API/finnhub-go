@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **SurprisePercent** | Pointer to **float32** | Surprise percent. | [optional] 
 **Period** | Pointer to **string** | Reported period. | [optional] 
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Year** | Pointer to **int64** | Earnings year. | [optional] 
-**Quarter** | Pointer to **int64** | Earnings quarter. | [optional] 
+**Year** | Pointer to **int64** | Fiscal year. | [optional] 
+**Quarter** | Pointer to **int64** | Fiscal quarter. | [optional] 
 
 ## Methods
 

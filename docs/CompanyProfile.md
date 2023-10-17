@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Alias** | Pointer to **[]string** | Company name alias. | [optional] 
 **Address** | Pointer to **string** | Address of company&#39;s headquarter. | [optional] 
 **City** | Pointer to **string** | City of company&#39;s headquarter. | [optional] 
 **Country** | Pointer to **string** | Country of company&#39;s headquarter. | [optional] 
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 **Gsector** | Pointer to **string** | Sector. | [optional] 
 **Gsubind** | Pointer to **string** | Sub-industry. | [optional] 
 **Isin** | Pointer to **string** | ISIN number. | [optional] 
+**Lei** | Pointer to **string** | LEI number. | [optional] 
 **NaicsNationalIndustry** | Pointer to **string** | NAICS national industry. | [optional] 
 **Naics** | Pointer to **string** | NAICS industry. | [optional] 
 **NaicsSector** | Pointer to **string** | NAICS sector. | [optional] 
@@ -53,6 +55,31 @@ will change when the set of required properties is changed
 NewCompanyProfileWithDefaults instantiates a new CompanyProfile object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAlias
+
+`func (o *CompanyProfile) GetAlias() []string`
+
+GetAlias returns the Alias field if non-nil, zero value otherwise.
+
+### GetAliasOk
+
+`func (o *CompanyProfile) GetAliasOk() (*[]string, bool)`
+
+GetAliasOk returns a tuple with the Alias field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlias
+
+`func (o *CompanyProfile) SetAlias(v []string)`
+
+SetAlias sets Alias field to given value.
+
+### HasAlias
+
+`func (o *CompanyProfile) HasAlias() bool`
+
+HasAlias returns a boolean if a field has been set.
 
 ### GetAddress
 
@@ -428,6 +455,31 @@ SetIsin sets Isin field to given value.
 `func (o *CompanyProfile) HasIsin() bool`
 
 HasIsin returns a boolean if a field has been set.
+
+### GetLei
+
+`func (o *CompanyProfile) GetLei() string`
+
+GetLei returns the Lei field if non-nil, zero value otherwise.
+
+### GetLeiOk
+
+`func (o *CompanyProfile) GetLeiOk() (*string, bool)`
+
+GetLeiOk returns a tuple with the Lei field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLei
+
+`func (o *CompanyProfile) SetLei(v string)`
+
+SetLei sets Lei field to given value.
+
+### HasLei
+
+`func (o *CompanyProfile) HasLei() bool`
+
+HasLei returns a boolean if a field has been set.
 
 ### GetNaicsNationalIndustry
 

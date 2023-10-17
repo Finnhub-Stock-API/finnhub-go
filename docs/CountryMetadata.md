@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **CurrencyCode** | Pointer to **string** | Currency code | [optional] 
 **Region** | Pointer to **string** | Region | [optional] 
 **SubRegion** | Pointer to **string** | Sub-Region | [optional] 
+**Rating** | Pointer to **string** | Moody&#39;s credit risk rating. | [optional] 
+**DefaultSpread** | Pointer to **float32** | Default spread | [optional] 
+**CountryRiskPremium** | Pointer to **float32** | Country risk premium | [optional] 
+**EquityRiskPremium** | Pointer to **float32** | Equity risk premium | [optional] 
 
 ## Methods
 
@@ -231,6 +235,106 @@ SetSubRegion sets SubRegion field to given value.
 `func (o *CountryMetadata) HasSubRegion() bool`
 
 HasSubRegion returns a boolean if a field has been set.
+
+### GetRating
+
+`func (o *CountryMetadata) GetRating() string`
+
+GetRating returns the Rating field if non-nil, zero value otherwise.
+
+### GetRatingOk
+
+`func (o *CountryMetadata) GetRatingOk() (*string, bool)`
+
+GetRatingOk returns a tuple with the Rating field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRating
+
+`func (o *CountryMetadata) SetRating(v string)`
+
+SetRating sets Rating field to given value.
+
+### HasRating
+
+`func (o *CountryMetadata) HasRating() bool`
+
+HasRating returns a boolean if a field has been set.
+
+### GetDefaultSpread
+
+`func (o *CountryMetadata) GetDefaultSpread() float32`
+
+GetDefaultSpread returns the DefaultSpread field if non-nil, zero value otherwise.
+
+### GetDefaultSpreadOk
+
+`func (o *CountryMetadata) GetDefaultSpreadOk() (*float32, bool)`
+
+GetDefaultSpreadOk returns a tuple with the DefaultSpread field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultSpread
+
+`func (o *CountryMetadata) SetDefaultSpread(v float32)`
+
+SetDefaultSpread sets DefaultSpread field to given value.
+
+### HasDefaultSpread
+
+`func (o *CountryMetadata) HasDefaultSpread() bool`
+
+HasDefaultSpread returns a boolean if a field has been set.
+
+### GetCountryRiskPremium
+
+`func (o *CountryMetadata) GetCountryRiskPremium() float32`
+
+GetCountryRiskPremium returns the CountryRiskPremium field if non-nil, zero value otherwise.
+
+### GetCountryRiskPremiumOk
+
+`func (o *CountryMetadata) GetCountryRiskPremiumOk() (*float32, bool)`
+
+GetCountryRiskPremiumOk returns a tuple with the CountryRiskPremium field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCountryRiskPremium
+
+`func (o *CountryMetadata) SetCountryRiskPremium(v float32)`
+
+SetCountryRiskPremium sets CountryRiskPremium field to given value.
+
+### HasCountryRiskPremium
+
+`func (o *CountryMetadata) HasCountryRiskPremium() bool`
+
+HasCountryRiskPremium returns a boolean if a field has been set.
+
+### GetEquityRiskPremium
+
+`func (o *CountryMetadata) GetEquityRiskPremium() float32`
+
+GetEquityRiskPremium returns the EquityRiskPremium field if non-nil, zero value otherwise.
+
+### GetEquityRiskPremiumOk
+
+`func (o *CountryMetadata) GetEquityRiskPremiumOk() (*float32, bool)`
+
+GetEquityRiskPremiumOk returns a tuple with the EquityRiskPremium field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEquityRiskPremium
+
+`func (o *CountryMetadata) SetEquityRiskPremium(v float32)`
+
+SetEquityRiskPremium sets EquityRiskPremium field to given value.
+
+### HasEquityRiskPremium
+
+`func (o *CountryMetadata) HasEquityRiskPremium() bool`
+
+HasEquityRiskPremium returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

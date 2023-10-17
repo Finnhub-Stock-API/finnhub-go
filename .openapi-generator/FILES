@@ -78,6 +78,7 @@ docs/InFilingSearchBody.md
 docs/IndexHistoricalConstituent.md
 docs/Indicator.md
 docs/IndicesConstituents.md
+docs/IndicesConstituentsBreakdown.md
 docs/IndicesHistoricalConstituents.md
 docs/InsiderSentiments.md
 docs/InsiderSentimentsData.md
@@ -99,7 +100,10 @@ docs/KeyCustomersSuppliers.md
 docs/LastBidAsk.md
 docs/LobbyingData.md
 docs/LobbyingResult.md
+docs/MarketHoliday.md
+docs/MarketHolidayData.md
 docs/MarketNews.md
+docs/MarketStatus.md
 docs/MutualFundCountryExposure.md
 docs/MutualFundCountryExposureData.md
 docs/MutualFundEet.md
@@ -119,7 +123,6 @@ docs/PriceMetrics.md
 docs/PriceTarget.md
 docs/Quote.md
 docs/RecommendationTrend.md
-docs/RedditSentimentContent.md
 docs/Report.md
 docs/RevenueBreakdown.md
 docs/RevenueEstimates.md
@@ -131,6 +134,7 @@ docs/SearchResponse.md
 docs/SectorMetric.md
 docs/SectorMetricData.md
 docs/Sentiment.md
+docs/SentimentContent.md
 docs/SimilarityIndex.md
 docs/SimilarityIndexInfo.md
 docs/SocialSentiment.md
@@ -150,7 +154,6 @@ docs/Transactions.md
 docs/TranscriptContent.md
 docs/TranscriptParticipant.md
 docs/Trend.md
-docs/TwitterSentimentContent.md
 docs/UpgradeDowngrade.md
 docs/UsaSpending.md
 docs/UsaSpendingResult.md
@@ -232,6 +235,7 @@ model_in_filing_search_body.go
 model_index_historical_constituent.go
 model_indicator.go
 model_indices_constituents.go
+model_indices_constituents_breakdown.go
 model_indices_historical_constituents.go
 model_insider_sentiments.go
 model_insider_sentiments_data.go
@@ -255,7 +259,10 @@ model_key_customers_suppliers.go
 model_last_bid_ask.go
 model_lobbying_data.go
 model_lobbying_result.go
+model_market_holiday.go
+model_market_holiday_data.go
 model_market_news.go
+model_market_status.go
 model_mutual_fund_country_exposure.go
 model_mutual_fund_country_exposure_data.go
 model_mutual_fund_eet.go
@@ -275,7 +282,6 @@ model_price_metrics.go
 model_price_target.go
 model_quote.go
 model_recommendation_trend.go
-model_reddit_sentiment_content.go
 model_report.go
 model_revenue_breakdown.go
 model_revenue_estimates.go
@@ -287,6 +293,7 @@ model_sec_sentiment_analysis.go
 model_sector_metric.go
 model_sector_metric_data.go
 model_sentiment.go
+model_sentiment_content.go
 model_similarity_index.go
 model_similarity_index_info.go
 model_social_sentiment.go
@@ -306,7 +313,6 @@ model_transactions.go
 model_transcript_content.go
 model_transcript_participant.go
 model_trend.go
-model_twitter_sentiment_content.go
 model_upgrade_downgrade.go
 model_usa_spending.go
 model_usa_spending_result.go

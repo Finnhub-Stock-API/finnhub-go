@@ -5,8 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Company symbol. | [optional] 
-**Reddit** | Pointer to [**[]RedditSentimentContent**](RedditSentimentContent.md) | Reddit sentiment. | [optional] 
-**Twitter** | Pointer to [**[]TwitterSentimentContent**](TwitterSentimentContent.md) | Twitter sentiment. | [optional] 
+**Data** | Pointer to [**[]SentimentContent**](SentimentContent.md) | Sentiment data. | [optional] 
 
 ## Methods
 
@@ -52,55 +51,30 @@ SetSymbol sets Symbol field to given value.
 
 HasSymbol returns a boolean if a field has been set.
 
-### GetReddit
+### GetData
 
-`func (o *SocialSentiment) GetReddit() []RedditSentimentContent`
+`func (o *SocialSentiment) GetData() []SentimentContent`
 
-GetReddit returns the Reddit field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetRedditOk
+### GetDataOk
 
-`func (o *SocialSentiment) GetRedditOk() (*[]RedditSentimentContent, bool)`
+`func (o *SocialSentiment) GetDataOk() (*[]SentimentContent, bool)`
 
-GetRedditOk returns a tuple with the Reddit field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReddit
+### SetData
 
-`func (o *SocialSentiment) SetReddit(v []RedditSentimentContent)`
+`func (o *SocialSentiment) SetData(v []SentimentContent)`
 
-SetReddit sets Reddit field to given value.
+SetData sets Data field to given value.
 
-### HasReddit
+### HasData
 
-`func (o *SocialSentiment) HasReddit() bool`
+`func (o *SocialSentiment) HasData() bool`
 
-HasReddit returns a boolean if a field has been set.
-
-### GetTwitter
-
-`func (o *SocialSentiment) GetTwitter() []TwitterSentimentContent`
-
-GetTwitter returns the Twitter field if non-nil, zero value otherwise.
-
-### GetTwitterOk
-
-`func (o *SocialSentiment) GetTwitterOk() (*[]TwitterSentimentContent, bool)`
-
-GetTwitterOk returns a tuple with the Twitter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTwitter
-
-`func (o *SocialSentiment) SetTwitter(v []TwitterSentimentContent)`
-
-SetTwitter sets Twitter field to given value.
-
-### HasTwitter
-
-`func (o *SocialSentiment) HasTwitter() bool`
-
-HasTwitter returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **InceptionDate** | Pointer to **string** | Inception date. | [optional] 
 **Description** | Pointer to **string** | Fund&#39;s description. | [optional] 
 **FundFamily** | Pointer to **string** | Fund Family. | [optional] 
+**FundCompany** | Pointer to **string** | Fund Company. | [optional] 
 **Manager** | Pointer to **string** | Fund&#39;s managers. | [optional] 
 **Status** | Pointer to **string** | Status. | [optional] 
 **Beta** | Pointer to **float32** | Beta. | [optional] 
@@ -275,6 +276,31 @@ SetFundFamily sets FundFamily field to given value.
 `func (o *MutualFundProfileData) HasFundFamily() bool`
 
 HasFundFamily returns a boolean if a field has been set.
+
+### GetFundCompany
+
+`func (o *MutualFundProfileData) GetFundCompany() string`
+
+GetFundCompany returns the FundCompany field if non-nil, zero value otherwise.
+
+### GetFundCompanyOk
+
+`func (o *MutualFundProfileData) GetFundCompanyOk() (*string, bool)`
+
+GetFundCompanyOk returns a tuple with the FundCompany field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFundCompany
+
+`func (o *MutualFundProfileData) SetFundCompany(v string)`
+
+SetFundCompany sets FundCompany field to given value.
+
+### HasFundCompany
+
+`func (o *MutualFundProfileData) HasFundCompany() bool`
+
+HasFundCompany returns a boolean if a field has been set.
 
 ### GetManager
 

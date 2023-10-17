@@ -28,9 +28,9 @@ type EarningResult struct {
 	Period *string `json:"period,omitempty"`
 	// Company symbol.
 	Symbol *string `json:"symbol,omitempty"`
-	// Earnings year.
+	// Fiscal year.
 	Year *int64 `json:"year,omitempty"`
-	// Earnings quarter.
+	// Fiscal quarter.
 	Quarter *int64 `json:"quarter,omitempty"`
 }
 

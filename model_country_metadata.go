@@ -32,6 +32,14 @@ type CountryMetadata struct {
 	Region *string `json:"region,omitempty"`
 	// Sub-Region
 	SubRegion *string `json:"subRegion,omitempty"`
+	// Moody's credit risk rating.
+	Rating *string `json:"rating,omitempty"`
+	// Default spread
+	DefaultSpread *float32 `json:"defaultSpread,omitempty"`
+	// Country risk premium
+	CountryRiskPremium *float32 `json:"countryRiskPremium,omitempty"`
+	// Equity risk premium
+	EquityRiskPremium *float32 `json:"equityRiskPremium,omitempty"`
 }
 
 // NewCountryMetadata instantiates a new CountryMetadata object
@@ -307,6 +315,134 @@ func (o *CountryMetadata) SetSubRegion(v string) {
 	o.SubRegion = &v
 }
 
+// GetRating returns the Rating field value if set, zero value otherwise.
+func (o *CountryMetadata) GetRating() string {
+	if o == nil || o.Rating == nil {
+		var ret string
+		return ret
+	}
+	return *o.Rating
+}
+
+// GetRatingOk returns a tuple with the Rating field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CountryMetadata) GetRatingOk() (*string, bool) {
+	if o == nil || o.Rating == nil {
+		return nil, false
+	}
+	return o.Rating, true
+}
+
+// HasRating returns a boolean if a field has been set.
+func (o *CountryMetadata) HasRating() bool {
+	if o != nil && o.Rating != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRating gets a reference to the given string and assigns it to the Rating field.
+func (o *CountryMetadata) SetRating(v string) {
+	o.Rating = &v
+}
+
+// GetDefaultSpread returns the DefaultSpread field value if set, zero value otherwise.
+func (o *CountryMetadata) GetDefaultSpread() float32 {
+	if o == nil || o.DefaultSpread == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DefaultSpread
+}
+
+// GetDefaultSpreadOk returns a tuple with the DefaultSpread field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CountryMetadata) GetDefaultSpreadOk() (*float32, bool) {
+	if o == nil || o.DefaultSpread == nil {
+		return nil, false
+	}
+	return o.DefaultSpread, true
+}
+
+// HasDefaultSpread returns a boolean if a field has been set.
+func (o *CountryMetadata) HasDefaultSpread() bool {
+	if o != nil && o.DefaultSpread != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultSpread gets a reference to the given float32 and assigns it to the DefaultSpread field.
+func (o *CountryMetadata) SetDefaultSpread(v float32) {
+	o.DefaultSpread = &v
+}
+
+// GetCountryRiskPremium returns the CountryRiskPremium field value if set, zero value otherwise.
+func (o *CountryMetadata) GetCountryRiskPremium() float32 {
+	if o == nil || o.CountryRiskPremium == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CountryRiskPremium
+}
+
+// GetCountryRiskPremiumOk returns a tuple with the CountryRiskPremium field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CountryMetadata) GetCountryRiskPremiumOk() (*float32, bool) {
+	if o == nil || o.CountryRiskPremium == nil {
+		return nil, false
+	}
+	return o.CountryRiskPremium, true
+}
+
+// HasCountryRiskPremium returns a boolean if a field has been set.
+func (o *CountryMetadata) HasCountryRiskPremium() bool {
+	if o != nil && o.CountryRiskPremium != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCountryRiskPremium gets a reference to the given float32 and assigns it to the CountryRiskPremium field.
+func (o *CountryMetadata) SetCountryRiskPremium(v float32) {
+	o.CountryRiskPremium = &v
+}
+
+// GetEquityRiskPremium returns the EquityRiskPremium field value if set, zero value otherwise.
+func (o *CountryMetadata) GetEquityRiskPremium() float32 {
+	if o == nil || o.EquityRiskPremium == nil {
+		var ret float32
+		return ret
+	}
+	return *o.EquityRiskPremium
+}
+
+// GetEquityRiskPremiumOk returns a tuple with the EquityRiskPremium field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CountryMetadata) GetEquityRiskPremiumOk() (*float32, bool) {
+	if o == nil || o.EquityRiskPremium == nil {
+		return nil, false
+	}
+	return o.EquityRiskPremium, true
+}
+
+// HasEquityRiskPremium returns a boolean if a field has been set.
+func (o *CountryMetadata) HasEquityRiskPremium() bool {
+	if o != nil && o.EquityRiskPremium != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEquityRiskPremium gets a reference to the given float32 and assigns it to the EquityRiskPremium field.
+func (o *CountryMetadata) SetEquityRiskPremium(v float32) {
+	o.EquityRiskPremium = &v
+}
+
 func (o CountryMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Country != nil {
@@ -332,6 +468,18 @@ func (o CountryMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.SubRegion != nil {
 		toSerialize["subRegion"] = o.SubRegion
+	}
+	if o.Rating != nil {
+		toSerialize["rating"] = o.Rating
+	}
+	if o.DefaultSpread != nil {
+		toSerialize["defaultSpread"] = o.DefaultSpread
+	}
+	if o.CountryRiskPremium != nil {
+		toSerialize["countryRiskPremium"] = o.CountryRiskPremium
+	}
+	if o.EquityRiskPremium != nil {
+		toSerialize["equityRiskPremium"] = o.EquityRiskPremium
 	}
 	return json.Marshal(toSerialize)
 }

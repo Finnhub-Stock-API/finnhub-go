@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **RevenueLow** | Pointer to **float32** | Lowest estimate. | [optional] 
 **NumberAnalysts** | Pointer to **int64** | Number of Analysts. | [optional] 
 **Period** | Pointer to **string** | Period. | [optional] 
+**Year** | Pointer to **int64** | Fiscal year. | [optional] 
+**Quarter** | Pointer to **int64** | Fiscal quarter. | [optional] 
 
 ## Methods
 
@@ -153,6 +155,56 @@ SetPeriod sets Period field to given value.
 `func (o *RevenueEstimatesInfo) HasPeriod() bool`
 
 HasPeriod returns a boolean if a field has been set.
+
+### GetYear
+
+`func (o *RevenueEstimatesInfo) GetYear() int64`
+
+GetYear returns the Year field if non-nil, zero value otherwise.
+
+### GetYearOk
+
+`func (o *RevenueEstimatesInfo) GetYearOk() (*int64, bool)`
+
+GetYearOk returns a tuple with the Year field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetYear
+
+`func (o *RevenueEstimatesInfo) SetYear(v int64)`
+
+SetYear sets Year field to given value.
+
+### HasYear
+
+`func (o *RevenueEstimatesInfo) HasYear() bool`
+
+HasYear returns a boolean if a field has been set.
+
+### GetQuarter
+
+`func (o *RevenueEstimatesInfo) GetQuarter() int64`
+
+GetQuarter returns the Quarter field if non-nil, zero value otherwise.
+
+### GetQuarterOk
+
+`func (o *RevenueEstimatesInfo) GetQuarterOk() (*int64, bool)`
+
+GetQuarterOk returns a tuple with the Quarter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuarter
+
+`func (o *RevenueEstimatesInfo) SetQuarter(v int64)`
+
+SetQuarter sets Quarter field to given value.
+
+### HasQuarter
+
+`func (o *RevenueEstimatesInfo) HasQuarter() bool`
+
+HasQuarter returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

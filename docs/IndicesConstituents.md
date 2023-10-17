@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | Index&#39;s symbol. | [optional] 
 **Constituents** | Pointer to **[]string** | Array of constituents. | [optional] 
+**ConstituentsBreakdown** | Pointer to [**[]IndicesConstituentsBreakdown**](IndicesConstituentsBreakdown.md) | Array of constituents&#39; details. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetConstituents sets Constituents field to given value.
 `func (o *IndicesConstituents) HasConstituents() bool`
 
 HasConstituents returns a boolean if a field has been set.
+
+### GetConstituentsBreakdown
+
+`func (o *IndicesConstituents) GetConstituentsBreakdown() []IndicesConstituentsBreakdown`
+
+GetConstituentsBreakdown returns the ConstituentsBreakdown field if non-nil, zero value otherwise.
+
+### GetConstituentsBreakdownOk
+
+`func (o *IndicesConstituents) GetConstituentsBreakdownOk() (*[]IndicesConstituentsBreakdown, bool)`
+
+GetConstituentsBreakdownOk returns a tuple with the ConstituentsBreakdown field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConstituentsBreakdown
+
+`func (o *IndicesConstituents) SetConstituentsBreakdown(v []IndicesConstituentsBreakdown)`
+
+SetConstituentsBreakdown sets ConstituentsBreakdown field to given value.
+
+### HasConstituentsBreakdown
+
+`func (o *IndicesConstituents) HasConstituentsBreakdown() bool`
+
+HasConstituentsBreakdown returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

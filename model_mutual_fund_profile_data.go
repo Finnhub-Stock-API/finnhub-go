@@ -34,6 +34,8 @@ type MutualFundProfileData struct {
 	Description *string `json:"description,omitempty"`
 	// Fund Family.
 	FundFamily *string `json:"fundFamily,omitempty"`
+	// Fund Company.
+	FundCompany *string `json:"fundCompany,omitempty"`
 	// Fund's managers.
 	Manager *string `json:"manager,omitempty"`
 	// Status.
@@ -375,6 +377,38 @@ func (o *MutualFundProfileData) HasFundFamily() bool {
 // SetFundFamily gets a reference to the given string and assigns it to the FundFamily field.
 func (o *MutualFundProfileData) SetFundFamily(v string) {
 	o.FundFamily = &v
+}
+
+// GetFundCompany returns the FundCompany field value if set, zero value otherwise.
+func (o *MutualFundProfileData) GetFundCompany() string {
+	if o == nil || o.FundCompany == nil {
+		var ret string
+		return ret
+	}
+	return *o.FundCompany
+}
+
+// GetFundCompanyOk returns a tuple with the FundCompany field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MutualFundProfileData) GetFundCompanyOk() (*string, bool) {
+	if o == nil || o.FundCompany == nil {
+		return nil, false
+	}
+	return o.FundCompany, true
+}
+
+// HasFundCompany returns a boolean if a field has been set.
+func (o *MutualFundProfileData) HasFundCompany() bool {
+	if o != nil && o.FundCompany != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFundCompany gets a reference to the given string and assigns it to the FundCompany field.
+func (o *MutualFundProfileData) SetFundCompany(v string) {
+	o.FundCompany = &v
 }
 
 // GetManager returns the Manager field value if set, zero value otherwise.
@@ -981,6 +1015,9 @@ func (o MutualFundProfileData) MarshalJSON() ([]byte, error) {
 	}
 	if o.FundFamily != nil {
 		toSerialize["fundFamily"] = o.FundFamily
+	}
+	if o.FundCompany != nil {
+		toSerialize["fundCompany"] = o.FundCompany
 	}
 	if o.Manager != nil {
 		toSerialize["manager"] = o.Manager

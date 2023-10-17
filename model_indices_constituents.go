@@ -20,6 +20,8 @@ type IndicesConstituents struct {
 	Symbol *string `json:"symbol,omitempty"`
 	// Array of constituents.
 	Constituents *[]string `json:"constituents,omitempty"`
+	// Array of constituents' details.
+	ConstituentsBreakdown *[]IndicesConstituentsBreakdown `json:"constituentsBreakdown,omitempty"`
 }
 
 // NewIndicesConstituents instantiates a new IndicesConstituents object
@@ -103,6 +105,38 @@ func (o *IndicesConstituents) SetConstituents(v []string) {
 	o.Constituents = &v
 }
 
+// GetConstituentsBreakdown returns the ConstituentsBreakdown field value if set, zero value otherwise.
+func (o *IndicesConstituents) GetConstituentsBreakdown() []IndicesConstituentsBreakdown {
+	if o == nil || o.ConstituentsBreakdown == nil {
+		var ret []IndicesConstituentsBreakdown
+		return ret
+	}
+	return *o.ConstituentsBreakdown
+}
+
+// GetConstituentsBreakdownOk returns a tuple with the ConstituentsBreakdown field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndicesConstituents) GetConstituentsBreakdownOk() (*[]IndicesConstituentsBreakdown, bool) {
+	if o == nil || o.ConstituentsBreakdown == nil {
+		return nil, false
+	}
+	return o.ConstituentsBreakdown, true
+}
+
+// HasConstituentsBreakdown returns a boolean if a field has been set.
+func (o *IndicesConstituents) HasConstituentsBreakdown() bool {
+	if o != nil && o.ConstituentsBreakdown != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConstituentsBreakdown gets a reference to the given []IndicesConstituentsBreakdown and assigns it to the ConstituentsBreakdown field.
+func (o *IndicesConstituents) SetConstituentsBreakdown(v []IndicesConstituentsBreakdown) {
+	o.ConstituentsBreakdown = &v
+}
+
 func (o IndicesConstituents) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Symbol != nil {
@@ -110,6 +144,9 @@ func (o IndicesConstituents) MarshalJSON() ([]byte, error) {
 	}
 	if o.Constituents != nil {
 		toSerialize["constituents"] = o.Constituents
+	}
+	if o.ConstituentsBreakdown != nil {
+		toSerialize["constituentsBreakdown"] = o.ConstituentsBreakdown
 	}
 	return json.Marshal(toSerialize)
 }

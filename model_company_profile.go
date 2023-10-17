@@ -16,6 +16,8 @@ import (
 
 // CompanyProfile struct for CompanyProfile
 type CompanyProfile struct {
+	// Company name alias.
+	Alias *[]string `json:"alias,omitempty"`
 	// Address of company's headquarter.
 	Address *string `json:"address,omitempty"`
 	// City of company's headquarter.
@@ -46,6 +48,8 @@ type CompanyProfile struct {
 	Gsubind *string `json:"gsubind,omitempty"`
 	// ISIN number.
 	Isin *string `json:"isin,omitempty"`
+	// LEI number.
+	Lei *string `json:"lei,omitempty"`
 	// NAICS national industry.
 	NaicsNationalIndustry *string `json:"naicsNationalIndustry,omitempty"`
 	// NAICS industry.
@@ -93,6 +97,38 @@ func NewCompanyProfile() *CompanyProfile {
 func NewCompanyProfileWithDefaults() *CompanyProfile {
 	this := CompanyProfile{}
 	return &this
+}
+
+// GetAlias returns the Alias field value if set, zero value otherwise.
+func (o *CompanyProfile) GetAlias() []string {
+	if o == nil || o.Alias == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Alias
+}
+
+// GetAliasOk returns a tuple with the Alias field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyProfile) GetAliasOk() (*[]string, bool) {
+	if o == nil || o.Alias == nil {
+		return nil, false
+	}
+	return o.Alias, true
+}
+
+// HasAlias returns a boolean if a field has been set.
+func (o *CompanyProfile) HasAlias() bool {
+	if o != nil && o.Alias != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAlias gets a reference to the given []string and assigns it to the Alias field.
+func (o *CompanyProfile) SetAlias(v []string) {
+	o.Alias = &v
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
@@ -573,6 +609,38 @@ func (o *CompanyProfile) HasIsin() bool {
 // SetIsin gets a reference to the given string and assigns it to the Isin field.
 func (o *CompanyProfile) SetIsin(v string) {
 	o.Isin = &v
+}
+
+// GetLei returns the Lei field value if set, zero value otherwise.
+func (o *CompanyProfile) GetLei() string {
+	if o == nil || o.Lei == nil {
+		var ret string
+		return ret
+	}
+	return *o.Lei
+}
+
+// GetLeiOk returns a tuple with the Lei field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyProfile) GetLeiOk() (*string, bool) {
+	if o == nil || o.Lei == nil {
+		return nil, false
+	}
+	return o.Lei, true
+}
+
+// HasLei returns a boolean if a field has been set.
+func (o *CompanyProfile) HasLei() bool {
+	if o != nil && o.Lei != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLei gets a reference to the given string and assigns it to the Lei field.
+func (o *CompanyProfile) SetLei(v string) {
+	o.Lei = &v
 }
 
 // GetNaicsNationalIndustry returns the NaicsNationalIndustry field value if set, zero value otherwise.
@@ -1057,6 +1125,9 @@ func (o *CompanyProfile) SetFinnhubIndustry(v string) {
 
 func (o CompanyProfile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Alias != nil {
+		toSerialize["alias"] = o.Alias
+	}
 	if o.Address != nil {
 		toSerialize["address"] = o.Address
 	}
@@ -1101,6 +1172,9 @@ func (o CompanyProfile) MarshalJSON() ([]byte, error) {
 	}
 	if o.Isin != nil {
 		toSerialize["isin"] = o.Isin
+	}
+	if o.Lei != nil {
+		toSerialize["lei"] = o.Lei
 	}
 	if o.NaicsNationalIndustry != nil {
 		toSerialize["naicsNationalIndustry"] = o.NaicsNationalIndustry

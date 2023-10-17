@@ -1619,7 +1619,7 @@ func (r ApiCompanyEsgScoreRequest) Execute() (CompanyESG, *_nethttp.Response, er
 /*
 CompanyEsgScore Company ESG Scores
 
-<p>This endpoint provides ESG scores and important indicators for 1000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+<p>This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.</p>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCompanyEsgScoreRequest
@@ -3988,11 +3988,17 @@ type ApiEtfsCountryExposureRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	symbol *string
+	isin *string
 }
 
 // ETF symbol.
 func (r ApiEtfsCountryExposureRequest) Symbol(symbol string) ApiEtfsCountryExposureRequest {
 	r.symbol = &symbol
+	return r
+}
+// ETF isin.
+func (r ApiEtfsCountryExposureRequest) Isin(isin string) ApiEtfsCountryExposureRequest {
+	r.isin = &isin
 	return r
 }
 
@@ -4037,11 +4043,13 @@ func (a *DefaultApiService) EtfsCountryExposureExecute(r ApiEtfsCountryExposureR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.symbol == nil {
-		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
-	}
 
-	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	if r.symbol != nil {
+		localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	}
+	if r.isin != nil {
+		localVarQueryParams.Add("isin", parameterToString(*r.isin, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4400,11 +4408,17 @@ type ApiEtfsSectorExposureRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	symbol *string
+	isin *string
 }
 
 // ETF symbol.
 func (r ApiEtfsSectorExposureRequest) Symbol(symbol string) ApiEtfsSectorExposureRequest {
 	r.symbol = &symbol
+	return r
+}
+// ETF isin.
+func (r ApiEtfsSectorExposureRequest) Isin(isin string) ApiEtfsSectorExposureRequest {
+	r.isin = &isin
 	return r
 }
 
@@ -4449,11 +4463,13 @@ func (a *DefaultApiService) EtfsSectorExposureExecute(r ApiEtfsSectorExposureReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.symbol == nil {
-		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
-	}
 
-	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	if r.symbol != nil {
+		localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	}
+	if r.isin != nil {
+		localVarQueryParams.Add("isin", parameterToString(*r.isin, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5936,7 +5952,7 @@ func (r ApiIndicesConstituentsRequest) Execute() (IndicesConstituents, *_nethttp
 /*
 IndicesConstituents Indices Constituents
 
-Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href="https://docs.google.com/spreadsheets/d/1Syr2eLielHWsorxkDEZXyc55d6bNx1M3ZeI4vdn7Qzo/edit?usp=sharing" target="_blank">here</a>.
+Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href="/api/v1/index/list?token=" target="_blank">here</a>.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiIndicesConstituentsRequest
@@ -6886,6 +6902,140 @@ func (a *DefaultApiService) InstitutionalProfileExecute(r ApiInstitutionalProfil
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiInternationalFilingsRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	country *string
+}
+
+// Symbol. Leave empty to list latest filings.
+func (r ApiInternationalFilingsRequest) Symbol(symbol string) ApiInternationalFilingsRequest {
+	r.symbol = &symbol
+	return r
+}
+// Filter by country using country&#39;s 2-letter code.
+func (r ApiInternationalFilingsRequest) Country(country string) ApiInternationalFilingsRequest {
+	r.country = &country
+	return r
+}
+
+func (r ApiInternationalFilingsRequest) Execute() ([]InternationalFiling, *_nethttp.Response, error) {
+	return r.ApiService.InternationalFilingsExecute(r)
+}
+
+/*
+InternationalFilings International Filings
+
+List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiInternationalFilingsRequest
+*/
+func (a *DefaultApiService) InternationalFilings(ctx _context.Context) ApiInternationalFilingsRequest {
+	return ApiInternationalFilingsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []InternationalFiling
+func (a *DefaultApiService) InternationalFilingsExecute(r ApiInternationalFilingsRequest) ([]InternationalFiling, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []InternationalFiling
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InternationalFilings")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/international-filings"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.symbol != nil {
+		localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	}
+	if r.country != nil {
+		localVarQueryParams.Add("country", parameterToString(*r.country, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiInvestmentThemesRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -7284,6 +7434,132 @@ func (a *DefaultApiService) IsinChangeExecute(r ApiIsinChangeRequest) (IsinChang
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiMarketHolidayRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	exchange *string
+}
+
+// Exchange code.
+func (r ApiMarketHolidayRequest) Exchange(exchange string) ApiMarketHolidayRequest {
+	r.exchange = &exchange
+	return r
+}
+
+func (r ApiMarketHolidayRequest) Execute() (MarketHoliday, *_nethttp.Response, error) {
+	return r.ApiService.MarketHolidayExecute(r)
+}
+
+/*
+MarketHoliday Market Holiday
+
+Get a list of holidays for global exchanges.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiMarketHolidayRequest
+*/
+func (a *DefaultApiService) MarketHoliday(ctx _context.Context) ApiMarketHolidayRequest {
+	return ApiMarketHolidayRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return MarketHoliday
+func (a *DefaultApiService) MarketHolidayExecute(r ApiMarketHolidayRequest) (MarketHoliday, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  MarketHoliday
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MarketHoliday")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/market-holiday"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.exchange == nil {
+		return localVarReturnValue, nil, reportError("exchange is required and must be specified")
+	}
+
+	localVarQueryParams.Add("exchange", parameterToString(*r.exchange, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiMarketNewsRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -7419,15 +7695,147 @@ func (a *DefaultApiService) MarketNewsExecute(r ApiMarketNewsRequest) ([]MarketN
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiMarketStatusRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	exchange *string
+}
+
+// Exchange code.
+func (r ApiMarketStatusRequest) Exchange(exchange string) ApiMarketStatusRequest {
+	r.exchange = &exchange
+	return r
+}
+
+func (r ApiMarketStatusRequest) Execute() (MarketStatus, *_nethttp.Response, error) {
+	return r.ApiService.MarketStatusExecute(r)
+}
+
+/*
+MarketStatus Market Status
+
+Get current market status for global exchanges (whether exchanges are open or close).
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiMarketStatusRequest
+*/
+func (a *DefaultApiService) MarketStatus(ctx _context.Context) ApiMarketStatusRequest {
+	return ApiMarketStatusRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return MarketStatus
+func (a *DefaultApiService) MarketStatusExecute(r ApiMarketStatusRequest) (MarketStatus, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  MarketStatus
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MarketStatus")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/market-status"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.exchange == nil {
+		return localVarReturnValue, nil, reportError("exchange is required and must be specified")
+	}
+
+	localVarQueryParams.Add("exchange", parameterToString(*r.exchange, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiMutualFundCountryExposureRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	symbol *string
+	isin *string
 }
 
 // Symbol.
 func (r ApiMutualFundCountryExposureRequest) Symbol(symbol string) ApiMutualFundCountryExposureRequest {
 	r.symbol = &symbol
+	return r
+}
+// Fund&#39;s isin.
+func (r ApiMutualFundCountryExposureRequest) Isin(isin string) ApiMutualFundCountryExposureRequest {
+	r.isin = &isin
 	return r
 }
 
@@ -7472,11 +7880,13 @@ func (a *DefaultApiService) MutualFundCountryExposureExecute(r ApiMutualFundCoun
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.symbol == nil {
-		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
-	}
 
-	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	if r.symbol != nil {
+		localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	}
+	if r.isin != nil {
+		localVarQueryParams.Add("isin", parameterToString(*r.isin, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -8078,11 +8488,17 @@ type ApiMutualFundSectorExposureRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	symbol *string
+	isin *string
 }
 
 // Mutual Fund symbol.
 func (r ApiMutualFundSectorExposureRequest) Symbol(symbol string) ApiMutualFundSectorExposureRequest {
 	r.symbol = &symbol
+	return r
+}
+// Fund&#39;s isin.
+func (r ApiMutualFundSectorExposureRequest) Isin(isin string) ApiMutualFundSectorExposureRequest {
+	r.isin = &isin
 	return r
 }
 
@@ -8127,11 +8543,13 @@ func (a *DefaultApiService) MutualFundSectorExposureExecute(r ApiMutualFundSecto
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.symbol == nil {
-		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
-	}
 
-	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	if r.symbol != nil {
+		localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	}
+	if r.isin != nil {
+		localVarQueryParams.Add("isin", parameterToString(*r.isin, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -9688,7 +10106,7 @@ func (r ApiSocialSentimentRequest) Execute() (SocialSentiment, *_nethttp.Respons
 /*
 SocialSentiment Social Sentiment
 
-<p>Get social sentiment for stocks on Reddit and Twitter. This endpoint is currently in Beta.</p>
+<p>Get social sentiment for stocks on Reddit and Twitter.</p>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSocialSentimentRequest
@@ -10090,7 +10508,7 @@ func (r ApiStockCandlesRequest) Execute() (StockCandles, *_nethttp.Response, err
 /*
 StockCandles Stock Candles
 
-<p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted.</p>
+<p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month of intraday will be returned at a time. If you need more historical intraday data, please use the from and to params iteratively to request more data.</p>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiStockCandlesRequest
@@ -10993,7 +11411,7 @@ func (r ApiStockTickRequest) Execute() (TickData, *_nethttp.Response, error) {
 /*
 StockTick Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
+<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
   <thead>
     <tr>
       <th>Exchange</th>
