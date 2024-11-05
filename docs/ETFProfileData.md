@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Domicile** | Pointer to **string** | ETF domicile. | [optional] 
 **InceptionDate** | Pointer to **string** | Inception date. | [optional] 
 **Website** | Pointer to **string** | ETF&#39;s website. | [optional] 
+**Logo** | Pointer to **string** | Logo. | [optional] 
 **Isin** | Pointer to **string** | ISIN. | [optional] 
 **Cusip** | Pointer to **string** | CUSIP. | [optional] 
 **PriceToEarnings** | Pointer to **float32** | P/E. | [optional] 
@@ -344,6 +345,31 @@ SetWebsite sets Website field to given value.
 `func (o *ETFProfileData) HasWebsite() bool`
 
 HasWebsite returns a boolean if a field has been set.
+
+### GetLogo
+
+`func (o *ETFProfileData) GetLogo() string`
+
+GetLogo returns the Logo field if non-nil, zero value otherwise.
+
+### GetLogoOk
+
+`func (o *ETFProfileData) GetLogoOk() (*string, bool)`
+
+GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogo
+
+`func (o *ETFProfileData) SetLogo(v string)`
+
+SetLogo sets Logo field to given value.
+
+### HasLogo
+
+`func (o *ETFProfileData) HasLogo() bool`
+
+HasLogo returns a boolean if a field has been set.
 
 ### GetIsin
 

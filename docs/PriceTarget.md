@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **TargetLow** | Pointer to **float32** | Lowest analysts&#39; target. | [optional] 
 **TargetMean** | Pointer to **float32** | Mean of all analysts&#39; targets. | [optional] 
 **TargetMedian** | Pointer to **float32** | Median of all analysts&#39; targets. | [optional] 
+**NumberAnalysts** | Pointer to **int64** | Number of Analysts. | [optional] 
 **LastUpdated** | Pointer to **string** | Updated time of the data | [optional] 
 
 ## Methods
@@ -154,6 +155,31 @@ SetTargetMedian sets TargetMedian field to given value.
 `func (o *PriceTarget) HasTargetMedian() bool`
 
 HasTargetMedian returns a boolean if a field has been set.
+
+### GetNumberAnalysts
+
+`func (o *PriceTarget) GetNumberAnalysts() int64`
+
+GetNumberAnalysts returns the NumberAnalysts field if non-nil, zero value otherwise.
+
+### GetNumberAnalystsOk
+
+`func (o *PriceTarget) GetNumberAnalystsOk() (*int64, bool)`
+
+GetNumberAnalystsOk returns a tuple with the NumberAnalysts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNumberAnalysts
+
+`func (o *PriceTarget) SetNumberAnalysts(v int64)`
+
+SetNumberAnalysts sets NumberAnalysts field to given value.
+
+### HasNumberAnalysts
+
+`func (o *PriceTarget) HasNumberAnalysts() bool`
+
+HasNumberAnalysts returns a boolean if a field has been set.
 
 ### GetLastUpdated
 

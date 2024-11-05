@@ -162,6 +162,152 @@ func (a *DefaultApiService) AggregateIndicatorExecute(r ApiAggregateIndicatorReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiAirlinePriceIndexRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	airline *string
+	from *string
+	to *string
+}
+
+// Filter data by airline. Accepted values: &lt;code&gt;united&lt;/code&gt;,&lt;code&gt;delta&lt;/code&gt;,&lt;code&gt;american_airlines&lt;/code&gt;,&lt;code&gt;southwest&lt;/code&gt;,&lt;code&gt;southern_airways_express&lt;/code&gt;,&lt;code&gt;alaska_airlines&lt;/code&gt;,&lt;code&gt;frontier_airlines&lt;/code&gt;,&lt;code&gt;jetblue_airways&lt;/code&gt;,&lt;code&gt;spirit_airlines&lt;/code&gt;,&lt;code&gt;sun_country_airlines&lt;/code&gt;,&lt;code&gt;breeze_airways&lt;/code&gt;,&lt;code&gt;hawaiian_airlines&lt;/code&gt;
+func (r ApiAirlinePriceIndexRequest) Airline(airline string) ApiAirlinePriceIndexRequest {
+	r.airline = &airline
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiAirlinePriceIndexRequest) From(from string) ApiAirlinePriceIndexRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiAirlinePriceIndexRequest) To(to string) ApiAirlinePriceIndexRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiAirlinePriceIndexRequest) Execute() (AirlinePriceIndexData, *_nethttp.Response, error) {
+	return r.ApiService.AirlinePriceIndexExecute(r)
+}
+
+/*
+AirlinePriceIndex Airline Price Index
+
+<p>The Flight Ticket Price Index API provides comprehensive data on airline ticket prices, including the average daily ticket price and its percentage change (price index). This data, collected weekly and projected two weeks ahead, aggregates daily prices and indexes from the 50 busiest and largest airports across the USA. The dataset includes detailed information on airlines, dates, and average ticket prices, offering valuable insights for market analysis and pricing strategies.</p><p>The price index is calculated as percentage change of average daily ticket price from the previous weekly reading. Raw ticket prices data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to inquire about the raw price data.</p>
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAirlinePriceIndexRequest
+*/
+func (a *DefaultApiService) AirlinePriceIndex(ctx _context.Context) ApiAirlinePriceIndexRequest {
+	return ApiAirlinePriceIndexRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AirlinePriceIndexData
+func (a *DefaultApiService) AirlinePriceIndexExecute(r ApiAirlinePriceIndexRequest) (AirlinePriceIndexData, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  AirlinePriceIndexData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AirlinePriceIndex")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/airline/price-index"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.airline == nil {
+		return localVarReturnValue, nil, reportError("airline is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("airline", parameterToString(*r.airline, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiBondPriceRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -1619,7 +1765,7 @@ func (r ApiCompanyEsgScoreRequest) Execute() (CompanyESG, *_nethttp.Response, er
 /*
 CompanyEsgScore Company ESG Scores
 
-<p>This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.</p>
+<p>This endpoint provides the latest ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCompanyEsgScoreRequest
@@ -1775,6 +1921,132 @@ func (a *DefaultApiService) CompanyExecutiveExecute(r ApiCompanyExecutiveRequest
 	}
 
 	localVarPath := localBasePath + "/stock/executive"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCompanyHistoricalEsgScoreRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+}
+
+// Symbol.
+func (r ApiCompanyHistoricalEsgScoreRequest) Symbol(symbol string) ApiCompanyHistoricalEsgScoreRequest {
+	r.symbol = &symbol
+	return r
+}
+
+func (r ApiCompanyHistoricalEsgScoreRequest) Execute() (HistoricalCompanyESG, *_nethttp.Response, error) {
+	return r.ApiService.CompanyHistoricalEsgScoreExecute(r)
+}
+
+/*
+CompanyHistoricalEsgScore Historical ESG Scores
+
+<p>This endpoint provides historical ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCompanyHistoricalEsgScoreRequest
+*/
+func (a *DefaultApiService) CompanyHistoricalEsgScore(ctx _context.Context) ApiCompanyHistoricalEsgScoreRequest {
+	return ApiCompanyHistoricalEsgScoreRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return HistoricalCompanyESG
+func (a *DefaultApiService) CompanyHistoricalEsgScoreExecute(r ApiCompanyHistoricalEsgScoreRequest) (HistoricalCompanyESG, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HistoricalCompanyESG
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompanyHistoricalEsgScore")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/historical-esg"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4685,12 +4957,12 @@ func (r ApiFilingsRequest) Form(form string) ApiFilingsRequest {
 	r.form = &form
 	return r
 }
-// From date: 2020-03-15.
+// From date: 2023-03-15.
 func (r ApiFilingsRequest) From(from string) ApiFilingsRequest {
 	r.from = &from
 	return r
 }
-// To date: 2020-03-16.
+// To date: 2023-03-16.
 func (r ApiFilingsRequest) To(to string) ApiFilingsRequest {
 	r.to = &to
 	return r
@@ -5933,6 +6205,298 @@ func (a *DefaultApiService) FundOwnershipExecute(r ApiFundOwnershipRequest) (Fun
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiHistoricalEmployeeCountRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	from *string
+	to *string
+}
+
+// Company symbol.
+func (r ApiHistoricalEmployeeCountRequest) Symbol(symbol string) ApiHistoricalEmployeeCountRequest {
+	r.symbol = &symbol
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiHistoricalEmployeeCountRequest) From(from string) ApiHistoricalEmployeeCountRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiHistoricalEmployeeCountRequest) To(to string) ApiHistoricalEmployeeCountRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiHistoricalEmployeeCountRequest) Execute() (HistoricalEmployeeCount, *_nethttp.Response, error) {
+	return r.ApiService.HistoricalEmployeeCountExecute(r)
+}
+
+/*
+HistoricalEmployeeCount Historical Employee Count
+
+Get historical employee count for global companies.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiHistoricalEmployeeCountRequest
+*/
+func (a *DefaultApiService) HistoricalEmployeeCount(ctx _context.Context) ApiHistoricalEmployeeCountRequest {
+	return ApiHistoricalEmployeeCountRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return HistoricalEmployeeCount
+func (a *DefaultApiService) HistoricalEmployeeCountExecute(r ApiHistoricalEmployeeCountRequest) (HistoricalEmployeeCount, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HistoricalEmployeeCount
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.HistoricalEmployeeCount")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/historical-employee-count"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiHistoricalMarketCapRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	from *string
+	to *string
+}
+
+// Company symbol.
+func (r ApiHistoricalMarketCapRequest) Symbol(symbol string) ApiHistoricalMarketCapRequest {
+	r.symbol = &symbol
+	return r
+}
+// From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiHistoricalMarketCapRequest) From(from string) ApiHistoricalMarketCapRequest {
+	r.from = &from
+	return r
+}
+// To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+func (r ApiHistoricalMarketCapRequest) To(to string) ApiHistoricalMarketCapRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiHistoricalMarketCapRequest) Execute() (HistoricalMarketCapData, *_nethttp.Response, error) {
+	return r.ApiService.HistoricalMarketCapExecute(r)
+}
+
+/*
+HistoricalMarketCap Historical Market Cap
+
+Get historical market cap data for global companies.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiHistoricalMarketCapRequest
+*/
+func (a *DefaultApiService) HistoricalMarketCap(ctx _context.Context) ApiHistoricalMarketCapRequest {
+	return ApiHistoricalMarketCapRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return HistoricalMarketCapData
+func (a *DefaultApiService) HistoricalMarketCapExecute(r ApiHistoricalMarketCapRequest) (HistoricalMarketCapData, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HistoricalMarketCapData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.HistoricalMarketCap")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/historical-market-cap"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiIndicesConstituentsRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -6362,7 +6926,7 @@ func (r ApiInsiderTransactionsRequest) Execute() (InsiderTransactions, *_nethttp
 /*
 InsiderTransactions Insider Transactions
 
-Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
+Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, UK, Canada, Australia, India, and all major EU markets. Limit to 100 transactions per API call.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiInsiderTransactionsRequest
@@ -6907,6 +7471,8 @@ type ApiInternationalFilingsRequest struct {
 	ApiService *DefaultApiService
 	symbol *string
 	country *string
+	from *string
+	to *string
 }
 
 // Symbol. Leave empty to list latest filings.
@@ -6919,6 +7485,16 @@ func (r ApiInternationalFilingsRequest) Country(country string) ApiInternational
 	r.country = &country
 	return r
 }
+// From date: 2023-01-15.
+func (r ApiInternationalFilingsRequest) From(from string) ApiInternationalFilingsRequest {
+	r.from = &from
+	return r
+}
+// To date: 2023-12-16.
+func (r ApiInternationalFilingsRequest) To(to string) ApiInternationalFilingsRequest {
+	r.to = &to
+	return r
+}
 
 func (r ApiInternationalFilingsRequest) Execute() ([]InternationalFiling, *_nethttp.Response, error) {
 	return r.ApiService.InternationalFilingsExecute(r)
@@ -6927,7 +7503,7 @@ func (r ApiInternationalFilingsRequest) Execute() ([]InternationalFiling, *_neth
 /*
 InternationalFilings International Filings
 
-List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+List filings for international companies. Limit to 500 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiInternationalFilingsRequest
@@ -6967,6 +7543,12 @@ func (a *DefaultApiService) InternationalFilingsExecute(r ApiInternationalFiling
 	}
 	if r.country != nil {
 		localVarQueryParams.Add("country", parameterToString(*r.country, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11411,7 +11993,7 @@ func (r ApiStockTickRequest) Execute() (TickData, *_nethttp.Response, error) {
 /*
 StockTick Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
+<p>Get historical tick data for global exchanges.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
   <thead>
     <tr>
       <th>Exchange</th>
@@ -12405,11 +12987,17 @@ type ApiSymbolSearchRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	q *string
+	exchange *string
 }
 
 // Query text can be symbol, name, isin, or cusip.
 func (r ApiSymbolSearchRequest) Q(q string) ApiSymbolSearchRequest {
 	r.q = &q
+	return r
+}
+// Exchange limit.
+func (r ApiSymbolSearchRequest) Exchange(exchange string) ApiSymbolSearchRequest {
+	r.exchange = &exchange
 	return r
 }
 
@@ -12459,6 +13047,9 @@ func (a *DefaultApiService) SymbolSearchExecute(r ApiSymbolSearchRequest) (Symbo
 	}
 
 	localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	if r.exchange != nil {
+		localVarQueryParams.Add("exchange", parameterToString(*r.exchange, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

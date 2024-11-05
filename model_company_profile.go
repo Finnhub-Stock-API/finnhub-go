@@ -50,6 +50,8 @@ type CompanyProfile struct {
 	Isin *string `json:"isin,omitempty"`
 	// LEI number.
 	Lei *string `json:"lei,omitempty"`
+	// Investor relations website.
+	IrUrl *string `json:"irUrl,omitempty"`
 	// NAICS national industry.
 	NaicsNationalIndustry *string `json:"naicsNationalIndustry,omitempty"`
 	// NAICS industry.
@@ -643,6 +645,38 @@ func (o *CompanyProfile) SetLei(v string) {
 	o.Lei = &v
 }
 
+// GetIrUrl returns the IrUrl field value if set, zero value otherwise.
+func (o *CompanyProfile) GetIrUrl() string {
+	if o == nil || o.IrUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.IrUrl
+}
+
+// GetIrUrlOk returns a tuple with the IrUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompanyProfile) GetIrUrlOk() (*string, bool) {
+	if o == nil || o.IrUrl == nil {
+		return nil, false
+	}
+	return o.IrUrl, true
+}
+
+// HasIrUrl returns a boolean if a field has been set.
+func (o *CompanyProfile) HasIrUrl() bool {
+	if o != nil && o.IrUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIrUrl gets a reference to the given string and assigns it to the IrUrl field.
+func (o *CompanyProfile) SetIrUrl(v string) {
+	o.IrUrl = &v
+}
+
 // GetNaicsNationalIndustry returns the NaicsNationalIndustry field value if set, zero value otherwise.
 func (o *CompanyProfile) GetNaicsNationalIndustry() string {
 	if o == nil || o.NaicsNationalIndustry == nil {
@@ -1175,6 +1209,9 @@ func (o CompanyProfile) MarshalJSON() ([]byte, error) {
 	}
 	if o.Lei != nil {
 		toSerialize["lei"] = o.Lei
+	}
+	if o.IrUrl != nil {
+		toSerialize["irUrl"] = o.IrUrl
 	}
 	if o.NaicsNationalIndustry != nil {
 		toSerialize["naicsNationalIndustry"] = o.NaicsNationalIndustry

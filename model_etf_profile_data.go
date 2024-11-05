@@ -40,6 +40,8 @@ type ETFProfileData struct {
 	InceptionDate *string `json:"inceptionDate,omitempty"`
 	// ETF's website.
 	Website *string `json:"website,omitempty"`
+	// Logo.
+	Logo *string `json:"logo,omitempty"`
 	// ISIN.
 	Isin *string `json:"isin,omitempty"`
 	// CUSIP.
@@ -461,6 +463,38 @@ func (o *ETFProfileData) SetWebsite(v string) {
 	o.Website = &v
 }
 
+// GetLogo returns the Logo field value if set, zero value otherwise.
+func (o *ETFProfileData) GetLogo() string {
+	if o == nil || o.Logo == nil {
+		var ret string
+		return ret
+	}
+	return *o.Logo
+}
+
+// GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ETFProfileData) GetLogoOk() (*string, bool) {
+	if o == nil || o.Logo == nil {
+		return nil, false
+	}
+	return o.Logo, true
+}
+
+// HasLogo returns a boolean if a field has been set.
+func (o *ETFProfileData) HasLogo() bool {
+	if o != nil && o.Logo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogo gets a reference to the given string and assigns it to the Logo field.
+func (o *ETFProfileData) SetLogo(v string) {
+	o.Logo = &v
+}
+
 // GetIsin returns the Isin field value if set, zero value otherwise.
 func (o *ETFProfileData) GetIsin() string {
 	if o == nil || o.Isin == nil {
@@ -786,6 +820,9 @@ func (o ETFProfileData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Website != nil {
 		toSerialize["website"] = o.Website
+	}
+	if o.Logo != nil {
+		toSerialize["logo"] = o.Logo
 	}
 	if o.Isin != nil {
 		toSerialize["isin"] = o.Isin

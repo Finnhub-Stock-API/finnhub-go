@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Exchange** | Pointer to **string** | Exchange. | [optional] 
 **Timezone** | Pointer to **string** | Timezone. | [optional] 
-**Session** | Pointer to **string** | Market session. | [optional] 
+**Session** | Pointer to **string** | Market session. Can be 1 of the following values: &lt;code&gt;pre-market&lt;/code&gt;,&lt;code&gt;regular&lt;/code&gt;,&lt;code&gt;post-market&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt; if the market is closed. | [optional] 
 **Holiday** | Pointer to **string** | Holiday event. | [optional] 
 **IsOpen** | Pointer to **bool** | Whether the market is open at the moment. | [optional] 
 **T** | Pointer to **int64** | Current timestamp. | [optional] 

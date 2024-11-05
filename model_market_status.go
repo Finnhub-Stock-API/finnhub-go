@@ -20,7 +20,7 @@ type MarketStatus struct {
 	Exchange *string `json:"exchange,omitempty"`
 	// Timezone.
 	Timezone *string `json:"timezone,omitempty"`
-	// Market session.
+	// Market session. Can be 1 of the following values: <code>pre-market</code>,<code>regular</code>,<code>post-market</code> or <code>null</code> if the market is closed.
 	Session *string `json:"session,omitempty"`
 	// Holiday event.
 	Holiday *string `json:"holiday,omitempty"`

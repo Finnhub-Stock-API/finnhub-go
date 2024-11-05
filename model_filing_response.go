@@ -28,7 +28,7 @@ type FilingResponse struct {
 	Name *string `json:"name,omitempty"`
 	// Date the filing is submitted.
 	AcceptanceDate *string `json:"acceptanceDate,omitempty"`
-	// Date the filing is make available to the public
+	// Date the filing is made available to the public
 	FiledDate *string `json:"filedDate,omitempty"`
 	// Date as which the filing is reported
 	ReportDate *string `json:"reportDate,omitempty"`

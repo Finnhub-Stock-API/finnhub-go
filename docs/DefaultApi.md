@@ -5,6 +5,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
+[**AirlinePriceIndex**](DefaultApi.md#AirlinePriceIndex) | **Get** /airline/price-index | Airline Price Index
 [**BondPrice**](DefaultApi.md#BondPrice) | **Get** /bond/price | Bond price data
 [**BondProfile**](DefaultApi.md#BondProfile) | **Get** /bond/profile | Bond Profile
 [**BondTick**](DefaultApi.md#BondTick) | **Get** /bond/tick | Bond Tick Data
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**CompanyEpsEstimates**](DefaultApi.md#CompanyEpsEstimates) | **Get** /stock/eps-estimate | Earnings Estimates
 [**CompanyEsgScore**](DefaultApi.md#CompanyEsgScore) | **Get** /stock/esg | Company ESG Scores
 [**CompanyExecutive**](DefaultApi.md#CompanyExecutive) | **Get** /stock/executive | Company Executive
+[**CompanyHistoricalEsgScore**](DefaultApi.md#CompanyHistoricalEsgScore) | **Get** /stock/historical-esg | Historical ESG Scores
 [**CompanyNews**](DefaultApi.md#CompanyNews) | **Get** /company-news | Company News
 [**CompanyPeers**](DefaultApi.md#CompanyPeers) | **Get** /stock/peers | Peers
 [**CompanyProfile**](DefaultApi.md#CompanyProfile) | **Get** /stock/profile | Company Profile
@@ -47,6 +49,8 @@ Method | HTTP request | Description
 [**ForexRates**](DefaultApi.md#ForexRates) | **Get** /forex/rates | Forex rates
 [**ForexSymbols**](DefaultApi.md#ForexSymbols) | **Get** /forex/symbol | Forex Symbol
 [**FundOwnership**](DefaultApi.md#FundOwnership) | **Get** /stock/fund-ownership | Fund Ownership
+[**HistoricalEmployeeCount**](DefaultApi.md#HistoricalEmployeeCount) | **Get** /stock/historical-employee-count | Historical Employee Count
+[**HistoricalMarketCap**](DefaultApi.md#HistoricalMarketCap) | **Get** /stock/historical-market-cap | Historical Market Cap
 [**IndicesConstituents**](DefaultApi.md#IndicesConstituents) | **Get** /index/constituents | Indices Constituents
 [**IndicesHistoricalConstituents**](DefaultApi.md#IndicesHistoricalConstituents) | **Get** /index/historical-constituents | Indices Historical Constituents
 [**InsiderSentiment**](DefaultApi.md#InsiderSentiment) | **Get** /stock/insider-sentiment | Insider Sentiment
@@ -155,6 +159,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AggregateIndicators**](AggregateIndicators.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AirlinePriceIndex
+
+> AirlinePriceIndexData AirlinePriceIndex(ctx).Airline(airline).From(from).To(to).Execute()
+
+Airline Price Index
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    airline := "airline_example" // string | Filter data by airline. Accepted values: <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.AirlinePriceIndex(context.Background()).Airline(airline).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AirlinePriceIndex``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AirlinePriceIndex`: AirlinePriceIndexData
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AirlinePriceIndex`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAirlinePriceIndexRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **airline** | **string** | Filter data by airline. Accepted values: &lt;code&gt;united&lt;/code&gt;,&lt;code&gt;delta&lt;/code&gt;,&lt;code&gt;american_airlines&lt;/code&gt;,&lt;code&gt;southwest&lt;/code&gt;,&lt;code&gt;southern_airways_express&lt;/code&gt;,&lt;code&gt;alaska_airlines&lt;/code&gt;,&lt;code&gt;frontier_airlines&lt;/code&gt;,&lt;code&gt;jetblue_airways&lt;/code&gt;,&lt;code&gt;spirit_airlines&lt;/code&gt;,&lt;code&gt;sun_country_airlines&lt;/code&gt;,&lt;code&gt;breeze_airways&lt;/code&gt;,&lt;code&gt;hawaiian_airlines&lt;/code&gt; | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**AirlinePriceIndexData**](AirlinePriceIndexData.md)
 
 ### Authorization
 
@@ -976,6 +1051,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompanyExecutive**](CompanyExecutive.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CompanyHistoricalEsgScore
+
+> HistoricalCompanyESG CompanyHistoricalEsgScore(ctx).Symbol(symbol).Execute()
+
+Historical ESG Scores
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CompanyHistoricalEsgScore(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CompanyHistoricalEsgScore``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CompanyHistoricalEsgScore`: HistoricalCompanyESG
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CompanyHistoricalEsgScore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCompanyHistoricalEsgScoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**HistoricalCompanyESG**](HistoricalCompanyESG.md)
 
 ### Authorization
 
@@ -2428,8 +2569,8 @@ func main() {
     cik := "cik_example" // string | CIK. (optional)
     accessNumber := "accessNumber_example" // string | Access number of a specific report you want to retrieve data from. (optional)
     form := "form_example" // string | Filter by form. You can use this value <code>NT 10-K</code> to find non-timely filings for a company. (optional)
-    from := time.Now() // string | From date: 2020-03-15. (optional)
-    to := time.Now() // string | To date: 2020-03-16. (optional)
+    from := time.Now() // string | From date: 2023-03-15. (optional)
+    to := time.Now() // string | To date: 2023-03-16. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -2458,8 +2599,8 @@ Name | Type | Description  | Notes
  **cik** | **string** | CIK. | 
  **accessNumber** | **string** | Access number of a specific report you want to retrieve data from. | 
  **form** | **string** | Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company. | 
- **from** | **string** | From date: 2020-03-15. | 
- **to** | **string** | To date: 2020-03-16. | 
+ **from** | **string** | From date: 2023-03-15. | 
+ **to** | **string** | To date: 2023-03-16. | 
 
 ### Return type
 
@@ -3027,6 +3168,148 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## HistoricalEmployeeCount
+
+> HistoricalEmployeeCount HistoricalEmployeeCount(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Historical Employee Count
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.HistoricalEmployeeCount(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.HistoricalEmployeeCount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `HistoricalEmployeeCount`: HistoricalEmployeeCount
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.HistoricalEmployeeCount`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiHistoricalEmployeeCountRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Company symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**HistoricalEmployeeCount**](HistoricalEmployeeCount.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## HistoricalMarketCap
+
+> HistoricalMarketCapData HistoricalMarketCap(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Historical Market Cap
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>.
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.HistoricalMarketCap(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.HistoricalMarketCap``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `HistoricalMarketCap`: HistoricalMarketCapData
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.HistoricalMarketCap`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiHistoricalMarketCapRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Company symbol. | 
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+
+### Return type
+
+[**HistoricalMarketCapData**](HistoricalMarketCapData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## IndicesConstituents
 
 > IndicesConstituents IndicesConstituents(ctx).Symbol(symbol).Execute()
@@ -3511,7 +3794,7 @@ Name | Type | Description  | Notes
 
 ## InternationalFilings
 
-> []InternationalFiling InternationalFilings(ctx).Symbol(symbol).Country(country).Execute()
+> []InternationalFiling InternationalFilings(ctx).Symbol(symbol).Country(country).From(from).To(to).Execute()
 
 International Filings
 
@@ -3526,16 +3809,19 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
 func main() {
     symbol := "symbol_example" // string | Symbol. Leave empty to list latest filings. (optional)
     country := "country_example" // string | Filter by country using country's 2-letter code. (optional)
+    from := time.Now() // string | From date: 2023-01-15. (optional)
+    to := time.Now() // string | To date: 2023-12-16. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.InternationalFilings(context.Background()).Symbol(symbol).Country(country).Execute()
+    resp, r, err := api_client.DefaultApi.InternationalFilings(context.Background()).Symbol(symbol).Country(country).From(from).To(to).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InternationalFilings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3558,6 +3844,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol. Leave empty to list latest filings. | 
  **country** | **string** | Filter by country using country&#39;s 2-letter code. | 
+ **from** | **string** | From date: 2023-01-15. | 
+ **to** | **string** | To date: 2023-12-16. | 
 
 ### Return type
 
@@ -6252,7 +6540,7 @@ Name | Type | Description  | Notes
 
 ## SymbolSearch
 
-> SymbolLookup SymbolSearch(ctx).Q(q).Execute()
+> SymbolLookup SymbolSearch(ctx).Q(q).Exchange(exchange).Execute()
 
 Symbol Lookup
 
@@ -6272,10 +6560,11 @@ import (
 
 func main() {
     q := "q_example" // string | Query text can be symbol, name, isin, or cusip.
+    exchange := "exchange_example" // string | Exchange limit. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SymbolSearch(context.Background()).Q(q).Execute()
+    resp, r, err := api_client.DefaultApi.SymbolSearch(context.Background()).Q(q).Exchange(exchange).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SymbolSearch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -6297,6 +6586,7 @@ Other parameters are passed through a pointer to a apiSymbolSearchRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **string** | Query text can be symbol, name, isin, or cusip. | 
+ **exchange** | **string** | Exchange limit. | 
 
 ### Return type
 

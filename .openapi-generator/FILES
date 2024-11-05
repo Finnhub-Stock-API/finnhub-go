@@ -5,6 +5,8 @@ api_default.go
 client.go
 configuration.go
 docs/AggregateIndicators.md
+docs/AirlinePriceIndex.md
+docs/AirlinePriceIndexData.md
 docs/BasicFinancials.md
 docs/BondCandles.md
 docs/BondProfile.md
@@ -58,6 +60,7 @@ docs/EconomicCode.md
 docs/EconomicData.md
 docs/EconomicDataInfo.md
 docs/EconomicEvent.md
+docs/EmployeeCount.md
 docs/ExcerptResponse.md
 docs/FDAComitteeMeeting.md
 docs/Filing.md
@@ -70,6 +73,9 @@ docs/ForexSymbol.md
 docs/Forexrates.md
 docs/FundOwnership.md
 docs/FundOwnershipInfo.md
+docs/HistoricalCompanyESG.md
+docs/HistoricalEmployeeCount.md
+docs/HistoricalMarketCapData.md
 docs/HistoricalNBBO.md
 docs/IPOCalendar.md
 docs/IPOEvent.md
@@ -100,6 +106,7 @@ docs/KeyCustomersSuppliers.md
 docs/LastBidAsk.md
 docs/LobbyingData.md
 docs/LobbyingResult.md
+docs/MarketCapData.md
 docs/MarketHoliday.md
 docs/MarketHolidayData.md
 docs/MarketNews.md
@@ -165,6 +172,8 @@ git_push.sh
 go.mod
 go.sum
 model_aggregate_indicators.go
+model_airline_price_index.go
+model_airline_price_index_data.go
 model_basic_financials.go
 model_bond_candles.go
 model_bond_profile.go
@@ -209,6 +218,7 @@ model_economic_code.go
 model_economic_data.go
 model_economic_data_info.go
 model_economic_event.go
+model_employee_count.go
 model_etf_country_exposure_data.go
 model_etf_holdings_data.go
 model_etf_profile_data.go
@@ -229,6 +239,9 @@ model_forex_symbol.go
 model_forexrates.go
 model_fund_ownership.go
 model_fund_ownership_info.go
+model_historical_company_esg.go
+model_historical_employee_count.go
+model_historical_market_cap_data.go
 model_historical_nbbo.go
 model_in_filing_response.go
 model_in_filing_search_body.go
@@ -259,6 +272,7 @@ model_key_customers_suppliers.go
 model_last_bid_ask.go
 model_lobbying_data.go
 model_lobbying_result.go
+model_market_cap_data.go
 model_market_holiday.go
 model_market_holiday_data.go
 model_market_news.go

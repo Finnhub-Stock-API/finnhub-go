@@ -20,6 +20,11 @@ paths:
         required: true
         schema:
           type: string
+      - description: Exchange limit.
+        in: query
+        name: exchange
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -504,6 +509,80 @@ paths:
       summary: ISIN Change
       tags:
       - Default
+  /stock/historical-market-cap:
+    get:
+      description: Get historical market cap data for global companies.
+      operationId: historical-market-cap
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalMarketCapData'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Historical Market Cap
+      tags:
+      - Default
+  /stock/historical-employee-count:
+    get:
+      description: Get historical employee count for global companies.
+      operationId: historical-employee-count
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalEmployeeCount'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Historical Employee Count
+      tags:
+      - Default
   /institutional/profile:
     get:
       description: Get a list of well-known institutional investors. Currently support
@@ -675,8 +754,9 @@ paths:
   /stock/insider-transactions:
     get:
       description: Company insider transactions data sourced from <code>Form 3,4,5</code>,
-        SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia,
-        and selected EU companies. Limit to 100 transactions per API call.
+        SEDI and relevant companies' filings. This endpoint covers US, UK, Canada,
+        Australia, India, and all major EU markets. Limit to 100 transactions per
+        API call.
       operationId: insider-transactions
       parameters:
       - description: 'Symbol of the company: AAPL. Leave this param blank to get the
@@ -907,13 +987,13 @@ paths:
         name: form
         schema:
           type: string
-      - description: 'From date: 2020-03-15.'
+      - description: 'From date: 2023-03-15.'
         in: query
         name: from
         schema:
           format: date
           type: string
-      - description: 'To date: 2020-03-16.'
+      - description: 'To date: 2023-03-16.'
         in: query
         name: to
         schema:
@@ -1449,7 +1529,7 @@ paths:
   /stock/tick:
     get:
       description: |-
-        <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href="https://tick.finnhub.io/">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
+        <p>Get historical tick data for global exchanges.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
           <thead>
             <tr>
               <th>Exchange</th>
@@ -2533,15 +2613,14 @@ paths:
       - Default
   /stock/esg:
     get:
-      description: <p>This endpoint provides ESG scores and important indicators for
-        7000+ global companies. The data is collected through company's public ESG
-        disclosure and public sources.</p><p>Our ESG scoring models takes into account
-        more than 150 different inputs to calculate the level of ESG risks and how
-        well a company is managing them. A higher score means lower ESG risk or better
-        ESG management. ESG scores are in the the range of 0-100. Some key indicators
-        might contain letter-grade score from C- to A+ with C- is the lowest score
-        and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise
-        users. <a href="mailto:support@finnhub.io">Contact us</a> to learn more.</p>
+      description: <p>This endpoint provides the latest ESG scores and important indicators
+        for 7000+ global companies. The data is collected through company's public
+        ESG disclosure and public sources.</p><p>Our ESG scoring models takes into
+        account more than 150 different inputs to calculate the level of ESG risks
+        and how well a company is managing them. A higher score means lower ESG risk
+        or better ESG management. ESG scores are in the the range of 0-100. Some key
+        indicators might contain letter-grade score from C- to A+ with C- is the lowest
+        score and A+ is the highest score.</p>
       operationId: company-esg-score
       parameters:
       - description: Symbol.
@@ -2560,6 +2639,36 @@ paths:
       security:
       - api_key: []
       summary: Company ESG Scores
+      tags:
+      - Default
+  /stock/historical-esg:
+    get:
+      description: <p>This endpoint provides historical ESG scores and important indicators
+        for 7000+ global companies. The data is collected through company's public
+        ESG disclosure and public sources.</p><p>Our ESG scoring models takes into
+        account more than 150 different inputs to calculate the level of ESG risks
+        and how well a company is managing them. A higher score means lower ESG risk
+        or better ESG management. ESG scores are in the the range of 0-100. Some key
+        indicators might contain letter-grade score from C- to A+ with C- is the lowest
+        score and A+ is the highest score.</p>
+      operationId: company-historical-esg-score
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalCompanyESG'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Historical ESG Scores
       tags:
       - Default
   /stock/earnings-quality-score:
@@ -3029,6 +3138,52 @@ paths:
       summary: Bond Yield Curve
       tags:
       - Default
+  /airline/price-index:
+    get:
+      description: <p>The Flight Ticket Price Index API provides comprehensive data
+        on airline ticket prices, including the average daily ticket price and its
+        percentage change (price index). This data, collected weekly and projected
+        two weeks ahead, aggregates daily prices and indexes from the 50 busiest and
+        largest airports across the USA. The dataset includes detailed information
+        on airlines, dates, and average ticket prices, offering valuable insights
+        for market analysis and pricing strategies.</p><p>The price index is calculated
+        as percentage change of average daily ticket price from the previous weekly
+        reading. Raw ticket prices data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact
+        us</a> to inquire about the raw price data.</p>
+      operationId: airline-price-index
+      parameters:
+      - description: 'Filter data by airline. Accepted values: <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>'
+        in: query
+        name: airline
+        required: true
+        schema:
+          type: string
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirlinePriceIndexData'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Airline Price Index
+      tags:
+      - Default
   /country:
     get:
       description: List all countries and metadata.
@@ -3120,7 +3275,7 @@ paths:
       - Default
   /stock/international-filings:
     get:
-      description: List filings for international companies. Limit to 250 documents
+      description: List filings for international companies. Limit to 500 documents
         at a time. These are the documents we use to source our fundamental data.
         Only support SEDAR and UK Companies House for normal usage. Enterprise clients
         who need access to the full filings for global markets should contact us for
@@ -3136,6 +3291,18 @@ paths:
         in: query
         name: country
         schema:
+          type: string
+      - description: 'From date: 2023-01-15.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To date: 2023-12-16.'
+        in: query
+        name: to
+        schema:
+          format: date
           type: string
       responses:
         "200":
@@ -3290,7 +3457,7 @@ components:
           description: Date the filing is submitted.
           type: string
         filedDate:
-          description: Date the filing is make available to the public
+          description: Date the filing is made available to the public
           type: string
         reportDate:
           description: Date as which the filing is reported
@@ -3581,7 +3748,8 @@ components:
           description: Timezone.
           type: string
         session:
-          description: Market session.
+          description: 'Market session. Can be 1 of the following values: <code>pre-market</code>,<code>regular</code>,<code>post-market</code>
+            or <code>null</code> if the market is closed.'
           type: string
         holiday:
           description: Holiday event.
@@ -3668,6 +3836,7 @@ components:
         gsubind: gsubind
         name: name
         exchange: exchange
+        irUrl: irUrl
         naics: naics
         isin: isin
         shareOutstanding: 6.0274563
@@ -3724,6 +3893,9 @@ components:
           type: string
         lei:
           description: LEI number.
+          type: string
+        irUrl:
+          description: Investor relations website.
           type: string
         naicsNationalIndustry:
           description: NAICS national industry.
@@ -5396,6 +5568,7 @@ components:
         targetLow: 6.0274563
         symbol: symbol
         lastUpdated: lastUpdated
+        numberAnalysts: 5
         targetHigh: 0.8008282
         targetMean: 1.4658129
         targetMedian: 5.962134
@@ -5419,6 +5592,10 @@ components:
           description: Median of all analysts' targets.
           format: float
           type: number
+        numberAnalysts:
+          description: Number of Analysts.
+          format: int64
+          type: integer
         lastUpdated:
           description: Updated time of the data
           type: string
@@ -6421,6 +6598,7 @@ components:
         name: name
         aum: 0.8008282
         domicile: domicile
+        logo: logo
         isLeveraged: true
         trackingIndex: trackingIndex
         priceToBook: 5.637377
@@ -6468,6 +6646,9 @@ components:
           type: string
         website:
           description: ETF's website.
+          type: string
+        logo:
+          description: Logo.
           type: string
         isin:
           description: ISIN.
@@ -6520,6 +6701,7 @@ components:
           name: name
           aum: 0.8008282
           domicile: domicile
+          logo: logo
           isLeveraged: true
           trackingIndex: trackingIndex
           priceToBook: 5.637377
@@ -7708,6 +7890,23 @@ components:
             $ref: '#/components/schemas/KeyCustomersSuppliers'
           type: array
       type: object
+    HistoricalCompanyESG:
+      example:
+        symbol: symbol
+        data:
+          symbol: symbol
+          data: '{}'
+          totalESGScore: 0.8008282
+          environmentScore: 6.0274563
+          governanceScore: 1.4658129
+          socialScore: 5.962134
+      properties:
+        symbol:
+          description: symbol
+          type: string
+        data:
+          $ref: '#/components/schemas/CompanyESG'
+      type: object
     CompanyESG:
       example:
         symbol: symbol
@@ -8021,6 +8220,118 @@ components:
           type: array
         code:
           description: Finnhub economic code
+          type: string
+      type: object
+    MarketCapData:
+      example:
+        marketCapitalization: 0.8008282
+        atDate: atDate
+      properties:
+        atDate:
+          description: Date of the reading
+          type: string
+        marketCapitalization:
+          description: Value
+          format: float
+          type: number
+      type: object
+    HistoricalMarketCapData:
+      example:
+        symbol: symbol
+        data:
+        - marketCapitalization: 0.8008282
+          atDate: atDate
+        - marketCapitalization: 0.8008282
+          atDate: atDate
+        currency: currency
+      properties:
+        data:
+          description: Array of market data.
+          items:
+            $ref: '#/components/schemas/MarketCapData'
+          type: array
+        symbol:
+          description: Symbol
+          type: string
+        currency:
+          description: Currency
+          type: string
+      type: object
+    EmployeeCount:
+      example:
+        atDate: atDate
+        employee: 0.8008282
+      properties:
+        atDate:
+          description: Date of the reading
+          type: string
+        employee:
+          description: Value
+          format: float
+          type: number
+      type: object
+    HistoricalEmployeeCount:
+      example:
+        symbol: symbol
+        data:
+        - atDate: atDate
+          employee: 0.8008282
+        - atDate: atDate
+          employee: 0.8008282
+      properties:
+        data:
+          description: Array of market data.
+          items:
+            $ref: '#/components/schemas/EmployeeCount'
+          type: array
+        symbol:
+          description: Symbol
+          type: string
+      type: object
+    AirlinePriceIndex:
+      example:
+        date: date
+        priceIndex: 0.8008282
+        dailyAvgPrice: 6.0274563
+      properties:
+        date:
+          description: Date
+          type: string
+        priceIndex:
+          description: Price Index
+          format: float
+          type: number
+        dailyAvgPrice:
+          description: Daily average ticket price.
+          format: float
+          type: number
+      type: object
+    AirlinePriceIndexData:
+      example:
+        data:
+        - date: date
+          priceIndex: 0.8008282
+          dailyAvgPrice: 6.0274563
+        - date: date
+          priceIndex: 0.8008282
+          dailyAvgPrice: 6.0274563
+        from: from
+        to: to
+        airline: airline
+      properties:
+        data:
+          description: Array of price index.
+          items:
+            $ref: '#/components/schemas/AirlinePriceIndex'
+          type: array
+        airline:
+          description: Airline name
+          type: string
+        from:
+          description: From date
+          type: string
+        to:
+          description: To date
           type: string
       type: object
     BondYieldCurveInfo:

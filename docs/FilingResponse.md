@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Symbol** | Pointer to **map[string]interface{}** | List of symbol associate with this filing | [optional] 
 **Name** | Pointer to **string** | Filer name | [optional] 
 **AcceptanceDate** | Pointer to **string** | Date the filing is submitted. | [optional] 
-**FiledDate** | Pointer to **string** | Date the filing is make available to the public | [optional] 
+**FiledDate** | Pointer to **string** | Date the filing is made available to the public | [optional] 
 **ReportDate** | Pointer to **string** | Date as which the filing is reported | [optional] 
 **Form** | Pointer to **string** | Filing Form | [optional] 
 **Amend** | Pointer to **bool** | Amendment | [optional] 

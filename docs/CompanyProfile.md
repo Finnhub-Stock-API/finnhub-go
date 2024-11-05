@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Gsubind** | Pointer to **string** | Sub-industry. | [optional] 
 **Isin** | Pointer to **string** | ISIN number. | [optional] 
 **Lei** | Pointer to **string** | LEI number. | [optional] 
+**IrUrl** | Pointer to **string** | Investor relations website. | [optional] 
 **NaicsNationalIndustry** | Pointer to **string** | NAICS national industry. | [optional] 
 **Naics** | Pointer to **string** | NAICS industry. | [optional] 
 **NaicsSector** | Pointer to **string** | NAICS sector. | [optional] 
@@ -480,6 +481,31 @@ SetLei sets Lei field to given value.
 `func (o *CompanyProfile) HasLei() bool`
 
 HasLei returns a boolean if a field has been set.
+
+### GetIrUrl
+
+`func (o *CompanyProfile) GetIrUrl() string`
+
+GetIrUrl returns the IrUrl field if non-nil, zero value otherwise.
+
+### GetIrUrlOk
+
+`func (o *CompanyProfile) GetIrUrlOk() (*string, bool)`
+
+GetIrUrlOk returns a tuple with the IrUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIrUrl
+
+`func (o *CompanyProfile) SetIrUrl(v string)`
+
+SetIrUrl sets IrUrl field to given value.
+
+### HasIrUrl
+
+`func (o *CompanyProfile) HasIrUrl() bool`
+
+HasIrUrl returns a boolean if a field has been set.
 
 ### GetNaicsNationalIndustry
 

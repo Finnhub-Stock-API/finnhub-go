@@ -26,6 +26,8 @@ type PriceTarget struct {
 	TargetMean *float32 `json:"targetMean,omitempty"`
 	// Median of all analysts' targets.
 	TargetMedian *float32 `json:"targetMedian,omitempty"`
+	// Number of Analysts.
+	NumberAnalysts *int64 `json:"numberAnalysts,omitempty"`
 	// Updated time of the data
 	LastUpdated *string `json:"lastUpdated,omitempty"`
 }
@@ -207,6 +209,38 @@ func (o *PriceTarget) SetTargetMedian(v float32) {
 	o.TargetMedian = &v
 }
 
+// GetNumberAnalysts returns the NumberAnalysts field value if set, zero value otherwise.
+func (o *PriceTarget) GetNumberAnalysts() int64 {
+	if o == nil || o.NumberAnalysts == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NumberAnalysts
+}
+
+// GetNumberAnalystsOk returns a tuple with the NumberAnalysts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PriceTarget) GetNumberAnalystsOk() (*int64, bool) {
+	if o == nil || o.NumberAnalysts == nil {
+		return nil, false
+	}
+	return o.NumberAnalysts, true
+}
+
+// HasNumberAnalysts returns a boolean if a field has been set.
+func (o *PriceTarget) HasNumberAnalysts() bool {
+	if o != nil && o.NumberAnalysts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNumberAnalysts gets a reference to the given int64 and assigns it to the NumberAnalysts field.
+func (o *PriceTarget) SetNumberAnalysts(v int64) {
+	o.NumberAnalysts = &v
+}
+
 // GetLastUpdated returns the LastUpdated field value if set, zero value otherwise.
 func (o *PriceTarget) GetLastUpdated() string {
 	if o == nil || o.LastUpdated == nil {
@@ -255,6 +289,9 @@ func (o PriceTarget) MarshalJSON() ([]byte, error) {
 	}
 	if o.TargetMedian != nil {
 		toSerialize["targetMedian"] = o.TargetMedian
+	}
+	if o.NumberAnalysts != nil {
+		toSerialize["numberAnalysts"] = o.NumberAnalysts
 	}
 	if o.LastUpdated != nil {
 		toSerialize["lastUpdated"] = o.LastUpdated
