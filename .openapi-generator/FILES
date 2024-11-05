@@ -16,6 +16,7 @@ docs/BondYieldCurveInfo.md
 docs/BreakdownItem.md
 docs/Company.md
 docs/CompanyESG.md
+docs/CompanyESG2.md
 docs/CompanyEarningsQualityScore.md
 docs/CompanyEarningsQualityScoreData.md
 docs/CompanyExecutive.md
@@ -185,6 +186,7 @@ model_company.go
 model_company_earnings_quality_score.go
 model_company_earnings_quality_score_data.go
 model_company_esg.go
+model_company_esg2.go
 model_company_executive.go
 model_company_news.go
 model_company_news_statistics.go

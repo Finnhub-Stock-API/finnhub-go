@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** | symbol | [optional] 
-**Data** | Pointer to [**CompanyESG**](CompanyESG.md) |  | [optional] 
+**Data** | Pointer to [**[]CompanyESG2**](CompanyESG2.md) | Historical ESG data points. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *HistoricalCompanyESG) GetData() CompanyESG`
+`func (o *HistoricalCompanyESG) GetData() []CompanyESG2`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *HistoricalCompanyESG) GetDataOk() (*CompanyESG, bool)`
+`func (o *HistoricalCompanyESG) GetDataOk() (*[]CompanyESG2, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *HistoricalCompanyESG) SetData(v CompanyESG)`
+`func (o *HistoricalCompanyESG) SetData(v []CompanyESG2)`
 
 SetData sets Data field to given value.
 

@@ -7894,7 +7894,13 @@ components:
       example:
         symbol: symbol
         data:
-          symbol: symbol
+        - period: period
+          data: '{}'
+          totalESGScore: 0.8008282
+          environmentScore: 6.0274563
+          governanceScore: 1.4658129
+          socialScore: 5.962134
+        - period: period
           data: '{}'
           totalESGScore: 0.8008282
           environmentScore: 6.0274563
@@ -7905,7 +7911,41 @@ components:
           description: symbol
           type: string
         data:
-          $ref: '#/components/schemas/CompanyESG'
+          description: Historical ESG data points.
+          items:
+            $ref: '#/components/schemas/CompanyESG2'
+          type: array
+      type: object
+    CompanyESG2:
+      example:
+        period: period
+        data: '{}'
+        totalESGScore: 0.8008282
+        environmentScore: 6.0274563
+        governanceScore: 1.4658129
+        socialScore: 5.962134
+      properties:
+        totalESGScore:
+          description: Total ESG Score
+          format: float
+          type: number
+        environmentScore:
+          description: Environment Score
+          format: float
+          type: number
+        governanceScore:
+          description: Governance Score
+          format: float
+          type: number
+        socialScore:
+          description: Social Score
+          format: float
+          type: number
+        data:
+          type: object
+        period:
+          description: Period
+          type: string
       type: object
     CompanyESG:
       example:

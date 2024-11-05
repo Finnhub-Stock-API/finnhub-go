@@ -18,7 +18,8 @@ import (
 type HistoricalCompanyESG struct {
 	// symbol
 	Symbol *string `json:"symbol,omitempty"`
-	Data *CompanyESG `json:"data,omitempty"`
+	// Historical ESG data points.
+	Data *[]CompanyESG2 `json:"data,omitempty"`
 }
 
 // NewHistoricalCompanyESG instantiates a new HistoricalCompanyESG object
@@ -71,9 +72,9 @@ func (o *HistoricalCompanyESG) SetSymbol(v string) {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *HistoricalCompanyESG) GetData() CompanyESG {
+func (o *HistoricalCompanyESG) GetData() []CompanyESG2 {
 	if o == nil || o.Data == nil {
-		var ret CompanyESG
+		var ret []CompanyESG2
 		return ret
 	}
 	return *o.Data
@@ -81,7 +82,7 @@ func (o *HistoricalCompanyESG) GetData() CompanyESG {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalCompanyESG) GetDataOk() (*CompanyESG, bool) {
+func (o *HistoricalCompanyESG) GetDataOk() (*[]CompanyESG2, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -97,8 +98,8 @@ func (o *HistoricalCompanyESG) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given CompanyESG and assigns it to the Data field.
-func (o *HistoricalCompanyESG) SetData(v CompanyESG) {
+// SetData gets a reference to the given []CompanyESG2 and assigns it to the Data field.
+func (o *HistoricalCompanyESG) SetData(v []CompanyESG2) {
 	o.Data = &v
 }
 
