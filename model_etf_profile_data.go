@@ -60,6 +60,8 @@ type ETFProfileData struct {
 	IsLeveraged *bool `json:"isLeveraged,omitempty"`
 	// Leverage factor.
 	LeverageFactor *float32 `json:"leverageFactor,omitempty"`
+	// Dividend yield.
+	DividendYield *float32 `json:"dividendYield,omitempty"`
 }
 
 // NewETFProfileData instantiates a new ETFProfileData object
@@ -783,6 +785,38 @@ func (o *ETFProfileData) SetLeverageFactor(v float32) {
 	o.LeverageFactor = &v
 }
 
+// GetDividendYield returns the DividendYield field value if set, zero value otherwise.
+func (o *ETFProfileData) GetDividendYield() float32 {
+	if o == nil || o.DividendYield == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DividendYield
+}
+
+// GetDividendYieldOk returns a tuple with the DividendYield field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ETFProfileData) GetDividendYieldOk() (*float32, bool) {
+	if o == nil || o.DividendYield == nil {
+		return nil, false
+	}
+	return o.DividendYield, true
+}
+
+// HasDividendYield returns a boolean if a field has been set.
+func (o *ETFProfileData) HasDividendYield() bool {
+	if o != nil && o.DividendYield != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDividendYield gets a reference to the given float32 and assigns it to the DividendYield field.
+func (o *ETFProfileData) SetDividendYield(v float32) {
+	o.DividendYield = &v
+}
+
 func (o ETFProfileData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -850,6 +884,9 @@ func (o ETFProfileData) MarshalJSON() ([]byte, error) {
 	}
 	if o.LeverageFactor != nil {
 		toSerialize["leverageFactor"] = o.LeverageFactor
+	}
+	if o.DividendYield != nil {
+		toSerialize["dividendYield"] = o.DividendYield
 	}
 	return json.Marshal(toSerialize)
 }

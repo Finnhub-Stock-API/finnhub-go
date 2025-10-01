@@ -863,6 +863,16 @@ paths:
         required: true
         schema:
           type: string
+      - description: 'If set to <code>true</code>, it will return Preliminary financial
+          statements which are usually available within an hour of the earnings announcement.
+          The Preliminary data is subjected to changes later as our team review and
+          standardize the data. This preliminary data is currently available for US
+          companies and reserved for Enterprise users only. You will see <code>"preliminary":
+          true</code> in the data if that period is using preliminary data.'
+        in: query
+        name: preliminary
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -930,9 +940,11 @@ paths:
       - Default
   /stock/revenue-breakdown:
     get:
-      description: Get revenue breakdown by product. This dataset is only available
-        for US companies which disclose their revenue breakdown in the annual or quarterly
-        reports.
+      description: <p>Get revenue breakdown as-reporetd by product and geography.
+        Users on personal plans can access data for US companies which disclose their
+        revenue breakdown in the annual or quarterly reports.</p><p>Global standardized
+        revenue breakdown/segments data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact
+        us</a> to inquire about the access for Global standardized data.</p>
       operationId: revenue-breakdown
       parameters:
       - description: Symbol.
@@ -1611,7 +1623,7 @@ paths:
     get:
       description: <p>Get historical best bid and offer for US stocks, LSE, TSX, Euronext
         and Deutsche Borse.</p><p>For US market, this endpoint only serves historical
-        NBBO from the beginning of 2020. To download more historical data, please
+        NBBO from the beginning of 2023. To download more historical data, please
         visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a>.</p>
       operationId: stock-nbbo
       parameters:
@@ -1767,8 +1779,8 @@ paths:
   /index/historical-constituents:
     get:
       description: Get full history of index's constituents including symbols and
-        dates of joining and leaving the Index. Currently support <code>^GSPC</code>,
-        <code>^NDX</code>, <code>^DJI</code>
+        dates of joining and leaving the Index. A list of supported indices for this
+        endpoint can be found <a href="/api/v1/index/historical-list?token=" target="_blank">here</a>.
       operationId: indices-historical-constituents
       parameters:
       - description: symbol
@@ -2515,6 +2527,66 @@ paths:
       summary: Earnings Call Transcripts
       tags:
       - Default
+  /stock/earnings-call-live:
+    get:
+      description: <p>Stream live earnings calls with data provided in the calendar.
+        The data will be available in m3u8 format. mp3 files will be available once
+        the calls finish in the <code>recording</code> field.</p>
+      operationId: earnings-call-live
+      parameters:
+      - description: From date <code>YYYY-MM-DD</code>.
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: To date <code>YYYY-MM-DD</code>.
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
+      - description: 'Filter by symbol: AAPL.'
+        in: query
+        name: symbol
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarningsCallLive'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Earnings Call Audio Live
+      tags:
+      - Default
+  /stock/presentation:
+    get:
+      description: <p>Get presentations/slides data in PDF format that are usually
+        used during earnings calls.</p>
+      operationId: stock-presentation
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockPresentation'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Company Presentation
+      tags:
+      - Default
   /stock/social-sentiment:
     get:
       description: <p>Get social sentiment for stocks on Reddit and Twitter.</p>
@@ -3138,6 +3210,28 @@ paths:
       summary: Bond Yield Curve
       tags:
       - Default
+  /bank-branch:
+    get:
+      description: Retrieve list of US bank branches information for a given symbol.
+      operationId: bank-branch
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema: {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankBranchRes'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Bank Branch List
+      tags:
+      - Default
   /airline/price-index:
     get:
       description: <p>The Flight Ticket Price Index API provides comprehensive data
@@ -3277,9 +3371,8 @@ paths:
     get:
       description: List filings for international companies. Limit to 500 documents
         at a time. These are the documents we use to source our fundamental data.
-        Only support SEDAR and UK Companies House for normal usage. Enterprise clients
-        who need access to the full filings for global markets should contact us for
-        the access.
+        Enterprise clients who need access to the full filings for global markets
+        should contact us for the access.
       operationId: international-filings
       parameters:
       - description: Symbol. Leave empty to list latest filings.
@@ -3316,6 +3409,30 @@ paths:
       security:
       - api_key: []
       summary: International Filings
+      tags:
+      - Default
+  /stock/revenue-breakdown2:
+    get:
+      description: <p>Get standardized revenue breakdown and KPIs data for 30,000+
+        global companies.</p>
+      operationId: revenue-breakdown2
+      parameters:
+      - description: Symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevenueBreakdown2'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Revenue Breakdown & KPI
       tags:
       - Default
 components:
@@ -3405,6 +3522,64 @@ components:
           type: boolean
       required:
       - query
+      type: object
+    AIChatBody:
+      properties:
+        messages:
+          description: Messages
+          items:
+            $ref: '#/components/schemas/AIChatMessage'
+          type: array
+        stream:
+          description: Stream responses
+          type: boolean
+      required:
+      - messages
+      type: object
+    AIChatMessage:
+      properties:
+        role:
+          description: Role system/user
+          type: string
+        content:
+          description: Content
+          type: string
+      type: object
+    AIChatResponse:
+      properties:
+        chatId:
+          description: Chat ID.
+          type: string
+        content:
+          description: Response text.
+          type: string
+        querySummary:
+          description: Query summary
+          type: string
+        relatedQueries:
+          description: Related queries.
+          items:
+            properties: {}
+            type: object
+          type: array
+        tickers:
+          description: List of tickers mentioned.
+          items:
+            properties: {}
+            type: object
+          type: array
+        sources:
+          description: Sources.
+          items:
+            properties: {}
+            type: object
+          type: array
+        widgets:
+          description: Widgets.
+          items:
+            properties: {}
+            type: object
+          type: array
       type: object
     InFilingSearchBody:
       properties:
@@ -5130,6 +5305,23 @@ components:
             $ref: '#/components/schemas/BreakdownItem'
           type: array
       type: object
+    RevenueBreakdown2:
+      example:
+        symbol: symbol
+        data: '{}'
+        currency: currency
+      properties:
+        symbol:
+          description: Symbol
+          type: string
+        currency:
+          description: currency
+          type: string
+        data:
+          description: Revenue breakdown data.
+          properties: {}
+          type: object
+      type: object
     Filing:
       example:
         symbol: symbol
@@ -6033,6 +6225,65 @@ components:
             $ref: '#/components/schemas/EarningRelease'
           type: array
       type: object
+    EarningsCallLiveResult:
+      example:
+        symbol: symbol
+        year: 0
+        liveAudio: liveAudio
+        recording: recording
+        time: time
+        event: event
+        quarter: 6
+      properties:
+        symbol:
+          description: Symbol.
+          type: string
+        event:
+          description: Event name.
+          type: string
+        time:
+          description: Date time in UTC.
+          format: datetime
+          type: string
+        year:
+          description: Earnings year.
+          format: int64
+          type: integer
+        quarter:
+          description: Earnings quarter.
+          format: int64
+          type: integer
+        liveAudio:
+          description: Live audio streaming file.
+          type: string
+        recording:
+          description: Recoding in mp3 format.
+          type: string
+      type: object
+    EarningsCallLive:
+      example:
+        event:
+        - symbol: symbol
+          year: 0
+          liveAudio: liveAudio
+          recording: recording
+          time: time
+          event: event
+          quarter: 6
+        - symbol: symbol
+          year: 0
+          liveAudio: liveAudio
+          recording: recording
+          time: time
+          event: event
+          quarter: 6
+      properties:
+        event:
+          description: Array of earnings call events that support live streaming.
+          items:
+            $ref: '#/components/schemas/EarningsCallLiveResult'
+          type: array
+      type: object
     Quote:
       example:
         c: 5.962134
@@ -6592,6 +6843,7 @@ components:
         description: description
         assetClass: assetClass
         leverageFactor: 7.0614014
+        dividendYield: 9.301444
         etfCompany: etfCompany
         inceptionDate: 2000-01-23
         expenseRatio: 1.4658129
@@ -6681,6 +6933,10 @@ components:
           description: Leverage factor.
           format: float
           type: number
+        dividendYield:
+          description: Dividend yield.
+          format: float
+          type: number
       type: object
     ETFsProfile:
       example:
@@ -6695,6 +6951,7 @@ components:
           description: description
           assetClass: assetClass
           leverageFactor: 7.0614014
+          dividendYield: 9.301444
           etfCompany: etfCompany
           inceptionDate: 2000-01-23
           expenseRatio: 1.4658129
@@ -7671,6 +7928,56 @@ components:
           format: int64
           type: integer
       type: object
+    PresentationData:
+      example:
+        atTime: atTime
+        year: 6
+        title: title
+        url: url
+        quarter: 0
+      properties:
+        quarter:
+          description: Quarter
+          format: int64
+          type: integer
+        year:
+          description: Year
+          format: int64
+          type: integer
+        url:
+          description: Presentation url
+          type: string
+        title:
+          description: Title
+          type: string
+        atTime:
+          description: At Time.
+          type: string
+      type: object
+    StockPresentation:
+      example:
+        symbol: symbol
+        res:
+        - atTime: atTime
+          year: 6
+          title: title
+          url: url
+          quarter: 0
+        - atTime: atTime
+          year: 6
+          title: title
+          url: url
+          quarter: 0
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        res:
+          description: Presentation data.
+          items:
+            $ref: '#/components/schemas/PresentationData'
+          type: array
+      type: object
     SentimentContent:
       example:
         positiveMention: 6
@@ -8372,6 +8679,54 @@ components:
           type: string
         to:
           description: To date
+          type: string
+      type: object
+    BankBranchRes:
+      example:
+        symbol: symbol
+        data:
+        - date: date
+          branchId: branchId
+          zipCode: zipCode
+          address: address
+          state: state
+        - date: date
+          branchId: branchId
+          zipCode: zipCode
+          address: address
+          state: state
+      properties:
+        data:
+          description: Array of branches.
+          items:
+            $ref: '#/components/schemas/BankBranchData'
+          type: array
+        symbol:
+          description: Symbol
+          type: string
+      type: object
+    BankBranchData:
+      example:
+        date: date
+        branchId: branchId
+        zipCode: zipCode
+        address: address
+        state: state
+      properties:
+        branchId:
+          description: Branch ID
+          type: string
+        address:
+          description: Branch address
+          type: string
+        state:
+          description: State
+          type: string
+        zipCode:
+          description: ' Zip code'
+          type: string
+        date:
+          description: Date opened
           type: string
       type: object
     BondYieldCurveInfo:

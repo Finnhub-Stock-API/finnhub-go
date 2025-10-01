@@ -4,9 +4,14 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
+docs/AIChatBody.md
+docs/AIChatMessage.md
+docs/AIChatResponse.md
 docs/AggregateIndicators.md
 docs/AirlinePriceIndex.md
 docs/AirlinePriceIndexData.md
+docs/BankBranchData.md
+docs/BankBranchRes.md
 docs/BasicFinancials.md
 docs/BondCandles.md
 docs/BondProfile.md
@@ -48,6 +53,8 @@ docs/ETFsSectorExposure.md
 docs/EarningRelease.md
 docs/EarningResult.md
 docs/EarningsCalendar.md
+docs/EarningsCallLive.md
+docs/EarningsCallLiveResult.md
 docs/EarningsCallTranscripts.md
 docs/EarningsCallTranscriptsList.md
 docs/EarningsEstimates.md
@@ -126,6 +133,7 @@ docs/NewsSentiment.md
 docs/Ownership.md
 docs/OwnershipInfo.md
 docs/PatternRecognition.md
+docs/PresentationData.md
 docs/PressRelease.md
 docs/PriceMetrics.md
 docs/PriceTarget.md
@@ -133,6 +141,7 @@ docs/Quote.md
 docs/RecommendationTrend.md
 docs/Report.md
 docs/RevenueBreakdown.md
+docs/RevenueBreakdown2.md
 docs/RevenueEstimates.md
 docs/RevenueEstimatesInfo.md
 docs/SECSentimentAnalysis.md
@@ -148,6 +157,7 @@ docs/SimilarityIndexInfo.md
 docs/SocialSentiment.md
 docs/Split.md
 docs/StockCandles.md
+docs/StockPresentation.md
 docs/StockSymbol.md
 docs/StockTranscripts.md
 docs/SupplyChainRelationships.md
@@ -173,8 +183,13 @@ git_push.sh
 go.mod
 go.sum
 model_aggregate_indicators.go
+model_ai_chat_body.go
+model_ai_chat_message.go
+model_ai_chat_response.go
 model_airline_price_index.go
 model_airline_price_index_data.go
+model_bank_branch_data.go
+model_bank_branch_res.go
 model_basic_financials.go
 model_bond_candles.go
 model_bond_profile.go
@@ -207,6 +222,8 @@ model_document_response.go
 model_earning_release.go
 model_earning_result.go
 model_earnings_calendar.go
+model_earnings_call_live.go
+model_earnings_call_live_result.go
 model_earnings_call_transcripts.go
 model_earnings_call_transcripts_list.go
 model_earnings_estimates.go
@@ -293,6 +310,7 @@ model_news_sentiment.go
 model_ownership.go
 model_ownership_info.go
 model_pattern_recognition.go
+model_presentation_data.go
 model_press_release.go
 model_price_metrics.go
 model_price_target.go
@@ -300,6 +318,7 @@ model_quote.go
 model_recommendation_trend.go
 model_report.go
 model_revenue_breakdown.go
+model_revenue_breakdown2.go
 model_revenue_estimates.go
 model_revenue_estimates_info.go
 model_search_body.go
@@ -315,6 +334,7 @@ model_similarity_index_info.go
 model_social_sentiment.go
 model_split.go
 model_stock_candles.go
+model_stock_presentation.go
 model_stock_symbol.go
 model_stock_transcripts.go
 model_supply_chain_relationships.go

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
 [**AirlinePriceIndex**](DefaultApi.md#AirlinePriceIndex) | **Get** /airline/price-index | Airline Price Index
+[**BankBranch**](DefaultApi.md#BankBranch) | **Get** /bank-branch | Bank Branch List
 [**BondPrice**](DefaultApi.md#BondPrice) | **Get** /bond/price | Bond price data
 [**BondProfile**](DefaultApi.md#BondProfile) | **Get** /bond/profile | Bond Profile
 [**BondTick**](DefaultApi.md#BondTick) | **Get** /bond/tick | Bond Tick Data
@@ -32,6 +33,7 @@ Method | HTTP request | Description
 [**CryptoProfile**](DefaultApi.md#CryptoProfile) | **Get** /crypto/profile | Crypto Profile
 [**CryptoSymbols**](DefaultApi.md#CryptoSymbols) | **Get** /crypto/symbol | Crypto Symbol
 [**EarningsCalendar**](DefaultApi.md#EarningsCalendar) | **Get** /calendar/earnings | Earnings Calendar
+[**EarningsCallLive**](DefaultApi.md#EarningsCallLive) | **Get** /stock/earnings-call-live | Earnings Call Audio Live
 [**EconomicCalendar**](DefaultApi.md#EconomicCalendar) | **Get** /calendar/economic | Economic Calendar
 [**EconomicCode**](DefaultApi.md#EconomicCode) | **Get** /economic/code | Economic Code
 [**EconomicData**](DefaultApi.md#EconomicData) | **Get** /economic | Economic Data
@@ -80,6 +82,7 @@ Method | HTTP request | Description
 [**Quote**](DefaultApi.md#Quote) | **Get** /quote | Quote
 [**RecommendationTrends**](DefaultApi.md#RecommendationTrends) | **Get** /stock/recommendation | Recommendation Trends
 [**RevenueBreakdown**](DefaultApi.md#RevenueBreakdown) | **Get** /stock/revenue-breakdown | Revenue Breakdown
+[**RevenueBreakdown2**](DefaultApi.md#RevenueBreakdown2) | **Get** /stock/revenue-breakdown2 | Revenue Breakdown &amp; KPI
 [**SectorMetric**](DefaultApi.md#SectorMetric) | **Get** /sector/metrics | Sector Metrics
 [**SimilarityIndex**](DefaultApi.md#SimilarityIndex) | **Get** /stock/similarity-index | Similarity Index
 [**SocialSentiment**](DefaultApi.md#SocialSentiment) | **Get** /stock/social-sentiment | Social Sentiment
@@ -89,6 +92,7 @@ Method | HTTP request | Description
 [**StockDividends**](DefaultApi.md#StockDividends) | **Get** /stock/dividend | Dividends
 [**StockLobbying**](DefaultApi.md#StockLobbying) | **Get** /stock/lobbying | Senate Lobbying
 [**StockNbbo**](DefaultApi.md#StockNbbo) | **Get** /stock/bbo | Historical NBBO
+[**StockPresentation**](DefaultApi.md#StockPresentation) | **Get** /stock/presentation | Company Presentation
 [**StockSplits**](DefaultApi.md#StockSplits) | **Get** /stock/split | Splits
 [**StockSymbols**](DefaultApi.md#StockSymbols) | **Get** /stock/symbol | Stock Symbol
 [**StockTick**](DefaultApi.md#StockTick) | **Get** /stock/tick | Tick Data
@@ -230,6 +234,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AirlinePriceIndexData**](AirlinePriceIndexData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BankBranch
+
+> BankBranchRes BankBranch(ctx).Symbol(symbol).Execute()
+
+Bank Branch List
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := TODO // interface{} | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.BankBranch(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.BankBranch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `BankBranch`: BankBranchRes
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.BankBranch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBankBranchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | [**interface{}**](interface{}.md) | Symbol. | 
+
+### Return type
+
+[**BankBranchRes**](BankBranchRes.md)
 
 ### Authorization
 
@@ -2010,6 +2080,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EarningsCallLive
+
+> EarningsCallLive EarningsCallLive(ctx).From(from).To(to).Symbol(symbol).Execute()
+
+Earnings Call Audio Live
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    from := time.Now() // string | From date <code>YYYY-MM-DD</code>. (optional)
+    to := time.Now() // string | To date <code>YYYY-MM-DD</code>. (optional)
+    symbol := "symbol_example" // string | Filter by symbol: AAPL. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EarningsCallLive(context.Background()).From(from).To(to).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EarningsCallLive``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EarningsCallLive`: EarningsCallLive
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.EarningsCallLive`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEarningsCallLiveRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **string** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **to** | **string** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | 
+ **symbol** | **string** | Filter by symbol: AAPL. | 
+
+### Return type
+
+[**EarningsCallLive**](EarningsCallLive.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## EconomicCalendar
 
 > EconomicCalendar EconomicCalendar(ctx).From(from).To(to).Execute()
@@ -2688,7 +2829,7 @@ Name | Type | Description  | Notes
 
 ## Financials
 
-> FinancialStatements Financials(ctx).Symbol(symbol).Statement(statement).Freq(freq).Execute()
+> FinancialStatements Financials(ctx).Symbol(symbol).Statement(statement).Freq(freq).Preliminary(preliminary).Execute()
 
 Financial Statements
 
@@ -2710,10 +2851,11 @@ func main() {
     symbol := "symbol_example" // string | Symbol of the company: AAPL.
     statement := "statement_example" // string | Statement can take 1 of these values <code>bs, ic, cf</code> for Balance Sheet, Income Statement, Cash Flow respectively.
     freq := "freq_example" // string | Frequency can take 1 of these values <code>annual, quarterly, ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow.
+    preliminary := "preliminary_example" // string | If set to <code>true</code>, it will return Preliminary financial statements which are usually available within an hour of the earnings announcement. The Preliminary data is subjected to changes later as our team review and standardize the data. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see <code>\"preliminary\": true</code> in the data if that period is using preliminary data. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.Financials(context.Background()).Symbol(symbol).Statement(statement).Freq(freq).Execute()
+    resp, r, err := api_client.DefaultApi.Financials(context.Background()).Symbol(symbol).Statement(statement).Freq(freq).Preliminary(preliminary).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Financials``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2737,6 +2879,7 @@ Name | Type | Description  | Notes
  **symbol** | **string** | Symbol of the company: AAPL. | 
  **statement** | **string** | Statement can take 1 of these values &lt;code&gt;bs, ic, cf&lt;/code&gt; for Balance Sheet, Income Statement, Cash Flow respectively. | 
  **freq** | **string** | Frequency can take 1 of these values &lt;code&gt;annual, quarterly, ttm, ytd&lt;/code&gt;.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. | 
+ **preliminary** | **string** | If set to &lt;code&gt;true&lt;/code&gt;, it will return Preliminary financial statements which are usually available within an hour of the earnings announcement. The Preliminary data is subjected to changes later as our team review and standardize the data. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see &lt;code&gt;\&quot;preliminary\&quot;: true&lt;/code&gt; in the data if that period is using preliminary data. | 
 
 ### Return type
 
@@ -5281,6 +5424,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RevenueBreakdown2
+
+> RevenueBreakdown2 RevenueBreakdown2(ctx).Symbol(symbol).Execute()
+
+Revenue Breakdown & KPI
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.RevenueBreakdown2(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.RevenueBreakdown2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RevenueBreakdown2`: RevenueBreakdown2
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.RevenueBreakdown2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRevenueBreakdown2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol. | 
+
+### Return type
+
+[**RevenueBreakdown2**](RevenueBreakdown2.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SectorMetric
 
 > SectorMetric SectorMetric(ctx).Region(region).Execute()
@@ -5892,6 +6101,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**HistoricalNBBO**](HistoricalNBBO.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StockPresentation
+
+> StockPresentation StockPresentation(ctx).Symbol(symbol).Execute()
+
+Company Presentation
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.StockPresentation(context.Background()).Symbol(symbol).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.StockPresentation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StockPresentation`: StockPresentation
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.StockPresentation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStockPresentationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Company symbol. | 
+
+### Return type
+
+[**StockPresentation**](StockPresentation.md)
 
 ### Authorization
 
