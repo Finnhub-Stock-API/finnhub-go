@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.20
+- Package version: 2.0.24
 
 ## Installation
 
@@ -382,6 +382,27 @@ func main() {
         panic(err)
     }
     fmt.Printf("%+v\n", ebitEstimates)
+
+    // FCF Estimates
+    fcfEstimates, _, err := finnhubClient.CompanyFcfEstimates(context.Background()).Symbol("AAPL").Freq("annual").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", fcfEstimates)
+
+    // CapEx Estimates
+    capexEstimates, _, err := finnhubClient.CompanyCapexEstimates(context.Background()).Symbol("AAPL").Freq("annual").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", capexEstimates)
+
+    // OCF Estimates
+    ocfEstimates, _, err := finnhubClient.CompanyOcfEstimates(context.Background()).Symbol("AAPL").Freq("annual").Execute()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("%+v\n", ocfEstimates)
 
     // USPTO Patent
     uspto, _, err := finnhubClient.StockUsptoPatent(context.Background()).Symbol("NVDA").From("2021-01-01").To("2021-12-31").Execute()
