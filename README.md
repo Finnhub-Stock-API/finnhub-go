@@ -3,7 +3,7 @@
 ## Overview
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.24
+- Package version: 2.0.25
 
 ## Installation
 
@@ -238,6 +238,10 @@ func main() {
     // Price target
     priceTarget, _, err := finnhubClient.PriceTarget(context.Background()).Symbol("AAPL").Execute()
     fmt.Printf("%+v\n", priceTarget)
+
+    // Historical price target
+    historicalPriceTarget, _, err := finnhubClient.HistoricalPriceTarget(context.Background()).Symbol("AAPL").Execute()
+    fmt.Printf("%+v\n", historicalPriceTarget)
 
     // Quote
     quote, _, err := finnhubClient.Quote(context.Background()).Symbol("AAPL").Execute()
